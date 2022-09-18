@@ -1,0 +1,1 @@
+En este directorio se gestionan los componentes gráficos del sitio web.
