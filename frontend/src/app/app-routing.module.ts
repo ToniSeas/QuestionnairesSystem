@@ -13,8 +13,25 @@ const routes: Routes = [
   //{ path: '**', component: componente para página no encontrada }
 ];
 
+const routesSusan: Routes = [
+
+];
+
+const routesHeiner: Routes = [
+
+];
+
+const routesSaymond: Routes = [
+
+];
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routesSusan),
+    RouterModule.forRoot(routesHeiner),
+    RouterModule.forRoot(routesSaymond)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "CuestionariosEntidades/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/CuestionariosEntidades.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CuestionariosEntidades.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "CuestionariosEntidades/1.0.0": {
+      "type": "project",
+      "path": "../CuestionariosEntidades/CuestionariosEntidades.csproj",
+      "msbuildProject": "../CuestionariosEntidades/CuestionariosEntidades.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "CuestionariosEntidades >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\tonis\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
+              "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

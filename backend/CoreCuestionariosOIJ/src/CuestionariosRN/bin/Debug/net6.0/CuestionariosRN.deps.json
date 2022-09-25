@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "CuestionariosRN/1.0.0": {
+        "dependencies": {
+          "CuestionariosAD": "1.0.0",
+          "CuestionariosEntidades": "1.0.0"
+        },
+        "runtime": {
+          "CuestionariosRN.dll": {}
+        }
+      },
+      "CuestionariosAD/1.0.0": {
+        "dependencies": {
+          "CuestionariosEntidades": "1.0.0"
+        },
+        "runtime": {
+          "CuestionariosAD.dll": {}
+        }
+      },
+      "CuestionariosEntidades/1.0.0": {
+        "runtime": {
+          "CuestionariosEntidades.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CuestionariosRN/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CuestionariosAD/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CuestionariosEntidades/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

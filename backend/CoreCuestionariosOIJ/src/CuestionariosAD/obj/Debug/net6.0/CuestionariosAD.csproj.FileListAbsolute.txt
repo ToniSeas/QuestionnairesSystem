@@ -1,0 +1,15 @@
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\bin\Debug\net6.0\CuestionariosAD.deps.json
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\bin\Debug\net6.0\CuestionariosAD.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\bin\Debug\net6.0\CuestionariosAD.pdb
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\bin\Debug\net6.0\CuestionariosEntidades.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\bin\Debug\net6.0\CuestionariosEntidades.pdb
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\CuestionariosAD.csproj.AssemblyReference.cache
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\CuestionariosAD.GeneratedMSBuildEditorConfig.editorconfig
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\CuestionariosAD.AssemblyInfoInputs.cache
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\CuestionariosAD.AssemblyInfo.cs
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\CuestionariosAD.csproj.CoreCompileInputs.cache
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\CuestionariosAD.csproj.CopyComplete
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\CuestionariosAD.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\refint\CuestionariosAD.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\CuestionariosAD.pdb
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\ref\CuestionariosAD.dll

@@ -1,0 +1,17 @@
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\bin\Debug\net6.0\CuestionariosRN.deps.json
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\bin\Debug\net6.0\CuestionariosRN.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\bin\Debug\net6.0\CuestionariosRN.pdb
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\bin\Debug\net6.0\CuestionariosEntidades.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\bin\Debug\net6.0\CuestionariosEntidades.pdb
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\obj\Debug\net6.0\CuestionariosRN.csproj.AssemblyReference.cache
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\obj\Debug\net6.0\CuestionariosRN.GeneratedMSBuildEditorConfig.editorconfig
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\obj\Debug\net6.0\CuestionariosRN.AssemblyInfoInputs.cache
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\obj\Debug\net6.0\CuestionariosRN.AssemblyInfo.cs
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\obj\Debug\net6.0\CuestionariosRN.csproj.CoreCompileInputs.cache
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\obj\Debug\net6.0\CuestionariosRN.csproj.CopyComplete
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\obj\Debug\net6.0\CuestionariosRN.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\obj\Debug\net6.0\refint\CuestionariosRN.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\obj\Debug\net6.0\CuestionariosRN.pdb
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\obj\Debug\net6.0\ref\CuestionariosRN.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\bin\Debug\net6.0\CuestionariosAD.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosRN\bin\Debug\net6.0\CuestionariosAD.pdb
