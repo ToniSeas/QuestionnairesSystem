@@ -9,6 +9,7 @@ import { MainMenuComponent } from './components/body/main-menu/main-menu.compone
 import { NavbarComponent } from './components/body/navbar/navbar.component';
 import { QuestionnaireMenuComponent } from './components/questionnaire-menu/questionnaire-menu.component';
 import { MaintenanceMenuComponent } from './components/maintenance-menu/maintenance-menu.component';
+import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MaintenanceMenuComponent } from './components/maintenance-menu/maintena
     MainMenuComponent,
     NavbarComponent,
     QuestionnaireMenuComponent,
-    MaintenanceMenuComponent
+    MaintenanceMenuComponent,
+    ManageCategoryComponent
   ],
   imports: [
     BrowserModule,
