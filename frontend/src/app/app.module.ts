@@ -12,6 +12,7 @@ import { CreateQuestionnaireComponent } from './components/create-questionnaire/
 import { CreateStepOneComponent } from './components/create-questionnaire/create-step-one/create-step-one.component';
 import { SearchQuestionnaireComponent } from './components/search-questionnaire/search-questionnaire.component';
 import { QuestionnaireResultsComponent } from './components/questionnaire-results/questionnaire-results.component';
+import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { QuestionnaireResultsComponent } from './components/questionnaire-result
     CreateQuestionnaireComponent,
     CreateStepOneComponent,
     SearchQuestionnaireComponent,
-    QuestionnaireResultsComponent
+    QuestionnaireResultsComponent,
+    ManageCategoryComponent
   ],
   imports: [
     BrowserModule,
