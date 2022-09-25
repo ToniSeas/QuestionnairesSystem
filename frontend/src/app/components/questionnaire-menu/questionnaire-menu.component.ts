@@ -12,4 +12,12 @@ export class QuestionnaireMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  create() : void {
+    console.log("Create has been clicked!");
+  }
+
+  search() : void {
+    console.log("Search has been clicked!")
+  }
+
 }
