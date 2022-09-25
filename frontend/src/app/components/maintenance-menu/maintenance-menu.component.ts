@@ -12,4 +12,8 @@ export class MaintenanceMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  manage() : void {
+    console.log("Manage has been clicked!");
+  }
+
 }
