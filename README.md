@@ -4,6 +4,7 @@ El código e información aquí disponible es de caracter confidencial y pertene
 
 Dentro de cada directorio importante habrá un Readme con sus respectivas indicaciones
 Instalaciones necesarias:
+
 	- Instalar NodeJS y NPM (https://phoenixnap.com/kb/install-node-js-npm-on-windows)
 
 	- Instalar Angular (https://ccbill.com/kb/install-angular-on-windows)
