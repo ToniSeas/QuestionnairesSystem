@@ -1,0 +1,14 @@
+
+.create-questionnaire-labels {
+    font-weight:bold;
+}
+
+.step-one-next{
+    background-color: #444;
+    color: #DAA520;
+}
+
+.step-one-next:hover{
+    background-color: #444;
+    color: #DAA520;
+}
