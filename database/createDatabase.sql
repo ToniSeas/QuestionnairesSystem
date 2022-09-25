@@ -178,8 +178,11 @@ BEGIN TRY
 			,[idTipoPregunta]
 			,[estatica]) 
 		VALUES
-			('1', 4, 1)
-			('2', 4, 1)
+			('Muy malo', 5, 1)
+			,('Malo', 5, 1)
+			,('Regular', 5, 1)
+			,('Bueno', 5, 1)
+			,('Muy bueno', 5, 1)
 	COMMIT
 	PRINT('Base de datos lista!')
 END TRY
