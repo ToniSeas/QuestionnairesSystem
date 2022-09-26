@@ -13,6 +13,7 @@ import { CreateStepOneComponent } from './components/create-questionnaire/create
 import { SearchQuestionnaireComponent } from './components/search-questionnaire/search-questionnaire.component';
 import { QuestionnaireResultsComponent } from './components/questionnaire-results/questionnaire-results.component';
 import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ManageCategoryComponent } from './components/manage-category/manage-cat
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

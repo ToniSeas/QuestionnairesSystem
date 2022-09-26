@@ -15,6 +15,6 @@ export class QuestionnaireResultsComponent implements OnInit {
   QuestionnaireName: string = "";
 
   changeName(): void {
-    this.QuestionnaireName = "Prueba Cuestionario";
+    this.QuestionnaireName = "Hola";
   }
 }

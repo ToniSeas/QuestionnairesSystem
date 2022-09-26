@@ -1,2 +1,31 @@
-<p>create-questionnaire works!</p>
+
+
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
+
+    <mat-step >
+        <ng-template matStepLabel>Información básica</ng-template>
+        <h1>HOLA</h1>
+        <app-create-step-one></app-create-step-one>
+    </mat-step>
+
+    <mat-step >
+        <ng-template matStepLabel>Preguntas</ng-template>
+        <app-create-step-one></app-create-step-one>
+    </mat-step>
+
+    <mat-step >
+        <ng-template matStepLabel>Permisos de revisión</ng-template>
+        <app-create-step-one></app-create-step-one>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>Permisos de respuesta</ng-template>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>Finalizar</ng-template>
+    </mat-step>
+
+</mat-horizontal-stepper>
+
 <app-create-step-one></app-create-step-one>
