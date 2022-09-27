@@ -20,6 +20,11 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 import { SelectOfficeComponent } from './components/login/select-office/select-office.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +48,12 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatStepperModule,
     MatTableModule,
     MatPaginatorModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSelectModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
