@@ -6,6 +6,9 @@ import { QuestionnaireMenuComponent } from './components/questionnaire-menu/ques
 import { MaintenanceMenuComponent } from './components/maintenance-menu/maintenance-menu.component'; 
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SelectOfficeComponent } from './components/login/select-office/select-office.component';
+import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
+import { SearchQuestionnaireComponent } from './components/search-questionnaire/search-questionnaire.component';
+import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 
 const routes: Routes = [
   {
@@ -14,6 +17,9 @@ const routes: Routes = [
     children: [
       { path: 'questionnaire-menu', component: QuestionnaireMenuComponent }
       , { path: 'maintenance-menu', component: MaintenanceMenuComponent }
+      , { path: 'create-questionnaire', component: CreateQuestionnaireComponent }
+      , { path: 'search-questionnaire', component: SearchQuestionnaireComponent }
+      , { path: 'manage-category', component: ManageCategoryComponent }
     ]
   }
   ,{ path: 'login', component: LoginComponent }
