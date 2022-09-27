@@ -1,0 +1,52 @@
+table {
+    width: 100%;
+}
+
+.btn-category:hover {
+    background-color: #DAA520;
+    color: #444;
+}
+
+.btn-subcategory:hover {
+    background-color: #DAA520;
+    color: #444;
+}
+
+.btn-category {
+    background-color: #FFFFFF;
+    color: #444;
+    border: 3px solid #DAA520;
+}
+
+.btn-subcategory {
+    background-color: #FFFFFF;
+    color: #444;
+    border: 3px solid #DAA520;
+}
+
+.category-label{
+    font-weight:bold
+}
+
+.category-input{
+    border-radius: 1ch;
+}
+
+.category-action-buttons{
+    align-content: center;
+}
+
+.btn-clean-category{
+    background-color: #444;
+    color: #DAA520;
+}
+
+.btn-search-category{
+    background-color: #444;
+    color: #DAA520;
+}
+
+.btn-add-category{
+    background-color: #444;
+    color: #DAA520;
+}

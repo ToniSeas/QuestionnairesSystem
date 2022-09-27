@@ -14,6 +14,8 @@ import { SearchQuestionnaireComponent } from './components/search-questionnaire/
 import { QuestionnaireResultsComponent } from './components/questionnaire-results/questionnaire-results.component';
 import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {MatStepperModule} from '@angular/material/stepper';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
