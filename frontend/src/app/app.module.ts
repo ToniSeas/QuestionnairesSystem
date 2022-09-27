@@ -16,6 +16,9 @@ import { ManageCategoryComponent } from './components/manage-category/manage-cat
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { SelectOfficeComponent } from './components/login/select-office/select-office.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -30,14 +33,17 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     CreateStepOneComponent,
     SearchQuestionnaireComponent,
     QuestionnaireResultsComponent,
-    ManageCategoryComponent
+    ManageCategoryComponent,
+    NotFoundPageComponent,
+    SelectOfficeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatStepperModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
