@@ -13,6 +13,9 @@ import { CreateStepOneComponent } from './components/create-questionnaire/create
 import { SearchQuestionnaireComponent } from './components/search-questionnaire/search-questionnaire.component';
 import { QuestionnaireResultsComponent } from './components/questionnaire-results/questionnaire-results.component';
 import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { SelectOfficeComponent } from './components/login/select-office/select-office.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -27,11 +30,14 @@ import { ManageCategoryComponent } from './components/manage-category/manage-cat
     CreateStepOneComponent,
     SearchQuestionnaireComponent,
     QuestionnaireResultsComponent,
-    ManageCategoryComponent
+    ManageCategoryComponent,
+    NotFoundPageComponent,
+    SelectOfficeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
