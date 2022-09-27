@@ -16,6 +16,11 @@ import { ManageCategoryComponent } from './components/manage-category/manage-cat
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +40,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     BrowserModule,
     AppRoutingModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSelectModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
