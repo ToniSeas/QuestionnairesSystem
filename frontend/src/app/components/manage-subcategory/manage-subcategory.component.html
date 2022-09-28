@@ -12,6 +12,25 @@
     
     <div class="row mb-4">
         <div class="col">
+            <div class="form-outline">
+                <label class="create-questionnaire-labels" for="">Categoría de pregunta:</label>
+               
+            </div>
+            
+        </div>
+        <div class="col">
+            <select ng-model="questionnaire.type" class="form-control">
+                <option value="category1">Categoría 1
+                <option value="category2">Categoría 2
+                <option value="category3">Categoría 3
+            </select>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col">
             <label class="category-label">Nombre:</label>
             <input class="cateogry-input" type="text" name="nameCategoryQuestion" placeholder="Nombre de la categoría de pregunta" /> 
         </div>

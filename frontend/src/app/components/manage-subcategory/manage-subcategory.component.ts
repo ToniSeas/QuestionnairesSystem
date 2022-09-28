@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
-  selector: 'app-manage-category',
-  templateUrl: './manage-category.component.html',
-  styleUrls: ['./manage-category.component.css']
+  selector: 'app-manage-subcategory',
+  templateUrl: './manage-subcategory.component.html',
+  styleUrls: ['./manage-subcategory.component.css']
 })
-export class ManageCategoryComponent implements OnInit {
+export class ManageSubcategoryComponent implements OnInit {
   displayedColumns: string[] = ['title', 'operations'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   constructor() { }
@@ -14,7 +14,6 @@ export class ManageCategoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
 }
 
 export interface PeriodicElement {

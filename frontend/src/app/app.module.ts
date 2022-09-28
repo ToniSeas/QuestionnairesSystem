@@ -25,6 +25,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ManageSubcategoryComponent } from './components/manage-subcategory/manage-subcategory.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     QuestionnaireResultsComponent,
     ManageCategoryComponent,
     NotFoundPageComponent,
-    SelectOfficeComponent
+    SelectOfficeComponent,
+    ManageSubcategoryComponent
   ],
   imports: [
     BrowserModule,
