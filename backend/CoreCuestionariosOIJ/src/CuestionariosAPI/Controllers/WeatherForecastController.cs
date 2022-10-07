@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace CuestionariosAPI.Controllers
+namespace TestAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]

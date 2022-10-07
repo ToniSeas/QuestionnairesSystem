@@ -10,5 +10,3 @@ E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosE
 E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\refint\CuestionariosEntidades.dll
 E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\CuestionariosEntidades.pdb
 E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\ref\CuestionariosEntidades.dll
-E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\bin\Debug\net6.0\CuestionariosEntidades.runtimeconfig.json
-E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\CuestionariosEntidades.genruntimeconfig.cache

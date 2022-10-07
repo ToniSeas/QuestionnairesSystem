@@ -13,3 +13,5 @@ E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosA
 E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\refint\CuestionariosAD.dll
 E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\CuestionariosAD.pdb
 E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\ref\CuestionariosAD.dll
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\bin\Debug\net6.0\CuestionariosAD.runtimeconfig.json
+E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAD\obj\Debug\net6.0\CuestionariosAD.genruntimeconfig.cache

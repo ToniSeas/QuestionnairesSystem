@@ -829,7 +829,10 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "CuestionariosEntidades": "1.0.0"
+          "CuestionariosEntidades": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.9",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.9",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.9"
         },
         "compile": {
           "bin/placeholder/CuestionariosAD.dll": {}
@@ -841,9 +844,6 @@
       "CuestionariosEntidades/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.9"
-        },
         "compile": {
           "bin/placeholder/CuestionariosEntidades.dll": {}
         },

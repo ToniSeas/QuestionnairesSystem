@@ -1,4 +1,4 @@
-namespace CuestionariosAPI
+namespace TestAPI
 {
     public class WeatherForecast
     {
