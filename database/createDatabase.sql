@@ -29,15 +29,15 @@ BEGIN TRY
 		-- tipoCuestionario
 		CREATE TABLE tb_tipo_Cuestionario
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,nombre VARCHAR(40))
+			,nombre VARCHAR(150))
 
 		-- cuestionario
 		CREATE TABLE tb_cuestionario
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,nombre NVARCHAR(100) NOT NULL
+			,nombre NVARCHAR(150) NOT NULL
 			,activo BIT NOT NULL DEFAULT 1
 			,vencimiento DATE NOT NULL
-			,decripcion NVARCHAR(200) NOT NULL
+			,decripcion NVARCHAR(500) NOT NULL
 			,idTipoCuestionario INT NOT NULL
 			,fechaCreacion DATE DEFAULT GETDATE()
 			, FOREIGN KEY (idTipoCuestionario) REFERENCES tb_tipo_Cuestionario (id))
@@ -66,25 +66,25 @@ BEGIN TRY
 		-- tipoPregunta
 		CREATE TABLE tb_tipo_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,nombre NVARCHAR(100))
+			,nombre NVARCHAR(150))
 
 		-- Categoría pregunta
 		CREATE TABLE tb_categoria_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,nombre NVARCHAR(100))
+			,nombre NVARCHAR(150))
 	
 		-- Categoría pregunta
 		CREATE TABLE tb_subcategoria_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,nombre NVARCHAR(100)
+			,nombre NVARCHAR(150)
 			,idCategoria INT NOT NULL
 			,FOREIGN KEY (idCategoria) REFERENCES tb_categoria_pregunta (id))
 
 		-- pregunta
 		CREATE TABLE tb_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,enunciado NVARCHAR(200) NOT NULL
-			,etiqueta NVARCHAR(100) NOT NULL
+			,enunciado NVARCHAR(180) NOT NULL
+			,etiqueta NVARCHAR(180) NOT NULL
 			,posicion INT NOT NULL
 			,idCategoria INT NOT NULL
 			,idSubcategoria INT NOT NULL
@@ -100,7 +100,7 @@ BEGIN TRY
 
 		CREATE TABLE tb_opcion
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,opcion NVARCHAR(200) NOT NULL
+			,opcion NVARCHAR(180) NOT NULL
 			,idPregunta INT NULL --Puede que esta opción sea estática por lo que no tiene una ID de pregunta como tal.
 			,idTipoPregunta INT NOT NULL --Es importante espeficicar el tipo de pregunta al que pertenece esta opción.
 			,FOREIGN KEY (idPregunta) REFERENCES tb_pregunta (id)
@@ -112,7 +112,7 @@ BEGIN TRY
 			(id INT IDENTITY(1, 1) PRIMARY KEY
 			,fecha DATETIME NOT NULL DEFAULT GETDATE()
 			,idPregunta INT NOT NULL
-			,respuesta NVARCHAR(200) NULL
+			,respuesta NVARCHAR(500) NULL
 			,FOREIGN KEY (idPregunta) REFERENCES tb_pregunta (id))
 	
 		-- Respuesta_opción
