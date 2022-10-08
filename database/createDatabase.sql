@@ -42,6 +42,13 @@ BEGIN TRY
 			,fechaCreacion DATE DEFAULT GETDATE()
 			, FOREIGN KEY (idTipoCuestionario) REFERENCES tb_tipo_Cuestionario (id))
 
+		-- historico cuestionario
+		CREATE TABLE tb_historico_Cuestionario
+			(id INT IDENTITY (1, 1) PRIMARY KEY
+			,idCuestionario INT NOT NULL
+			,fechaInicio DATE DEFAULT GETDATE()
+			,fechaFinal DATE NOT NULL)
+
 		-- revisaCuestionario
 		CREATE TABLE tb_revisa_Cuestionario
 			(idUsuario INT NOT NULL
