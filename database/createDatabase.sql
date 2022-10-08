@@ -25,38 +25,7 @@ PRINT('Base de datos creada!')
 BEGIN TRY
 	PRINT('Poblando la base de datos con las tablas...')
 	USE cuestionarios
-
-	-- oficinas
 	BEGIN TRANSACTION
-		CREATE TABLE oficinas
-			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,nombre NVARCHAR(255) NOT NULL
-			,eliminado BIT NULL DEFAULT 0
-			,usuario NVARCHAR(50) NULL
-			,codigoOficina char(4) NULL
-			,estado BIT NULL DEFAULT 1
-			,institucion INT NULL)
-
-		-- usuarios
-		CREATE TABLE usuarios
-			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,usuario VARCHAR(50) NOT NULL UNIQUE
-			,identificacion VARCHAR(25) NOT NULL
-			,nombreUsuario VARCHAR(50) NULL
-			,primerApellido VARCHAR(50)
-			,tipoAutenticacionId INT NOT NULL DEFAULT 0
-			,tipoUsuario char(1) NULL
-			,correo VARCHAR(40) NULL
-			,cantidadIntentosAcceso INT NULL
-			,usuarioActualiza TIMESTAMP
-			,observaciones VARCHAR(100) NULL
-			,eliminado BIT NULL DEFAULT 0
-			,tipoIdentificacionId INT NULL
-			,institucionId INT NULL
-			,oficinaId INT NOT NULL
-			,activo BIT NOT NULL DEFAULT 1
-			,FOREIGN KEY (oficinaId) REFERENCES oficinas (id))
-
 		-- tipoCuestionario
 		CREATE TABLE tb_tipo_Cuestionario
 			(id INT IDENTITY(1, 1) PRIMARY KEY
@@ -78,7 +47,6 @@ BEGIN TRY
 			(idUsuario INT NOT NULL
 			,idCuestionario INT NOT NULL
 			,eliminado BIT NOT NULL DEFAULT 0
-			,FOREIGN KEY (idUsuario) REFERENCES usuarios (id)
 			,FOREIGN KEY (idCuestionario) REFERENCES tb_cuestionario (id))
 
 		-- cuestionario_usuarios
@@ -86,8 +54,7 @@ BEGIN TRY
 			(idCuestionario INT NOT NULL
 			,idUsuario INT NOT NULL
 			,eliminado BIT NOT NULL DEFAULT 0
-			,FOREIGN KEY (idCuestionario) REFERENCES tb_cuestionario (id)
-			,FOREIGN KEY (idUsuario) REFERENCES usuarios (id)) 
+			,FOREIGN KEY (idCuestionario) REFERENCES tb_cuestionario (id)) 
 
 		-- tipoPregunta
 		CREATE TABLE tb_tipo_pregunta
