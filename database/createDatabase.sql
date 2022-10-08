@@ -89,14 +89,6 @@ BEGIN TRY
 			,FOREIGN KEY (idCuestionario) REFERENCES tb_cuestionario (id)
 			,FOREIGN KEY (idUsuario) REFERENCES usuarios (id))
 
-		-- cuestionario_oficina
-		CREATE TABLE tb_cuestionario_oficina
-			(idCuestionario INT NOT NULL
-			,idOficina INT NOT NULL
-			,eliminado BIT NOT NULL DEFAULT 0
-			,FOREIGN KEY (idCuestionario) REFERENCES tb_cuestionario (id)
-			,FOREIGN KEY (idOficina) REFERENCES oficinas (id))
-
 		-- tipoPregunta
 		CREATE TABLE tb_tipo_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
