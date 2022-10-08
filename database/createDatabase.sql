@@ -87,7 +87,7 @@ BEGIN TRY
 			,idUsuario INT NOT NULL
 			,eliminado BIT NOT NULL DEFAULT 0
 			,FOREIGN KEY (idCuestionario) REFERENCES tb_cuestionario (id)
-			,FOREIGN KEY (idUsuario) REFERENCES usuarios (id))
+			,FOREIGN KEY (idUsuario) REFERENCES usuarios (id)) 
 
 		-- tipoPregunta
 		CREATE TABLE tb_tipo_pregunta
@@ -116,6 +116,7 @@ BEGIN TRY
 			,idSubcategoria INT NOT NULL
 			,idCuestionario INT NOT NULL
 			,idTipo INT NOT NULL
+			,opcional BIT NOT NULL DEFAULT 0
 			,FOREIGN KEY (idCategoria) REFERENCES tb_categoria_pregunta (id)
 			,FOREIGN KEY (idSubcategoria) REFERENCES tb_subcategoria_pregunta (id)
 			,FOREIGN KEY (idCuestionario) REFERENCES tb_cuestionario (id)
