@@ -1,7 +1,8 @@
 /*
 	Crear base de datos y tablas.
 	Autor: Heiner Monge
-	fecha: 25 de septiembre 2022
+	fecha creacion: 25 de septiembre 2022
+	modificiacion: 08 de agosto 2022
 */
 
 USE master
@@ -116,7 +117,7 @@ BEGIN TRY
 		-- pregunta
 		CREATE TABLE tb_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,pregunta NVARCHAR(200) NOT NULL
+			,enunciado NVARCHAR(200) NOT NULL
 			,etiqueta NVARCHAR(100) NOT NULL
 			,posicion INT NOT NULL
 			,idCategoria INT NOT NULL
