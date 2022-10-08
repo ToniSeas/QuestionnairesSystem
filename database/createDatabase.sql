@@ -103,7 +103,6 @@ BEGIN TRY
 			,opcion NVARCHAR(200) NOT NULL
 			,idPregunta INT NULL --Puede que esta opción sea estática por lo que no tiene una ID de pregunta como tal.
 			,idTipoPregunta INT NOT NULL --Es importante espeficicar el tipo de pregunta al que pertenece esta opción.
-			,estatica BIT NOT NULL DEFAULT 0
 			,FOREIGN KEY (idPregunta) REFERENCES tb_pregunta (id)
 			,FOREIGN KEY (idTipoPregunta) REFERENCES tb_tipo_pregunta (id))
 
@@ -143,14 +142,13 @@ BEGIN TRY
 		-- Opciones estáticas para preguntas
 		INSERT INTO tb_opcion
 			([opcion]
-			,[idTipoPregunta]
-			,[estatica]) 
+			,[idTipoPregunta]) 
 		VALUES
-			('Muy malo', 5, 1)
-			,('Malo', 5, 1)
-			,('Regular', 5, 1)
-			,('Bueno', 5, 1)
-			,('Muy bueno', 5, 1)
+			('Muy malo', 5)
+			,('Malo', 5)
+			,('Regular', 5)
+			,('Bueno', 5)
+			,('Muy bueno', 5)
 	COMMIT
 	PRINT('Base de datos lista!')
 END TRY
