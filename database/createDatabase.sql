@@ -47,7 +47,8 @@ BEGIN TRY
 			(id INT IDENTITY (1, 1) PRIMARY KEY
 			,idCuestionario INT NOT NULL
 			,fechaInicio DATE DEFAULT GETDATE()
-			,fechaFinal DATE NOT NULL)
+			,fechaFinal DATE NOT NULL
+			, FOREIGN KEY (idCuestionario) REFERENCES tb_cuestionario (id))
 
 		-- revisaCuestionario
 		CREATE TABLE tb_revisa_Cuestionario
