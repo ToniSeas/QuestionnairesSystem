@@ -9,31 +9,63 @@ import { Reviewer } from '../models/Reviewer';
 })
 export class ReviewingPermissionService {
 
+
   private urlController = "ReviewingPermission";
-  constructor(private http: HttpClient) { }
 
-  public getRewiewers(questionnaire: Questionnaire) : Observable<Reviewer[]> {
-    //return this.http.get<Questionnaire[]>(`${environment.apiUrl}/${this.urlController}`);
-    var b:Reviewer[];
-    b = [new Reviewer(), new Reviewer(), new Reviewer()];
-
-    var reviewers : Observable<Reviewer[]> = of(b);
-    return reviewers;
-    //return lista de revisores quemada porque aún no tenemos api
+  declare reviewers: Reviewer[] //temporal
+  constructor(private http: HttpClient) {
   }
 
-/*  public updateHero(hero: SuperHero) : Observable<SuperHero[]> {
-    return this.http.put<SuperHero[]>(`${environment.apiUrl}/${this.urlController}`
-            , hero);
+
+  public getReviewers(questionnaire: Questionnaire): Observable<Reviewer[]> {
+    /*
+    TODO call api using: 
+    return this.http.get<Questionnaire[]>(`${environment.apiUrl}/${this.urlController}`);
+    */
+    var reviewers: Observable<Reviewer[]> = of(this.reviewers);
+    return reviewers; //Tempora
   }
 
-  public createHero(hero: SuperHero) : Observable<SuperHero[]> {
-    return this.http.post<SuperHero[]>(`${environment.apiUrl}/${this.urlController}`
-            , hero);
+  public updateReviewer(reviewer: Reviewer): void {
+    //TODO call API
+
+    //temporal:
+    this.reviewers.forEach(element => {
+      if (element.id == reviewer.id) {
+        element.idOffice = reviewer.idOffice
+        element.idQuestionnaire = reviewer.idQuestionnaire
+        element.lastname = reviewer.lastname
+        element.name = reviewer.name
+      }
+    });
   }
 
-  public deleteHero(hero: SuperHero) : Observable<SuperHero[]> {
-    return this.http.delete<SuperHero[]>(`${environment.apiUrl}/${this.urlController}/${hero.id}`);
-  } */
+  public addReviewer(reviewer: Reviewer): void {
+    //TODO call API
+    this.reviewers.push(reviewer)
+  }
+
+  public deleteReviewer(reviewer: Reviewer) {
+    //TODO call API
+    let index = this.reviewers.indexOf(reviewer, 0)
+    if (index > -1) {
+      this.reviewers.splice(index, 1)
+    }
+  }
+
+  /*  public updateHero(hero: SuperHero) : Observable<SuperHero[]> {
+      return this.http.put<SuperHero[]>(`${environment.apiUrl}/${this.urlController}`
+              , hero);
+    }
+  
+    public createHero(hero: SuperHero) : Observable<SuperHero[]> {
+      return this.http.post<SuperHero[]>(`${environment.apiUrl}/${this.urlController}`
+              , hero);
+    }
+  
+    public deleteHero(hero: SuperHero) : Observable<SuperHero[]> {
+      return this.http.delete<SuperHero[]>(`${environment.apiUrl}/${this.urlController}/${hero.id}`);
+    } 
+  */
 
 }
