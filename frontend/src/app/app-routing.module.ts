@@ -10,6 +10,7 @@ import { CreateQuestionnaireComponent } from './components/create-questionnaire/
 import { SearchQuestionnaireComponent } from './components/search-questionnaire/search-questionnaire.component';
 import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 
+
 const routes: Routes = [
   {
     path: '',
