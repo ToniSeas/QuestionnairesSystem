@@ -1,5 +1,6 @@
-import { Category } from "./category";
-import { SubCategory } from "./subcategory";
+import { Category } from "./Category";
+import { SubCategory } from "./Subcategory";
+
 
 export class Question{
   
@@ -9,7 +10,5 @@ export class Question{
   position?: number;
   subcategory?: SubCategory;
   category?: Category;
-
-  constructor() {}
 
 }

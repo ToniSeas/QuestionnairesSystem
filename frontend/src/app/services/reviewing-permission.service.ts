@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Questionnaire } from '../models/Questionnaire';
+import { Reviewer } from '../models/Reviewer';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +12,13 @@ export class ReviewingPermissionService {
   private urlController = "ReviewingPermission";
   constructor(private http: HttpClient) { }
 
-  public getRewiewers(questionnaire: Questionnaire) : Observable<Questionnaire[]> {
+  public getRewiewers(questionnaire: Questionnaire) : Observable<Reviewer[]> {
     //return this.http.get<Questionnaire[]>(`${environment.apiUrl}/${this.urlController}`);
+    var b:Reviewer[];
+    b = [new Reviewer(), new Reviewer(), new Reviewer()];
 
+    var reviewers : Observable<Reviewer[]> = of(b);
+    return reviewers;
     //return lista de revisores quemada porque aún no tenemos api
   }
 

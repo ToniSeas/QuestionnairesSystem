@@ -1,4 +1,4 @@
-import { Answer } from "./answer";
+import { Answer } from "./Answer";
 
 export class AnswerArray{
 
