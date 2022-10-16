@@ -19,7 +19,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SelectOfficeComponent } from './components/login/select-office/select-office.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
@@ -27,6 +26,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageSubcategoryComponent } from './components/manage-subcategory/manage-subcategory.component';
 import { CreateStepTwoComponent } from './components/create-questionnaire/create-step-two/create-step-two.component';
+import { CreateStepThreeComponent } from './components/create-questionnaire/create-step-three/create-step-three.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import { CreateStepTwoComponent } from './components/create-questionnaire/create
     NotFoundPageComponent,
     SelectOfficeComponent,
     ManageSubcategoryComponent,
-    CreateStepTwoComponent
+    CreateStepTwoComponent,
+    CreateStepThreeComponent
   ],
   imports: [
     BrowserModule,
@@ -63,4 +64,5 @@ import { CreateStepTwoComponent } from './components/create-questionnaire/create
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
