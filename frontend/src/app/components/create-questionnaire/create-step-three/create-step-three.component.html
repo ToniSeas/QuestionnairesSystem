@@ -1,1 +1,53 @@
-<p>create-step-three works!</p>
+<div class="container">
+
+    <form>
+
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <label class="create-questionnaire-labels" for="">Nombre:</label>
+                    <input mdbInput type="text" ng-model="questionnaire.name" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-outline">
+                    <label class="create-questionnaire-labels" for="">Estado:</label>
+                    <select class="create-questionnaire-labels" ng-model="questionnaire.status" class="form-control">
+                        <option value="enable">Habilitado
+                        <option value="disable">Deshabilitado
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+
+            <div class="col">
+                <div class="form-outline">
+                    <label class="create-questionnaire-labels" for="">Fecha Vencimiento:</label>
+                    <input type="date" class="form-control" ng-model="questionnaire.expirationDate">
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-outline">
+                    <label class="create-questionnaire-labels" for="">Tipo:</label>
+                    <select ng-model="questionnaire.type" class="form-control">
+                        <option value="internal">Interno
+                        <option value="external">Externo
+                        <option value="impersonal">Impersonal
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mb-4">
+            <label class="create-questionnaire-labels" for="">Descripción:</label>
+            <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" class="btn me-md-2 step-one-next">Siguiente</button>
+        </div>
+    </form>
+</div>
