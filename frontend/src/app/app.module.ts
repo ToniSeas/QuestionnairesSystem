@@ -26,6 +26,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageSubcategoryComponent } from './components/manage-subcategory/manage-subcategory.component';
+import { CreateStepThreeComponent } from './components/create-questionnaire/create-step-three/create-step-three.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ManageSubcategoryComponent } from './components/manage-subcategory/mana
     ManageCategoryComponent,
     NotFoundPageComponent,
     SelectOfficeComponent,
-    ManageSubcategoryComponent
+    ManageSubcategoryComponent,
+    CreateStepThreeComponent
   ],
   imports: [
     BrowserModule,
