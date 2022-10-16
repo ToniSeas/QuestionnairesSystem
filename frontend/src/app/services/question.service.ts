@@ -7,14 +7,20 @@ import { Question } from '../models/Question';
 })
 export class QuestionService {
 
-  public createQuestion(question: Question) : Observable<Question[]> {
-    console.log(question.id);
+  questionList: Question[] = [new Question({enunciate:"quemada"})];
 
-    var b:Question[];
-    b = [new Question(), new Question()];
-    var questions : Observable<Question[]> = of(b);
+  public getQuestions() : Observable<Question[]> {
+  
+    var questions : Observable<Question[]> = of(this.questionList);
     return questions;
   }
 
+  public createQuestion(question: Question) : Observable<Question[]> {
+    
+    this.questionList.push(question);
+
+    var questions : Observable<Question[]> = of(this.questionList);
+    return questions;
+  }
 
 }
