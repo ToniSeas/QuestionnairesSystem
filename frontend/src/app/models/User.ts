@@ -1,10 +1,15 @@
-export class User{
+export class User {
 
     id?: number;
     name?: String;
     lastname?: String;
     idOffice?: number;
-    
-    constructor() {}
+
+    constructor({ id, name, lastname, idOffice }: { id?: number, name?: String, lastname?: String, idOffice: number }) {
+        this.id = id;
+        this.name = name;
+        this.lastname = lastname;
+        this.idOffice = idOffice;
+    }
 
 }
