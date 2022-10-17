@@ -1,0 +1,56 @@
+<div>
+
+  <form [formGroup]="getFormGroup()" class="example-form">
+
+    <div class="row">
+      <mat-form-field class="w-full">
+        <mat-label> Enunciado </mat-label>
+        <input matInput placeholder="Enunciado" [formControlName]="'enunciate'">
+        <em *ngIf="validateControl('username') && hasError('username', 'required')">Username is required</em>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="col-6" style="min-width: 200px; margin-left: auto; margin-right: auto;">
+        <mat-label>Categoría</mat-label>
+        <input type="text" placeholder="Seleccionar Categoría" aria-label="Number" matInput
+          [formControl]="getCategoryControl()" [matAutocomplete]="autoCategory">
+        <mat-autocomplete #autoCategory="matAutocomplete">
+          <mat-option *ngFor="let option of getCategoriesFiltered() | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="col-6" style="min-width: 200px; margin-left: auto; margin-right: auto;">
+        <mat-label>Tipo</mat-label>
+        <input type="text" placeholder="Seleccionar Tipo" aria-label="Number" matInput [formControl]="getTypeControl()"
+          [matAutocomplete]="autoType">
+        <mat-autocomplete #autoType="matAutocomplete">
+          <mat-option *ngFor="let option of getTypesFiltered() | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+    <mat-form-field class="col-6" style="min-width: 200px; margin-left: auto; margin-right: auto;">
+      <mat-label>SubCategoría</mat-label>
+      <input type="text" placeholder="Seleccionar Subcategoría" aria-label="Number" matInput
+        [formControl]="getSubCategoryControl()" [matAutocomplete]="autoSubCategory">
+      <mat-autocomplete #autoSubCategory="matAutocomplete">
+        <mat-option *ngFor="let option of getSubCategoriesFiltered() | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+</div>

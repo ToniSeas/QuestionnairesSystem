@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { Question } from 'src/app/models/Question';
-import { QuestionService } from 'src/app/services/question.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
+import { Question } from "src/app/models/Question";
+import { QuestionService } from "src/app/services/question.service";
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { map, Observable, startWith } from "rxjs";
 
 @Component({
   selector: 'app-create-step-two',
@@ -10,29 +14,40 @@ import { QuestionService } from 'src/app/services/question.service';
 })
 export class CreateStepTwoComponent implements OnInit {
 
-  //temporal
-  question: Question = new Question({enunciate:"la nueva"});
 
-  private displayedColumns: string[] = ['title', 'operations'];
+  private displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   private dataSource = new MatTableDataSource<Question>;
 
-  constructor(private questionService: QuestionService) { }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private questionService: QuestionService, public dialog: MatDialog) { }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(CreateQuestionDialog, {
+      enterAnimationDuration,
+      exitAnimationDuration
+    });
+  }
 
   ngOnInit(): void {
-    this.questionService.getQuestions().subscribe (
-      (result : Question[]) => (this.updateQuestionList(result))
+    this.questionService.getQuestions().subscribe(
+      (result: Question[]) => (this.updateQuestionList(result))
     )
+    this.dataSource.paginator = this.paginator;
+    this.openDialog('0ms', '0ms');
+  }
+
+  public getDisplayedColumns(): string[] {
+    return this.displayedColumns;
   }
 
   public getDataSource(): MatTableDataSource<Question> {
     return this.dataSource;
   }
-  public getDisplayedColumns(): string[] {
-    return this.displayedColumns;
-  }
 
   public updateQuestionList(questions: Question[]): void {
     this.dataSource = new MatTableDataSource<Question>(questions)
+    this.dataSource.paginator = this.paginator;
   }
 
   public createQuestion(question: Question): void {
@@ -40,5 +55,93 @@ export class CreateStepTwoComponent implements OnInit {
       (questions) => this.updateQuestionList(questions)
     );
   }
+}
+
+@Component({
+  selector: 'app-create-question-dialog',
+  templateUrl: './create-question-dialog/create-question-dialog.html',
+  styleUrls: ['./create-question-dialog/create-question-dialog.css']
+})
+export class CreateQuestionDialog implements OnInit{ 
+  private createQuestionForm!: FormGroup;
+  private typeControl = new FormControl("", [Validators.required]);
+  private categoryControl = new FormControl("", [Validators.required]);
+  private subCategoryControl = new FormControl("", [Validators.required]);
+  private typesFiltered!: Observable<string[]>;
+  private categoriesFiltered!: Observable<string[]>;
+  private subCategoriesFiltered!: Observable<string[]>;
+
+  constructor(public dialogRef: MatDialogRef<CreateQuestionDialog>) {  }
+
+  public getFormGroup(): FormGroup { return this.createQuestionForm; }
+  public getTypeControl(): FormControl {  return this.typeControl; }
+  public getCategoryControl(): FormControl { return this.categoryControl; }
+  public getSubCategoryControl(): FormControl { return this.subCategoryControl; }
+  public getTypesFiltered(): Observable<String[]> {  return this.typesFiltered; }
+  public getCategoriesFiltered(): Observable<String[]> { return this.categoriesFiltered; }
+  public getSubCategoriesFiltered(): Observable<String[]> { return this.subCategoriesFiltered; }
+
+  ngOnInit(): void {
+    // Inicializar la lista de tipos
+    var typeOptions: string[] = ['One t', 'Two t', 'Three t'];
+    this.typeControl = new FormControl("", [Validators.required]);
+    this.typesFiltered = this.typeControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '', typeOptions)),
+    );
+
+    // Inicializar la lista de categorias
+    var categoryOptions: string[] = ['One c', 'Two c', 'Three c'];
+    this.categoryControl = new FormControl("", [Validators.required]);
+    this.categoriesFiltered = this.categoryControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '', categoryOptions)),
+    );
+
+    // Inicializar la lista de sub categorias
+    var subCategoryOptions: string[] = ['One sc', 'Two sc', 'Three sc'];
+    this.subCategoryControl = new FormControl("", [Validators.required]);
+    this.subCategoriesFiltered = this.subCategoryControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '', subCategoryOptions)),
+    );
+
+    this.createQuestionForm = new FormGroup({
+      enunciate: new FormControl("", [Validators.required]),
+      type: this.typeControl,
+      category: this.categoryControl,
+      subCategory: this.subCategoryControl
+    })
+
+  }
+
+  validateControl = (controlName: string) => {
+    return this.createQuestionForm.get(controlName)?.invalid && this.createQuestionForm.get(controlName)?.touched;
+  }
+
+  hasError = (controlName: string, errorName: string) => {
+    return this.createQuestionForm.get(controlName)?.hasError(errorName);
+  }
   
+  /*
+  loginUser = (loginFormValue) => {
+    this.showError = false;
+    const login = {... loginFormValue };
+
+    const userForAuth: UserForAuthenticationDto = {
+      email: login.username,
+      password: login.password
+    }
+
+    error: (err: HttpErrorResponse) => {
+      this.errorMessage = err.message;
+      this.showError = true;
+    }})
+  } */
+
+
+  private _filter(value: string, options: string[]): string[] {
+    const filterValue = value.toLowerCase();
+    return options.filter(option => option.toLowerCase().includes(filterValue));
+  }
 }

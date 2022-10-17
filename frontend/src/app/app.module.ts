@@ -14,7 +14,6 @@ import { SearchQuestionnaireComponent } from './components/search-questionnaire/
 import { QuestionnaireResultsComponent } from './components/questionnaire-results/questionnaire-results.component';
 import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SelectOfficeComponent } from './components/login/select-office/select-office.component';
@@ -25,11 +24,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageSubcategoryComponent } from './components/manage-subcategory/manage-subcategory.component';
-import { CreateStepTwoComponent } from './components/create-questionnaire/create-step-two/create-step-two.component';
+import { CreateQuestionDialog, CreateStepTwoComponent } from './components/create-questionnaire/create-step-two/create-step-two.component';
 import { CreateStepThreeComponent } from './components/create-questionnaire/create-step-three/create-step-three.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -49,13 +49,13 @@ import { MatInputModule } from '@angular/material/input';
     SelectOfficeComponent,
     ManageSubcategoryComponent,
     CreateStepTwoComponent,
-    CreateStepThreeComponent
+    CreateStepThreeComponent,
+    CreateQuestionDialog
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatStepperModule,
-    MatTableModule,
     MatPaginatorModule,
     MatAutocompleteModule,
     MatMenuModule,
@@ -65,7 +65,11 @@ import { MatInputModule } from '@angular/material/input';
     BrowserAnimationsModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
