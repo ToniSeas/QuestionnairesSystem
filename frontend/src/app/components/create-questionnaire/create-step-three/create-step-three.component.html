@@ -1,53 +1,104 @@
 <div class="container">
+    <div class="row mb-4">
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
 
-    <form>
-
-        <div class="row mb-4">
-            <div class="col">
-                <div class="form-outline">
-                    <label class="create-questionnaire-labels" for="">Nombre:</label>
-                    <input mdbInput type="text" ng-model="questionnaire.name" class="form-control" />
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-outline">
-                    <label class="create-questionnaire-labels" for="">Estado:</label>
-                    <select class="create-questionnaire-labels" ng-model="questionnaire.status" class="form-control">
-                        <option value="enable">Habilitado
-                        <option value="disable">Deshabilitado
-                    </select>
-                </div>
-            </div>
+    <form class="row mb-4" >
+        <div class="col">
+            <mat-form-field>
+                <mat-label>Oficina</mat-label>
+                <input type="text" placeholder="Seleccionar Oficina" aria-label="Oficina" matInput
+                    [formControl]="officeControl" [matAutocomplete]="autoOffice" required>
+                <mat-autocomplete autoActiveFirstOption #autoOffice="matAutocomplete">
+                    <mat-option *ngFor="let officeOption of officeFilteredOptions | async" [value]="officeOption">
+                        {{officeOption}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field>
+                <mat-label>Usuarios</mat-label>
+                <input type="text" placeholder="Seleccionar Usuario" aria-label="Usuario" matInput
+                    [formControl]="userControl" [matAutocomplete]="autoUser" required>
+                <mat-autocomplete autoActiveFirstOption #autoUser="matAutocomplete">
+                    <mat-option *ngFor="let userOption of userFilteredOptions | async" [value]="userOption">
+                        {{userOption}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
         </div>
         <div class="row mb-4">
-
             <div class="col">
-                <div class="form-outline">
-                    <label class="create-questionnaire-labels" for="">Fecha Vencimiento:</label>
-                    <input type="date" class="form-control" ng-model="questionnaire.expirationDate">
+                <div class="category-action-buttons">
+                    <button mat-raised-button type="button" class="mat-primary me-md-2" (click)="clearReviewers()">
+                        <mat-icon>cleaning_services'</mat-icon>
+                        Limpiar
+                    </button>
+                    <button mat-raised-button type="button" (click)="addReviewer()" value="submit" class="mat-primary me-md-2">
+                        <mat-icon>add</mat-icon>
+                        Agregar
+                    </button>
                 </div>
             </div>
-
-            <div class="col">
-                <div class="form-outline">
-                    <label class="create-questionnaire-labels" for="">Tipo:</label>
-                    <select ng-model="questionnaire.type" class="form-control">
-                        <option value="internal">Interno
-                        <option value="external">Externo
-                        <option value="impersonal">Impersonal
-                    </select>
-                </div>
-            </div>
-
-        </div>
-        <div class="row mb-4">
-            <label class="create-questionnaire-labels" for="">Descripción:</label>
-            <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
-        </div>
-
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="button" class="btn me-md-2 step-one-next">Siguiente</button>
         </div>
     </form>
+
+
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="getDataSource()">
+
+            <!-- id -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <!-- name -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- lastname -->
+            <ng-container matColumnDef="lastname">
+                <th mat-header-cell *matHeaderCellDef> Apellido </th>
+                <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+            </ng-container>
+
+            <!-- Operations -->
+            <ng-container matColumnDef="operations">
+                <th mat-header-cell *matHeaderCellDef> Operaciones </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>Borrar</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+            <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" class="btn me-md-2 btn-back">Volver</button>
+    </div>
+
 </div>
