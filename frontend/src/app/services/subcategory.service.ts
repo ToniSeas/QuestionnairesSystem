@@ -9,7 +9,7 @@ export class SubcategoryService {
 
   subcategoryList:  SubCategory[] = [new  SubCategory({name:"quemada"})];
 
-  public getSubCategories() : Observable< SubCategory[]> {
+  public getSubCategories() : Observable<SubCategory[]> {
     var subcategories : Observable< SubCategory[]> = of(this.subcategoryList);
 
     return subcategories;

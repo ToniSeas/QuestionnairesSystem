@@ -1,5 +1,5 @@
 import { Category } from "./Category";
-import { SubCategory } from "./Subcategory";
+import { SubCategory } from "./SubCategory";
 
 
 export class Question{

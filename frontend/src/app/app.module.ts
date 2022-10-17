@@ -30,6 +30,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -63,13 +64,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSelectModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
     MatDialogModule,
-    MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
