@@ -30,5 +30,4 @@ export class SubcategoryService {
     var subcategories : Observable< SubCategory[]> = of(this.subcategoryList);
     return subcategories;
   }
-
 }
