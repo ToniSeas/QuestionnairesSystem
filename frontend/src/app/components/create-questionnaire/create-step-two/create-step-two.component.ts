@@ -3,7 +3,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Question } from "src/app/models/Question";
 import { QuestionService } from "src/app/services/question.service";
-import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { map, Observable, startWith } from "rxjs";
 
@@ -62,7 +62,7 @@ export class CreateStepTwoComponent implements OnInit {
   templateUrl: './create-question-dialog/create-question-dialog.html',
   styleUrls: ['./create-question-dialog/create-question-dialog.css']
 })
-export class CreateQuestionDialog implements OnInit{ 
+export class CreateQuestionDialog implements OnInit {
   private createQuestionForm!: FormGroup;
   private typeControl = new FormControl("", [Validators.required]);
   private categoryControl = new FormControl("", [Validators.required]);
@@ -71,13 +71,13 @@ export class CreateQuestionDialog implements OnInit{
   private categoriesFiltered!: Observable<string[]>;
   private subCategoriesFiltered!: Observable<string[]>;
 
-  constructor(public dialogRef: MatDialogRef<CreateQuestionDialog>) {  }
+  constructor(public dialogRef: MatDialogRef<CreateQuestionDialog>) { }
 
   public getFormGroup(): FormGroup { return this.createQuestionForm; }
-  public getTypeControl(): FormControl {  return this.typeControl; }
+  public getTypeControl(): FormControl { return this.typeControl; }
   public getCategoryControl(): FormControl { return this.categoryControl; }
   public getSubCategoryControl(): FormControl { return this.subCategoryControl; }
-  public getTypesFiltered(): Observable<String[]> {  return this.typesFiltered; }
+  public getTypesFiltered(): Observable<String[]> { return this.typesFiltered; }
   public getCategoriesFiltered(): Observable<String[]> { return this.categoriesFiltered; }
   public getSubCategoriesFiltered(): Observable<String[]> { return this.subCategoriesFiltered; }
 
@@ -115,29 +115,13 @@ export class CreateQuestionDialog implements OnInit{
 
   }
 
-  validateControl = (controlName: string) => {
-    return this.createQuestionForm.get(controlName)?.invalid && this.createQuestionForm.get(controlName)?.touched;
-  }
-
-  hasError = (controlName: string, errorName: string) => {
-    return this.createQuestionForm.get(controlName)?.hasError(errorName);
-  }
-  
-  /*
-  loginUser = (loginFormValue) => {
-    this.showError = false;
-    const login = {... loginFormValue };
-
-    const userForAuth: UserForAuthenticationDto = {
-      email: login.username,
-      password: login.password
+  onSubmit = () => {
+    if (this.createQuestionForm.invalid) {
+      console.log('test')
+    } else {
+      console.log('válido')
     }
-
-    error: (err: HttpErrorResponse) => {
-      this.errorMessage = err.message;
-      this.showError = true;
-    }})
-  } */
+  }
 
 
   private _filter(value: string, options: string[]): string[] {
