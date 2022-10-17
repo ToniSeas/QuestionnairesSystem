@@ -1,4 +1,3 @@
-<div class="container">
     <div class="row mb-4">
         <div class="col">
             <button type="button" routerLink="/manage-category" class="btn me-md-2 btn-category">Categoría de Pregunta</button>
@@ -9,16 +8,21 @@
         <div class="col"></div>
         <div class="col"></div>
     </div>
-    
-    <div class="row mb-4">
+
+    <form class="row mb-4">
+        <div class="col">
+            <mat-form-field class="w-full p-l-8">
+                <mat-label>Nombre SubCategoría</mat-label>
+                <input matInput placeholder="Nombre SubCategoría" type="text" name="nameSubcategoryQuestion" #nameSubcategoryQuestion required>
+              
+            </mat-form-field>   
+        </div>
+
         <div class="col">
             <div class="form-outline">
                 <label class="create-questionnaire-labels" for="">Categoría de pregunta:</label>
                
             </div>
-            
-        </div>
-        <div class="col">
             <select ng-model="questionnaire.type" class="form-control">
                 <option value="category1">Categoría 1
                 <option value="category2">Categoría 2
@@ -26,17 +30,7 @@
                 <option value="category3">Bategoría 3
             </select>
         </div>
-        <div class="col"></div>
-        <div class="col"></div>
-    </div>
-
-    <div class="row mb-4">
-        <mat-form-field class="w-full p-l-8">
-            <mat-label>Nombre Subcategoría</mat-label>
-            <input matInput placeholder="Nombre SubCategoría" type="text" name="nameSubcategoryQuestion" #nameSubcategoryQuestion required>
-          </mat-form-field>   
-    </div>
-    
+    </form>
     <div  class="row mb-4">
         <div class="col">
             <div class="category-action-buttons">
@@ -107,4 +101,3 @@
         <button type="button" class="btn me-md-2 btn-back">Volver</button>
     </div>
 
-</div>
