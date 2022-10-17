@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Category } from 'src/app/models/Category';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-manage-category',
@@ -7,23 +10,50 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./manage-category.component.css']
 })
 export class ManageCategoryComponent implements OnInit {
-  displayedColumns: string[] = ['title', 'operations'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  constructor() { }
+
+  //temporal
+  category: Category = new Category({ name: "new Categorý" });
+
+  private displayedColumns: string[] = ['title', 'operations'];
+  private dataSource = new MatTableDataSource<Category>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('nameCategoryQuestion') nameCategoryQuestion: any; // accessing the reference element
+
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(
+      (result: Category[]) => (this.updateCategoryList(result))
+    )
+    this.dataSource.paginator = this.paginator;
   }
 
-  
-}
+  public getDataSource(): MatTableDataSource<Category> {
+    return this.dataSource;
+  }
+  public getDisplayedColumns(): string[] {
+    return this.displayedColumns;
+  }
 
-export interface PeriodicElement {
-  title: string;
-  operations: number;
-}
+  public updateCategoryList(categories: Category[]): void {
+    this.dataSource = new MatTableDataSource<Category>(categories)
+    this.dataSource.paginator = this.paginator;
+  }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {title: 'Categoria 1', operations: 1},
-  {title: 'Categoria 2', operations: 1},
-  {title: 'Categoria 3', operations: 1},
-];
+  public createCategory(nameC: string): void {
+    this.categoryService.createCategory(new Category({ name: nameC })).subscribe(
+      (categories) => this.updateCategoryList(categories)
+    );
+  }
+  public clearCategory(): void {
+    this.categoryService.clearCategory().subscribe(
+      (categories: Category[]) => this.updateCategoryList(categories)
+    );
+  }
+
+  public clearInput(): void {
+    this.nameCategoryQuestion.nativeElement.value = ' ';
+  }
+
+}

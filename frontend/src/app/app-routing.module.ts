@@ -9,6 +9,7 @@ import { SelectOfficeComponent } from './components/login/select-office/select-o
 import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
 import { SearchQuestionnaireComponent } from './components/search-questionnaire/search-questionnaire.component';
 import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
+import { ManageSubcategoryComponent } from './components/manage-subcategory/manage-subcategory.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       , { path: 'create-questionnaire', component: CreateQuestionnaireComponent }
       , { path: 'search-questionnaire', component: SearchQuestionnaireComponent }
       , { path: 'manage-category', component: ManageCategoryComponent }
+      , { path: 'manage-subcategory', component: ManageSubcategoryComponent }
     ]
   }
   ,{ path: 'login', component: LoginComponent }

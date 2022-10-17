@@ -27,6 +27,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageSubcategoryComponent } from './components/manage-subcategory/manage-subcategory.component';
 import { CreateStepTwoComponent } from './components/create-questionnaire/create-step-two/create-step-two.component';
 import { CreateStepThreeComponent } from './components/create-questionnaire/create-step-three/create-step-three.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import { CreateStepThreeComponent } from './components/create-questionnaire/crea
     MatIconModule,
     MatSelectModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
