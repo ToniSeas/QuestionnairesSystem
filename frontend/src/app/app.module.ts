@@ -14,7 +14,6 @@ import { SearchQuestionnaireComponent } from './components/search-questionnaire/
 import { QuestionnaireResultsComponent } from './components/questionnaire-results/questionnaire-results.component';
 import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SelectOfficeComponent } from './components/login/select-office/select-office.component';
@@ -23,10 +22,15 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageSubcategoryComponent } from './components/manage-subcategory/manage-subcategory.component';
-import { CreateStepTwoComponent } from './components/create-questionnaire/create-step-two/create-step-two.component';
+import { CreateQuestionDialog, CreateStepTwoComponent } from './components/create-questionnaire/create-step-two/create-step-two.component';
 import { CreateStepThreeComponent } from './components/create-questionnaire/create-step-three/create-step-three.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,20 +50,25 @@ import { CreateStepThreeComponent } from './components/create-questionnaire/crea
     SelectOfficeComponent,
     ManageSubcategoryComponent,
     CreateStepTwoComponent,
-    CreateStepThreeComponent
+    CreateStepThreeComponent,
+    CreateQuestionDialog
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatStepperModule,
-    MatTableModule,
     MatPaginatorModule,
     MatAutocompleteModule,
     MatMenuModule,
     MatIconModule,
     MatSelectModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
