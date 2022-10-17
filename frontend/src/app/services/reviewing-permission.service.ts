@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Questionnaire } from '../models/Questionnaire';
 import { Reviewer } from '../models/Reviewer';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -11,25 +12,28 @@ export class ReviewingPermissionService {
 
   private urlController = "ReviewingPermission";
 
-  declare reviewers: Reviewer[] //temporal
-
+  reviewers: Reviewer[]
+ 
   constructor() {
     this.reviewers = []
+
   }
 
-  //TODO this method should use QuestionnaireID to get the reviewers for that specific questionnaire
-  public getReviewers(questionnaire?: Questionnaire): Observable<Reviewer[]> { //FOR NOW QUESTIONNAIRE IS NOT REQUIRED BUT IT SHOULD BE CHANGED
+  /**
+   * 
+   * @param questionnaire this questionnaire is used to filter which users to return. If it's not supplied, then an empty list is returned.
+   * @returns List of questio
+   */
+  public getReviewers(questionnaire?: Questionnaire): Observable<Reviewer[]> {
     if (questionnaire != null) {
       /*
           TODO call api using: 
           return this.http.get<Questionnaire[]>(`${environment.apiUrl}/${this.urlController}`);
           */
       var reviewers: Observable<Reviewer[]> = of(this.reviewers)
-      console.log("NOT NULL MA' BROTHA")
       return reviewers; //Tempora
     } else {
       let r: Reviewer[] = []
-      console.log("NULL MA' BROTHA")
       return of(r)
     }
 
@@ -53,18 +57,45 @@ export class ReviewingPermissionService {
     return reviewers; //Temporal
   }
 
-  public addReviewer(userId: number): Observable<Reviewer[]> {
+  public addReviewer(reviewer: Reviewer): Observable<Reviewer[]> {
+    //Check if reviewe is already on list
+
+    let exist = false
+
+    this.reviewers.forEach(element => {
+      if (element.id == reviewer.id) {
+        exist = true
+      }
+    })
+
     //TODO call API
-    this.reviewers.push(new Reviewer({id: userId}))
+    if (!exist) {
+      this.reviewers.push(reviewer)
+    }
     var reviewers: Observable<Reviewer[]> = of(this.reviewers);
     return reviewers; //Temporal
   }
 
-  public deleteReviewer(reviewer: Reviewer): Observable<Reviewer[]> {
+  public removeReviewer(id: number): Observable<Reviewer[]> {
     //TODO call API
-    let index = this.reviewers.indexOf(reviewer, 0)
-    if (index > -1) {
-      this.reviewers.splice(index, 1)
+
+    let reviewer: Reviewer
+    reviewer = new Reviewer({})
+    let found = false
+
+    //fin the reviewer and then delete it
+    this.reviewers.forEach(element => {
+      if (element.id == id) {
+        reviewer = element
+        found = true
+      }
+    })
+
+    if (found) {
+      let index = this.reviewers.indexOf(reviewer, 0)
+      if (index > -1) {
+        this.reviewers.splice(index, 1)
+      }
     }
     var reviewers: Observable<Reviewer[]> = of(this.reviewers);
     return reviewers; //Temporal
