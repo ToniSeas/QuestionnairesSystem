@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CuestionariosEntidades.Models
 {
-    class Option
+    public class Option
     {
         public int Id { get; set; }
-        public string Option { get; set; } = string.Empty;
+        public String OptionName { get; set; } = string.Empty;
     }
 }

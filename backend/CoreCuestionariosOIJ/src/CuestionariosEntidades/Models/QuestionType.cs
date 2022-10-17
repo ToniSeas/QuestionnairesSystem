@@ -9,6 +9,6 @@ namespace CuestionariosEntidades.Models
     class QuestionType
     {
         public int Id { get; set; }
-        public int Name { get; set; } = string.Empty;
+        public String Name { get; set; } = string.Empty;
     }
 }

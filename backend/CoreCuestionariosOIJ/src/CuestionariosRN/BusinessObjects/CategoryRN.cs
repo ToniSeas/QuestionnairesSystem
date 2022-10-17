@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CuestionariosEntidades;
-using CuestionariosAD;
-
+﻿using CuestionariosEntidades.Models;
+using Microsoft.AspNetCore.Mvc;
+using CuestionariosAD.DataAccess;
 
 namespace CuestionariosRN.BusinessObjects
 {
     public class CategoryRN
     {
 
-        private readonly CuestionariosAD cuestionariosAD;
+        private readonly CategoryAD categoryData;
 
         public CategoryRN() {
-            cuestionariosAD = new CuestionariosAD();
+            this.categoryData = new CategoryAD();
         }
 
-        public async Task<ActionResult<Category>> GetCategories() 
+        public ActionResult<Category> GetCategories() 
         {
-            return new Category();
+            return new Category { Id = 1, Name = "test" };
+        }
+
+        public async Task<ActionResult<Category>> GetSuperHeroes()
+        {
+            var c = new Category { Id = 1, Name = "test" };
+            return await Task.FromResult(c);
         }
 
     }

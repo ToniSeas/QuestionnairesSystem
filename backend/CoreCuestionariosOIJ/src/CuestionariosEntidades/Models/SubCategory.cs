@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CuestionariosEntidades.Models
 {
-    class SubCategory
+    public class SubCategory
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public int IdCategory { get; set; }
-
+        public Category? Category { get; set; }
     }
 }
