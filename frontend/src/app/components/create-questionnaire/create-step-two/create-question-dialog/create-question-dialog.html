@@ -7,44 +7,41 @@
   <div class="row">
     <mat-form-field class="w-full">
       <mat-label> Enunciado </mat-label>
-      <input matInput placeholder="Enunciado" [formControlName]="'statement'" [(ngModel)]="question.statement">
+      <input matInput placeholder="Enunciado" [formControlName]="'statement'">
     </mat-form-field>
   </div>
 
   <div class="row">
     <mat-form-field class="col-6 select">
       <mat-label>Categoría</mat-label>
-      <input type="text" placeholder="Seleccionar Categoría" aria-label="Number" matInput
-        [formControl]="getCategoryControl()" [matAutocomplete]="autoCategory" [(ngModel)]="category.name">
-      <mat-autocomplete #autoCategory="matAutocomplete">
-        <mat-option *ngFor="let option of getCategoriesFiltered() | async" [value]="option">
-          {{option}}
+      <mat-select [formControlName]="'category'">
+        <mat-option> </mat-option>
+        <mat-option *ngFor="let category of getCategories() | async" [value]="category.id">
+          {{category.name}}
         </mat-option>
-      </mat-autocomplete>
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field class="col-6 select">
       <mat-label>Tipo</mat-label>
-      <mat-select [(ngModel)]="questionType.id" [formControl]="getTypeControl()">
-        <mat-option>None</mat-option>
+      <mat-select [formControlName]="'type'">
+        <mat-option> </mat-option>
         <mat-option *ngFor="let questionType of getQuestionTypes() | async" [value]="questionType.id">
           {{questionType.name}}
         </mat-option>
       </mat-select>
-      {{questionType.id}}
     </mat-form-field>
   </div>
 
   <div class="row">
     <mat-form-field class="col-6 select">
       <mat-label>Subcategoría</mat-label>
-      <input type="text" placeholder="Seleccionar Subcategoría" aria-label="Number" matInput
-        [formControl]="getSubCategoryControl()" [matAutocomplete]="autoSubCategory">
-      <mat-autocomplete #autoSubCategory="matAutocomplete">
-        <mat-option *ngFor="let option of getSubCategoriesFiltered() | async" [value]="option">
-          {{option}}
+      <mat-select [formControlName]="'subCategory'">
+        <mat-option> </mat-option>
+        <mat-option *ngFor="let subCategory of getSubCategories() | async" [value]="subCategory.id">
+          {{subCategory.name}}
         </mat-option>
-      </mat-autocomplete>
+      </mat-select>
     </mat-form-field>
   </div>
 

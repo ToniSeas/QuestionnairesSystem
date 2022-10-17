@@ -9,6 +9,7 @@ import { map, Observable, of, startWith } from "rxjs";
 import { Category } from "src/app/models/Category";
 import { CategoryService } from "src/app/services/category.service";
 import { QuestionType } from "src/app/models/QuestionType";
+import { SubCategory } from "src/app/models/SubCategory";
 
 @Component({
   selector: 'app-create-step-two',
@@ -17,17 +18,19 @@ import { QuestionType } from "src/app/models/QuestionType";
 })
 export class CreateStepTwoComponent implements OnInit {
 
+  // Instancias necesarias
   private displayedColumns: string[];
   private dataSource: MatTableDataSource<Question>;
   private searchControl: FormControl;
+
+  // Respaldo local de las preguntas creadas
   private questionList: Question[];
 
-  //Declaracion del modelo de pregunta
+  // Declaracion del modelo de pregunta
   private questionModel: Question;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  constructor(private questionService: QuestionService, public dialog: MatDialog) { 
+  // Inicializacion de los atributos
+  constructor(private questionService: QuestionService, public dialog: MatDialog) {
     this.questionModel = new Question({});
     this.displayedColumns = ['id', 'statement', 'type', 'operations'];
     this.dataSource = new MatTableDataSource<Question>;
@@ -35,73 +38,77 @@ export class CreateStepTwoComponent implements OnInit {
     this.questionList = [];
   }
 
+  // Metodo para abrir del modal de crear preguntas
   public openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    // Se inicia el MatDialog y se le indican parametros
     var dialogRef = this.dialog.open(CreateQuestionDialog, {
       enterAnimationDuration,
       exitAnimationDuration,
-      data: {questionModel: this.questionModel},
+      data: { questionModel: this.questionModel },
     });
 
+    // Cuando el MatDialog se cierra, entonces realiza estas acciones
     dialogRef.afterClosed().subscribe(result => {
       this.questionModel = result;
     });
   }
 
+  // Esto se ejecuta cada vez que se ingresa a esta vista
   ngOnInit(): void {
-    this.questionService.getQuestions().subscribe(
-      (result: Question[]) => (this.updateQuestionList(result))
-    )
-    this.dataSource.paginator = this.paginator;
-    //this.openDialog('0ms', '0ms');
+    this.openDialog('0ms', '0ms');
   }
 
-  public getDisplayedColumns(): string[] { return this.displayedColumns; }
-  public getDataSource(): MatTableDataSource<Question> { return this.dataSource; }
-  public getSearchControl(): FormControl { return this.searchControl };
-
-  public updateQuestionList(questions: Question[]): void {
+  // Con este metodo se puede actualizar el datasource de la tabla
+  public updateDataSource(questions: Question[]): void {
     this.dataSource = new MatTableDataSource<Question>(questions)
-    this.questionList = questions;
-    this.dataSource.paginator = this.paginator;
   }
 
+  // Con este metodo se pueden agregar preguntas a la lista
+  // local de preguntas
   public createQuestion(question: Question): void {
-    this.questionService.createQuestion(question).subscribe(
-      (questions) => this.updateQuestionList(questions)
-    );
+    this.questionList.push(question);
+    this.updateDataSource(this.questionList);
   }
 
+  // Buscar preguntas segun el enunciado de pregunta
   public searchQuestion(): void {
+    // Se crea una lista que se ira llenando de preguntas
+    // que coincidan con los criterios de busqueda
     var tempQuestionList: Question[] = []
+
+    // Se obtiene el valor del input de busqueda
     const searchValue: string = this.searchControl.value;
 
-    this.dataSource.data.forEach(function (question) {
-      const questionStatement:String = question.statement===undefined ? '' : question.statement;
-      console.log(questionStatement)
-      if (questionStatement.includes(searchValue)) {
-        tempQuestionList.push(question);
-        
-      }
+    // Se recorre la lista de preguntas locales
+    this.questionList.forEach(function (question) {
+      // Si el enunciado de la pregunta no esta definido entonces se asigna vacio
+      const questionStatement: String = question.statement === undefined ? '' : question.statement;
+      // Si el enunciado de la pregunta contiene el string de busqueda entonces se
+      // agrega a la lista temporal
+      if (questionStatement.includes(searchValue)) { tempQuestionList.push(question); }
     });
-
-    this.updateQuestionList(tempQuestionList);
+    // Se actualiza el datasource de la tabla con las preguntas encontradas
+    this.updateDataSource(tempQuestionList);
   }
 
+  // Eliminar las preguntas de la lista de preguntas locales
   public deleteQuestion(id: number) {
-    
+    // Se obtiene el index de la pregunta a la que el corresponde el id
     const indexOfQuestion = this.questionList.findIndex((object) => {
       return object.id === id;
     });
-
+    // Si el index es diferente a -1 entonces se elimina de la lista
     if (indexOfQuestion != -1) {
-      console.log(indexOfQuestion)
       this.questionList.splice(indexOfQuestion, 1);
     }
-
-    this.updateQuestionList(this.questionList);
-    
-
+    // Se actualiza el datasource de la tabla
+    this.updateDataSource(this.questionList);
   }
+
+  // Metodos get
+  public getDisplayedColumns(): string[] { return this.displayedColumns; }
+  public getDataSource(): MatTableDataSource<Question> { return this.dataSource; }
+  public getSearchControl(): FormControl { return this.searchControl };
 }
 
 @Component({
@@ -111,94 +118,89 @@ export class CreateStepTwoComponent implements OnInit {
 })
 export class CreateQuestionDialog implements OnInit {
 
-  //modelos
+  // Modelos necesarios para la creacion de las preguntas
   question: Question;
-  category: Category;
-  questionType: QuestionType;
-  questionTypes: Observable<QuestionType[]>;
 
-  private createQuestionForm!: FormGroup;
-  private typeControl!: FormControl;
-  private categoryControl!: FormControl;
-  private subCategoryControl!: FormControl;
-  private categoriesFiltered!: Observable<string[]>;
-  private subCategoriesFiltered!: Observable<string[]>;
+  // Listas de objetos
+  private questionTypes: Observable<QuestionType[]>;
+  private categories: Observable<Category[]>;
+  private subCategories: Observable<SubCategory[]>;
 
+  // Instancias necesarias
+  private createQuestionForm: FormGroup;
+
+  // Inicializacion de los atributos
   constructor(
-    public dialogRef: MatDialogRef<CreateQuestionDialog>, 
-    private questionService:QuestionService, 
-    private categoryService: CategoryService, 
+    public dialogRef: MatDialogRef<CreateQuestionDialog>,
+    private questionService: QuestionService,
+    private categoryService: CategoryService,
     @Inject(MAT_DIALOG_DATA) public data: Question
-    ) { 
+  ) {
 
     this.question = new Question({});
-    this.category = new Category({});
-    this.questionType = new QuestionType({});
-    this.question.category = this.category;
-    this.question.type = this.questionType;
     this.questionTypes = new Observable<QuestionType[]>();
+    this.categories = new Observable<Category[]>();
+    this.subCategories = new Observable<SubCategory[]>();
+
+    // Indicarle al form group los form control que le pertenecen
+    this.createQuestionForm = new FormGroup({
+      statement: new FormControl("", [Validators.required]),
+      type: new FormControl("", [Validators.required]),
+      category: new FormControl("", [Validators.required]),
+      subCategory: new FormControl("", [Validators.required])
+    })
   }
 
-  public getFormGroup(): FormGroup { return this.createQuestionForm; }
-  public getTypeControl(): FormControl { return this.typeControl; }
-  public getCategoryControl(): FormControl { return this.categoryControl; }
-  public getSubCategoryControl(): FormControl { return this.subCategoryControl; }
-  public getQuestionTypes(): Observable<QuestionType[]> { return this.questionTypes; }
-  public getCategoriesFiltered(): Observable<String[]> { return this.categoriesFiltered; }
-  public getSubCategoriesFiltered(): Observable<String[]> { return this.subCategoriesFiltered; }
-
+  // Este metodo se ejecuta cada vez que se ingresa a esta vista
   ngOnInit(): void {
-    // Inicializar la lista de tipos
+    // Inicializar la lista de tipos de pregunta
     this.questionService.getQuestionTypes().subscribe(
       (questionsTypes) => this.questionTypes = of(questionsTypes)
     );
-    this.typeControl = new FormControl("", [Validators.required]);
 
-    // Inicializar la lista de categorias
-    var categoryOptions: string[] = ['ooone c', 'Two c', 'Three c'];
-    this.categoryControl = new FormControl("", [Validators.required]);
-    this.categoriesFiltered = this.categoryControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '', categoryOptions)),
-    );
+    // Inicializar la lista de categorias de pregunta
+    var categoryList: Category[] = [
+      new Category({ id: 1, name: "Familiar" })
+      , new Category({ id: 1, name: "Trabajo" })
+    ]
+    this.categories = of(categoryList);
 
-    // Inicializar la lista de sub categorias
-    var subCategoryOptions: string[] = ['One sc', 'Two sc', 'Three sc'];
-    this.subCategoryControl = new FormControl("", [Validators.required]);
-    this.subCategoriesFiltered = this.subCategoryControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '', subCategoryOptions)),
-    );
 
-    this.createQuestionForm = new FormGroup({
-      statement: new FormControl("", [Validators.required]),
-      type: this.typeControl,
-      category: this.categoryControl,
-      subCategory: this.subCategoryControl
-    })
+    // Inicializar la lista de sub categorias de pregunta
+    var subCategoryList: SubCategory[] = [
+      new SubCategory({ id: 1, name: "Triste" })
+      , new SubCategory({ id: 1, name: "Accidental" })
+    ]
+    this.subCategories = of(subCategoryList);
 
   }
 
-  onSubmit = () => {
-    if (this.createQuestionForm.invalid) {
-      console.log('test')
-    } else {
-      console.log('válido')
+  // Esto es lo que se ejecuta cuando se realiza la accion de aceptar (enviar formulario)
+  public onSubmit = () => {
+    // Si el formulario es valido, entonces se le asignan
+    // los valores a la pregunta
+    if (this.createQuestionForm.valid) {
+      
+      this.question.statement = this.getFormGroup().get('statement')?.value;
+      this.question.category = new Category({
+        id: this.getFormGroup().get('category')?.value
+      });
+      this.question.subcategory = new SubCategory({
+        id: this.getFormGroup().get('subCategory')?.value
+      });
+      this.question.type = new QuestionType({
+        id: this.getFormGroup().get('type')?.value
+      });
+
     }
+
+    console.log(this.question)
+
   }
 
-
-  private _filter(value: string, options: string[]): string[] {
-    const filterValue = value.toLowerCase();
-    return options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  getQuestionType(id: string): void {
-    this.questionTypes.subscribe(
-      (questionTypes) => {
-        console.log(questionTypes);
-      }
-    )
-    //return this.questionTypes.find(book => book.id === bookId).title;
-  }
+  // Metodos Get
+  public getFormGroup(): FormGroup { return this.createQuestionForm; }
+  public getQuestionTypes(): Observable<QuestionType[]> { return this.questionTypes; }
+  public getCategories(): Observable<Category[]> { return this.categories; }
+  public getSubCategories(): Observable<SubCategory[]> { return this.subCategories; }
 }
