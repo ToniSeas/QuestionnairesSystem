@@ -27,7 +27,7 @@ import { ManageSubcategoryComponent } from './components/manage-subcategory/mana
 import { CreateQuestionDialog, CreateStepTwoComponent } from './components/create-questionnaire/create-step-two/create-step-two.component';
 import { CreateStepThreeComponent } from './components/create-questionnaire/create-step-three/create-step-three.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
@@ -68,7 +68,8 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

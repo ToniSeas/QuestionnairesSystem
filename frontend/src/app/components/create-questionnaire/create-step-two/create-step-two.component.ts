@@ -5,7 +5,10 @@ import { Question } from "src/app/models/Question";
 import { QuestionService } from "src/app/services/question.service";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { map, Observable, startWith } from "rxjs";
+import { map, Observable, of, startWith } from "rxjs";
+import { Category } from "src/app/models/Category";
+import { CategoryService } from "src/app/services/category.service";
+import { QuestionType } from "src/app/models/QuestionType";
 
 @Component({
   selector: 'app-create-step-two',
@@ -13,7 +16,6 @@ import { map, Observable, startWith } from "rxjs";
   styleUrls: ['./create-step-two.component.css']
 })
 export class CreateStepTwoComponent implements OnInit {
-
 
   private displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   private dataSource = new MatTableDataSource<Question>;
@@ -34,7 +36,7 @@ export class CreateStepTwoComponent implements OnInit {
       (result: Question[]) => (this.updateQuestionList(result))
     )
     this.dataSource.paginator = this.paginator;
-    this.openDialog('0ms', '0ms');
+    //this.openDialog('0ms', '0ms');
   }
 
   public getDisplayedColumns(): string[] {
@@ -63,35 +65,46 @@ export class CreateStepTwoComponent implements OnInit {
   styleUrls: ['./create-question-dialog/create-question-dialog.css']
 })
 export class CreateQuestionDialog implements OnInit {
+
+  //modelos
+  question: Question;
+  category: Category;
+  questionType: QuestionType;
+  questionTypes: Observable<QuestionType[]>;
+
   private createQuestionForm!: FormGroup;
-  private typeControl = new FormControl("", [Validators.required]);
-  private categoryControl = new FormControl("", [Validators.required]);
-  private subCategoryControl = new FormControl("", [Validators.required]);
-  private typesFiltered!: Observable<string[]>;
+  private typeControl!: FormControl;
+  private categoryControl!: FormControl;
+  private subCategoryControl!: FormControl;
   private categoriesFiltered!: Observable<string[]>;
   private subCategoriesFiltered!: Observable<string[]>;
 
-  constructor(public dialogRef: MatDialogRef<CreateQuestionDialog>) { }
+  constructor(public dialogRef: MatDialogRef<CreateQuestionDialog>, private questionService:QuestionService, private categoryService: CategoryService) { 
+    this.question = new Question({});
+    this.category = new Category({});
+    this.questionType = new QuestionType({});
+    this.question.category = this.category;
+    this.question.type = this.questionType;
+    this.questionTypes = new Observable<QuestionType[]>();
+  }
 
   public getFormGroup(): FormGroup { return this.createQuestionForm; }
   public getTypeControl(): FormControl { return this.typeControl; }
   public getCategoryControl(): FormControl { return this.categoryControl; }
   public getSubCategoryControl(): FormControl { return this.subCategoryControl; }
-  public getTypesFiltered(): Observable<String[]> { return this.typesFiltered; }
+  public getQuestionTypes(): Observable<QuestionType[]> { return this.questionTypes; }
   public getCategoriesFiltered(): Observable<String[]> { return this.categoriesFiltered; }
   public getSubCategoriesFiltered(): Observable<String[]> { return this.subCategoriesFiltered; }
 
   ngOnInit(): void {
     // Inicializar la lista de tipos
-    var typeOptions: string[] = ['One t', 'Two t', 'Three t'];
-    this.typeControl = new FormControl("", [Validators.required]);
-    this.typesFiltered = this.typeControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '', typeOptions)),
+    this.questionService.getQuestionTypes().subscribe(
+      (questionsTypes) => this.questionTypes = of(questionsTypes)
     );
+    this.typeControl = new FormControl("", [Validators.required]);
 
     // Inicializar la lista de categorias
-    var categoryOptions: string[] = ['One c', 'Two c', 'Three c'];
+    var categoryOptions: string[] = ['ooone c', 'Two c', 'Three c'];
     this.categoryControl = new FormControl("", [Validators.required]);
     this.categoriesFiltered = this.categoryControl.valueChanges.pipe(
       startWith(''),
@@ -127,5 +140,14 @@ export class CreateQuestionDialog implements OnInit {
   private _filter(value: string, options: string[]): string[] {
     const filterValue = value.toLowerCase();
     return options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  getQuestionType(id: string): void {
+    this.questionTypes.subscribe(
+      (questionTypes) => {
+        console.log(questionTypes);
+      }
+    )
+    //return this.questionTypes.find(book => book.id === bookId).title;
   }
 }

@@ -7,7 +7,7 @@
   <div class="row">
     <mat-form-field class="w-full">
       <mat-label> Enunciado </mat-label>
-      <input matInput placeholder="Enunciado" [formControlName]="'enunciate'">
+      <input matInput placeholder="Enunciado" [formControlName]="'enunciate'" [(ngModel)]="question.enunciate">
     </mat-form-field>
   </div>
 
@@ -15,7 +15,7 @@
     <mat-form-field class="col-6 select">
       <mat-label>Categoría</mat-label>
       <input type="text" placeholder="Seleccionar Categoría" aria-label="Number" matInput
-        [formControl]="getCategoryControl()" [matAutocomplete]="autoCategory">
+        [formControl]="getCategoryControl()" [matAutocomplete]="autoCategory" [(ngModel)]="category.name">
       <mat-autocomplete #autoCategory="matAutocomplete">
         <mat-option *ngFor="let option of getCategoriesFiltered() | async" [value]="option">
           {{option}}
@@ -25,13 +25,13 @@
 
     <mat-form-field class="col-6 select">
       <mat-label>Tipo</mat-label>
-      <input type="text" placeholder="Seleccionar Tipo" aria-label="Number" matInput [formControl]="getTypeControl()"
-        [matAutocomplete]="autoType">
-      <mat-autocomplete #autoType="matAutocomplete">
-        <mat-option *ngFor="let option of getTypesFiltered() | async" [value]="option">
-          {{option}}
+      <mat-select [(ngModel)]="questionType.id" [formControl]="getTypeControl()">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let questionType of getQuestionTypes() | async" [value]="questionType.id">
+          {{questionType.name}}
         </mat-option>
-      </mat-autocomplete>
+      </mat-select>
+      {{questionType.id}}
     </mat-form-field>
   </div>
 
@@ -57,8 +57,6 @@
   </div>
 
 </form>
-
-
 
 <div class="row">
 </div>
