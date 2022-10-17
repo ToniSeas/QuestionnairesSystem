@@ -12,25 +12,18 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class ManageCategoryComponent implements OnInit {
 
+  private createCategoryForm!: FormGroup;
   //temporal
-  category: Category = new Category({ name: "new Categorý" });
+  category: Category = new Category({ name: "new Category" });
 
   private displayedColumns: string[] = ['title', 'operations'];
   private dataSource = new MatTableDataSource<Category>;
-  checkoutForm!: FormGroup;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('nameCategoryQuestion') nameCategoryQuestion: any; // accessing the reference element
 
-  private createCategoryForm!: FormGroup;
 
-  constructor(private categoryService: CategoryService, private formBuilder: FormBuilder) { 
-    this.checkoutForm = this.formBuilder.group({
-      name: ''});
-  }
-  
-
-
+  constructor(private categoryService: CategoryService) { }
   public getFormGroup(): FormGroup { return this.createCategoryForm; }
 
   ngOnInit(): void {
@@ -39,6 +32,23 @@ export class ManageCategoryComponent implements OnInit {
     )
     this.dataSource.paginator = this.paginator;
 
+    this.createCategoryForm = new FormGroup({
+      categoryF: new FormControl("", [Validators.required])
+    })
+
+  }
+
+
+  onSubmit = () => {
+    if (this.createCategoryForm.invalid) {
+      console.log('test')
+    } else {
+      console.log('válido');
+      let name= this.createCategoryForm.get('categoryF')?.value;
+      console.log(name);
+      this.createCategory(name);
+      this.createCategoryForm.reset();
+    }
   }
 
   public getDataSource(): MatTableDataSource<Category> {
@@ -65,14 +75,18 @@ export class ManageCategoryComponent implements OnInit {
   }
 
   public clearInput(): void {
-    this.nameCategoryQuestion.nativeElement.value = ' ';
+    this.createCategoryForm.reset();
   }
 
-  onSubmit(customerData:string) {
-    // Process checkout data here
-    this.checkoutForm.reset();
-    //this.createCategory(customerData);
-    console.warn('Your order has been submitted', customerData);
+  public delete(nameC?: String): void{
+    console.log(nameC);
+  }
+
+    
+  public deleteCategory(idC?: number){
+    this.categoryService.deleteCategory(idC).subscribe(
+      (categories: Category[]) => this.updateCategoryList(categories)
+    );
   }
 
 }
