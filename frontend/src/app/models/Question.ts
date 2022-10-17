@@ -6,7 +6,7 @@ import { SubCategory } from "./SubCategory";
 export class Question{
   
   id?: number;
-  enunciate?: String;
+  statement?: String;
   label?: String;
   position?: number;
   type?: QuestionType;
@@ -14,12 +14,12 @@ export class Question{
   category?: Category;
 
   constructor (
-    {id, enunciate, label, position, subcategory, category, type}: 
-    {id?: number, enunciate?: String, label?: String, position?: number, subcategory?: SubCategory, category?: Category, type?: QuestionType}
+    {id, statement, label, position, subcategory, category, type}: 
+    {id?: number, statement?: String, label?: String, position?: number, subcategory?: SubCategory, category?: Category, type?: QuestionType}
     ) {
 
       this.id = id;
-      this.enunciate = enunciate;
+      this.statement = statement;
       this.label = label;
       this.position = position;
       this.subcategory = subcategory;

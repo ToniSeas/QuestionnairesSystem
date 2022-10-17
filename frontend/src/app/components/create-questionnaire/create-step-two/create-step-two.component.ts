@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, Inject } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Question } from "src/app/models/Question";
 import { QuestionService } from "src/app/services/question.service";
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { map, Observable, of, startWith } from "rxjs";
 import { Category } from "src/app/models/Category";
@@ -17,17 +17,33 @@ import { QuestionType } from "src/app/models/QuestionType";
 })
 export class CreateStepTwoComponent implements OnInit {
 
-  private displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  private dataSource = new MatTableDataSource<Question>;
+  private displayedColumns: string[];
+  private dataSource: MatTableDataSource<Question>;
+  private searchControl: FormControl;
+  private questionList: Question[];
+
+  //Declaracion del modelo de pregunta
+  private questionModel: Question;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private questionService: QuestionService, public dialog: MatDialog) { }
+  constructor(private questionService: QuestionService, public dialog: MatDialog) { 
+    this.questionModel = new Question({});
+    this.displayedColumns = ['id', 'statement', 'type', 'operations'];
+    this.dataSource = new MatTableDataSource<Question>;
+    this.searchControl = new FormControl('');
+    this.questionList = [];
+  }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(CreateQuestionDialog, {
+  public openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    var dialogRef = this.dialog.open(CreateQuestionDialog, {
       enterAnimationDuration,
-      exitAnimationDuration
+      exitAnimationDuration,
+      data: {questionModel: this.questionModel},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.questionModel = result;
     });
   }
 
@@ -39,16 +55,13 @@ export class CreateStepTwoComponent implements OnInit {
     //this.openDialog('0ms', '0ms');
   }
 
-  public getDisplayedColumns(): string[] {
-    return this.displayedColumns;
-  }
-
-  public getDataSource(): MatTableDataSource<Question> {
-    return this.dataSource;
-  }
+  public getDisplayedColumns(): string[] { return this.displayedColumns; }
+  public getDataSource(): MatTableDataSource<Question> { return this.dataSource; }
+  public getSearchControl(): FormControl { return this.searchControl };
 
   public updateQuestionList(questions: Question[]): void {
     this.dataSource = new MatTableDataSource<Question>(questions)
+    this.questionList = questions;
     this.dataSource.paginator = this.paginator;
   }
 
@@ -56,6 +69,38 @@ export class CreateStepTwoComponent implements OnInit {
     this.questionService.createQuestion(question).subscribe(
       (questions) => this.updateQuestionList(questions)
     );
+  }
+
+  public searchQuestion(): void {
+    var tempQuestionList: Question[] = []
+    const searchValue: string = this.searchControl.value;
+
+    this.dataSource.data.forEach(function (question) {
+      const questionStatement:String = question.statement===undefined ? '' : question.statement;
+      console.log(questionStatement)
+      if (questionStatement.includes(searchValue)) {
+        tempQuestionList.push(question);
+        
+      }
+    });
+
+    this.updateQuestionList(tempQuestionList);
+  }
+
+  public deleteQuestion(id: number) {
+    
+    const indexOfQuestion = this.questionList.findIndex((object) => {
+      return object.id === id;
+    });
+
+    if (indexOfQuestion != -1) {
+      console.log(indexOfQuestion)
+      this.questionList.splice(indexOfQuestion, 1);
+    }
+
+    this.updateQuestionList(this.questionList);
+    
+
   }
 }
 
@@ -79,7 +124,13 @@ export class CreateQuestionDialog implements OnInit {
   private categoriesFiltered!: Observable<string[]>;
   private subCategoriesFiltered!: Observable<string[]>;
 
-  constructor(public dialogRef: MatDialogRef<CreateQuestionDialog>, private questionService:QuestionService, private categoryService: CategoryService) { 
+  constructor(
+    public dialogRef: MatDialogRef<CreateQuestionDialog>, 
+    private questionService:QuestionService, 
+    private categoryService: CategoryService, 
+    @Inject(MAT_DIALOG_DATA) public data: Question
+    ) { 
+
     this.question = new Question({});
     this.category = new Category({});
     this.questionType = new QuestionType({});
@@ -120,7 +171,7 @@ export class CreateQuestionDialog implements OnInit {
     );
 
     this.createQuestionForm = new FormGroup({
-      enunciate: new FormControl("", [Validators.required]),
+      statement: new FormControl("", [Validators.required]),
       type: this.typeControl,
       category: this.categoryControl,
       subCategory: this.subCategoryControl

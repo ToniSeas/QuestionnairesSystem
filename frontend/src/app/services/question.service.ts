@@ -8,7 +8,27 @@ import { QuestionType } from '../models/QuestionType';
 })
 export class QuestionService {
 
-  questionList: Question[] = [new Question({enunciate:"quemada"})];
+  su = new QuestionType({name: "Selección Única"});
+  sm = new QuestionType({name: "Selección Múltiple"});
+  e = new QuestionType({name: "Escala"});
+  vf = new QuestionType({name: "Verdadero o Falso"});
+  a = new QuestionType({name: "Abierta"});
+  n = new QuestionType({name: "Numérica"});
+  questionList: Question[] = [new Question({id: 1, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.su})
+  , new Question({id: 2, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.sm})
+  , new Question({id: 3, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.a})
+  , new Question({id: 4, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.e})
+  , new Question({id: 5, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.n})
+  , new Question({id: 6, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.vf})
+  , new Question({id: 7, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.n})
+  , new Question({id: 34, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.a})
+  , new Question({id: 2, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.e})
+  , new Question({id: 12, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.sm})
+  , new Question({id: 32, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.vf})
+  , new Question({id: 14, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.su})
+  , new Question({id: 343, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.e})
+  , new Question({id: 523, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.su})
+  , new Question({id: 1231, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', type: this.a})];
 
   public getQuestionsTypes() : Observable<Question[]> {
   
@@ -17,7 +37,6 @@ export class QuestionService {
   }
 
   public getQuestions() : Observable<Question[]> {
-  
     var questions : Observable<Question[]> = of(this.questionList);
     return questions;
   }
