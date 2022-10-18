@@ -10,8 +10,8 @@ import { QuestionUtil } from '../util/QuestionUtil';
 })
 export class QuestionService {
 
-  su = new QuestionType({ name: "Selección Única" });
-  sm = new QuestionType({ name: "Selección Múltiple" });
+  su = new QuestionType({ id: 1,name: "Selección Única" });
+  sm = new QuestionType({ id: 2,name: "Selección Múltiple" });
   e = new QuestionType({ name: "Escala" });
   vf = new QuestionType({ name: "Verdadero o Falso" });
   a = new QuestionType({ name: "Abierta" });
