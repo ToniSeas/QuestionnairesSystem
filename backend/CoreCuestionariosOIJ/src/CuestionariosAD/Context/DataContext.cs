@@ -42,12 +42,12 @@ namespace CuestionariosAD.Context
              * Por defecto, si se elimina un objetivo que tiene una llave foranea en otra
              * tabla, se eliminará también.
              * Entonces es buena opción desactivarlo para que el desarrollador realice las validaciones
-             * a mano y así no borrar registros equivocados */
+             * a mano y así no borrar registros equivocados 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
-            }
+            }*/
 
             base.OnModelCreating(modelBuilder);
 

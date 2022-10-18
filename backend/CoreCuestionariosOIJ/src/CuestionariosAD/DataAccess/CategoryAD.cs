@@ -3,6 +3,7 @@ using CuestionariosEntidades.EFModels;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CuestionariosAD.DataAccess
 {
@@ -42,7 +43,10 @@ namespace CuestionariosAD.DataAccess
 
         public async Task<ActionResult<List<EFCategory>>> DeleteCategory(int id)
         {
-            var dbCategory = await _context.Categories.FindAsync(id);
+            var dbCategory = await _context.Categories
+                .Include(e => e.SubCategories)
+                .FirstOrDefaultAsync(e => e.Id == id);
+
             if (dbCategory == null)
                 throw new Exception("No existe la categoria que se desea eliminar.");
 
