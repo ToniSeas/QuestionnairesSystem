@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj": {}
+    "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {
+    "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj",
+        "projectUniqueName": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj",
         "projectName": "CuestionariosAD",
-        "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj",
-        "packagesPath": "C:\\Users\\sojos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\obj\\",
+        "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj",
+        "packagesPath": "C:\\Users\\tonis\\.nuget\\packages\\",
+        "outputPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sojos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tonis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
-                "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
+              "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
+                "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
               }
             }
           }
@@ -87,17 +87,17 @@
         }
       }
     },
-    "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
+    "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+        "projectUniqueName": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
         "projectName": "CuestionariosEntidades",
-        "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
-        "packagesPath": "C:\\Users\\sojos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\obj\\",
+        "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+        "packagesPath": "C:\\Users\\tonis\\.nuget\\packages\\",
+        "outputPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sojos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tonis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -142,17 +142,17 @@
         }
       }
     },
-    "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj": {
+    "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
+        "projectUniqueName": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
         "projectName": "CuestionariosRN",
-        "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
-        "packagesPath": "C:\\Users\\sojos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\obj\\",
+        "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
+        "packagesPath": "C:\\Users\\tonis\\.nuget\\packages\\",
+        "outputPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sojos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tonis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -166,11 +166,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {
-                "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj"
+              "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {
+                "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj"
               },
-              "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
-                "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
+              "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
+                "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
               }
             }
           }

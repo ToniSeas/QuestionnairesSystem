@@ -1,38 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Category } from '../models/Category';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
   
-  categoryList: Category[] = [ new Category({id: 1, name: 'A'}),
-                              new Category({id: 2, name: 'B'}),
-                              new Category({id: 3, name: 'C'}),
-                              new Category({id: 4, name: 'D'}),
-                              new Category({id: 5, name: 'E'}),
-                              new Category({id: 6, name: 'F'})];
+  private controllerURL: string;
+  constructor (private httpClient: HttpClient) { 
+    this.controllerURL = "Category";
+  }
 
   public getCategories() : Observable<Category[]> {
-    var categories : Observable<Category[]> = of(this.categoryList);
-    return categories;
+    // Lo que está dentro de los paréntesis es string interpolation
+    return this.httpClient.get<Category[]>(`${environment.apiUrl}/${this.controllerURL}/GetCategories`);
   }
 
   public createCategory(category: Category) : Observable<Category[]> {
-    this.categoryList.push(category);
-    var categories : Observable<Category[]> = of(this.categoryList);
-    return categories;
+    return this.httpClient.post<Category[]>(`${environment.apiUrl}/${this.controllerURL}/CreateCategory`, category);
   }
 
   public deleteCategory(id?: number) : Observable<Category[]> {
-    this.categoryList.forEach( (item, index) => {
-      if(item.id === id) this.categoryList.splice(index,1);
-    });
-    var categories : Observable<Category[]> = of(this.categoryList);
-    return categories;
-  }
-
-  
+    return this.httpClient.delete<Category[]>(`${environment.apiUrl}/${this.controllerURL}/DeleteCategory/${id}`);
+  } 
 
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using CuestionariosEntidades.Models;
 using CuestionariosEntidades.EFModels;
+using System.Reflection.Emit;
 
 namespace CuestionariosAD.Mappings
 {
@@ -20,7 +21,8 @@ namespace CuestionariosAD.Mappings
             // 1 : N => Categoria : SubCategorias
             builder.HasMany(c => c.SubCategories)
                 .WithOne(b => b.Category)
-                .HasForeignKey(b => b.IdCategory);
+                .HasForeignKey(b => b.IdCategory)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.ToTable("tb_categoria_pregunta");
         }

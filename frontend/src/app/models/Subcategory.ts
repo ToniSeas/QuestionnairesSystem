@@ -1,3 +1,5 @@
+import { Category } from "./Category";
+
 export class SubCategory{
 
     name?: String

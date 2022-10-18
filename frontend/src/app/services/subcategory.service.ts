@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { SubCategory } from '../models/SubCategory';
 
 @Injectable({
@@ -7,35 +9,21 @@ import { SubCategory } from '../models/SubCategory';
 })
 export class SubcategoryService {
 
-  subcategoryList:  SubCategory[] = [new  SubCategory({name:"quemada"})];
-
+  private controllerURL: string;
+  constructor (private httpClient: HttpClient) {
+    this.controllerURL = "Category";
+  }
+  
   public getSubCategories() : Observable<SubCategory[]> {
-    var subcategories : Observable< SubCategory[]> = of(this.subcategoryList);
-
-    return subcategories;
+    // Lo que está dentro de los paréntesis es string interpolation
+    return this.httpClient.get<SubCategory[]>(`${environment.apiUrl}/${this.controllerURL}/GetSubCategories`);
   }
 
   public createSubCategory(subcategory:  SubCategory) : Observable<SubCategory[]> {
-    
-    this.subcategoryList.push(subcategory);
-
-    var subcategories : Observable< SubCategory[]> = of(this.subcategoryList);
-    return subcategories;
-  }
-
-  public clearSubCategory() : Observable< SubCategory[]> {
-    
-    this.subcategoryList.pop();
-
-    var subcategories : Observable< SubCategory[]> = of(this.subcategoryList);
-    return subcategories;
+    return this.httpClient.post<SubCategory[]>(`${environment.apiUrl}/${this.controllerURL}/CreateSubCategory`, subcategory);
   }
 
   public deleteSubCategory(id?: number) : Observable<SubCategory[]> {
-    this.subcategoryList.forEach( (item, index) => {
-      if(item.id === id) this.subcategoryList.splice(index,1);
-    });
-    var subcategories : Observable<SubCategory[]> = of(this.subcategoryList);
-    return subcategories;
+    return this.httpClient.delete<SubCategory[]>(`${environment.apiUrl}/${this.controllerURL}/DeleteSubCategory/${id}`);
   }
 }
