@@ -12,9 +12,6 @@ namespace CuestionariosEntidades.EFModels
         public string? Statement { get; set; } = string.Empty;
         public string? Label { get; set; } = string.Empty;
         public int? Position { get; set; }
-        public EFQuestionType? Type { get; set; }
-        public EFSubCategory? SubCategory { get; set; }
-        public EFCategory? Category { get; set; }
 
     }
 }

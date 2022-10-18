@@ -27,8 +27,6 @@ namespace CuestionariosAD.Context
             
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseSqlServer("Server=localhost;Database=AnalisisCuestionariosProyecto2022;Trusted_Connection=True;");
-                //optionsBuilder.UseSqlServer("Server = sqlserver\\163.178.107.10; Database = cuestionarios; User Id = laboratorios; Password = TUy&)&nfC7QqQau.%278UQ24/=%;");
                 optionsBuilder.UseSqlServer("Data Source=163.178.107.10;Initial Catalog=cuestionarios;Persist Security Info=True;User ID=laboratorios;Password=TUy&)&nfC7QqQau.%278UQ24/=%;");
                 
             }

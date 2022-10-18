@@ -17,6 +17,11 @@ namespace CuestionariosAD.Mappings
                 .HasColumnType("nvarchar(150)")
             .HasColumnName("nombre");
 
+            builder.Property(c => c.IdCategory)
+                .IsRequired()
+                .HasColumnType("int")
+            .HasColumnName("idCategoria");
+
             builder.ToTable("tb_subcategoria_pregunta");
         }
     }
