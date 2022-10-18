@@ -67,7 +67,7 @@ BEGIN TRY
 		-- tipoPregunta
 		CREATE TABLE tb_tipo_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,nombre NVARCHAR(150))
+			,nombre NVARCHAR(150) UNIQUE)
 
 		-- Categoría pregunta
 		CREATE TABLE tb_categoria_pregunta
