@@ -1,4 +1,5 @@
-﻿using CuestionariosEntidades.Models;
+﻿using CuestionariosEntidades.EFModels;
+using CuestionariosEntidades.Models;
 using CuestionariosRN.BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,7 @@ namespace CuestionariosAPI.Controllers
         // Peticion tipo GET: api/GetQuestions
         [HttpGet]
         [Route("GetQuestions")]
-        public async Task<ActionResult<List<Question>>> GetQuestions()
+        public async Task<ActionResult<List<EFQuestion>>> GetQuestions()
         {
             return await questionRN.GetQuestions();
         }
@@ -27,7 +28,7 @@ namespace CuestionariosAPI.Controllers
         // Petición tipo POST: api/CreateQuestion
         [HttpPost]
         [Route("CreateQuestion")]
-        public async Task<ActionResult<List<Question>>> CreateQuestion(Question question)
+        public async Task<ActionResult<List<EFQuestion>>> CreateQuestion(EFQuestion question)
         {
             return await questionRN.CreateQuestion(question);
         }
@@ -35,14 +36,14 @@ namespace CuestionariosAPI.Controllers
         //Petición tipo PUT: api/UpdateQuestion
         [Route("UpdateQuestion")]
         [HttpPut]
-        public async Task<ActionResult<List<Question>>> UpdateQuestion(Question question)
+        public async Task<ActionResult<List<EFQuestion>>> UpdateQuestion(EFQuestion question)
         {
             return await questionRN.UpdateQuestion(question);
         }
 
         //Petición tipo DELETE: api/DeleteQuestion
         [HttpDelete("DeleteQuestion/{id}")]
-        public async Task<ActionResult<List<Question>>> DeleteQuestion(int id)
+        public async Task<ActionResult<List<EFQuestion>>> DeleteQuestion(int id)
         {
             return await questionRN.DeleteQuestion(id);
         }

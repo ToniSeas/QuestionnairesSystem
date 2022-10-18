@@ -21,6 +21,7 @@ namespace CuestionariosAD.Context
         public DbSet<EFQuestion> Questions => Set<EFQuestion>();
         public DbSet<EFOption> Options => Set<EFOption>();
         public DbSet<EFQuestionType> QuestionTypes => Set<EFQuestionType>();
+        public DbSet<EFQuestionnaire> Questionnaires => Set<EFQuestionnaire>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { 
             

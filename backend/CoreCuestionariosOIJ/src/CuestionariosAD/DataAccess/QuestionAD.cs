@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CuestionariosAD.DataAccess
 {
-    public class OptionAD
+    public class QuestionAD
     {
 
         private readonly DataContext _context;
 
-        public OptionAD()
+        public QuestionAD()
         {
             _context = new DataContext();
         }

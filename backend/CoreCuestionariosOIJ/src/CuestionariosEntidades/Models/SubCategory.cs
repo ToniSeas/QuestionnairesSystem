@@ -11,9 +11,6 @@ namespace CuestionariosEntidades.Models
         public int? Id { get; set; }
         public String? Name { get; set; } = String.Empty;
         public int? IdCategory { get; set; }
-<<<<<<< HEAD
-        
-=======
->>>>>>> origin/feature/Susan
+
     }
 }
