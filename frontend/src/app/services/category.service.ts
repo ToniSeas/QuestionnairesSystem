@@ -6,7 +6,7 @@ import { Category } from '../models/Category';
   providedIn: 'root'
 })
 export class CategoryService {
-
+  
   categoryList: Category[] = [ new Category({id: 1, name: 'A'}),
                               new Category({id: 2, name: 'B'}),
                               new Category({id: 3, name: 'C'}),

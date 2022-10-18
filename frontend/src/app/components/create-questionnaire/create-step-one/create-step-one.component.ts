@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Questionnaire } from 'src/app/models/Questionnaire';
-import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-create-step-one',
