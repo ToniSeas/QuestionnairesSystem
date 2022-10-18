@@ -10,6 +10,8 @@ import { Category } from "src/app/models/Category";
 import { CategoryService } from "src/app/services/category.service";
 import { QuestionType } from "src/app/models/QuestionType";
 import { SubCategory } from "src/app/models/SubCategory";
+import { Option } from "src/app/models/Option";
+import { QuestionUtil } from "src/app/util/QuestionUtil";
 
 @Component({
   selector: 'app-create-step-two',
@@ -17,7 +19,6 @@ import { SubCategory } from "src/app/models/SubCategory";
   styleUrls: ['./create-step-two.component.css']
 })
 export class CreateStepTwoComponent implements OnInit {
-
   // Instancias necesarias
   private displayedColumns: string[];
   private dataSource: MatTableDataSource<Question>;
@@ -26,12 +27,8 @@ export class CreateStepTwoComponent implements OnInit {
   // Respaldo local de las preguntas creadas
   private questionList: Question[];
 
-  // Declaracion del modelo de pregunta
-  private questionModel: Question;
-
   // Inicializacion de los atributos
   constructor(private questionService: QuestionService, public dialog: MatDialog) {
-    this.questionModel = new Question({});
     this.displayedColumns = ['id', 'statement', 'type', 'operations'];
     this.dataSource = new MatTableDataSource<Question>;
     this.searchControl = new FormControl('');
@@ -44,18 +41,20 @@ export class CreateStepTwoComponent implements OnInit {
     var dialogRef = this.dialog.open(CreateQuestionDialog, {
       enterAnimationDuration,
       exitAnimationDuration,
-      data: { questionModel: this.questionModel },
     });
 
-    // Cuando el MatDialog se cierra, entonces realiza estas acciones
     dialogRef.afterClosed().subscribe(result => {
-      this.questionModel = result;
+      if (result != undefined && result.state == true) {
+        result.question.id = this.questionList.length;
+        this.questionList.push(result.question)
+        this.updateDataSource(this.questionList)
+      }
     });
   }
 
   // Esto se ejecuta cada vez que se ingresa a esta vista
   ngOnInit(): void {
-    this.openDialog('0ms', '0ms');
+    //this.openDialog('0ms', '0ms');
   }
 
   // Con este metodo se puede actualizar el datasource de la tabla
@@ -105,6 +104,10 @@ export class CreateStepTwoComponent implements OnInit {
     this.updateDataSource(this.questionList);
   }
 
+  public cleanSearchControl() {
+    this.searchControl.reset();
+  }
+
   // Metodos get
   public getDisplayedColumns(): string[] { return this.displayedColumns; }
   public getDataSource(): MatTableDataSource<Question> { return this.dataSource; }
@@ -120,27 +123,39 @@ export class CreateQuestionDialog implements OnInit {
 
   // Modelos necesarios para la creacion de las preguntas
   question: Question;
+  option: Option;
 
   // Listas de objetos
   private questionTypes: Observable<QuestionType[]>;
   private categories: Observable<Category[]>;
   private subCategories: Observable<SubCategory[]>;
+  private dataSource: MatTableDataSource<Option>;
+  private displayedColumns: string[];
+
+  // Lista de opciones que se le van a agregar a una pregunta
+  // si la pregunta tiene opciones
+  private optionList: Option[];
 
   // Instancias necesarias
   private createQuestionForm: FormGroup;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator
 
   // Inicializacion de los atributos
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionDialog>,
     private questionService: QuestionService,
     private categoryService: CategoryService,
-    @Inject(MAT_DIALOG_DATA) public data: Question
   ) {
 
     this.question = new Question({});
+    this.option = new Option({});
     this.questionTypes = new Observable<QuestionType[]>();
     this.categories = new Observable<Category[]>();
     this.subCategories = new Observable<SubCategory[]>();
+    this.dataSource = new MatTableDataSource<Option>;
+    this.displayedColumns = ['name', 'operations'];
+    this.optionList = [];
 
     // Indicarle al form group los form control que le pertenecen
     this.createQuestionForm = new FormGroup({
@@ -149,6 +164,7 @@ export class CreateQuestionDialog implements OnInit {
       category: new FormControl("", [Validators.required]),
       subCategory: new FormControl("", [Validators.required])
     })
+
   }
 
   // Este metodo se ejecuta cada vez que se ingresa a esta vista
@@ -165,7 +181,6 @@ export class CreateQuestionDialog implements OnInit {
     ]
     this.categories = of(categoryList);
 
-
     // Inicializar la lista de sub categorias de pregunta
     var subCategoryList: SubCategory[] = [
       new SubCategory({ id: 1, name: "Triste" })
@@ -173,29 +188,47 @@ export class CreateQuestionDialog implements OnInit {
     ]
     this.subCategories = of(subCategoryList);
 
+    this.dataSource.paginator = this.paginator
   }
 
   // Esto es lo que se ejecuta cuando se realiza la accion de aceptar (enviar formulario)
   public onSubmit = () => {
     // Si el formulario es valido, entonces se le asignan
-    // los valores a la pregunta
-    if (this.createQuestionForm.valid) {
-      
-      this.question.statement = this.getFormGroup().get('statement')?.value;
-      this.question.category = new Category({
-        id: this.getFormGroup().get('category')?.value
-      });
-      this.question.subcategory = new SubCategory({
-        id: this.getFormGroup().get('subCategory')?.value
-      });
-      this.question.type = new QuestionType({
-        id: this.getFormGroup().get('type')?.value
-      });
+    // los valores a la pregunta      
+    this.question.statement = this.getFormGroup().get('statement')?.value;
+    this.question.category = new Category({
+      id: this.getFormGroup().get('category')?.value
+    });
+    this.question.subcategory = new SubCategory({
+      id: this.getFormGroup().get('subCategory')?.value
+    });
 
+    // Se obtiene de la lista de tipos de pregunta local el tipo de pregunta
+    // al que le pertenezca el id de la opcion que se selecciono
+    // La opcion que cumpla con esa condicion es la que se le va a asignar
+    // al tipo de la pregunta local
+    var questionTypeId: string = this.getFormGroup().get('type')?.value;
+    this.questionTypes.subscribe(
+      (questionsTypes) =>
+        questionsTypes.forEach(element => {
+          if (element.id?.toString() == questionTypeId) {
+            this.question.type = element;
+          }
+        })
+    );
+
+    // Si el formulario es valido y el tipo de pregunta no requiere opciones,
+    // entonces se puede cerrar el dialog y enviarle la pregunta al componente padre.
+    var key: string = this.question.type?.key == undefined ? "" : this.question.type.key.toString();
+    if (this.createQuestionForm.valid && !QuestionUtil.requireOption(key)) {
+      this.dialogRef.close({question: this.question, state: true});
     }
+  }
 
-    console.log(this.question)
-
+  // Con este metodo se actualizan los valores datasource de la tabla
+  public updateDateSource(options: Option[]): void {
+    this.dataSource = new MatTableDataSource<Question>(options);
+    this.dataSource.paginator = this.paginator;
   }
 
   // Metodos Get
@@ -203,4 +236,6 @@ export class CreateQuestionDialog implements OnInit {
   public getQuestionTypes(): Observable<QuestionType[]> { return this.questionTypes; }
   public getCategories(): Observable<Category[]> { return this.categories; }
   public getSubCategories(): Observable<SubCategory[]> { return this.subCategories; }
+  public getDataSource(): MatTableDataSource<Question> { return this.dataSource; }
+  public getDisplayedColumns(): string[] { return this.displayedColumns; }
 }
