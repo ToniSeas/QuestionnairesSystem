@@ -12,16 +12,22 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class ManageCategoryComponent implements OnInit {
 
+
+  categoryL: Category[] = [ new Category({id: 1, name: 'A1'}),
+                              new Category({id: 2, name: 'B1'}),
+                              new Category({id: 3, name: 'C1'}),
+                              new Category({id: 4, name: 'D1'}),
+                              new Category({id: 5, name: 'E1'}),
+                              new Category({id: 6, name: 'F1'})];
+
+
   private createCategoryForm!: FormGroup;
   //temporal
-  category: Category = new Category({ name: "new Category" });
 
   private displayedColumns: string[] = ['title', 'operations'];
   private dataSource = new MatTableDataSource<Category>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild('nameCategoryQuestion') nameCategoryQuestion: any; // accessing the reference element
-
 
   constructor(private categoryService: CategoryService) { }
   public getFormGroup(): FormGroup { return this.createCategoryForm; }
@@ -38,7 +44,6 @@ export class ManageCategoryComponent implements OnInit {
 
   }
 
-
   onSubmit = () => {
     if (this.createCategoryForm.invalid) {
       console.log('test')
@@ -49,11 +54,13 @@ export class ManageCategoryComponent implements OnInit {
       this.createCategory(name);
       this.createCategoryForm.reset();
     }
+
   }
 
   public getDataSource(): MatTableDataSource<Category> {
     return this.dataSource;
   }
+
   public getDisplayedColumns(): string[] {
     return this.displayedColumns;
   }
@@ -68,25 +75,31 @@ export class ManageCategoryComponent implements OnInit {
       (categories) => this.updateCategoryList(categories)
     );
   }
-  public clearCategory(): void {
-    this.categoryService.clearCategory().subscribe(
-      (categories: Category[]) => this.updateCategoryList(categories)
-    );
-  }
 
   public clearInput(): void {
     this.createCategoryForm.reset();
   }
 
-  public delete(nameC?: String): void{
-    console.log(nameC);
-  }
-
-    
   public deleteCategory(idC?: number){
     this.categoryService.deleteCategory(idC).subscribe(
       (categories: Category[]) => this.updateCategoryList(categories)
     );
+  }
+
+  public sortBySearch(oldArray: Category[], substring: string): Category[] {
+    let newArray: Category[] = [];
+    return this.categoryL;
+  }
+
+  public searchCategory(){
+    console.log(this.dataSource.data);
+    if (this.createCategoryForm.valid) {
+      let oldArray: Category[] = this.dataSource.data
+      let newArray: Category[] = this.sortBySearch(oldArray, this.createCategoryForm.get('categoryF')?.value)
+      this.updateCategoryList(newArray);
+    }else{
+      this.updateCategoryList(this.dataSource.data);
+    }
   }
 
 }

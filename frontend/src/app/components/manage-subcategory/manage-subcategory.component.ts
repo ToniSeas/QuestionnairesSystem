@@ -4,7 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { Category } from 'src/app/models/Category';
 import { SubCategory } from 'src/app/models/SubCategory';
-import { CategoryService } from 'src/app/services/category.service';
 import { SubcategoryService } from 'src/app/services/subcategory.service';
 
 @Component({
@@ -15,6 +14,7 @@ import { SubcategoryService } from 'src/app/services/subcategory.service';
 export class ManageSubcategoryComponent implements OnInit {
   
   private createSubCategoryForm!: FormGroup;
+
   //temporal
   subCategory: SubCategory = new SubCategory({ name: "new subCategorý" });
   category: Category = new Category({ name: "new Category" });
@@ -43,8 +43,6 @@ export class ManageSubcategoryComponent implements OnInit {
       categoryF: new FormControl("", [Validators.required]),
       subcategoryF: new FormControl("", [Validators.required])
     })
-
-
 
   }
 
