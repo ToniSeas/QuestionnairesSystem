@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CuestionariosEntidades.Models
 {
-    class Questionnaire
+    public class Questionnaire
     {
-        public IEnumerable<Question> Questions { get; set; }
-        public string Type { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-        public DateTime Date { get; set; }
-        public string Description { get; set; } = string.Empty;
+        public IEnumerable<Question>? Questions { get; set; }
+        public String? Type { get; set; } = String.Empty;
+        public String? Name { get; set; } = String.Empty;
+        public DateTime? Date { get; set; }
+        public String? Description { get; set; } = String.Empty;
     }
 }

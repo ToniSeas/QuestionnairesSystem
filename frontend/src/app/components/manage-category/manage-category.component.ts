@@ -12,16 +12,14 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class ManageCategoryComponent implements OnInit {
 
+
   private createCategoryForm!: FormGroup;
   //temporal
-  category: Category = new Category({ name: "new Category" });
 
   private displayedColumns: string[] = ['title', 'operations'];
   private dataSource = new MatTableDataSource<Category>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild('nameCategoryQuestion') nameCategoryQuestion: any; // accessing the reference element
-
 
   constructor(private categoryService: CategoryService) { }
   public getFormGroup(): FormGroup { return this.createCategoryForm; }
@@ -38,7 +36,6 @@ export class ManageCategoryComponent implements OnInit {
 
   }
 
-
   onSubmit = () => {
     if (this.createCategoryForm.invalid) {
       console.log('test')
@@ -49,11 +46,13 @@ export class ManageCategoryComponent implements OnInit {
       this.createCategory(name);
       this.createCategoryForm.reset();
     }
+
   }
 
   public getDataSource(): MatTableDataSource<Category> {
     return this.dataSource;
   }
+
   public getDisplayedColumns(): string[] {
     return this.displayedColumns;
   }
@@ -68,25 +67,64 @@ export class ManageCategoryComponent implements OnInit {
       (categories) => this.updateCategoryList(categories)
     );
   }
-  public clearCategory(): void {
-    this.categoryService.clearCategory().subscribe(
-      (categories: Category[]) => this.updateCategoryList(categories)
-    );
-  }
 
   public clearInput(): void {
     this.createCategoryForm.reset();
   }
 
-  public delete(nameC?: String): void{
-    console.log(nameC);
-  }
-
-    
   public deleteCategory(idC?: number){
     this.categoryService.deleteCategory(idC).subscribe(
       (categories: Category[]) => this.updateCategoryList(categories)
     );
+  }
+
+   /**
+   * This method sorts an array recursively according to a search value.
+   * @param oldArray The array to be sorted
+   * @param substring The search value
+   */
+    public sortBySearch(oldArray: Category[], substring: string): Category[] {
+      //This will sort the reviewers array according to a string parameter using indexof
+      let newArray: Category[] = []
+      oldArray.forEach(element => {
+        let index = (element.name + "").indexOf(substring) //where, in the main string, is this substring
+        if (index > -1) { //is this substring actually present in the main string?
+          //if so, add it to the array at the corresponding spot
+          let added = false
+          for (let i = 0; i < newArray.length; i++) {
+            let tempIndex = (newArray[i].name + "").indexOf(substring)
+            console.log(index, " ", tempIndex)
+            if (tempIndex < 0 || index < tempIndex) {
+              if (i == 0) {
+                newArray.unshift(element)
+              } else {
+                newArray.splice(i, 0, element)
+              }
+              added = true
+              break
+            }
+          }
+          if (!added) {
+            newArray.push(element)
+          }
+        } else { //else, add it to the end
+          newArray.push(element)
+        }
+      })
+  
+      console.log(newArray)
+      return newArray
+    }
+
+  public searchCategory(){
+    console.log(this.dataSource.data);
+    if (this.createCategoryForm.valid) {
+      let oldArray: Category[] = this.dataSource.data
+      let newArray: Category[] = this.sortBySearch(oldArray, this.createCategoryForm.get('categoryF')?.value)
+      this.updateCategoryList(newArray);
+    }else{
+      this.updateCategoryList(this.dataSource.data);
+    }
   }
 
 }

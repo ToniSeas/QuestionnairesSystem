@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CuestionariosEntidades.Models
 {
-    class User
+    public class User
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Lastname { get; set; } = string.Empty;
+        public int? Id { get; set; }
+        public String? Name { get; set; } = String.Empty;
+        public String? Lastname { get; set; } = String.Empty;
 
     }
 }

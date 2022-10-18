@@ -8,8 +8,8 @@ namespace CuestionariosEntidades.Models
 {
     public class Category
     {
-        public int Id { get; set; }
-        public String Name { get; set; } = string.Empty;
+        public int? Id { get; set; }
+        public String? Name { get; set; } = String.Empty;
         public IEnumerable<SubCategory>? SubCategories { get; set; }
 
     }

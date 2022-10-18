@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CuestionariosEntidades.Models
 {
-    class Office
+    public class Office
     {
-        public string Name { get; set; } = string.Empty;
-        public int Id { get; set; }
+        public String? Name { get; set; } = String.Empty;
+        public int? Id { get; set; }
     }
 }
