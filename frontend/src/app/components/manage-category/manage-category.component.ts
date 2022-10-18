@@ -10,18 +10,17 @@ import { CategoryService } from 'src/app/services/category.service';
   templateUrl: './manage-category.component.html',
   styleUrls: ['./manage-category.component.css']
 })
+
 export class ManageCategoryComponent implements OnInit {
 
-
   private createCategoryForm!: FormGroup;
-  //temporal
-
   private displayedColumns: string[] = ['title', 'operations'];
   private dataSource = new MatTableDataSource<Category>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private categoryService: CategoryService) { }
+  
   public getFormGroup(): FormGroup { return this.createCategoryForm; }
 
   ngOnInit(): void {
@@ -37,12 +36,8 @@ export class ManageCategoryComponent implements OnInit {
   }
 
   onSubmit = () => {
-    if (this.createCategoryForm.invalid) {
-      console.log('test')
-    } else {
-      console.log('válido');
+    if (this.createCategoryForm.valid) {
       let name= this.createCategoryForm.get('categoryF')?.value;
-      console.log(name);
       this.createCategory(name);
       this.createCategoryForm.reset();
     }
@@ -112,12 +107,10 @@ export class ManageCategoryComponent implements OnInit {
         }
       })
   
-      console.log(newArray)
       return newArray
     }
 
   public searchCategory(){
-    console.log(this.dataSource.data);
     if (this.createCategoryForm.valid) {
       let oldArray: Category[] = this.dataSource.data
       let newArray: Category[] = this.sortBySearch(oldArray, this.createCategoryForm.get('categoryF')?.value)

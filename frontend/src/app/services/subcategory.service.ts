@@ -30,4 +30,12 @@ export class SubcategoryService {
     var subcategories : Observable< SubCategory[]> = of(this.subcategoryList);
     return subcategories;
   }
+
+  public deleteSubCategory(id?: number) : Observable<SubCategory[]> {
+    this.subcategoryList.forEach( (item, index) => {
+      if(item.id === id) this.subcategoryList.splice(index,1);
+    });
+    var subcategories : Observable<SubCategory[]> = of(this.subcategoryList);
+    return subcategories;
+  }
 }

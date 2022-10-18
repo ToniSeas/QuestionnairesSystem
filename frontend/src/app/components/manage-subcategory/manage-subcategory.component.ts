@@ -11,13 +11,12 @@ import { SubcategoryService } from 'src/app/services/subcategory.service';
   templateUrl: './manage-subcategory.component.html',
   styleUrls: ['./manage-subcategory.component.css']
 })
+
 export class ManageSubcategoryComponent implements OnInit {
   
   private createSubCategoryForm!: FormGroup;
 
-  //temporal
-  subCategory: SubCategory = new SubCategory({ name: "new subCategorý" });
-  category: Category = new Category({ name: "new Category" });
+
   categoryList: Category[] = [ new Category({id: 1, name: 'A'}),
                               new Category({id: 2, name: 'B'}),
                               new Category({id: 3, name: 'C'}),
@@ -47,13 +46,11 @@ export class ManageSubcategoryComponent implements OnInit {
   }
 
   onSubmit = () => {
-    if (this.createSubCategoryForm.invalid) {
-      console.log('test')
-    } else {
-      console.log('válido');
-      let name= this.createSubCategoryForm.get('categoryF')?.value;
-      console.log(name);
-      this.createSubCategory(name);
+    if (this.createSubCategoryForm.valid) {
+      let nameSubCategory= this.createSubCategoryForm.get('subcategoryF')?.value;
+      let idCategory= this.createSubCategoryForm.get('subcategoryF')?.value;
+      let sC= new SubCategory({name: nameSubCategory, idCategory: idCategory});
+      this.createSubCategory(sC);
       this.createSubCategoryForm.reset();
     }
   }
@@ -61,28 +58,80 @@ export class ManageSubcategoryComponent implements OnInit {
   public getDataSource(): MatTableDataSource<SubCategory> {
     return this.dataSource;
   }
+
   public getDisplayedColumns(): string[] {
     return this.displayedColumns;
   }
 
-  public updateSubCategoryList(categories: SubCategory[]): void {
-    this.dataSource = new MatTableDataSource<SubCategory>(categories)
+  public updateSubCategoryList(subCategories: SubCategory[]): void {
+    this.dataSource = new MatTableDataSource<SubCategory>(subCategories)
     this.dataSource.paginator = this.paginator;
   }
 
-  public createSubCategory(nameC: string): void {
-    this.subcategoryService.createSubCategory(new SubCategory({ name: nameC })).subscribe(
-      (categories) => this.updateSubCategoryList(categories)
-    );
-  }
-  public clearSubCategory(): void {
-    this.subcategoryService.clearSubCategory().subscribe(
-      (categories: SubCategory[]) => this.updateSubCategoryList(categories)
+  public createSubCategory(subcategory: SubCategory): void {
+    this.subcategoryService.createSubCategory(subcategory).subscribe(
+      (subCategories : SubCategory[]) => this.updateSubCategoryList(subCategories)
     );
   }
 
   public clearInput(): void {
     this.createSubCategoryForm.reset();
+  }
+
+  public deleteSubCategory(idS?: number){
+    console.log(idS);
+    this.subcategoryService.deleteSubCategory(idS).subscribe(
+      (subCategories: SubCategory[]) => this.updateSubCategoryList(subCategories)
+    );
+  }
+
+  
+   /**
+   * This method sorts an array recursively according to a search value.
+   * @param oldArray The array to be sorted
+   * @param substring The search value
+   */
+    public sortBySearch(oldArray: SubCategory[], substring: string): SubCategory[] {
+      //This will sort the reviewers array according to a string parameter using indexof
+      let newArray: SubCategory[] = []
+      oldArray.forEach(element => {
+        let index = (element.name + "").indexOf(substring) //where, in the main string, is this substring
+        if (index > -1) { //is this substring actually present in the main string?
+          //if so, add it to the array at the corresponding spot
+          let added = false
+          for (let i = 0; i < newArray.length; i++) {
+            let tempIndex = (newArray[i].name + "").indexOf(substring)
+            console.log(index, " ", tempIndex)
+            if (tempIndex < 0 || index < tempIndex) {
+              if (i == 0) {
+                newArray.unshift(element)
+              } else {
+                newArray.splice(i, 0, element)
+              }
+              added = true
+              break
+            }
+          }
+          if (!added) {
+            newArray.push(element)
+          }
+        } else { //else, add it to the end
+          newArray.push(element)
+        }
+      })
+  
+      return newArray
+    }
+
+  public searchSubCategory(){
+    console.log(this.createSubCategoryForm.valid);
+    if (this.createSubCategoryForm.valid) {
+      let oldArray: SubCategory[] = this.dataSource.data
+      let newArray: SubCategory[] = this.sortBySearch(oldArray, this.createSubCategoryForm.get('subcategoryF')?.value)
+      this.updateSubCategoryList(newArray);
+    }else{
+      this.updateSubCategoryList(this.dataSource.data);
+    }
   }
 
 }
