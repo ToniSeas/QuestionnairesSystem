@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "M2j4wFJXyRPB3eaTQb9/OMvgrJ/cUKwcHmdK3D5DdKutQMJ/nJ9pq0YLDIrQ1S0oJHs52rsQyU6kziwMbWDchw==",
+=======
+  "dgSpecHash": "f2mQ0zOVcw+f96xPtQntQI1prCViLz0kfZAIlpbbx4FAbdsHgWpWrNbl+mQBVHqIcPHJ47nJoZViuMJcNTe9qw==",
+>>>>>>> feature/antony
   "success": true,
   "projectFilePath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAPI\\CuestionariosAPI.csproj",
   "expectedPackageFiles": [
