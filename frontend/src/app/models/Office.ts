@@ -3,6 +3,9 @@ export class Office{
     name?: String
     id?: number;
     
-    constructor() {}
+    constructor({id, name}: {id?: number, name?: String}) {
+        this.name = name
+        this.id = id
+    }
 
 }
