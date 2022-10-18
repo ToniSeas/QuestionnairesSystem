@@ -1,99 +1,101 @@
+<div class="row mb-4">
+    <div class="col">
+        <button type="button" routerLink="/manage-category" class="btn me-md-2 btn-category">Categoría de
+            Pregunta</button>
+    </div>
+    <div class="col">
+        <button type="button" routerLink="/manage-subcategory" class="btn me-md-2 btn-subcategory">Subcategoría de
+            Pregunta</button>
+    </div>
+    <div class="col"></div>
+    <div class="col"></div>
+</div>
+
+<form form [formGroup]="getFormGroup()" validate (ngSubmit)="onSubmit()" class="row mb-4">
+    <div class="col">
+        <mat-form-field class="w-full p-l-8">
+            <mat-label>Nombre SubCategoría</mat-label>
+            <input matInput placeholder="Nombre SubCategoría" [formControlName]="'subcategoryF'">
+
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="col">
+        <mat-label>Categoría</mat-label>
+        <mat-select [formControlName]="'categoryF'">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let currentCategory of categoryList" [value]="currentCategory.id">
+                {{currentCategory.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <div class="row mb-4">
         <div class="col">
-            <button type="button" routerLink="/manage-category" class="btn me-md-2 btn-category">Categoría de Pregunta</button>
-        </div>
-        <div class="col">
-            <button type="button" routerLink="/manage-subcategory" class="btn me-md-2 btn-subcategory">Subcategoría de Pregunta</button>
-        </div>
-        <div class="col"></div>
-        <div class="col"></div>
-    </div>
+            <div class="category-action-buttons">
+                <button mat-raised-button type="button" style="background-color: #DAA520; color: black;"
+                    class="mat-primary me-md-2" (click)="clearInput()">
+                    <mat-icon>cleaning_services'</mat-icon>
+                    Limpiar
+                </button>
 
-    <form form [formGroup]="getFormGroup()" validate (ngSubmit)="onSubmit()" class="row mb-4">
-        <div class="col">
-            <mat-form-field class="w-full p-l-8">
-                <mat-label>Nombre SubCategoría</mat-label>
-                <input matInput placeholder="Nombre SubCategoría" [formControlName]="'subcategoryF'">
-              
-            </mat-form-field>   
-        </div>
+                <button mat-raised-button type="button" (click)="searchSubCategory()" class="mat-primary me-md-2">
+                    <mat-icon>search</mat-icon>
+                    Buscar
+                </button>
+                <button mat-raised-button type="submit" class="mat-primary me-md-2" [disabled]="!getFormGroup().valid">
+                    <mat-icon>add</mat-icon>
+                    Agregar
+                </button>
 
-            <mat-form-field class="col">
-                <mat-label>Categoría</mat-label>
-                <mat-select [(ngModel)]="category.id" [formControlName]="'categoryF'">
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let currentCategory of categoryList" [value]="currentCategory.id">{{currentCategory.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
 
-            <div class="row mb-4">
-                <div class="col">
-                    <div class="category-action-buttons">
-                        <button mat-raised-button type="button" (click)="clearInput()" class="mat-primary me-md-2">
-                            <mat-icon>cleaning_services'</mat-icon>
-                            Limpiar
-                        </button>
-            
-                        <button mat-raised-button type="button" class="mat-primary me-md-2">
-                            <mat-icon>search</mat-icon>
-                            Buscar
-                        </button>
-                        <button mat-raised-button type="submit" class="mat-primary me-md-2" [disabled]="!getFormGroup().valid">
-                            <mat-icon>add</mat-icon>
-                            Agregar
-                        </button>
-            
-            
-                    </div>
-            
-                </div>
-            
-            
             </div>
-    </form>
 
-    
+        </div>
 
-    <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="getDataSource()">
 
-            <!-- Title -->
-            <ng-container matColumnDef="title">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
+    </div>
+</form>
 
-            <!-- Operations -->
-            <ng-container matColumnDef="operations">
-                <th mat-header-cell *matHeaderCellDef> Operaciones </th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                        <mat-icon>more_vert</mat-icon>
+
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="getDataSource()">
+
+        <!-- Title -->
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Operations -->
+        <ng-container matColumnDef="operations">
+            <th mat-header-cell *matHeaderCellDef> Operaciones </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item type="button" (click)="deleteSubCategory(element.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Borrar</span>
                     </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
-                            <mat-icon>delete</mat-icon>
-                            <span>Borrar</span>
-                        </button>
-                        <button mat-menu-item>
-                            <mat-icon>edit</mat-icon>
-                            <span>Editar</span>
-                        </button>
-                    </mat-menu>
-                </td>
-            </ng-container>
+                    <button mat-menu-item>
+                        <mat-icon>edit</mat-icon>
+                        <span>Editar</span>
+                    </button>
+                </mat-menu>
+            </td>
+        </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
-            <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
-        </table>
+        <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+        <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
+    </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-            aria-label="Select page of periodic elements">
-        </mat-paginator>
-    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Seleccione la página">
+    </mat-paginator>
+</div>
 
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button type="button" class="btn me-md-2 btn-back">Volver</button>
-    </div>
-
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button type="button" class="btn me-md-2 btn-back">Volver</button>
+</div>
