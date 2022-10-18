@@ -13,14 +13,6 @@ import { CategoryService } from 'src/app/services/category.service';
 export class ManageCategoryComponent implements OnInit {
 
 
-  categoryL: Category[] = [ new Category({id: 1, name: 'A1'}),
-                              new Category({id: 2, name: 'B1'}),
-                              new Category({id: 3, name: 'C1'}),
-                              new Category({id: 4, name: 'D1'}),
-                              new Category({id: 5, name: 'E1'}),
-                              new Category({id: 6, name: 'F1'})];
-
-
   private createCategoryForm!: FormGroup;
   //temporal
 
@@ -86,10 +78,43 @@ export class ManageCategoryComponent implements OnInit {
     );
   }
 
-  public sortBySearch(oldArray: Category[], substring: string): Category[] {
-    let newArray: Category[] = [];
-    return this.categoryL;
-  }
+   /**
+   * This method sorts an array recursively according to a search value.
+   * @param oldArray The array to be sorted
+   * @param substring The search value
+   */
+    public sortBySearch(oldArray: Category[], substring: string): Category[] {
+      //This will sort the reviewers array according to a string parameter using indexof
+      let newArray: Category[] = []
+      oldArray.forEach(element => {
+        let index = (element.name + "").indexOf(substring) //where, in the main string, is this substring
+        if (index > -1) { //is this substring actually present in the main string?
+          //if so, add it to the array at the corresponding spot
+          let added = false
+          for (let i = 0; i < newArray.length; i++) {
+            let tempIndex = (newArray[i].name + "").indexOf(substring)
+            console.log(index, " ", tempIndex)
+            if (tempIndex < 0 || index < tempIndex) {
+              if (i == 0) {
+                newArray.unshift(element)
+              } else {
+                newArray.splice(i, 0, element)
+              }
+              added = true
+              break
+            }
+          }
+          if (!added) {
+            newArray.push(element)
+          }
+        } else { //else, add it to the end
+          newArray.push(element)
+        }
+      })
+  
+      console.log(newArray)
+      return newArray
+    }
 
   public searchCategory(){
     console.log(this.dataSource.data);
