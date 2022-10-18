@@ -8,9 +8,9 @@ namespace CuestionariosEntidades.Models
 {
     public class SubCategory
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public int IdCategory { get; set; }
+        public int? Id { get; set; }
+        public String? Name { get; set; } = String.Empty;
+        public int? IdCategory { get; set; }
         public Category? Category { get; set; }
     }
 }

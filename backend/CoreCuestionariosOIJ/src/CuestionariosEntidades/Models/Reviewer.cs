@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CuestionariosEntidades.Models
 {
-    class Reviewer : User
+    public class Reviewer : User
     {
-        public int IdQuestionnaire { get; set; }
+        public int? IdQuestionnaire { get; set; }
     }
 }
