@@ -17,6 +17,11 @@ namespace CuestionariosAD.Mappings
                 .HasColumnType("nvarchar(150)")
             .HasColumnName("nombre");
 
+            // 1 : N => Categoria : SubCategorias
+            builder.HasMany(c => c.SubCategories)
+                .WithOne(b => b.Category)
+                .HasForeignKey(b => b.IdCategory);
+
             builder.ToTable("tb_categoria_pregunta");
         }
     }

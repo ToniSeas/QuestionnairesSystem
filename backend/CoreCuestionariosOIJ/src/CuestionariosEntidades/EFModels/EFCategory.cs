@@ -14,5 +14,8 @@ namespace CuestionariosEntidades.EFModels
         public int? Id { get; set; }
         public string? Name { get; set; } = string.Empty;
 
+        // EF Relation
+        public IEnumerable<EFSubCategory>? SubCategories { get; set; }
+
     }
 }

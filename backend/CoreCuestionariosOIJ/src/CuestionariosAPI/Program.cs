@@ -10,7 +10,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options => options.AddPolicy(name: "CuestionariosAPIOrigins",
     policy =>
     {
-        policy.WithOrigins("http://localhost:2565").AllowAnyMethod().AllowAnyHeader();
+        //policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
     }
     ));
 
