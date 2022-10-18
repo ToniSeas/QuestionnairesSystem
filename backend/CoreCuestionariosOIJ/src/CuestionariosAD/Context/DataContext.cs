@@ -1,7 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CuestionariosEntidades.EFModels;
+using CuestionariosEntidades.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,14 +14,21 @@ namespace CuestionariosAD.Context
     {
 
         public DataContext() { }
-
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+
+        public DbSet<EFCategory> Categories => Set<EFCategory>();
+        public DbSet<EFSubCategory> SubCategories => Set<EFSubCategory>();
+        public DbSet<EFQuestion> Questions => Set<EFQuestion>();
+        public DbSet<EFOption> Options => Set<EFOption>();
+        public DbSet<EFQuestionType> QuestionTypes => Set<EFQuestionType>();
+        public DbSet<EFQuestionnaire> Questionnaires => Set<EFQuestionnaire>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { 
             
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost;Database=AnalisisCuestionariosProyecto2022;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Data Source=163.178.107.10;Initial Catalog=cuestionarios;Persist Security Info=True;User ID=laboratorios;Password=TUy&)&nfC7QqQau.%278UQ24/=%;");
+                
             }
 
         }

@@ -1,6 +1,7 @@
 ﻿using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using CuestionariosAD.DataAccess;
+using CuestionariosEntidades.EFModels;
 
 namespace CuestionariosRN.BusinessObjects
 {
@@ -10,31 +11,27 @@ namespace CuestionariosRN.BusinessObjects
         private readonly CategoryAD categoryData;
 
         public CategoryRN() {
-            this.categoryData = new CategoryAD();
+            categoryData = new CategoryAD();
         }
 
-        public async Task<ActionResult<List<Category>>> GetCategories()
+        public async Task<ActionResult<List<EFCategory>>> GetCategories()
         {
-            var c = new List<Category>();
-            return await Task.FromResult(c);
+            return await categoryData.GetCategories();
         }
 
-        public async Task<ActionResult<Category>> CreateCategory(Category category)
+        public async Task<ActionResult<List<EFCategory>>> CreateCategory(EFCategory category)
         {
-            var c = new Category { Id = 1, Name = "test" };
-            return await Task.FromResult(c);
+            return await categoryData.CreateCategory(category);
         }
-        public async Task<ActionResult<Category>> UpdateCategory(int id, Category category)
+        public async Task<ActionResult<List<EFCategory>>> UpdateCategory(EFCategory category)
         {
-            var c = new Category { Id = 1, Name = "test" };
-            return await Task.FromResult(c);
-        }
-        public async Task<ActionResult<String>> DeleteCategory(int id)
-        {
-            var s = "Delete";
-            return await Task.FromResult(s);
+            return await categoryData.UpdateCategory(category);
         }
 
+        public async Task<ActionResult<List<EFCategory>>> DeleteCategory(int id)
+        {
+            return await categoryData.DeleteCategory(id);
+        }
 
     }
 }

@@ -1094,6 +1094,7 @@
       "CuestionariosAD/1.0.0": {
         "dependencies": {
           "CuestionariosEntidades": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "Microsoft.EntityFrameworkCore": "6.0.9",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.9"

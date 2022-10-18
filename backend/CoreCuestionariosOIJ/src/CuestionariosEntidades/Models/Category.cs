@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CuestionariosEntidades.Models
@@ -9,7 +11,7 @@ namespace CuestionariosEntidades.Models
     public class Category
     {
         public int? Id { get; set; }
-        public String? Name { get; set; } = String.Empty;
+        public string? Name { get; set; } = string.Empty;
         public IEnumerable<SubCategory>? SubCategories { get; set; }
 
     }
