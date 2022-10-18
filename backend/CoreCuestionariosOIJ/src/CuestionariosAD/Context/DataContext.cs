@@ -1,4 +1,5 @@
-﻿using CuestionariosEntidades.Models;
+﻿using CuestionariosEntidades.EFModels;
+using CuestionariosEntidades.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,11 @@ namespace CuestionariosAD.Context
         public DataContext() { }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        public DbSet<Category> Categories => Set<Category>();
+        public DbSet<EFCategory> Categories => Set<EFCategory>();
+        public DbSet<EFSubCategory> SubCategories => Set<EFSubCategory>();
+        public DbSet<EFQuestion> Questions => Set<EFQuestion>();
+        public DbSet<EFOption> Options => Set<EFOption>();
+        public DbSet<EFQuestionType> QuestionTypes => Set<EFQuestionType>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { 
             

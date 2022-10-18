@@ -5,19 +5,19 @@ using CuestionariosEntidades.EFModels;
 
 namespace CuestionariosAD.Mappings
 {
-    public class CategoryMapping : IEntityTypeConfiguration<EFCategory>
+    public class OptionMapping : IEntityTypeConfiguration<EFOption>
     {
-        public void Configure(EntityTypeBuilder<EFCategory> builder)
+        public void Configure(EntityTypeBuilder<EFOption> builder)
         {
             // Indicarle las columnas de la base de datos
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.Name)
+            builder.Property(c => c.OptionName)
                 .IsRequired()
-                .HasColumnType("nvarchar(150)")
-            .HasColumnName("nombre");
+                .HasColumnType("nvarchar(180)")
+            .HasColumnName("opcion");
 
-            builder.ToTable("tb_categoria_pregunta");
+            builder.ToTable("tb_opcion");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CuestionariosAD.Context;
+using CuestionariosEntidades.EFModels;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,12 +16,12 @@ namespace CuestionariosAD.DataAccess
             _context = new DataContext();
         }
 
-        public async Task<ActionResult<List<Category>>> GetCategories()
+        public async Task<ActionResult<List<EFCategory>>> GetCategories()
         {
             return await _context.Categories.ToListAsync();
         }
 
-        public async Task<ActionResult<List<Category>>> CreateCategory(Category category)
+        public async Task<ActionResult<List<EFCategory>>> CreateCategory(EFCategory category)
         {
             _context.Categories.Add(category);
             await _context.SaveChangesAsync();
@@ -28,7 +29,7 @@ namespace CuestionariosAD.DataAccess
             return await _context.Categories.ToListAsync();
         }
 
-        public async Task<ActionResult<List<Category>>> UpdateCategory(Category category)
+        public async Task<ActionResult<List<EFCategory>>> UpdateCategory(EFCategory category)
         {
             var dbCategory = await _context.Categories.FindAsync(category.Id);
             if (dbCategory == null)
@@ -39,7 +40,7 @@ namespace CuestionariosAD.DataAccess
             return await _context.Categories.ToListAsync();
         }
 
-        public async Task<ActionResult<List<Category>>> DeleteCategory(int id)
+        public async Task<ActionResult<List<EFCategory>>> DeleteCategory(int id)
         {
             var dbCategory = await _context.Categories.FindAsync(id);
             if (dbCategory == null)

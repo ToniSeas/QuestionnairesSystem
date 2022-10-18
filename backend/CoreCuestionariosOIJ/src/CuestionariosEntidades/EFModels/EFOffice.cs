@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CuestionariosEntidades.Models
+namespace CuestionariosEntidades.EFModels
 {
-    public class SubCategory
+    public class EFOffice
     {
-        public int? Id { get; set; }
         public String? Name { get; set; } = String.Empty;
-        public int? IdCategory { get; set; }
-        
+        public int? Id { get; set; }
     }
 }
