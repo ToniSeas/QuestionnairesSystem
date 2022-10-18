@@ -22,27 +22,26 @@ namespace CuestionariosAPI.Controllers
         {
             return await categoryRN.GetCategories();
         }
-
+        
         // Petición tipo POST: api/CreateCategory
         [HttpPost]
         [Route("CreateCategory")]
-        public async Task<ActionResult<Category>> CreateCategory(Category category)
+        public async Task<ActionResult<List<Category>>> CreateCategory(Category category)
         {
             return await categoryRN.CreateCategory(category);
         }
-        
+
         //Petición tipo PUT: api/UpdateCategory
-        [HttpPut("{id, category}")]
-        //[Route("UpdateCategory")]
-        public async Task<ActionResult<Category>> UpdateCategory(int id, Category category)
+        [Route("UpdateCategory")]
+        [HttpPut]
+        public async Task<ActionResult<List<Category>>> UpdateCategory(Category category)
         {
-            return await categoryRN.UpdateCategory(id, category);
+            return await categoryRN.UpdateCategory(category);
         }
 
         //Petición tipo DELETE: api/DeleteCategory
-        [HttpDelete("{id}")]
-        //[Route("DeleteCategory")]
-        public async Task<ActionResult<String>> DeleteCategory(int id)
+        [HttpDelete("DeleteCategory/{id}")]
+        public async Task<ActionResult<List<Category>>> DeleteCategory(int id)
         {
             return await categoryRN.DeleteCategory(id);
         }
