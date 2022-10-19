@@ -15,9 +15,9 @@ namespace CuestionariosRN.BusinessObjects
             subCategoryData = new SubCategoryAD();
         }
 
-        public async Task<ActionResult<List<EFSubCategory>>> GetSubCategories()
+        public async Task<ActionResult<List<EFSubCategory>>> GetSubCategories(int categoryId)
         {
-            return await subCategoryData.GetSubCategories();
+            return await subCategoryData.GetSubCategories(categoryId);
         }
 
         public async Task<ActionResult<List<EFSubCategory>>> CreateSubCategory(EFSubCategory subCategory)

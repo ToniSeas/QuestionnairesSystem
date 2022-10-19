@@ -19,9 +19,9 @@ namespace CuestionariosAPI.Controllers
         // Peticion tipo GET: api/GetSubCategories
         [HttpGet]
         [Route("GetSubCategories")]
-        public async Task<ActionResult<List<EFSubCategory>>> GetSubCategories()
+        public async Task<ActionResult<List<EFSubCategory>>> GetSubCategories(int categoryId)
         {
-            return await subCategoryRN.GetSubCategories();
+            return await subCategoryRN.GetSubCategories(categoryId);
         }
 
         // Petición tipo POST: api/CreateSubCategory
