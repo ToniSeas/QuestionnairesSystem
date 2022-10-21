@@ -56,19 +56,21 @@
 </form>
 
 <div class="row table-container mt-5" *ngIf="this.getFormGroup().get('type')?.value == 1 || this.getFormGroup().get('type')?.value == 2">
-
-  <div class="row">
-    <div class="col">
-      <mat-form-field class="w-full opcionesPregunta">
-        <mat-label> Opciones </mat-label>
-        <input  matInput placeholder="Opción">
-      </mat-form-field>
+  <form >
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="w-full opcionesPregunta">
+          <mat-label> Opciones </mat-label>
+          <input  matInput placeholder="Opción" [formControl]="userControl">
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <button mat-raised-button class="mat-primary mb-1" style="width: 130px; margin-right: 20px;">Buscar Opcion</button>
+        <button mat-raised-button class="mat-primary mb-1" (click)="createOption(userControl.value)" style="width: 130px;">Agregar Opcion</button>
+      </div>
     </div>
-    <div class="col">
-      <button mat-raised-button class="mat-primary mb-1" style="width: 130px; margin-right: 20px;">Buscar Opcion</button>
-      <button mat-raised-button class="mat-primary mb-1" style="width: 130px;">Agregar Opcion</button>
-    </div>
-  </div>
+  </form>
+  
 
 
   <div class="mat-elevation-z8">

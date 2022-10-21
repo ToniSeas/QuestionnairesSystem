@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {}
+    "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
+    "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+        "projectUniqueName": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
         "projectName": "CuestionariosEntidades",
-        "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
-        "packagesPath": "C:\\Users\\sojos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\obj\\",
+        "projectPath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+        "packagesPath": "C:\\Users\\saygo\\.nuget\\packages\\",
+        "outputPath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sojos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\saygo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

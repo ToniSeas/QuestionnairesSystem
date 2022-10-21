@@ -5731,19 +5731,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sojos\\.nuget\\packages\\": {}
+    "C:\\Users\\saygo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAPI\\CuestionariosAPI.csproj",
+      "projectUniqueName": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAPI\\CuestionariosAPI.csproj",
       "projectName": "CuestionariosAPI",
-      "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAPI\\CuestionariosAPI.csproj",
-      "packagesPath": "C:\\Users\\sojos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAPI\\obj\\",
+      "projectPath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAPI\\CuestionariosAPI.csproj",
+      "packagesPath": "C:\\Users\\saygo\\.nuget\\packages\\",
+      "outputPath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sojos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\saygo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5757,11 +5757,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
-              "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
+            "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
+              "projectPath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
             },
-            "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj": {
-              "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj"
+            "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj": {
+              "projectPath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj"
             }
           }
         }
@@ -5803,5 +5803,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAPI\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
