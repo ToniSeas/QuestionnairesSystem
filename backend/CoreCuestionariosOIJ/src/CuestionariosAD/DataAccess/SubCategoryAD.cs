@@ -40,7 +40,6 @@ namespace CuestionariosAD.DataAccess
         public async Task<ActionResult<MessageDTO<List<SubCategory>>>> CreateSubCategory(SubCategory subCategory)
         {
             var dbCategory = await _context.Categories
-                .Include(e => e.SubCategories)
                 .FirstOrDefaultAsync(e => e.Id == subCategory.IdCategory);
 
             var message = new MessageDTO<List<SubCategory>>();

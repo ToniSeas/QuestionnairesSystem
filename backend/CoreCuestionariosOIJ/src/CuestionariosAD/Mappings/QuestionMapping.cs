@@ -56,6 +56,11 @@ namespace CuestionariosAD.Mappings
                 .WithOne(b => b.Question)
                 .HasForeignKey(b => b.QuestionId);
 
+            // 1 : N => Pregunta : Opciones
+            builder.HasMany(c => c.Options)
+                .WithOne(b => b.Question)
+                .HasForeignKey(b => b.Id);
+
             builder.ToTable("tb_pregunta");
         }
     }

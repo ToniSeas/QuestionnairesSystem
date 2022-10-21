@@ -13,5 +13,6 @@ namespace CuestionariosEntidades.Models
 
         // EF Relation
         public IEnumerable<Answer>? Answers { get; set; }
+        public Question? Question { get; set; }
     }
 }

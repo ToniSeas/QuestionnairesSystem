@@ -24,6 +24,7 @@ namespace CuestionariosEntidades.Models
         public Category? Category;
         public SubCategory? SubCategory;
         public QuestionType? QuestionType;
+        public IEnumerable<Option>? Options { get; set; }
 
     }
 }

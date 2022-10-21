@@ -16,6 +16,11 @@ namespace CuestionariosAD.Mappings
                 .HasColumnType("nvarchar(180)")
             .HasColumnName("opcion");
 
+            // N : N => Opciones : Respuestas
+            builder.HasMany(c => c.Answers)
+                .WithMany(b => b.Options)
+                .UsingEntity(j => j.ToTable("tb_respuesta_opcion"));
+
             builder.ToTable("tb_opcion");
         }
     }
