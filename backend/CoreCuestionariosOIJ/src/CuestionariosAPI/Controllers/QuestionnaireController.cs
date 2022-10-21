@@ -1,4 +1,4 @@
-﻿using CuestionariosAD.DataTranferObjects;
+﻿using CuestionariosEntidades.DataTranferObjects;
 using CuestionariosEntidades.Models;
 using CuestionariosRN.BusinessObjects;
 using Microsoft.AspNetCore.Mvc;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CuestionariosAD.DataTranferObjects
+﻿namespace CuestionariosEntidades.DataTranferObjects
 {
     // <T> indica un objeto generico (cualquier objeto)
     public class MessageDTO<T>

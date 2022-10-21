@@ -1,5 +1,5 @@
 ﻿using CuestionariosAD.Context;
-using CuestionariosAD.DataTranferObjects;
+using CuestionariosEntidades.DataTranferObjects;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

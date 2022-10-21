@@ -1,7 +1,7 @@
 ﻿using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using CuestionariosAD.DataAccess;
-using CuestionariosAD.DataTranferObjects;
+using CuestionariosEntidades.DataTranferObjects;
 
 namespace CuestionariosRN.BusinessObjects
 {
