@@ -1,5 +1,4 @@
 ﻿using CuestionariosAD.Context;
-using CuestionariosEntidades.EFModels;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,27 +15,30 @@ namespace CuestionariosAD.DataAccess
             _context = new DataContext();
         }
 
-        public async Task<ActionResult<List<EFQuestionnaire>>> GetQuestionnaires()
+        public async Task<ActionResult<List<Questionnaire>>> GetQuestionnaires()
         {
             return await _context.Questionnaires.ToListAsync();
         }
 
-        public async Task<ActionResult<List<EFQuestionnaire>>> CreateQuestionnaire(EFQuestionnaire questionnaire)
+        public async Task<ActionResult<List<Questionnaire>>> CreateQuestionnaire(Questionnaire questionnaire)
         {
-            _context.Questionnaires.Add(questionnaire);
+            var q = new Questionnaire();
+
+            var question = new Question();
+
+            _context.Questionnaires.Add(q);
             await _context.SaveChangesAsync();
 
-            return await _context.Questionnaires.ToListAsync();
+            return await Task.FromResult(new List<Questionnaire>());
         }
 
-        public async Task<ActionResult<List<EFQuestionnaire>>> UpdateQuestionnaire(EFQuestionnaire questionnaire)
+        public async Task<ActionResult<List<Questionnaire>>> UpdateQuestionnaire(Questionnaire questionnaire)
         {
             var dbQuestionnaire = await _context.Questionnaires.FindAsync(questionnaire.Id);
             if (dbQuestionnaire == null)
                 throw new Exception("No existe la pregunta que se desea actualizar.");
 
             dbQuestionnaire.Id = questionnaire.Id;
-            dbQuestionnaire.Type = questionnaire.Type;
             dbQuestionnaire.Name = questionnaire.Name;
             dbQuestionnaire.ExpirationDate = questionnaire.ExpirationDate;
             dbQuestionnaire.Description = questionnaire.Description;
@@ -45,7 +47,7 @@ namespace CuestionariosAD.DataAccess
             return await _context.Questionnaires.ToListAsync();
         }
 
-        public async Task<ActionResult<List<EFQuestionnaire>>> DeleteQuestionnaire(int id)
+        public async Task<ActionResult<List<Questionnaire>>> DeleteQuestionnaire(int id)
         {
             var dbQuestionnaire = await _context.Questionnaires.FindAsync(id);
             if (dbQuestionnaire == null)

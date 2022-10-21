@@ -12,5 +12,10 @@ namespace CuestionariosEntidades.Models
         public String? Name { get; set; } = String.Empty;
         public int? IdCategory { get; set; }
 
+        // EF Relation
+        public Category? Category;
+        // EF Relation
+        public IEnumerable<Question>? Questions { get; set; }
+
     }
 }

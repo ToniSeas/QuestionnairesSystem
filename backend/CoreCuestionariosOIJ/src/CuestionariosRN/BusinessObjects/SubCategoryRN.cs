@@ -1,5 +1,5 @@
 ﻿using CuestionariosAD.DataAccess;
-using CuestionariosEntidades.EFModels;
+using CuestionariosAD.DataTranferObjects;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,21 +15,21 @@ namespace CuestionariosRN.BusinessObjects
             subCategoryData = new SubCategoryAD();
         }
 
-        public async Task<ActionResult<List<EFSubCategory>>> GetSubCategories(int categoryId)
+        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> GetSubCategories(int categoryId)
         {
             return await subCategoryData.GetSubCategories(categoryId);
         }
 
-        public async Task<ActionResult<List<EFSubCategory>>> CreateSubCategory(EFSubCategory subCategory)
+        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> CreateSubCategory(SubCategory subCategory)
         {
             return await subCategoryData.CreateSubCategory(subCategory);
         }
-        public async Task<ActionResult<List<EFSubCategory>>> UpdateSubCategory(EFSubCategory subCategory)
+        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> UpdateSubCategory(SubCategory subCategory)
         {
             return await subCategoryData.UpdateSubCategory(subCategory);
         }
 
-        public async Task<ActionResult<List<EFSubCategory>>> DeleteSubCategory(int id)
+        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> DeleteSubCategory(int id)
         {
             return await subCategoryData.DeleteSubCategory(id);
         }

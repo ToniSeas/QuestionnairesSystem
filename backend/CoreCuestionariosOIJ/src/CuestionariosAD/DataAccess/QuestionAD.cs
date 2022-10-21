@@ -1,5 +1,4 @@
 ﻿using CuestionariosAD.Context;
-using CuestionariosEntidades.EFModels;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,12 +15,12 @@ namespace CuestionariosAD.DataAccess
             _context = new DataContext();
         }
 
-        public async Task<ActionResult<List<EFQuestion>>> GetQuestions()
+        public async Task<ActionResult<List<Question>>> GetQuestions()
         {
             return await _context.Questions.ToListAsync();
         }
 
-        public async Task<ActionResult<List<EFQuestion>>> CreateQuestion(EFQuestion question)
+        public async Task<ActionResult<List<Question>>> CreateQuestion(Question question)
         {
             _context.Questions.Add(question);
             await _context.SaveChangesAsync();
@@ -29,7 +28,7 @@ namespace CuestionariosAD.DataAccess
             return await _context.Questions.ToListAsync();
         }
 
-        public async Task<ActionResult<List<EFQuestion>>> UpdateQuestion(EFQuestion question)
+        public async Task<ActionResult<List<Question>>> UpdateQuestion(Question question)
         {
             var dbQuestion = await _context.Questions.FindAsync(question.Id);
             if (dbQuestion == null)
@@ -43,7 +42,7 @@ namespace CuestionariosAD.DataAccess
             return await _context.Questions.ToListAsync();
         }
 
-        public async Task<ActionResult<List<EFQuestion>>> DeleteQuestion(int id)
+        public async Task<ActionResult<List<Question>>> DeleteQuestion(int id)
         {
             var dbQuestion = await _context.Questions.FindAsync(id);
             if (dbQuestion == null)
@@ -55,19 +54,19 @@ namespace CuestionariosAD.DataAccess
             return await _context.Questions.ToListAsync();
         }
 
-        public async Task<ActionResult<List<EFOption>>> GetOptions()
+        public async Task<ActionResult<List<Option>>> GetOptions()
         {
             return await _context.Options.ToListAsync();
         }
 
-        public async Task<ActionResult<List<EFOption>>> CreateOptions(EFOption option)
+        public async Task<ActionResult<List<Option>>> CreateOptions(Option option)
         {
             _context.Options.Add(option);
             await _context.SaveChangesAsync();
             return await _context.Options.ToListAsync();
         }
 
-        public async Task<ActionResult<List<EFOption>>> UpdateOptions(EFOption option)
+        public async Task<ActionResult<List<Option>>> UpdateOptions(Option option)
         {
             var dbOption = await _context.Options.FindAsync(option.Id);
             if (dbOption == null)
@@ -80,7 +79,7 @@ namespace CuestionariosAD.DataAccess
             return await _context.Options.ToListAsync();
         }
 
-        public async Task<ActionResult<List<EFOption>>> DeleteOptions(int id)
+        public async Task<ActionResult<List<Option>>> DeleteOptions(int id)
         {
             var dbOption = await _context.Options.FindAsync(id);
             if (dbOption == null)
@@ -92,7 +91,7 @@ namespace CuestionariosAD.DataAccess
             return await _context.Options.ToListAsync();
         }
 
-        public async Task<ActionResult<List<EFQuestionType>>> GetQuestionType()
+        public async Task<ActionResult<List<QuestionType>>> GetQuestionType()
         {
             return await _context.QuestionTypes.ToListAsync();
         }

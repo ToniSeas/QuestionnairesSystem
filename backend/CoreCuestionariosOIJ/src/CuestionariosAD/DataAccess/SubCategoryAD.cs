@@ -1,5 +1,5 @@
 ﻿using CuestionariosAD.Context;
-using CuestionariosEntidades.EFModels;
+using CuestionariosAD.DataTranferObjects;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,58 +13,89 @@ namespace CuestionariosAD.DataAccess
 
         public SubCategoryAD()
         {
-            _context = new DataContext();
+           _context = new DataContext();
         }
 
-        public async Task<ActionResult<List<EFSubCategory>>> GetSubCategories(int categoryId)
+        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> GetSubCategories(int categoryId)
         {
 
             var dbCategory = await _context.Categories
                 .Include(e => e.SubCategories)
                 .FirstOrDefaultAsync(e => e.Id == categoryId);
 
-            if (dbCategory == null)
-                throw new Exception("No existe la categoria que se desea obtener las subcategorias.");
+            var message = new MessageDTO<List<SubCategory>>();
 
-            return await Task.FromResult(dbCategory.SubCategories!.ToList());
+            if (dbCategory == null)
+            {
+                message.Id = 1;
+                message.Message = "No existe la categoria que se desea obtener las subcategorias.";
+                return await Task.FromResult(message);
+            }
+
+            message.Item = dbCategory.SubCategories!.ToList();
+
+            return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<List<EFSubCategory>>> CreateSubCategory(EFSubCategory subCategory)
+        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> CreateSubCategory(SubCategory subCategory)
         {
-            _context.SubCategories.Add(subCategory);
-            await _context.SaveChangesAsync();
-
             var dbCategory = await _context.Categories
                 .Include(e => e.SubCategories)
                 .FirstOrDefaultAsync(e => e.Id == subCategory.IdCategory);
 
-            if (dbCategory == null)
-                throw new Exception("No existe la categoria que se desea obtener las subcategorias.");
+            var message = new MessageDTO<List<SubCategory>>();
 
-            return await Task.FromResult(dbCategory.SubCategories!.ToList());
+            if (dbCategory == null)
+            {
+                message.Id = 1;
+                message.Message = "No existe la categoria que se desea obtener las subcategorias.";
+                return await Task.FromResult(message);
+            }
+
+            _context.SubCategories.Add(subCategory);
+            await _context.SaveChangesAsync();
+
+            return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<List<EFSubCategory>>> UpdateSubCategory(EFSubCategory subCategory)
+        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> UpdateSubCategory(SubCategory subCategory)
         {
             var dbSubCategory = await _context.SubCategories.FindAsync(subCategory.Id);
+
+            var message = new MessageDTO<List<SubCategory>>();
+
             if (dbSubCategory == null)
-                throw new Exception("No existe la subcategoria que se desea actualizar.");
+            {
+                message.Id = 1;
+                message.Message = "No existe la subcategoria que se desea actualizar.";
+                return await Task.FromResult(message);
+            }
 
             dbSubCategory.Name = subCategory.Name;
             await _context.SaveChangesAsync();
-            return await _context.SubCategories.ToListAsync();
+
+            message.Id = 1;
+            return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<List<EFSubCategory>>> DeleteSubCategory(int id)
+        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> DeleteSubCategory(int id)
         {
             var dbSubCategory = await _context.SubCategories.FindAsync(id);
+
+            var message = new MessageDTO<List<SubCategory>>();
+
             if (dbSubCategory == null)
-                throw new Exception("No existe la subcategoria que se desea eliminar.");
+            {
+                message.Id = 1;
+                message.Message = "No existe la subcategoria que se desea eliminar.";
+                return await Task.FromResult(message);
+            }
 
             _context.SubCategories.Remove(dbSubCategory);
             await _context.SaveChangesAsync();
 
-            return await _context.SubCategories.ToListAsync();
+            message.Id = 1;
+            return await Task.FromResult(message);
         }
 
     }

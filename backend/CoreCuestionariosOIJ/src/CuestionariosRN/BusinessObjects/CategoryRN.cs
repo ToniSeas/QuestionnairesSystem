@@ -1,7 +1,7 @@
 ﻿using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using CuestionariosAD.DataAccess;
-using CuestionariosEntidades.EFModels;
+using CuestionariosAD.DataTranferObjects;
 
 namespace CuestionariosRN.BusinessObjects
 {
@@ -14,21 +14,21 @@ namespace CuestionariosRN.BusinessObjects
             categoryData = new CategoryAD();
         }
 
-        public async Task<ActionResult<List<EFCategory>>> GetCategories()
+        public async Task<ActionResult<MessageDTO<List<Category>>>> GetCategories()
         {
             return await categoryData.GetCategories();
         }
 
-        public async Task<ActionResult<List<EFCategory>>> CreateCategory(EFCategory category)
+        public async Task<ActionResult<MessageDTO<List<Category>>>> CreateCategory(Category category)
         {
             return await categoryData.CreateCategory(category);
         }
-        public async Task<ActionResult<List<EFCategory>>> UpdateCategory(EFCategory category)
+        public async Task<ActionResult<MessageDTO<List<Category>>>> UpdateCategory(Category category)
         {
             return await categoryData.UpdateCategory(category);
         }
 
-        public async Task<ActionResult<List<EFCategory>>> DeleteCategory(int id)
+        public async Task<ActionResult<MessageDTO<List<Category>>>> DeleteCategory(int id)
         {
             return await categoryData.DeleteCategory(id);
         }

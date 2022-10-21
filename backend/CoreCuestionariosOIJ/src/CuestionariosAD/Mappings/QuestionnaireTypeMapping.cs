@@ -4,9 +4,9 @@ using CuestionariosEntidades.Models;
 
 namespace CuestionariosAD.Mappings
 {
-    public class QuestionTypeMapping : IEntityTypeConfiguration<QuestionType>
+    public class QuestionnaireTypeMapping : IEntityTypeConfiguration<QuestionnaireType>
     {
-        public void Configure(EntityTypeBuilder<QuestionType> builder)
+        public void Configure(EntityTypeBuilder<QuestionnaireType> builder)
         {
             // Indicarle las columnas de la base de datos
             builder.HasKey(c => c.Id);
@@ -16,12 +16,12 @@ namespace CuestionariosAD.Mappings
                 .HasColumnType("nvarchar(150)")
             .HasColumnName("nombre");
 
-            // 1 : N => TipoPregunta : Preguntas
-            builder.HasMany(c => c.Questions)
-                .WithOne(b => b.QuestionType)
-                .HasForeignKey(b => b.TypeId);
+            // 1 : N => TipoCuestionario : Cuestinoario
+            builder.HasMany(c => c.Questionnaires)
+                .WithOne(b => b.QuestionnaireType)
+                .HasForeignKey(b => b.IdQuestionnaireType);
 
-            builder.ToTable("tb_tipo_pregunta");
+            builder.ToTable("tb_tipo_Cuestionario");
         }
     }
 }

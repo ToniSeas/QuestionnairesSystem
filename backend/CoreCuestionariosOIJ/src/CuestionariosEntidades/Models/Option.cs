@@ -10,5 +10,8 @@ namespace CuestionariosEntidades.Models
     {
         public int Id { get; set; }
         public String OptionName { get; set; } = String.Empty;
+
+        // EF Relation
+        public IEnumerable<Answer>? Answers { get; set; }
     }
 }

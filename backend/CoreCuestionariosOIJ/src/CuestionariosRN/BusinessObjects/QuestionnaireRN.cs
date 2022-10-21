@@ -1,5 +1,4 @@
 ﻿using CuestionariosAD.DataAccess;
-using CuestionariosEntidades.EFModels;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,21 +14,21 @@ namespace CuestionariosRN.BusinessObjects
             questionnaireData = new QuestionnaireAD();
         }
 
-        public async Task<ActionResult<List<EFQuestionnaire>>> GetQuestionnaires()
+        public async Task<ActionResult<List<Questionnaire>>> GetQuestionnaires()
         {
             return await questionnaireData.GetQuestionnaires();
         }
 
-        public async Task<ActionResult<List<EFQuestionnaire>>> CreateQuestionnaire(EFQuestionnaire questionnaire)
+        public async Task<ActionResult<List<Questionnaire>>> CreateQuestionnaire(Questionnaire questionnaire)
         {
             return await questionnaireData.CreateQuestionnaire(questionnaire);
         }
-        public async Task<ActionResult<List<EFQuestionnaire>>> UpdateQuestionnaire(EFQuestionnaire questionnaire)
+        public async Task<ActionResult<List<Questionnaire>>> UpdateQuestionnaire(Questionnaire questionnaire)
         {
             return await questionnaireData.UpdateQuestionnaire(questionnaire);
         }
 
-        public async Task<ActionResult<List<EFQuestionnaire>>> DeleteQuestionnaire(int id)
+        public async Task<ActionResult<List<Questionnaire>>> DeleteQuestionnaire(int id)
         {
             return await questionnaireData.DeleteQuestionnaire(id);
         }
