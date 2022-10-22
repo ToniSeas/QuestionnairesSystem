@@ -124,7 +124,7 @@ export class CreateQuestionDialog implements OnInit {
   // Modelos necesarios para la creacion de las preguntas
   question: Question;
   option: Option;
-
+  userControl: FormControl = new FormControl();
   // Listas de objetos
   private questionTypes: Observable<QuestionType[]>;
   private categories: Observable<Category[]>;
@@ -223,6 +223,12 @@ export class CreateQuestionDialog implements OnInit {
     if (this.createQuestionForm.valid && !QuestionUtil.requireOption(key)) {
       this.dialogRef.close({question: this.question, state: true});
     }
+  }
+
+  public createOption(optionQ: string): void {
+    console.log(optionQ);
+    this.optionList.push(new Option({option: optionQ}));
+    this.updateDateSource(this.optionList);
   }
 
   // Con este metodo se actualizan los valores datasource de la tabla

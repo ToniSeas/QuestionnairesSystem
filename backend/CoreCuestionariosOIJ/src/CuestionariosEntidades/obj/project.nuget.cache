@@ -1,8 +1,21 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "ECM946jq1EPhp8e/maoWcTxgYkK7aNXhkmwQ4YFMaRE/lNA/xLr0vxAxUg/stA7MOfeDcPxC7iLmEs2sCikzHg==",
   "success": true,
   "projectFilePath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+=======
+  "dgSpecHash": "SaK0tQdYjUG3I4qrQh0Fa0d3NcI5nFTLx2fdXggzXePVF1wS3JoMoyALE2z4vumKkWJH4RdpwqHmOuE6hCGiVg==",
+  "success": true,
+  "projectFilePath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+>>>>>>> b9a3d4c668d17a6f40472903f868b33075e1be43
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
