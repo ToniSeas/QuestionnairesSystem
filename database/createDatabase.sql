@@ -14,7 +14,7 @@ BEGIN TRY
 	PRINT('Base de datos preexistente eliminada!')
 END TRY
 BEGIN CATCH
-	PRINT('La base de datos no exist韆. Saltando paso de borrar...')
+	PRINT('La base de datos no exist铆a. Saltando paso de borrar...')
 END CATCH
 
 PRINT('Creando la base de datos...')
@@ -37,7 +37,7 @@ BEGIN TRY
 			,nombre NVARCHAR(150) NOT NULL
 			,activo BIT NOT NULL DEFAULT 1
 			,vencimiento DATE NOT NULL
-			,decripcion NVARCHAR(500) NOT NULL
+			,descripcion NVARCHAR(500) NOT NULL
 			,idTipoCuestionario INT NOT NULL
 			,fechaCreacion DATE DEFAULT GETDATE()
 			, FOREIGN KEY (idTipoCuestionario) REFERENCES tb_tipo_Cuestionario (id))
@@ -69,12 +69,12 @@ BEGIN TRY
 			(id INT IDENTITY(1, 1) PRIMARY KEY
 			,nombre NVARCHAR(150) UNIQUE)
 
-		-- Categor韆 pregunta
+		-- Categor铆a pregunta
 		CREATE TABLE tb_categoria_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
 			,nombre NVARCHAR(150))
 	
-		-- Categor韆 pregunta
+		-- Categor铆a pregunta
 		CREATE TABLE tb_subcategoria_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
 			,nombre NVARCHAR(150)
@@ -102,8 +102,8 @@ BEGIN TRY
 		CREATE TABLE tb_opcion
 			(id INT IDENTITY(1, 1) PRIMARY KEY
 			,opcion NVARCHAR(180) NOT NULL
-			,idPregunta INT NULL --Puede que esta opci髇 sea est醫ica por lo que no tiene una ID de pregunta como tal.
-			,idTipoPregunta INT NOT NULL --Es importante espeficicar el tipo de pregunta al que pertenece esta opci髇.
+			,idPregunta INT NULL --Puede que esta opci贸n sea est谩tica por lo que no tiene una ID de pregunta como tal.
+			,idTipoPregunta INT NOT NULL --Es importante espeficicar el tipo de pregunta al que pertenece esta opci贸n.
 			,FOREIGN KEY (idPregunta) REFERENCES tb_pregunta (id)
 			,FOREIGN KEY (idTipoPregunta) REFERENCES tb_tipo_pregunta (id))
 
@@ -116,7 +116,7 @@ BEGIN TRY
 			,respuesta NVARCHAR(500) NULL
 			,FOREIGN KEY (idPregunta) REFERENCES tb_pregunta (id))
 	
-		-- Respuesta_opci髇
+		-- Respuesta_opci贸n
 
 		CREATE TABLE tb_respuesta_opcion
 			(idRespuesta INT NOT NULL
@@ -126,21 +126,21 @@ BEGIN TRY
 
 
 		/*
-			Esta secci髇 se encarga de llenar los valores est醫icos para las tablas que lo necesiten.
+			Esta secci贸n se encarga de llenar los valores est谩ticos para las tablas que lo necesiten.
 		*/
 		PRINT('Tablas creadas!')
-		PRINT('Poblando los datos est醫icos de la base de datos...')
+		PRINT('Poblando los datos est谩ticos de la base de datos...')
 		-- tipos de preguntas
 		INSERT INTO tb_tipo_pregunta
 			(nombre)
 		VALUES
-			('Selecci髇 趎ica')
-			,('Selecci髇 M鷏tiple')
+			('Selecci贸n 脷nica')
+			,('Selecci贸n M煤ltiple')
 			,('Respuesta Larga')
-			,('Num閞ica')
+			,('Num茅rica')
 			,('Escala')
 
-		-- Opciones est醫icas para preguntas
+		-- Opciones est谩ticas para preguntas
 		INSERT INTO tb_opcion
 			([opcion]
 			,[idTipoPregunta]) 
