@@ -1,4 +1,4 @@
-﻿using CuestionariosEntidades.EFModels;
+﻿using CuestionariosEntidades.DataTranferObjects;
 using CuestionariosEntidades.Models;
 using CuestionariosRN.BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +19,7 @@ namespace CuestionariosAPI.Controllers
         // Peticion tipo GET: api/GetCategories
         [HttpGet]
         [Route("GetCategories")]
-        public async Task<ActionResult<List<EFCategory>>> GetCategories()
+        public async Task<ActionResult<MessageDTO<List<Category>>>> GetCategories()
         {
             return await categoryRN.GetCategories();
         }
@@ -27,7 +27,7 @@ namespace CuestionariosAPI.Controllers
         // Petición tipo POST: api/CreateCategory
         [HttpPost]
         [Route("CreateCategory")]
-        public async Task<ActionResult<List<EFCategory>>> CreateCategory(EFCategory category)
+        public async Task<ActionResult<MessageDTO<List<Category>>>> CreateCategory(Category category)
         {
             return await categoryRN.CreateCategory(category);
         }
@@ -35,14 +35,14 @@ namespace CuestionariosAPI.Controllers
         //Petición tipo PUT: api/UpdateCategory
         [Route("UpdateCategory")]
         [HttpPut]
-        public async Task<ActionResult<List<EFCategory>>> UpdateCategory(EFCategory category)
+        public async Task<ActionResult<MessageDTO<List<Category>>>> UpdateCategory(Category category)
         {
             return await categoryRN.UpdateCategory(category);
         }
 
         //Petición tipo DELETE: api/DeleteCategory
         [HttpDelete("DeleteCategory/{id}")]
-        public async Task<ActionResult<List<EFCategory>>> DeleteCategory(int id)
+        public async Task<ActionResult<MessageDTO<List<Category>>>> DeleteCategory(int id)
         {
             return await categoryRN.DeleteCategory(id);
         }

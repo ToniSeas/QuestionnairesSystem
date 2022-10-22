@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CuestionariosEntidades.EFModels
+namespace CuestionariosEntidades.Models
 {
-    public class EFQuestionType
+    public class QuestionnaireType
     {
         public int? Id { get; set; }
         public string Name { get; set; } = string.Empty;
+
+        // EF Relation
+        public IEnumerable<Questionnaire>? Questionnaires { get; set; }
     }
 }
