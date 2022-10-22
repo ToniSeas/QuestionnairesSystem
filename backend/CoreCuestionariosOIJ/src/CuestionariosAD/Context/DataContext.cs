@@ -1,12 +1,5 @@
-﻿using CuestionariosEntidades.EFModels;
-using CuestionariosEntidades.Models;
+﻿using CuestionariosEntidades.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CuestionariosAD.Context
 {
@@ -16,12 +9,14 @@ namespace CuestionariosAD.Context
         public DataContext() { }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        public DbSet<EFCategory> Categories => Set<EFCategory>();
-        public DbSet<EFSubCategory> SubCategories => Set<EFSubCategory>();
-        public DbSet<EFQuestion> Questions => Set<EFQuestion>();
-        public DbSet<EFOption> Options => Set<EFOption>();
-        public DbSet<EFQuestionType> QuestionTypes => Set<EFQuestionType>();
-        public DbSet<EFQuestionnaire> Questionnaires => Set<EFQuestionnaire>();
+        public DbSet<Category> Categories => Set<Category>();
+        public DbSet<SubCategory> SubCategories => Set<SubCategory>();
+        public DbSet<Question> Questions => Set<Question>();
+        public DbSet<Option> Options => Set<Option>();
+        public DbSet<QuestionType> QuestionTypes => Set<QuestionType>();
+        public DbSet<Questionnaire> Questionnaires => Set<Questionnaire>();
+        public DbSet<QuestionnaireType> QuestionnaireTypes => Set<QuestionnaireType>();
+        public DbSet<Answer> Answers => Set<Answer>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { 
             
@@ -42,12 +37,12 @@ namespace CuestionariosAD.Context
              * Por defecto, si se elimina un objetivo que tiene una llave foranea en otra
              * tabla, se eliminará también.
              * Entonces es buena opción desactivarlo para que el desarrollador realice las validaciones
-             * a mano y así no borrar registros equivocados 
+             * a mano y así no borrar registros equivocados */
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
-            }*/
+            }
 
             base.OnModelCreating(modelBuilder);
 

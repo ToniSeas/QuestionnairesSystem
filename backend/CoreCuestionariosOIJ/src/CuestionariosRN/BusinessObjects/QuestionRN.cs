@@ -1,5 +1,4 @@
 ﻿using CuestionariosAD.DataAccess;
-using CuestionariosEntidades.EFModels;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,21 +14,21 @@ namespace CuestionariosRN.BusinessObjects
             questionData = new QuestionAD();
         }
 
-        public async Task<ActionResult<List<EFQuestion>>> GetQuestions()
+        public async Task<ActionResult<List<Question>>> GetQuestions()
         {
             return await questionData.GetQuestions();
         }
 
-        public async Task<ActionResult<List<EFQuestion>>> CreateQuestion(EFQuestion question)
+        public async Task<ActionResult<List<Question>>> CreateQuestion(Question question)
         {
             return await questionData.CreateQuestion(question);
         }
-        public async Task<ActionResult<List<EFQuestion>>> UpdateQuestion(EFQuestion question)
+        public async Task<ActionResult<List<Question>>> UpdateQuestion(Question question)
         {
             return await questionData.UpdateQuestion(question);
         }
 
-        public async Task<ActionResult<List<EFQuestion>>> DeleteQuestion(int id)
+        public async Task<ActionResult<List<Question>>> DeleteQuestion(int id)
         {
             return await questionData.DeleteQuestion(id);
         }

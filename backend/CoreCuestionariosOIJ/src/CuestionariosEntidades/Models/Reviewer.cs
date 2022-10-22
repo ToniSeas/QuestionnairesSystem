@@ -8,6 +8,7 @@ namespace CuestionariosEntidades.Models
 {
     public class Reviewer : User
     {
-        public int? IdQuestionnaire { get; set; }
+        public int? QuestionnaireId { get; set; }
+        public int? UserId { get; set; }
     }
 }

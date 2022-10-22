@@ -8,15 +8,17 @@ using System.Threading.Tasks;
 
 namespace CuestionariosEntidades.Models
 {
-    public class Category
+    public class Answer
     {
         public int? Id { get; set; }
-        public string? Name { get; set; } = string.Empty;
+        public DateTime? Date { get; set; }
+        public int? QuestionId { get; set; }
+        public string? AnswerText { get; set; } = string.Empty;
 
         // EF Relation
-        public IEnumerable<SubCategory>? SubCategories { get; set; }
-        // EF Relation
-        public IEnumerable<Question>? Questions { get; set; }
+
+        public IEnumerable<Option>? Options { get; set; }
+        public Question? Question { get; set; }
 
     }
 }

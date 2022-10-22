@@ -9,8 +9,10 @@ namespace CuestionariosEntidades.Models
     public class User
     {
         public int? Id { get; set; }
-        public String? Name { get; set; } = String.Empty;
-        public String? Lastname { get; set; } = String.Empty;
+        public string? Name { get; set; } = string.Empty;
+        public string? Lastname { get; set; } = string.Empty;
+        public int isDeleted { get; set; }
+        public Office? Office { get; set; }
 
     }
 }
