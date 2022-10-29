@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Questionnaire } from '../models/Questionnaire';
+import { QuestionnaireType } from '../models/QuestionnaireType';
+import { QuestionType } from '../models/QuestionType';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +10,12 @@ import { Questionnaire } from '../models/Questionnaire';
 export class QuestionnaireService {
   dateAux: Date = new Date();
 
-  questionnaireList: Questionnaire[] = [ new Questionnaire({id: 1,type: "type1", name: "name1", date: this.dateAux, description: "description1", state: "state1"}),
-        new Questionnaire({id: 2,type: "type2", name: "name2", date: this.dateAux, description: "description2", state: "state2"}),
-        new Questionnaire({id: 3,type: "type3", name: "name3", date: this.dateAux, description: "description3", state: "state3"}),
-        new Questionnaire({id: 4,type: "type4", name: "name4", date: this.dateAux, description: "description4", state: "state4"}),
-        new Questionnaire({id: 5,type: "type5", name: "name5", date: this.dateAux, description: "description5", state: "state5"}),
-        new Questionnaire({id: 6,type: "type6", name: "name6", date: this.dateAux, description: "description6", state: "state6"})];
+  questionnaireList: Questionnaire[] = [ new Questionnaire({id: 1, typeId: "type1", name: "name1", date: this.dateAux, description: "description1", isActive: true}),
+        new Questionnaire({id: 2, typeId: "type2", name: "name2", date: this.dateAux, description: "description2", isActive: true}),
+        new Questionnaire({id: 3, typeId: "type3", name: "name3", date: this.dateAux, description: "description3", isActive: true}),
+        new Questionnaire({id: 4, typeId: "type4", name: "name4", date: this.dateAux, description: "description4", isActive: true}),
+        new Questionnaire({id: 5, typeId: "type5", name: "name5", date: this.dateAux, description: "description5", isActive: true}),
+        new Questionnaire({id: 6, typeId: "type6", name: "name6", date: this.dateAux, description: "description6", isActive: true})];
 
   public getQuestionnaire() : Observable<Questionnaire[]> {
 
@@ -41,6 +43,13 @@ export class QuestionnaireService {
     return questionnaires;
   }
 
-  
+  public getQuestionnaireTypes() : Observable<QuestionnaireType[]> {
+    var types: QuestionnaireType[] = [];
+    types.push(new QuestionnaireType({id:1, name:"Interno"}))
+    types.push(new QuestionnaireType({id:2, name:"Externo"}))
+    types.push(new QuestionnaireType({id:3, name:"Impersonal"}))
+
+    return of(types);
+  }
 
 }
