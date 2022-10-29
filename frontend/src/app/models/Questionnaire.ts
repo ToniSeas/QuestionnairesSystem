@@ -4,19 +4,22 @@ export class Questionnaire{
   
   //questions?: Question[];
   id?: number;
-  type?:String;
+  typeId?:String;
   name?:String;
   date?: Date;
   description?: String;
-  state?: String;
+  isActive?: boolean;
+  questions: Question[] = [];
 
-  constructor({id,type, name, date, description, state}:{id?: number,type?:String, name?:String, date?:Date, description?: String, state?: String}) {
+  constructor({id, typeId, name, date, description, isActive}:
+    {id?: number, typeId?:String, name?:String, date?:Date, description?: String, isActive?: boolean}) 
+  {
     this.id=id;
-    this.type=type;
+    this.typeId=typeId;
     this.name=name;
     this.date=date;
     this.description=description;
-    this.state=state;
+    this.isActive=isActive;
   }
     
 }

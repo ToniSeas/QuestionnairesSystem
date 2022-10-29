@@ -7,28 +7,26 @@ import { SubCategory } from "./SubCategory";
 export class Question{
   
   id?: number;
-  statement?: String;
-  label?: String;
+  statement?: string;
+  label?: string;
   position?: number;
-  type?: QuestionType;
-  subcategory?: SubCategory;
-  category?: Category;
-  options?: Option[];
+  typeId?: number;
+  subcategoryId?: number;
+  categoryId?: number;
+  options: Option[] = [];
 
   constructor (
-    {id, statement, label, position, subcategory, category, type, options}: 
-    {id?: number, statement?: String, label?: String, position?: number, subcategory?: SubCategory, category?: Category, type?: QuestionType, options?: Option[]}
+    {id, statement, label, position, subcategoryId, categoryId, typeId}: 
+    {id?: number, statement?: string, label?: string, position?: number, subcategoryId?: number, categoryId?: number, typeId?: number}
     ) {
 
       this.id = id;
       this.statement = statement;
       this.label = label;
       this.position = position;
-      this.subcategory = subcategory;
-      this.category = category;
-      this.type = type;
-      this.options = options;
-
+      this.subcategoryId = subcategoryId;
+      this.categoryId = categoryId;
+      this.typeId = typeId;
     }
 
 }

@@ -3,9 +3,9 @@
         <div class="lc-header">Ingreso al Sistema</div>
 
         <form class="lc-form">
-            <input type="text" class="mb-4 input-text" placeholder="Usuario"><br>
-            <input type="text" class="mb-4 input-text" placeholder="Contraseña"><br>
-            <button type="submit" class="mb-4 input-button" routerLink="/office">Ingresar</button>
+            <input type="text" [(ngModel)]="userName" name="userName" class="mb-4 input-text" placeholder="Usuario" required="required"><br>
+            <input type="text" [(ngModel)]="password" name="password" class="mb-4 input-text" placeholder="Contraseña" required="required"><br>
+            <button type="button" class="mb-4 input-button" (click)="onLogin()">Ingresar</button>
         </form> 
 
     </main>

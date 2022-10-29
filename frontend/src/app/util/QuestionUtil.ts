@@ -33,7 +33,7 @@ export class QuestionUtil {
                 return false;
             }
             default:
-                return true;
+                return false;
         }
     }
 }

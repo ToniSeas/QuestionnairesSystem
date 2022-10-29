@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { Office } from 'src/app/models/Office';
+import { Questionnaire } from 'src/app/models/Questionnaire';
 import { Reviewer } from 'src/app/models/Reviewer';
 import { User } from 'src/app/models/User';
 import { ReviewingPermissionService } from 'src/app/services/reviewing-permission.service';
@@ -14,6 +16,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./create-step-three.component.css']
 })
 export class CreateStepThreeComponent implements OnInit {
+  @Input() stepperContainer?: MatStepper;
+  @Input() questionnaire?: Questionnaire;
 
   //These arrays are used to fill the form's options.
   //TODO fill these using userService and officeService
