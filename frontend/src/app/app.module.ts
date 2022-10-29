@@ -32,6 +32,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
+import { QuestionnaireViewComponent } from './components/questionnaire-view/questionnaire-view.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { HttpClientModule } from '@angular/common/http';
     ManageSubcategoryComponent,
     CreateStepTwoComponent,
     CreateStepThreeComponent,
-    CreateQuestionDialog
+    CreateQuestionDialog,
+    QuestionnaireViewComponent
   ],
   imports: [
     BrowserModule,
