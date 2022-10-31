@@ -21,7 +21,7 @@
   <div class="row">
     <mat-form-field class="col-6 select">
       <mat-label>Categoría</mat-label>
-      <mat-select [formControlName]="'category'">
+      <mat-select [formControlName]="'category'" (selectionChange)="updateSubCategories()">
         <mat-option> </mat-option>
         <mat-option *ngFor="let category of getCategories() | async" [value]="category.id">
           {{category.name}}
@@ -31,7 +31,7 @@
 
     <mat-form-field class="col-6 select">
       <mat-label>Tipo</mat-label>
-      <mat-select [formControlName]="'type'">
+      <mat-select [formControlName]="'type'" (selectionChange)="requireOption(this.getFormGroup().get('type')?.value)">
         <mat-option> </mat-option>
         <mat-option *ngFor="let questionType of getQuestionTypes() | async" [value]="questionType.id">
           {{questionType.name}}
@@ -43,7 +43,7 @@
   <div class="row">
     <mat-form-field class="col-6 select">
       <mat-label>Subcategoría</mat-label>
-      <mat-select [formControlName]="'subCategory'" (selectionChange)="updateSubCategories()">
+      <mat-select [formControlName]="'subCategory'">
         <mat-option> </mat-option>
         <mat-option *ngFor="let subCategory of getSubCategories() | async" [value]="subCategory.id">
           {{subCategory.name}}
@@ -62,7 +62,7 @@
 
 </form>
 
-<div class="row table-container mt-5" *ngIf="requireOption(this.getFormGroup().get('type')?.value)">
+<div class="row table-container mt-5" *ngIf="this.isOption">
   <form >
     <div class="row">
       <div class="col">
@@ -84,7 +84,7 @@
       <!-- Id de la pregunta -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.option}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.optionName}} </td>
       </ng-container>
   
       <!-- Operaciones -->

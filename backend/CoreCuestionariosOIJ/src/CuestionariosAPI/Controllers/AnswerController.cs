@@ -16,6 +16,7 @@ namespace CuestionariosAPI.Controllers
             answerRN = new AnswerRN();
         }
 
+        /*
         // Peticion tipo GET: api/GetAnswer
         [HttpGet]
         [Route("GetAnswer")]
@@ -38,7 +39,7 @@ namespace CuestionariosAPI.Controllers
         {
             return await answerRN.DeleteAnswer(id);
         }
-
+        */
     }
 }
 

@@ -24,7 +24,6 @@ export class CreateStepOneComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.createStepOneComponentForm = new FormGroup({
       questionnaireName: new FormControl("", [Validators.required]),
       questionnaireState: new FormControl("",[Validators.required]),
@@ -42,12 +41,11 @@ export class CreateStepOneComponent implements OnInit {
 
   onSubmit = () => {
     if (this.createStepOneComponentForm.invalid) {
-      console.log('test')
+      console.log('Formulario invalido paso 1 crear cuestionario')
     } else {
-      console.log(this.questionnaire)
       this.questionnaire!.name = this.createStepOneComponentForm.get('questionnaireName')?.value;
-      this.questionnaire!.typeId = this.createStepOneComponentForm.get('questionnaireType')?.value;
-      this.questionnaire!.date = this.createStepOneComponentForm.get('questionnaireDate')?.value;
+      this.questionnaire!.idQuestionnaireType = this.createStepOneComponentForm.get('questionnaireType')?.value;
+      this.questionnaire!.expirationDate = this.createStepOneComponentForm.get('questionnaireDate')?.value;
       this.questionnaire!.description = this.createStepOneComponentForm.get('questionnaireDescription')?.value;
       this.questionnaire!.isActive = this.createStepOneComponentForm.get('questionnaireState')?.value;
       this.goForward();

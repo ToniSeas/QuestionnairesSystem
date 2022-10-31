@@ -5500,16 +5500,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\tonis\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\saygo\\.nuget\\packages\\": {}
->>>>>>> b9a3d4c668d17a6f40472903f868b33075e1be43
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
       "projectName": "CuestionariosRN",
       "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
@@ -5518,16 +5513,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tonis\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-      "projectUniqueName": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
-      "projectName": "CuestionariosRN",
-      "projectPath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
-      "packagesPath": "C:\\Users\\saygo\\.nuget\\packages\\",
-      "outputPath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\saygo\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> b9a3d4c668d17a6f40472903f868b33075e1be43
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5541,19 +5526,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-<<<<<<< HEAD
             "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {
               "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj"
             },
             "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
               "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
-=======
-            "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {
-              "projectPath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj"
-            },
-            "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
-              "projectPath": "D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
->>>>>>> b9a3d4c668d17a6f40472903f868b33075e1be43
             }
           }
         }
@@ -5598,7 +5575,7 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Problema al leer el archivo de caché D:\\ProyectosGIT\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+      "message": "Problem reading the cache file E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
     }
   ]
 }

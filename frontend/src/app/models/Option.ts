@@ -1,11 +1,15 @@
 export class Option{
 
     id?: number;
-    option?: string;
+    optionName?: string;
+    idQuestion?: number;
+    idQuestionType?: number;
     
-    constructor({id, option}: {id?: number, option?: string}) {
+    constructor({id, optionName, idQuestion, idQuestionType}: {id?: number, optionName?: string, idQuestion?: number, idQuestionType?: number}) {
         this.id = id;
-        this.option = option;
+        this.optionName = optionName;
+        this.idQuestion = idQuestion;
+        this.idQuestionType = idQuestionType;
     }
     
 }

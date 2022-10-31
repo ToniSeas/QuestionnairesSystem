@@ -12,7 +12,6 @@ export class QuestionUtil {
     public static readonly OPENED:string = "Abierta";
 
     public static requireOption(key: string): boolean {
-
         switch (key) {
             case QuestionUtil.UNIQUE_SELECTION: {
                 return true;

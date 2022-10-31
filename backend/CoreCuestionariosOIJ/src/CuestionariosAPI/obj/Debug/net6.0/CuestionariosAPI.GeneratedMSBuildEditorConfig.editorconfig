@@ -8,17 +8,9 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CuestionariosAPI
 build_property.RootNamespace = CuestionariosAPI
-<<<<<<< HEAD
 build_property.ProjectDir = E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAPI\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = E:\Repositories\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAPI
-=======
-build_property.ProjectDir = D:\ProyectosGIT\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAPI\
-build_property.RazorLangVersion = 6.0
-build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\ProyectosGIT\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosAPI
->>>>>>> b9a3d4c668d17a6f40472903f868b33075e1be43
 build_property._RazorSourceGeneratorDebug = 

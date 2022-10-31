@@ -15,11 +15,11 @@ namespace CuestionariosAPI.Controllers
         {
             questionnaireRN = new QuestionnaireRN();
         }
-
+        
         // Peticion tipo GET: api/GetQuestionnaires
         [HttpGet]
         [Route("GetQuestionnaires")]
-        public async Task<ActionResult<MessageDTO<List<Questionnaire>>>> GetQuestionnaires()
+        public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> GetQuestionnaires()
         {
             return await questionnaireRN.GetQuestionnaires();
         }
@@ -27,7 +27,7 @@ namespace CuestionariosAPI.Controllers
         // Petición tipo POST: api/CreateQuestionnaire
         [HttpPost]
         [Route("CreateQuestionnaire")]
-        public async Task<ActionResult<MessageDTO<List<Questionnaire>>>> CreateQuestionnaire(Questionnaire questionnaire)
+        public async Task<ActionResult<Questionnaire>> CreateQuestionnaire(Questionnaire questionnaire)
         {
             return await questionnaireRN.CreateQuestionnaire(questionnaire);
         }
@@ -35,17 +35,17 @@ namespace CuestionariosAPI.Controllers
         //Petición tipo PUT: api/UpdateQuestionnaire
         [Route("UpdateQuestionnaire")]
         [HttpPut]
-        public async Task<ActionResult<MessageDTO<List<Questionnaire>>>> UpdateQuestionnaire(Questionnaire questionnaire)
+        public async Task<ActionResult<MessageDTO>> UpdateQuestionnaire(Questionnaire questionnaire)
         {
             return await questionnaireRN.UpdateQuestionnaire(questionnaire);
         }
 
         //Petición tipo DELETE: api/DeleteQuestionnaire
         [HttpDelete("DeleteQuestionnaire/{id}")]
-        public async Task<ActionResult<MessageDTO<List<Questionnaire>>>> DeleteQuestionnaire(int id)
+        public async Task<ActionResult<MessageDTO>> DeleteQuestionnaire(int id)
         {
             return await questionnaireRN.DeleteQuestionnaire(id);
         }
-
+        
     }
 }

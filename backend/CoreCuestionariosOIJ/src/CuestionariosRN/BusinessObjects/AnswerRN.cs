@@ -13,7 +13,7 @@ namespace CuestionariosRN.BusinessObjects
         public AnswerRN() {
             answerData = new AnswerAD();
         }
-
+        /*
         public async Task<ActionResult<MessageDTO<List<Answer>>>> GetAnswers(int idQuestion)
         {
             return await answerData.GetAnswers(idQuestion);
@@ -28,6 +28,6 @@ namespace CuestionariosRN.BusinessObjects
         {
             return await answerData.DeleteAnswer(idAnswer);
         }
-
+        */
     }
 }

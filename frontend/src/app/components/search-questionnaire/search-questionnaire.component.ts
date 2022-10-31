@@ -11,21 +11,19 @@ import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 })
 export class SearchQuestionnaireComponent implements OnInit {
   dateAux: Date = new Date();
-  //questionnaire: Questionnaire = new Questionnaire ({type: "typeQ", name: "webo", date: this.dateAux, description: "descriptionQ", state: "stateQ"});
-
-
 
   private displayedColumns: string[] = ['title', 'answers','state','operations'];
   private dataSource = new MatTableDataSource<Questionnaire>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-
   constructor(private questionnaireService: QuestionnaireService) { }
 
   ngOnInit(): void {
     this.questionnaireService.getQuestionnaire().subscribe(
-      (result: Questionnaire[]) => (this.updateQuestionnaireList(result))
+      (responseDTO) => {
+        this.updateQuestionnaireList(responseDTO.item!)
+      }
     )
     
     this.dataSource.paginator = this.paginator;
@@ -45,8 +43,16 @@ export class SearchQuestionnaireComponent implements OnInit {
 
   public deleteQuestionnaire(idC?: number){
     this.questionnaireService.deleteQuestionnaire(idC).subscribe(
-      (questionnaires: Questionnaire[]) => this.updateQuestionnaireList(questionnaires)
+      (messageDTO) => {
+        
+      }
     );
+
+    this.questionnaireService.getQuestionnaire().subscribe(
+      (responseDTO) => {
+        this.updateQuestionnaireList(responseDTO.item!);
+      }
+    )
   }
 
 }

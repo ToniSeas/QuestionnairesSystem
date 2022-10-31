@@ -16,12 +16,12 @@ namespace CuestionariosAD.DataAccess
             _context = new DataContext();
         }
 
-        public async Task<ActionResult<MessageDTO<List<Question>>>> GetQuestions(int idQuestionnaire)
+        public async Task<ActionResult<ResponseDTO<List<Question>>>> GetQuestions(int idQuestionnaire)
         {
             var dbQuestionnaire = await _context.Questionnaires
                 .FirstOrDefaultAsync(e => e.Id == idQuestionnaire);
 
-            var message = new MessageDTO<List<Question>>();
+            var message = new ResponseDTO<List<Question>>();
 
             if (dbQuestionnaire == null)
             {
@@ -35,12 +35,12 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<Question>>>> CreateQuestion(Question question)
+        public async Task<ActionResult<MessageDTO>> CreateQuestion(Question question)
         {
             var dbQuestionnaire = await _context.Questionnaires
                 .FirstOrDefaultAsync(e => e.Id == question.QuestionnaireId);
 
-            var message = new MessageDTO<List<Question>>();
+            var message = new MessageDTO();
 
             if (dbQuestionnaire == null)
             {
@@ -55,11 +55,11 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<Question>>>> UpdateQuestion(Question question)
+        public async Task<ActionResult<MessageDTO>> UpdateQuestion(Question question)
         {
             var dbQuestion = await _context.Questions.FindAsync(question.Id);
 
-            var message = new MessageDTO<List<Question>>();
+            var message = new MessageDTO();
 
             if (dbQuestion == null)
             {
@@ -82,11 +82,11 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<Question>>>> DeleteQuestion(int id)
+        public async Task<ActionResult<MessageDTO>> DeleteQuestion(int id)
         {
             var dbQuestion = await _context.Questions.FindAsync(id);
 
-            var message = new MessageDTO<List<Question>>();
+            var message = new MessageDTO();
 
             if (dbQuestion == null)
             {
@@ -102,13 +102,12 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<Option>>>> GetOptions(int idQuestion)
+        public async Task<ActionResult<ResponseDTO<List<Option>>>> GetOptions(int idQuestion)
         {
             var dbQuestion = await _context.Questions
-                .Include(e => e.Options)
                 .FirstOrDefaultAsync(e => e.Id == idQuestion);
 
-            var message = new MessageDTO<List<Option>>();
+            var message = new ResponseDTO<List<Option>>();
 
             if (dbQuestion == null)
             {
@@ -122,13 +121,12 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<Option>>>> CreateOption(Option option)
+        public async Task<ActionResult<MessageDTO>> CreateOption(Option option)
         {
             var dbOption = await _context.Questions
-                .Include(e => e.Options)
                 .FirstOrDefaultAsync(e => e.Id == option.Id);
 
-            var message = new MessageDTO<List<Option>>();
+            var message = new MessageDTO();
 
             if (dbOption == null)
             {
@@ -143,11 +141,11 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<Option>>>> UpdateOption(Option option)
+        public async Task<ActionResult<MessageDTO>> UpdateOption(Option option)
         {
             var dbOption = await _context.Options.FindAsync(option.Id);
 
-            var message = new MessageDTO<List<Option>>();
+            var message = new MessageDTO();
 
             if (dbOption == null)
             {
@@ -163,11 +161,11 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<Option>>>> DeleteOption(int idOption)
+        public async Task<ActionResult<MessageDTO>> DeleteOption(int idOption)
         {
             var dbOption = await _context.Options.FindAsync(idOption);
 
-            var message = new MessageDTO<List<Option>>();
+            var message = new MessageDTO();
 
             if (dbOption == null)
             {
@@ -183,20 +181,29 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-    
-
-    public async Task<ActionResult<MessageDTO<List<QuestionType>>>> GetQuestionType()
+        public async Task<ActionResult<ResponseDTO<List<QuestionType>>>> GetQuestionTypes()
         {
             var questionTypes = _context.QuestionTypes.ToList();
-            var message = new MessageDTO<List<QuestionType>>
+            var response = new ResponseDTO<List<QuestionType>>
             {
                 Id = 1,
                 Message = "Test",
                 Item = questionTypes
             };
-
-            return await Task.FromResult(message);
+            return await Task.FromResult(response);
         }
 
+        public async Task<ActionResult<ResponseDTO<QuestionType>>> GetQuestionTypeById(int idType)
+        {
+            var questionType = _context.QuestionTypes.FirstOrDefault(e => e.Id == idType);
+            var message = new ResponseDTO<QuestionType>
+            {
+                Id = 1,
+                Message = "Test",
+                Item = questionType
+            };
+
+            return await Task.FromResult(message); ;
+        }
     }
 }

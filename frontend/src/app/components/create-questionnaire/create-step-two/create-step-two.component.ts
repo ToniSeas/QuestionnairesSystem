@@ -15,6 +15,9 @@ import { QuestionUtil } from "src/app/util/QuestionUtil";
 import { MatStepper } from "@angular/material/stepper";
 import { Questionnaire } from "src/app/models/Questionnaire";
 import { SubcategoryService } from "src/app/services/subcategory.service";
+import { QuestionnaireService } from "src/app/services/questionnaire.service";
+import { ResponseDTO } from "src/app/models/DataTranferObjects/ResponseDTO";
+import { MessageDTO } from "src/app/models/DataTranferObjects/MessageDTO";
 
 @Component({
   selector: 'app-create-step-two',
@@ -24,14 +27,14 @@ import { SubcategoryService } from "src/app/services/subcategory.service";
 export class CreateStepTwoComponent implements OnInit {
   @Input() stepperContainer?: MatStepper;
   @Input() questionnaire?: Questionnaire;
-  
+
   // Instancias necesarias
   private displayedColumns: string[];
   private dataSource: MatTableDataSource<Question>;
   private searchControl: FormControl;
 
   // Inicializacion de los atributos
-  constructor(private questionService: QuestionService, public dialog: MatDialog) {
+  constructor(private questionService: QuestionService, public dialog: MatDialog, private qService: QuestionnaireService) {
     this.displayedColumns = ['id', 'statement', 'type', 'operations'];
     this.dataSource = new MatTableDataSource<Question>;
     this.searchControl = new FormControl('');
@@ -50,22 +53,20 @@ export class CreateStepTwoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != undefined && result.state == true) {
-        result.question.id = this.questionnaire!.questions.length;
-
-        this.createQuestion(result.question);
-        console.log(this.questionnaire)
+        result.question.position = this.questionnaire!.questions.length;
+        this.createQuestion(result);
       }
     });
   }
 
+  //BORRAR////////////
+  public sendQuestionnaire() {
+    this.qService.createQuestionnaire(this.questionnaire!).subscribe((quest) => {});
+  }
+  //BORRAR////////////
+
   public pushQuestion(question: Question) {
     this.questionnaire?.questions?.push(question);
-  }
-
-  public getQuestionTypeById(typeId: number): QuestionType {
-    var questionType: QuestionType;
-    this.questionService.getQuestionTypeById(typeId).subscribe((type) => questionType=type)
-    return questionType!;
   }
 
   // Con este metodo se puede actualizar el datasource de la tabla
@@ -74,9 +75,13 @@ export class CreateStepTwoComponent implements OnInit {
   }
 
   // Con este metodo se pueden agregar preguntas a la lista local de preguntas
-  public createQuestion(question: Question): void {
-    this.pushQuestion(question);
+  public createQuestion(result: any): void {
+    this.pushQuestion(result.question);
     this.updateDataSource(this.questionnaire!.questions);
+  }
+
+  public getQuestionTypeById(idType: number): QuestionType {
+    return this.questionService.getQuestionTypeById(idType).item!;
   }
 
   // Buscar preguntas segun el enunciado de pregunta
@@ -149,6 +154,7 @@ export class CreateQuestionDialog implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
+  public isOption: boolean;
   // Inicializacion de los atributos
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionDialog>,
@@ -157,6 +163,7 @@ export class CreateQuestionDialog implements OnInit {
     private subCategoryService: SubcategoryService,
   ) {
 
+    this.isOption = false;
     this.question = new Question({});
     this.questionTypes = new Observable<QuestionType[]>();
     this.categories = new Observable<Category[]>();
@@ -176,9 +183,13 @@ export class CreateQuestionDialog implements OnInit {
   }
 
   public updateSubCategories() {
-    var categoryId:number = this.getFormGroup().get('category')?.value;
-    this.subCategoryService.getSubCategories(categoryId).subscribe (
-      (subCategoryList) => this.subCategories = of(subCategoryList)
+    var categoryId: number = this.getFormGroup().get('category')?.value;
+    this.getFormGroup().get('subCategory')?.setValue(null);
+
+    this.subCategoryService.getSubCategories(categoryId).subscribe(
+      (responseDTO) => {
+        this.subCategories = of(responseDTO.item!);
+      }
     );
   }
 
@@ -186,28 +197,36 @@ export class CreateQuestionDialog implements OnInit {
   ngOnInit(): void {
 
     // Inicializar la lista de tipos de pregunta
-    this.questionService.getQuestionTypes().subscribe (
-      (questionsTypes) => this.questionTypes = of(questionsTypes)
+    this.questionService.getQuestionTypes().subscribe(
+      (responseDTO) => {
+        this.questionTypes = of(responseDTO.item!)
+      }
     );
 
     // Inicializar la lista de categorias de pregunta
-    this.categoryService.getCategories().subscribe (
-      (categoryList) => this.categories = of(categoryList)
+    this.categoryService.getCategories().subscribe(
+      (responseDTO) => {
+        this.categories = of(responseDTO.item!)
+      }
     );
 
     this.dataSource.paginator = this.paginator;
   }
 
-  public getQuestionTypeById(typeId: number): QuestionType {
-    var questionType: QuestionType;
-    this.questionService.getQuestionTypeById(typeId).subscribe((type) => questionType=type)
-    return questionType!;
-  }
-
   public requireOption(typeId: number): boolean {
-    var questionType: QuestionType = this.getQuestionTypeById(typeId);
-    var key: string = questionType.key == undefined ? "" : questionType.key.toString();
-    return QuestionUtil.requireOption(key);
+    if (typeId != undefined) {
+      var questionType: QuestionType = this.questionService.getQuestionTypeById(typeId).item!
+      //TODO: CAMBIAR EL ATRIBUTO NAME POR EL ATRIBUTO KEY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //IMPORTANTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+      //IMPORTANTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+      //IMPORTANTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+      //IMPORTANTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+      //CUANDO YA ESTE EN LA BASE DE DATOS
+      var key: string = questionType == undefined || questionType.name == undefined ? "" : questionType.name?.toString();
+      this.isOption = QuestionUtil.requireOption(key);
+    }
+
+    return this.isOption;
   }
 
   // Esto es lo que se ejecuta cuando se realiza la accion de aceptar (enviar formulario)
@@ -220,22 +239,27 @@ export class CreateQuestionDialog implements OnInit {
     this.question.subcategoryId = this.getFormGroup().get('subCategory')?.value;
 
     this.question.typeId = this.getFormGroup().get('type')?.value;
-    
+
+    const auxQuestionType = this.question.typeId;
+    this.question.options.forEach(function (option) {
+      option.idQuestionType = auxQuestionType;
+    });
+
     // Si el formulario es valido y el tipo de pregunta no requiere opciones,
     // entonces se puede cerrar el dialog y enviarle la pregunta al componente padre.
     if (this.createQuestionForm.valid) {
       if (!this.requireOption(this.question.typeId!)) {
         this.question.options = [];
-        this.dialogRef.close({question: this.question, state: true});
+        this.dialogRef.close({ question: this.question, state: true, questionTypeName:'' });
       } else if (this.question.options.length > 0) {
-        this.dialogRef.close({question: this.question, state: true});
+        this.dialogRef.close({ question: this.question, state: true, questionTypeName:'' });
       }
     }
   }
 
   public createOption(optionQ: string): void {
     if (this.optionControl.valid) {
-      this.question.options.push(new Option({option: optionQ}));
+      this.question.options.push(new Option({ optionName: optionQ }));
       this.updateDataSource(this.question.options);
       this.cleanOptionControl();
     }
@@ -253,7 +277,7 @@ export class CreateQuestionDialog implements OnInit {
     // Se recorre la lista de preguntas locales
     this.question.options.forEach(function (option) {
       // Si el nombre de la opcion no esta definido entonces se asigna vacio
-      const optionName: String = option.option === undefined ? '' : option.option;
+      const optionName: String = option.optionName === undefined ? '' : option.optionName;
       // Si el nombre de la opcion contiene el string de busqueda entonces se
       // agrega a la lista temporal
       if (optionName.includes(searchValue)) { tempQuestionList.push(option); }
@@ -266,7 +290,7 @@ export class CreateQuestionDialog implements OnInit {
   public deleteOption(option: string) {
     // Se obtiene el index de la opcion a la que el corresponde el id
     const indexOfQuestion = this.question.options.findIndex((object) => {
-      return object.option === option;
+      return object.optionName === option;
     });
     // Si el index es diferente a -1 entonces se elimina de la lista
     if (indexOfQuestion != -1) {

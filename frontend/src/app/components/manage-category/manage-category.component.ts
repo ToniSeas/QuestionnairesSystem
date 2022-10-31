@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Category } from 'src/app/models/Category';
+import { MessageDTO } from 'src/app/models/DataTranferObjects/MessageDTO';
+import { ResponseDTO } from 'src/app/models/DataTranferObjects/ResponseDTO';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
@@ -24,9 +26,12 @@ export class ManageCategoryComponent implements OnInit {
   public getFormGroup(): FormGroup { return this.createCategoryForm; }
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe(
-      (result: Category[]) => (this.updateCategoryList(result))
-    )
+    this.categoryService.getCategories().subscribe (
+      (responseDTO) => {
+        this.updateCategoryList(responseDTO.item!);
+      }
+    );
+
     this.dataSource.paginator = this.paginator;
 
     this.createCategoryForm = new FormGroup({
@@ -58,8 +63,16 @@ export class ManageCategoryComponent implements OnInit {
   }
 
   public createCategory(nameC: string): void {
-    this.categoryService.createCategory(new Category({ name: nameC })).subscribe(
-      (categories) => this.updateCategoryList(categories)
+    this.categoryService.createCategory(new Category({name:nameC})).subscribe (
+      (massageDTO) => {
+
+      }
+    );
+
+    this.categoryService.getCategories().subscribe (
+      (responseDTO) => {
+        this.updateCategoryList(responseDTO.item!);
+      }
     );
   }
 
@@ -67,9 +80,17 @@ export class ManageCategoryComponent implements OnInit {
     this.createCategoryForm.reset();
   }
 
-  public deleteCategory(idC?: number){
+  public deleteCategory(idC?: number) {
     this.categoryService.deleteCategory(idC).subscribe(
-      (categories: Category[]) => this.updateCategoryList(categories)
+      (messageDTO) => {
+
+      }
+    );
+    
+    this.categoryService.getCategories().subscribe (
+      (responseDTO) => {
+        this.updateCategoryList(responseDTO.item!);
+      }
     );
   }
 

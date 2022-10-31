@@ -22,8 +22,8 @@ namespace CuestionariosAD.Mappings
             .HasColumnName("activo");
 
             builder.Property(c => c.CreationDate)
-                .IsRequired()
                 .HasColumnType("date")
+                .HasDefaultValueSql("getdate()")
             .HasColumnName("fechaCreacion");
 
             builder.Property(c => c.ExpirationDate)

@@ -3,6 +3,7 @@ using CuestionariosEntidades.DataTranferObjects;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace CuestionariosAD.DataAccess
 {
@@ -16,58 +17,78 @@ namespace CuestionariosAD.DataAccess
             _context = new DataContext();
         }
 
-        public async Task<ActionResult<MessageDTO<List<Questionnaire>>>> GetQuestionnaires()
+        public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> GetQuestionnaires()
         {
-            //return await _context.Questionnaires.ToListAsync();
-            return await Task.FromResult(new MessageDTO<List<Questionnaire>>());
+            var questionnaires = _context.Questionnaires.ToList();
+            var response = new ResponseDTO<List<Questionnaire>>
+            {
+                Id = 1,
+                Message = "Test",
+                Item = questionnaires
+            };
+
+            return await Task.FromResult(response);
         }
 
-        public async Task<ActionResult<MessageDTO<List<Questionnaire>>>> CreateQuestionnaire(Questionnaire questionnaire)
+        public async Task<ActionResult<Questionnaire>> CreateQuestionnaire(Questionnaire questionnaire)
         {
-            /*
-            var q = new Questionnaire();
+            try
+            {
+                _context.Questionnaires.Add(questionnaire);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                questionnaire.Name = e.ToString();
+            }
+            
+            var message = new MessageDTO
+            {
+                Id = 1,
+                Message = "Test"
+            };
 
-            var question = new Question();
+            return await Task.FromResult(questionnaire);
+        }
 
-            _context.Questionnaires.Add(q);
+        public async Task<ActionResult<MessageDTO>> UpdateQuestionnaire(Questionnaire questionnaire)
+        {
+            var dbQuestionnnaire = await _context.Questionnaires.FindAsync(questionnaire.Id);
+
+            var message = new MessageDTO();
+
+            if (dbQuestionnnaire == null)
+            {
+                message.Id = 1;
+                message.Message = "No existe el cuestionario que se desea actualizar.";
+                return await Task.FromResult(message);
+            }
+
+            dbQuestionnnaire.Name = questionnaire.Name;
             await _context.SaveChangesAsync();
 
-            return await Task.FromResult(new List<Questionnaire>());
-            */
-            return await Task.FromResult(new MessageDTO<List<Questionnaire>>());
+            message.Id = 1;
+            return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<Questionnaire>>>> UpdateQuestionnaire(Questionnaire questionnaire)
+        public async Task<ActionResult<MessageDTO>> DeleteQuestionnaire(int id)
         {
-            /*
-            var dbQuestionnaire = await _context.Questionnaires.FindAsync(questionnaire.Id);
+            var dbQuestionnaire = await _context.Questionnaires.FirstOrDefaultAsync(e => e.Id == id);
+
+            var message = new MessageDTO();
+
             if (dbQuestionnaire == null)
-                throw new Exception("No existe la pregunta que se desea actualizar.");
-
-            dbQuestionnaire.Id = questionnaire.Id;
-            dbQuestionnaire.Name = questionnaire.Name;
-            dbQuestionnaire.ExpirationDate = questionnaire.ExpirationDate;
-            dbQuestionnaire.Description = questionnaire.Description;
-
-            await _context.SaveChangesAsync();
-            return await _context.Questionnaires.ToListAsync();
-            */
-            return await Task.FromResult(new MessageDTO<List<Questionnaire>>());
-        }
-
-        public async Task<ActionResult<MessageDTO<List<Questionnaire>>>> DeleteQuestionnaire(int id)
-        {
-            /*
-            var dbQuestionnaire = await _context.Questionnaires.FindAsync(id);
-            if (dbQuestionnaire == null)
-                throw new Exception("No existe la pregunta que se desea eliminar.");
+            {
+                message.Id = 1;
+                message.Message = "No existe el cuestionario que desea eliminar.";
+                return await Task.FromResult(message);
+            }
 
             _context.Questionnaires.Remove(dbQuestionnaire);
             await _context.SaveChangesAsync();
 
-            return await _context.Questionnaires.ToListAsync(); */
-
-            return await Task.FromResult(new MessageDTO<List<Questionnaire>>());
+            message.Id = 1;
+            return await Task.FromResult(message);
         }
 
     }
