@@ -1,8 +1,10 @@
 /*
 	Crear base de datos y tablas.
 	Autor: Heiner Monge
-	fecha creacion: 25 de septiembre 2022
-	modificiacion: 08 de agosto 2022
+	Fecha creacion: 25 de septiembre 2022
+	Modificiaciones: 
+		08 de agosto 2022: Refactorización de algunas tablas.
+		31 de agosto 2022: Modifica la llave primaria de los tipos de pregunta para facilitar la identificación de los mismos.
 */
 
 USE master
@@ -66,7 +68,7 @@ BEGIN TRY
 
 		-- tipoPregunta
 		CREATE TABLE tb_tipo_pregunta
-			(id INT IDENTITY(1, 1) PRIMARY KEY
+			(id VARCHAR(2) PRIMARY KEY
 			,nombre NVARCHAR(150) UNIQUE)
 
 		-- Categoría pregunta
@@ -90,7 +92,7 @@ BEGIN TRY
 			,idCategoria INT NOT NULL
 			,idSubcategoria INT NOT NULL
 			,idCuestionario INT NOT NULL
-			,idTipo INT NOT NULL
+			,idTipo VARCHAR(2) NOT NULL
 			,opcional BIT NOT NULL DEFAULT 0
 			,FOREIGN KEY (idCategoria) REFERENCES tb_categoria_pregunta (id)
 			,FOREIGN KEY (idSubcategoria) REFERENCES tb_subcategoria_pregunta (id)
@@ -103,7 +105,7 @@ BEGIN TRY
 			(id INT IDENTITY(1, 1) PRIMARY KEY
 			,opcion NVARCHAR(180) NOT NULL
 			,idPregunta INT NULL --Puede que esta opción sea estática por lo que no tiene una ID de pregunta como tal.
-			,idTipoPregunta INT NOT NULL --Es importante espeficicar el tipo de pregunta al que pertenece esta opción.
+			,idTipoPregunta VARCHAR(2) NOT NULL --Es importante espeficicar el tipo de pregunta al que pertenece esta opción.
 			,FOREIGN KEY (idPregunta) REFERENCES tb_pregunta (id)
 			,FOREIGN KEY (idTipoPregunta) REFERENCES tb_tipo_pregunta (id))
 
@@ -132,24 +134,25 @@ BEGIN TRY
 		PRINT('Poblando los datos estáticos de la base de datos...')
 		-- tipos de preguntas
 		INSERT INTO tb_tipo_pregunta
-			(nombre)
+			(id, nombre)
 		VALUES
-			('Selección Única')
-			,('Selección Múltiple')
-			,('Respuesta Larga')
-			,('Numérica')
-			,('Escala')
+			('su', 'Selección Única')
+			,('sm', 'Selección Múltiple')
+			,('rl', 'Respuesta Larga')
+			,('nu', 'Numérica')
+			,('es', 'Escala')
+			,('vf', 'Verdadero o Falso')
 
 		-- Opciones estáticas para preguntas
 		INSERT INTO tb_opcion
 			([opcion]
 			,[idTipoPregunta]) 
 		VALUES
-			('Muy malo', 5)
-			,('Malo', 5)
-			,('Regular', 5)
-			,('Bueno', 5)
-			,('Muy bueno', 5)
+			('Muy malo', 'es')
+			,('Malo', 'es')
+			,('Regular', 'es')
+			,('Bueno', 'es')
+			,('Muy bueno', 'es')
 	COMMIT
 	PRINT('Base de datos lista!')
 END TRY
