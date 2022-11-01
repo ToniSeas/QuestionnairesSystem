@@ -21,7 +21,7 @@ namespace CuestionariosRN.BusinessObjects
             return await questionData.GetQuestionTypes();
         }
 
-        public async Task<ActionResult<ResponseDTO<QuestionType>>> GetQuestionTypeById(int idType)
+        public async Task<ActionResult<ResponseDTO<QuestionType>>> GetQuestionTypeById(string idType)
         {
             return await questionData.GetQuestionTypeById(idType);
         }

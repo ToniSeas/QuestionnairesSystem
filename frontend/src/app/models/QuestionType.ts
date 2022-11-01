@@ -1,10 +1,10 @@
 export class QuestionType{
   
-  id?: number;
-  name?: String;
-  key?: String;
+  id?: string;
+  name?: string; 
+  key?: string;
 
-  constructor ({id, name, key}: {id?: number, name?: String, key?: String}) {
+  constructor ({id, name, key}: {id?: string, name?: string, key?: string}) {
       this.id = id;
       this.name = name;
       this.key = key;

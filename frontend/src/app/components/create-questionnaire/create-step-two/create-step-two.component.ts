@@ -61,7 +61,7 @@ export class CreateStepTwoComponent implements OnInit {
 
   //BORRAR////////////
   public sendQuestionnaire() {
-    this.qService.createQuestionnaire(this.questionnaire!).subscribe((quest) => {});
+    this.qService.createQuestionnaire(this.questionnaire!).subscribe((quest) => {console.log(quest.name)});
   }
   //BORRAR////////////
 
@@ -80,7 +80,7 @@ export class CreateStepTwoComponent implements OnInit {
     this.updateDataSource(this.questionnaire!.questions);
   }
 
-  public getQuestionTypeById(idType: number): QuestionType {
+  public getQuestionTypeById(idType: string): QuestionType {
     return this.questionService.getQuestionTypeById(idType).item!;
   }
 
@@ -213,7 +213,7 @@ export class CreateQuestionDialog implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  public requireOption(typeId: number): boolean {
+  public requireOption(typeId: string): boolean {
     if (typeId != undefined) {
       var questionType: QuestionType = this.questionService.getQuestionTypeById(typeId).item!
       //TODO: CAMBIAR EL ATRIBUTO NAME POR EL ATRIBUTO KEY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

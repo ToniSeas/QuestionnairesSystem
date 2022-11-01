@@ -43,7 +43,7 @@ namespace CuestionariosAD.Mappings
 
             builder.Property(c => c.TypeId)
                 .IsRequired()
-                .HasColumnType("int")
+                .HasColumnType("varchar(2)")
             .HasColumnName("idTipo");
 
             builder.Property(c => c.IsOptional)

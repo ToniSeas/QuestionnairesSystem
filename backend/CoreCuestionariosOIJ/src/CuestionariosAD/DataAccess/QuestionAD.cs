@@ -193,7 +193,7 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(response);
         }
 
-        public async Task<ActionResult<ResponseDTO<QuestionType>>> GetQuestionTypeById(int idType)
+        public async Task<ActionResult<ResponseDTO<QuestionType>>> GetQuestionTypeById(string idType)
         {
             var questionType = _context.QuestionTypes.FirstOrDefault(e => e.Id == idType);
             var message = new ResponseDTO<QuestionType>

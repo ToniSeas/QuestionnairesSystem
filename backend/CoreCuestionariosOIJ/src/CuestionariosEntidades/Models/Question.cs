@@ -15,7 +15,7 @@ namespace CuestionariosEntidades.Models
         public int? CategoryId { get; set; }
         public int? SubCategoryId { get; set; }
         public int? QuestionnaireId { get; set; }
-        public int? TypeId { get; set; }
+        public string? TypeId { get; set; }
         public bool? IsOptional { get; set; }
 
         // EF Relation

@@ -25,6 +25,7 @@ export class QuestionnaireService {
   }
 
   public createQuestionnaire(questionnaire: Questionnaire) : Observable<Questionnaire> {
+    console.log(questionnaire)
     return this.httpClient.post<Questionnaire>(`${environment.apiUrl}/${this.controllerURL}/CreateQuestionnaire`, questionnaire);
   }
 
