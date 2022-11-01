@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Question } from 'src/app/models/Question';
 
 @Component({
@@ -9,8 +10,10 @@ import { Question } from 'src/app/models/Question';
 export class LongAnswerQuestionComponent implements OnInit {
 
   question!: Question
-  constructor(changeDetector: ChangeDetectorRef) { }
 
+  areaControl: FormControl = new FormControl();
+
+  constructor(changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }

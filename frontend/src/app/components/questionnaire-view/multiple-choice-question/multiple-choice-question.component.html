@@ -2,7 +2,7 @@
     <div class="question-statement">
         <h4>{{question.statement}}</h4>
     </div>
-    <form class="question-options" *ngFor="let element of question.options">
-        <mat-checkbox color="primary">{{element.optionName}}</mat-checkbox>
-    </form>
+    <div class="question-options" *ngFor="let element of question.options">
+        <mat-checkbox [required]="!question.isOptional" color="primary">{{element.optionName}}</mat-checkbox>
+    </div>
 </div>

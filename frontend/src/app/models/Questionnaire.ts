@@ -42,10 +42,6 @@ export class Questionnaire {
     });
     
     this.questions = newArray
-    
-    this.questions.forEach(element => { 
-      console.log(element.position)
-    })
   }
 
 }
