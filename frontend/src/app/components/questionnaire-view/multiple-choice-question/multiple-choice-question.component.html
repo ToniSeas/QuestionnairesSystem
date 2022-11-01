@@ -1,0 +1,8 @@
+<div class="question-container">
+    <div class="question-statement">
+        <h4>{{question.statement}}</h4>
+    </div>
+    <form class="question-options" *ngFor="let element of question.options">
+        <mat-checkbox color="primary">{{element.optionName}}</mat-checkbox>
+    </form>
+</div>

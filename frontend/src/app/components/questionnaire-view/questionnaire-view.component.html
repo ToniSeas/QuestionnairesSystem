@@ -3,37 +3,14 @@
     <div class="row">
         <div class="col">
             <div class="questionnaire-title">
-                <h2>This is the tittle of the questionnaire</h2>
+                <h2>{{questionnaire?.name}}</h2>
             </div>
             <div class="questionnaire-description">
-                <p>This is the questionnaire description. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Cumque deserunt accusantium incidunt mollitia quaerat aperiam, laudantium fuga porro quisquam
-                    voluptatibus consequuntur. Recusandae corporis tenetur laborum similique possimus quo voluptas
-                    omnis.</p>
+                <p>{{questionnaire?.description}}</p>
             </div>
-            <div class="question-container">
-                <p>Site under construction!</p>
-            </div>
-            <div class="question-container">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores vitae, saepe vel labore provident
-                    maiores delectus exercitationem! Asperiores quae modi illum? Dolores vero ullam voluptatibus vel
-                    beatae blanditiis mollitia deleniti.</p>
-            </div>
-            <div class="question-container">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores vitae, saepe vel labore provident
-                    maiores delectus exercitationem! Asperiores quae modi illum? Dolores vero ullam voluptatibus vel
-                    beatae blanditiis mollitia deleniti.</p>
-            </div>
-            <div class="question-container">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores vitae, saepe vel labore provident
-                    maiores delectus exercitationem! Asperiores quae modi illum? Dolores vero ullam voluptatibus vel
-                    beatae blanditiis mollitia deleniti.</p>
-            </div>
-            <div class="question-container">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores vitae, saepe vel labore provident
-                    maiores delectus exercitationem! Asperiores quae modi illum? Dolores vero ullam voluptatibus vel
-                    beatae blanditiis mollitia deleniti.</p>
-            </div>
+            <form>
+                <ng-container #container></ng-container>
+            </form>
         </div>
     </div>
 </div>

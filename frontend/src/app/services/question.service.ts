@@ -13,28 +13,7 @@ import { QuestionUtil } from '../util/QuestionUtil';
 })
 export class QuestionService {
 
-  su = new QuestionType({ id: 1, name: "Selección Única" });
-  sm = new QuestionType({ id: 2, name: "Selección Múltiple" });
-  e = new QuestionType({ name: "Escala" });
-  vf = new QuestionType({ name: "Verdadero o Falso" });
-  a = new QuestionType({ name: "Abierta" });
-  n = new QuestionType({ name: "Numérica" });
-  questionList: Question[] = [new Question({ id: 1, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.su.id })
-    , new Question({ id: 2, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.sm.id })
-    , new Question({ id: 3, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.a.id })
-    , new Question({ id: 4, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.e.id })
-    , new Question({ id: 5, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.n.id })
-    , new Question({ id: 6, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.vf.id })
-    , new Question({ id: 7, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.n.id })
-    , new Question({ id: 34, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.a.id })
-    , new Question({ id: 2, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.e.id })
-    , new Question({ id: 12, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.sm.id })
-    , new Question({ id: 32, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.vf.id })
-    , new Question({ id: 14, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.su.id })
-    , new Question({ id: 343, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.e.id })
-    , new Question({ id: 523, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.su.id })
-    , new Question({ id: 1231, statement: 'aaaaaaaaaaaaaaaaaaaaaaaaaa?', typeId: this.a.id })];
-
+  questionList: Question[] = []
   private controllerURL: string;
   constructor(private httpClient: HttpClient) {
     this.controllerURL = "Question";
@@ -59,7 +38,7 @@ export class QuestionService {
     return this.httpClient.get<ResponseDTO<QuestionType[]>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionTypes`);
   }
 
-  public getQuestionTypeById(idType: number): ResponseDTO<QuestionType> {
+  public getQuestionTypeById(idType: string): ResponseDTO<QuestionType> {
     // Configurar los parametros del get
     //let params = new HttpParams().set('idType', idType);
     // Lo que está dentro de los paréntesis es string interpolation
@@ -80,12 +59,6 @@ export class QuestionService {
     ];
 
     var questionType;
-
-    types.forEach(function (value) {
-      if (value.id == idType) {
-        questionType = value;
-      }
-    });
 
     return new ResponseDTO<QuestionType>({item:questionType});
   }

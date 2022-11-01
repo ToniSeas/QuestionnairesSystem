@@ -33,6 +33,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { QuestionnaireViewComponent } from './components/questionnaire-view/questionnaire-view.component';
+import { MultipleChoiceQuestionComponent } from './components/questionnaire-view/multiple-choice-question/multiple-choice-question.component';
+import { TrueFalseQuestionComponent } from './components/questionnaire-view/true-false-question/true-false-question.component';
+import { LongAnswerQuestionComponent } from './components/questionnaire-view/long-answer-question/long-answer-question.component';
+import { ScaleQuestionComponent } from './components/questionnaire-view/scale-question/scale-question.component';
+import { SingleChoiceQuestionComponent } from './components/questionnaire-view/single-choice-question/single-choice-question.component';
+import {MatRadioModule} from '@angular/material/radio'; 
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -54,7 +61,12 @@ import { QuestionnaireViewComponent } from './components/questionnaire-view/ques
     CreateStepTwoComponent,
     CreateStepThreeComponent,
     CreateQuestionDialog,
-    QuestionnaireViewComponent
+    QuestionnaireViewComponent,
+    MultipleChoiceQuestionComponent,
+    TrueFalseQuestionComponent,
+    LongAnswerQuestionComponent,
+    ScaleQuestionComponent,
+    SingleChoiceQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +85,9 @@ import { QuestionnaireViewComponent } from './components/questionnaire-view/ques
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatRadioModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
