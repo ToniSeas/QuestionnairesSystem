@@ -61,7 +61,7 @@ export class CreateStepTwoComponent implements OnInit {
 
   //BORRAR////////////
   public sendQuestionnaire() {
-    this.qService.createQuestionnaire(this.questionnaire!).subscribe((quest) => {console.log(quest.name)});
+    this.qService.createQuestionnaire(this.questionnaire!).subscribe((messageDTO) => {console.log(messageDTO.message)});
   }
   //BORRAR////////////
 
@@ -86,7 +86,6 @@ export class CreateStepTwoComponent implements OnInit {
 
   // Buscar preguntas segun el enunciado de pregunta
   public searchQuestion(): void {
-    console.log(this.questionnaire)
     // Se crea una lista que se ira llenando de preguntas
     // que coincidan con los criterios de busqueda
     var tempQuestionList: Question[] = []

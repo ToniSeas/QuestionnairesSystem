@@ -24,10 +24,17 @@ namespace CuestionariosAPI.Controllers
             return await questionnaireRN.GetQuestionnaires();
         }
 
+        [HttpGet]
+        [Route("SearchQuestionnaires")]
+        public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> SearchQuestionnaires(string name)
+        {
+            return await questionnaireRN.SearchQuestionnaires(name);
+        }
+
         // Petición tipo POST: api/CreateQuestionnaire
         [HttpPost]
         [Route("CreateQuestionnaire")]
-        public async Task<ActionResult<Questionnaire>> CreateQuestionnaire(Questionnaire questionnaire)
+        public async Task<ActionResult<MessageDTO>> CreateQuestionnaire(Questionnaire questionnaire)
         {
             return await questionnaireRN.CreateQuestionnaire(questionnaire);
         }
