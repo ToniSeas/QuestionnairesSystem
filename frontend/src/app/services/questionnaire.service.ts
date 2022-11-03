@@ -19,18 +19,24 @@ export class QuestionnaireService {
     this.controllerURL = "Questionnaire";
   }
 
-  public getQuestionnaire() : Observable<ResponseDTO<Questionnaire[]>> {
+  public getQuestionnaires() : Observable<ResponseDTO<Questionnaire[]>> {
     // Lo que está dentro de los paréntesis es string interpolation
     return this.httpClient.get<ResponseDTO<Questionnaire[]>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionnaires`);
   }
 
-  public createQuestionnaire(questionnaire: Questionnaire) : Observable<Questionnaire> {
-    console.log(questionnaire)
+  public createQuestionnaire(questionnaire: Questionnaire) : Observable<MessageDTO> {
     return this.httpClient.post<Questionnaire>(`${environment.apiUrl}/${this.controllerURL}/CreateQuestionnaire`, questionnaire);
   }
 
   public deleteQuestionnaire(id?: number) : Observable<MessageDTO> {
     return this.httpClient.delete<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/DeleteQuestionnaire/${id}`);
+  }
+
+  public searchQuestionnaire(name: string) : Observable<ResponseDTO<Questionnaire[]>> {
+    // Configurar los parametros del get
+    let params = new HttpParams().set('name', name);
+    // Lo que está dentro de los paréntesis es string interpolation
+    return this.httpClient.get<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/SearchQuestionnaires`, { params: params });
   }
 
   public getQuestionnaireTypes() : Observable<QuestionnaireType[]> {
