@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Category } from 'src/app/models/Category';
+import { MessageDTO } from 'src/app/models/DataTranferObjects/MessageDTO';
+import { ResponseDTO } from 'src/app/models/DataTranferObjects/ResponseDTO';
 import { SubCategory } from 'src/app/models/SubCategory';
 import { CategoryService } from 'src/app/services/category.service';
 import { SubcategoryService } from 'src/app/services/subcategory.service';
@@ -28,9 +30,11 @@ export class ManageSubcategoryComponent implements OnInit {
   public getFormGroup(): FormGroup { return this.createSubCategoryForm; }
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe(
-      (result: Category[]) => (this.categoryList = result)
-    )
+    this.categoryService.getCategories().subscribe (
+      (responseDTO) => {
+        this.categoryList = responseDTO.item!;
+      }
+    );
 
     this.dataSource.paginator = this.paginator;
 
@@ -53,9 +57,11 @@ export class ManageSubcategoryComponent implements OnInit {
 
   public getSubCategories(): void {
     var categoryId: number = this.getFormGroup().get('categoryF')?.value;
-    this.subcategoryService.getSubCategories(categoryId).subscribe(
-      (result) => (this.updateSubCategoryList(result))
-    )
+    this.subcategoryService.getSubCategories(categoryId).subscribe (
+      (responseDTO) => {
+        this.updateSubCategoryList(responseDTO.item!);
+      }
+    );
   }
 
   public getDataSource(): MatTableDataSource<SubCategory> {
@@ -72,8 +78,16 @@ export class ManageSubcategoryComponent implements OnInit {
   }
 
   public createSubCategory(subcategory: SubCategory): void {
-    this.subcategoryService.createSubCategory(subcategory).subscribe(
-      (subCategories: SubCategory[]) => this.updateSubCategoryList(subCategories)
+    this.subcategoryService.createSubCategory(subcategory).subscribe (
+      (massageDTO) => {
+        
+      }
+    );
+
+    this.subcategoryService.getSubCategories(subcategory.idCategory!).subscribe (
+      (responseDTO) => {
+        this.updateSubCategoryList(responseDTO.item!);
+      }
     );
   }
 

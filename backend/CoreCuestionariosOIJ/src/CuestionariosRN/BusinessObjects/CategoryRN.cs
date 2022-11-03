@@ -13,25 +13,24 @@ namespace CuestionariosRN.BusinessObjects
         public CategoryRN() {
             categoryData = new CategoryAD();
         }
-
-        public async Task<ActionResult<MessageDTO<List<Category>>>> GetCategories()
+        public async Task<ActionResult<ResponseDTO<List<Category>>>> GetCategories()
         {
             return await categoryData.GetCategories();
         }
 
-        public async Task<ActionResult<MessageDTO<List<Category>>>> CreateCategory(Category category)
+        public async Task<ActionResult<MessageDTO>> CreateCategory(Category category)
         {
             return await categoryData.CreateCategory(category);
         }
-        public async Task<ActionResult<MessageDTO<List<Category>>>> UpdateCategory(Category category)
+        public async Task<ActionResult<MessageDTO>> UpdateCategory(Category category)
         {
             return await categoryData.UpdateCategory(category);
         }
 
-        public async Task<ActionResult<MessageDTO<List<Category>>>> DeleteCategory(int id)
+        public async Task<ActionResult<MessageDTO>> DeleteCategory(int id)
         {
             return await categoryData.DeleteCategory(id);
         }
-
+        
     }
 }

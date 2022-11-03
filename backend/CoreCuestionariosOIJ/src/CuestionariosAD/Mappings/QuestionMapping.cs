@@ -43,12 +43,13 @@ namespace CuestionariosAD.Mappings
 
             builder.Property(c => c.TypeId)
                 .IsRequired()
-                .HasColumnType("int")
+                .HasColumnType("varchar(2)")
             .HasColumnName("idTipo");
 
             builder.Property(c => c.IsOptional)
                 .IsRequired()
                 .HasColumnType("bit")
+                .HasDefaultValue()
             .HasColumnName("opcional");
 
             // 1 : N => Pregunta : Answers
@@ -59,7 +60,7 @@ namespace CuestionariosAD.Mappings
             // 1 : N => Pregunta : Opciones
             builder.HasMany(c => c.Options)
                 .WithOne(b => b.Question)
-                .HasForeignKey(b => b.Id);
+                .HasForeignKey(b => b.IdQuestion);
 
             builder.ToTable("tb_pregunta");
         }

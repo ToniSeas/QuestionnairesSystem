@@ -2,17 +2,17 @@
 
     <mat-step>
         <ng-template matStepLabel>Información básica</ng-template>
-        <app-create-step-one></app-create-step-one>
+        <app-create-step-one [stepperContainer]="stepper" [questionnaire]="questionnaire"></app-create-step-one>
     </mat-step>
 
     <mat-step>
         <ng-template matStepLabel>Preguntas</ng-template>
-        <app-create-step-two></app-create-step-two>
+        <app-create-step-two [stepperContainer]="stepper" [questionnaire]="questionnaire"></app-create-step-two>
     </mat-step>
 
     <mat-step>
         <ng-template matStepLabel>Permisos de revisión</ng-template>
-        <app-create-step-three></app-create-step-three>
+        <app-create-step-three [stepperContainer]="stepper" [questionnaire]="questionnaire"></app-create-step-three>
     </mat-step>
 
     <mat-step>

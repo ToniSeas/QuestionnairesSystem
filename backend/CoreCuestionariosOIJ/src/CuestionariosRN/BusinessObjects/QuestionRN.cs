@@ -1,6 +1,8 @@
 ﻿using CuestionariosAD.DataAccess;
+using CuestionariosEntidades.DataTranferObjects;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CuestionariosRN.BusinessObjects
 {
@@ -14,6 +16,17 @@ namespace CuestionariosRN.BusinessObjects
             questionData = new QuestionAD();
         }
 
+        public async Task<ActionResult<ResponseDTO<List<QuestionType>>>> GetQuestionTypes()
+        {
+            return await questionData.GetQuestionTypes();
+        }
+
+        public async Task<ActionResult<ResponseDTO<QuestionType>>> GetQuestionTypeById(string idType)
+        {
+            return await questionData.GetQuestionTypeById(idType);
+        }
+
+        /*
         public async Task<ActionResult<List<Question>>> GetQuestions()
         {
             return await questionData.GetQuestions();
@@ -32,6 +45,6 @@ namespace CuestionariosRN.BusinessObjects
         {
             return await questionData.DeleteQuestion(id);
         }
-
+        */
     }
 }

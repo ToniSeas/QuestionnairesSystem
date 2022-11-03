@@ -16,14 +16,14 @@ namespace CuestionariosAD.DataAccess
            _context = new DataContext();
         }
 
-        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> GetSubCategories(int categoryId)
+        public async Task<ActionResult<ResponseDTO<List<SubCategory>>>> GetSubCategories(int categoryId)
         {
 
             var dbCategory = await _context.Categories
                 .Include(e => e.SubCategories)
                 .FirstOrDefaultAsync(e => e.Id == categoryId);
 
-            var message = new MessageDTO<List<SubCategory>>();
+            var message = new ResponseDTO<List<SubCategory>>();
 
             if (dbCategory == null)
             {
@@ -37,12 +37,12 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> CreateSubCategory(SubCategory subCategory)
+        public async Task<ActionResult<MessageDTO>> CreateSubCategory(SubCategory subCategory)
         {
             var dbCategory = await _context.Categories
                 .FirstOrDefaultAsync(e => e.Id == subCategory.IdCategory);
 
-            var message = new MessageDTO<List<SubCategory>>();
+            var message = new MessageDTO();
 
             if (dbCategory == null)
             {
@@ -57,11 +57,11 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> UpdateSubCategory(SubCategory subCategory)
+        public async Task<ActionResult<MessageDTO>> UpdateSubCategory(SubCategory subCategory)
         {
             var dbSubCategory = await _context.SubCategories.FindAsync(subCategory.Id);
 
-            var message = new MessageDTO<List<SubCategory>>();
+            var message = new MessageDTO();
 
             if (dbSubCategory == null)
             {
@@ -77,11 +77,11 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
-        public async Task<ActionResult<MessageDTO<List<SubCategory>>>> DeleteSubCategory(int id)
+        public async Task<ActionResult<MessageDTO>> DeleteSubCategory(int id)
         {
             var dbSubCategory = await _context.SubCategories.FindAsync(id);
 
-            var message = new MessageDTO<List<SubCategory>>();
+            var message = new MessageDTO();
 
             if (dbSubCategory == null)
             {

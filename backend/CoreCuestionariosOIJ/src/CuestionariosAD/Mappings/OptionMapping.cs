@@ -16,6 +16,16 @@ namespace CuestionariosAD.Mappings
                 .HasColumnType("nvarchar(180)")
             .HasColumnName("opcion");
 
+            builder.Property(c => c.IdQuestion)
+                .IsRequired()
+                .HasColumnType("int")
+            .HasColumnName("idPregunta");
+
+            builder.Property(c => c.IdQuestionType)
+                .IsRequired()
+                .HasColumnType("varchar(2)")
+            .HasColumnName("idTipoPregunta");
+
             // N : N => Opciones : Respuestas
             builder.HasMany(c => c.Answers)
                 .WithMany(b => b.Options)

@@ -12,9 +12,16 @@
   </div>
 
   <div class="row">
+    <mat-form-field class="w-full">
+      <mat-label> Etiqueta </mat-label>
+      <input matInput placeholder="Etiqueta" [formControlName]="'label'">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
     <mat-form-field class="col-6 select">
       <mat-label>Categoría</mat-label>
-      <mat-select [formControlName]="'category'">
+      <mat-select [formControlName]="'category'" (selectionChange)="updateSubCategories()">
         <mat-option> </mat-option>
         <mat-option *ngFor="let category of getCategories() | async" [value]="category.id">
           {{category.name}}
@@ -24,7 +31,7 @@
 
     <mat-form-field class="col-6 select">
       <mat-label>Tipo</mat-label>
-      <mat-select [formControlName]="'type'">
+      <mat-select [formControlName]="'type'" (selectionChange)="requireOption(this.getFormGroup().get('type')?.value)">
         <mat-option> </mat-option>
         <mat-option *ngFor="let questionType of getQuestionTypes() | async" [value]="questionType.id">
           {{questionType.name}}
@@ -55,31 +62,29 @@
 
 </form>
 
-<div class="row table-container mt-5" *ngIf="this.getFormGroup().get('type')?.value == 1 || this.getFormGroup().get('type')?.value == 2">
+<div class="row table-container mt-5" *ngIf="this.isOption">
   <form >
     <div class="row">
       <div class="col">
         <mat-form-field class="w-full opcionesPregunta">
           <mat-label> Opciones </mat-label>
-          <input  matInput placeholder="Opción" [formControl]="userControl">
+          <input  matInput placeholder="Opción" [formControl]="optionControl">
         </mat-form-field>
       </div>
       <div class="col">
-        <button mat-raised-button class="mat-primary mb-1" style="width: 130px; margin-right: 20px;">Buscar Opcion</button>
-        <button mat-raised-button class="mat-primary mb-1" (click)="createOption(userControl.value)" style="width: 130px;">Agregar Opcion</button>
+        <button mat-raised-button class="mat-primary mb-1" (click)="searchOption()" style="width: 130px; margin-right: 20px;">Buscar Opcion</button>
+        <button mat-raised-button class="mat-primary mb-1" (click)="createOption(optionControl.value)" [disabled]="!this.optionControl.valid" style="width: 130px;">Agregar Opcion</button>
       </div>
     </div>
   </form>
   
-
-
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="getDataSource()">
   
       <!-- Id de la pregunta -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.option}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.optionName}} </td>
       </ng-container>
   
       <!-- Operaciones -->
@@ -90,7 +95,7 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item >
+            <button mat-menu-item (click)="deleteOption(element.option)">
               <mat-icon>delete</mat-icon>
               <span>Borrar</span>
             </button>

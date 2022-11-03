@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BodyComponent } from './components/body/body.component';
 import { LoginComponent } from './components/login/login.component';

@@ -13,10 +13,11 @@
             <div class="col">
                 <div class="form-outline">
                     <label class="create-questionnaire-labels" for="">Estado:</label>
-                    <select class="create-questionnaire-labels" ng-model="questionnaire.status" class="form-control" [formControlName]="'questionnaireState'">
-                        <option value="enable">Habilitado
-                        <option value="disable">Deshabilitado
-                    </select>
+                    <mat-select class="create-questionnaire-labels" ng-model="questionnaire.status" class="form-control" [formControlName]="'questionnaireState'">
+                        <mat-option> </mat-option>
+                        <mat-option [value]="true">Habilitado</mat-option>
+                        <mat-option [value]="false">Deshabilitado</mat-option>
+                    </mat-select>
                 </div>
             </div>
         </div>
@@ -32,11 +33,12 @@
             <div class="col">
                 <div class="form-outline">
                     <label class="create-questionnaire-labels" for="">Tipo:</label>
-                    <select ng-model="questionnaire.type" class="form-control" [formControlName]="'questionnaireType'">
-                        <option value="internal">Interno
-                        <option value="external">Externo
-                        <option value="impersonal">Impersonal
-                    </select>
+                    <mat-select class="create-questionnaire-labels" ng-model="questionnaire.type" class="form-control" [formControlName]="'questionnaireType'">
+                        <mat-option> </mat-option>
+                        <mat-option *ngFor="let questionnaireType of questionnaireTypes | async" [value]="questionnaireType.id">
+                        {{questionnaireType.name}}
+                        </mat-option>
+                    </mat-select>
                 </div>
             </div>
 

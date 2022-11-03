@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Category } from '../models/Category';
+import { MessageDTO } from '../models/DataTranferObjects/MessageDTO';
+import { ResponseDTO } from '../models/DataTranferObjects/ResponseDTO';
 import { SubCategory } from '../models/SubCategory';
 
 @Injectable({
@@ -15,18 +17,18 @@ export class SubcategoryService {
     this.controllerURL = "SubCategory";
   }
   
-  public getSubCategories(categoryId: number) : Observable<SubCategory[]> {
+  public getSubCategories(categoryId: number) : Observable<ResponseDTO<SubCategory[]>> {
     // Configurar los parametros del get
     let params = new HttpParams().set('categoryId', categoryId);
     // Lo que está dentro de los paréntesis es string interpolation
-    return this.httpClient.get<SubCategory[]>(`${environment.apiUrl}/${this.controllerURL}/GetSubCategories`, { params: params });
+    return this.httpClient.get<ResponseDTO<SubCategory[]>>(`${environment.apiUrl}/${this.controllerURL}/GetSubCategories`, { params: params });
   }
 
-  public createSubCategory(subcategory:  SubCategory) : Observable<SubCategory[]> {
-    return this.httpClient.post<SubCategory[]>(`${environment.apiUrl}/${this.controllerURL}/CreateSubCategory`, subcategory);
+  public createSubCategory(subcategory:  SubCategory) : Observable<MessageDTO> {
+    return this.httpClient.post<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/CreateSubCategory`, subcategory);
   }
 
-  public deleteSubCategory(id?: number) : Observable<SubCategory[]> {
-    return this.httpClient.delete<SubCategory[]>(`${environment.apiUrl}/${this.controllerURL}/DeleteSubCategory/${id}`);
+  public deleteSubCategory(id?: number) : Observable<MessageDTO> {
+    return this.httpClient.delete<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/DeleteSubCategory/${id}`);
   }
 }

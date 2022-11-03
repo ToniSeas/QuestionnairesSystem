@@ -1,22 +1,25 @@
 import { Question } from "./Question";
 
 export class Questionnaire{
-  
-  //questions?: Question[];
-  id?: number;
-  type?:String;
-  name?:String;
-  date?: Date;
-  description?: String;
-  state?: String;
 
-  constructor({id,type, name, date, description, state}:{id?: number,type?:String, name?:String, date?:Date, description?: String, state?: String}) {
+  id?: number;
+  idQuestionnaireType?:String;
+  name?:String;
+  creationDate?: Date;
+  expirationDate?: Date;
+  description?: String;
+  isActive?: boolean;
+  questions: Question[] = [];
+
+  constructor({id, idQuestionnaireType, name, expirationDate, description, isActive}:
+    {id?: number, idQuestionnaireType?:String, name?:String, expirationDate?:Date, description?: String, isActive?: boolean}) 
+  {
     this.id=id;
-    this.type=type;
+    this.idQuestionnaireType=idQuestionnaireType;
     this.name=name;
-    this.date=date;
+    this.expirationDate=expirationDate;
     this.description=description;
-    this.state=state;
+    this.isActive=isActive;
   }
     
 }
