@@ -41,7 +41,7 @@ export class QuestionUtil {
 // relacionados a pregunta (tipo de pregunta, pregunta, etc...)
 export class QuestionFactory {
 
-    public questionTypeFactory(key: string, id?: number): QuestionType {
+    public questionTypeFactory(key: string, id?: string): QuestionType {
 
         switch (key) {
             case QuestionUtil.UNIQUE_SELECTION: {
@@ -63,7 +63,7 @@ export class QuestionFactory {
                 return new QuestionType({ id: id, key: key, name: "Abierta" });
             }
             default:
-                return new QuestionType({ id: -1, key: '', name: "" });
+                return new QuestionType({ id: '', key: '', name: "" });
         }
     }
 

@@ -61,7 +61,7 @@ export class CreateStepTwoComponent implements OnInit {
 
   //BORRAR////////////
   public sendQuestionnaire() {
-    this.qService.createQuestionnaire(this.questionnaire!).subscribe((quest) => {});
+    this.qService.createQuestionnaire(this.questionnaire!).subscribe((quest) => {console.log(quest.name)});
   }
   //BORRAR////////////
 

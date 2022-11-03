@@ -39,7 +39,7 @@ namespace CuestionariosAD.Mappings
             builder.Property(c => c.Description)
                 .IsRequired()
                 .HasColumnType("nvarchar(500)")
-            .HasColumnName("decripcion");
+            .HasColumnName("descripcion");
 
             // 1 : N => Cuestionaro : Preguntas
             builder.HasMany(c => c.Questions)

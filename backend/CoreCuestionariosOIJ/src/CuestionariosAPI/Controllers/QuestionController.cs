@@ -28,7 +28,7 @@ namespace CuestionariosAPI.Controllers
         // Peticion tipo GET: api/GetQuestionTypeById
         [HttpGet]
         [Route("GetQuestionTypeById")]
-        public async Task<ActionResult<ResponseDTO<QuestionType>>> GetQuestionTypeById(int idType)
+        public async Task<ActionResult<ResponseDTO<QuestionType>>> GetQuestionTypeById(string idType)
         {
             return await questionRN.GetQuestionTypeById(idType);
         }

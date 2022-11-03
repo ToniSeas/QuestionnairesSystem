@@ -50,12 +50,12 @@ export class QuestionService {
     // POR ESO DEJE ESTOS VALORES QUEMADOS
 
     var types: QuestionType[] = [
-      new QuestionType({ id: 1, name: "Selección Única" }),
-      new QuestionType({ id: 2, name: "Selección Múltiple" }),
-      new QuestionType({ id: 3, name: "Escala" }),
-      new QuestionType({ id: 4, name: "Verdadero o Falso" }),
-      new QuestionType({ id: 5, name: "Abierta" }),
-      new QuestionType({ id: 6, name: "Numérica" })
+      new QuestionType({ id: 'su', name: "Selección Única" }),
+      new QuestionType({ id: 'sm', name: "Selección Múltiple" }),
+      new QuestionType({ id: 'es', name: "Escala" }),
+      new QuestionType({ id: 'vf', name: "Verdadero o Falso" }),
+      new QuestionType({ id: 'rl', name: "Abierta" }),
+      new QuestionType({ id: 'nu', name: "Numérica" })
     ];
 
     var questionType;
