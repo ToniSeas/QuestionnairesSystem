@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Question } from 'src/app/models/Question';
 
 @Component({
@@ -9,10 +10,20 @@ import { Question } from 'src/app/models/Question';
 export class MultipleChoiceQuestionComponent implements OnInit {
 
   question!: Question
-  constructor(changeDetector: ChangeDetectorRef) { }
+  constructor(changeDetector: ChangeDetectorRef) {
+  }
 
 
   ngOnInit(): void {
+  }
+
+  onChange(id: number): void {
+    this.question.options.forEach(element => {
+      if (element.id == id) {
+        element.selected = !element.selected
+      }
+      console.log(element.id + " " + element.selected)
+    });
   }
 
 }
