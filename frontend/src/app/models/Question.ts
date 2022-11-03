@@ -30,4 +30,20 @@ export class Question{
       this.isOptional = isOptional;
     }
 
+
+    validateSelection(): boolean {
+      if (this.isOptional) {
+        return true
+      }
+  
+      let valid = false
+      this.options.forEach(element => {
+        if (element.selected) {
+          valid = true
+        }
+      });
+  
+      return !valid
+    }
+
 }
