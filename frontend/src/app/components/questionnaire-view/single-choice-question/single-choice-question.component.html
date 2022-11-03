@@ -3,7 +3,12 @@
         <h4>{{question.statement}}</h4>
     </div>
     <mat-radio-group [name]="question.id + ''" class="question-options" *ngFor="let element of question.options">
-        <mat-radio-button color="primary" [value]="element.id">{{element.optionName}}</mat-radio-button>
+        <mat-radio-button color="primary" (change)="onChange(element.id!)" [value]="element.id">{{element.optionName}}
+        </mat-radio-button>
         <br>
     </mat-radio-group>
+
+    <p class="error" *ngIf="validateSelection()">
+        Debe seleccionar una opción.
+    </p>
 </div>

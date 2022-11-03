@@ -15,4 +15,27 @@ export class TrueFalseQuestionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onChange(id: number): void {
+    this.question.options.forEach(element => {
+      if (element.id == id) {
+        element.selected = true
+      } else {
+        element.selected = false
+      }
+    });
+  }
+
+  validateSelection(): boolean {
+    if (this.question.isOptional) {
+      return true
+    }
+
+    let valid = false
+    this.question.options.forEach(element => {
+      if (element.selected) {
+        valid = true
+      }
+    });
+    return !valid
+  }
 }
