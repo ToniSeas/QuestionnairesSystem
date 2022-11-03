@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Questionnaire } from 'src/app/models/Questionnaire';
@@ -12,15 +13,18 @@ import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 export class SearchQuestionnaireComponent implements OnInit {
   dateAux: Date = new Date();
 
-  private displayedColumns: string[] = ['title', 'answers','state','operations'];
+  private displayedColumns: string[] = ['title', 'creationDate', 'expirationDate', 'state', 'operations'];
   private dataSource = new MatTableDataSource<Questionnaire>;
+  private searchControl: FormControl;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private questionnaireService: QuestionnaireService) { }
+  constructor(private questionnaireService: QuestionnaireService) { 
+    this.searchControl = new FormControl('');
+  }
 
   ngOnInit(): void {
-    this.questionnaireService.getQuestionnaire().subscribe(
+    this.questionnaireService.getQuestionnaires().subscribe (
       (responseDTO) => {
         this.updateQuestionnaireList(responseDTO.item!)
       }
@@ -32,8 +36,38 @@ export class SearchQuestionnaireComponent implements OnInit {
   public getDataSource(): MatTableDataSource<Questionnaire> {
     return this.dataSource;
   }
+
   public getDisplayedColumns(): string[] {
     return this.displayedColumns;
+  }
+
+  public getQuestionnaireState(isActive: boolean): string {
+    return isActive ? "Habilitado" : "Deshabilitado";
+  }
+
+  // Buscar cuestionario segun el nombre
+  public searchQuestionnaire(): void {
+    var name:string = this.searchControl.value;
+    if (name == null) { name = ''; }
+    if (name.length > 0) {
+      this.questionnaireService.searchQuestionnaire(name).subscribe((responseDto) => {
+        this.updateQuestionnaireList(responseDto.item!);
+      });
+    } else {
+      this.questionnaireService.getQuestionnaires().subscribe((responseDto) => {
+        this.updateQuestionnaireList(responseDto.item!);
+      });
+    }
+  }
+
+  public cleanSearchControl() {
+    this.searchControl.reset();
+  }
+
+  // Este metodo retona la fecha en el siguiente formato: dd/mm/yyyy
+  public getDate(date: Date):string {
+    var dateString = `${date}`.split("T")[0];
+    return dateString;
   }
 
   public updateQuestionnaireList(questionnaires: Questionnaire[]): void {
@@ -44,15 +78,16 @@ export class SearchQuestionnaireComponent implements OnInit {
   public deleteQuestionnaire(idC?: number){
     this.questionnaireService.deleteQuestionnaire(idC).subscribe(
       (messageDTO) => {
-        
+        console.log(messageDTO.message)
       }
     );
 
-    this.questionnaireService.getQuestionnaire().subscribe(
+    this.questionnaireService.getQuestionnaires().subscribe(
       (responseDTO) => {
         this.updateQuestionnaireList(responseDTO.item!);
       }
     )
   }
-
+  
+  public getSearchControl(): FormControl { return this.searchControl };
 }

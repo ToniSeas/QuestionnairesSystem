@@ -20,7 +20,12 @@ namespace CuestionariosRN.BusinessObjects
             return await questionnaireData.GetQuestionnaires();
         }
 
-        public async Task<ActionResult<Questionnaire>> CreateQuestionnaire(Questionnaire questionnaire)
+        public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> SearchQuestionnaires(string name)
+        {
+            return await questionnaireData.SearchQuestionnaires(name);
+        }
+
+        public async Task<ActionResult<MessageDTO>> CreateQuestionnaire(Questionnaire questionnaire)
         {
             return await questionnaireData.CreateQuestionnaire(questionnaire);
         }
