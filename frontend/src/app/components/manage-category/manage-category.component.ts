@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -18,10 +19,14 @@ export class ManageCategoryComponent implements OnInit {
   private createCategoryForm!: FormGroup;
   private displayedColumns: string[] = ['title', 'operations'];
   private dataSource = new MatTableDataSource<Category>;
+  public update: boolean;
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService) { 
+    this.update = false;
+  }
   
   public getFormGroup(): FormGroup { return this.createCategoryForm; }
 
@@ -58,6 +63,7 @@ export class ManageCategoryComponent implements OnInit {
   }
 
   public updateCategoryList(categories: Category[]): void {
+    console.log(categories);
     this.dataSource = new MatTableDataSource<Category>(categories)
     this.dataSource.paginator = this.paginator;
   }
@@ -92,6 +98,13 @@ export class ManageCategoryComponent implements OnInit {
         this.updateCategoryList(responseDTO.item!);
       }
     );
+  }
+
+  public updateCategory(){
+    console.log(this.update);
+    this.update=true;
+    this.updateCategoryList(this.dataSource.data);
+    console.log(this.update);
   }
 
    /**

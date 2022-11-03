@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { Observable, of } from 'rxjs';
 import { User } from '../models/User';
 import { UserToLogin } from '../models/UserToLogin';
@@ -11,7 +10,7 @@ export class UserService {
 
   private tokenId: string;
 
-  constructor(private cookies: CookieService) {
+  constructor() {
     this.tokenId = "token";
   }
 
@@ -68,12 +67,5 @@ export class UserService {
     return false;
   }
 
-  public setToken (token: string) {
-    this.cookies.set(this.tokenId, token)
-  }
-
-  public getToken() {
-    return this.cookies.get(this.tokenId);
-  }
 
 }

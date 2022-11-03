@@ -24,14 +24,14 @@ export class LoginComponent implements OnInit {
   onLogin(): void {
     console.log(this.userName)
     console.log(this.password)
-    this.userService.setToken("Hollallallalalalal");
-
+    //this.userService.setToken("Hollallallalalalal");
+/*
     if (this.userService.isMultiOffice(this.userService.getToken())) {
       this.router.navigateByUrl("/office");
     } else {
       this.router.navigateByUrl("/");  
     }
-    
+*/    
   }
 
 }
