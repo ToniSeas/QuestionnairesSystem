@@ -67,6 +67,11 @@ export class QuestionService {
     });
 
     return new ResponseDTO<QuestionType>({item:questionType});
+
+    // Configurar los parametros del get
+    //let params = new HttpParams().set('idType', idType);
+    // Lo que está dentro de los paréntesis es string interpolation
+    //return this.httpClient.get<ResponseDTO<QuestionType>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionTypeById`, { params: params });
   }
 
   public getOptions(id: number): Observable<Option[]> {

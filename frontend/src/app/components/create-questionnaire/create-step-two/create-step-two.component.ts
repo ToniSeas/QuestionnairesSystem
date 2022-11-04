@@ -5,7 +5,7 @@ import { Question } from "src/app/models/Question";
 import { QuestionService } from "src/app/services/question.service";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { map, Observable, of, startWith } from "rxjs";
+import { firstValueFrom, map, Observable, of, startWith } from "rxjs";
 import { Category } from "src/app/models/Category";
 import { CategoryService } from "src/app/services/category.service";
 import { QuestionType } from "src/app/models/QuestionType";
@@ -81,7 +81,6 @@ export class CreateStepTwoComponent implements OnInit {
   }
 
   public getQuestionTypeById(idType: string): QuestionType {
-    console.log(this.questionService.getQuestionTypeById(idType).item!)
     return this.questionService.getQuestionTypeById(idType).item!;
   }
 
@@ -217,15 +216,7 @@ export class CreateQuestionDialog implements OnInit {
 
   public requireOption(typeId: string): boolean {
     if (typeId != undefined) {
-      var questionType: QuestionType = this.questionService.getQuestionTypeById(typeId).item!
-      //TODO: CAMBIAR EL ATRIBUTO NAME POR EL ATRIBUTO KEY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      //IMPORTANTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-      //IMPORTANTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-      //IMPORTANTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-      //IMPORTANTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-      //CUANDO YA ESTE EN LA BASE DE DATOS
-      var key: string = questionType == undefined || questionType.name == undefined ? "" : questionType.name?.toString();
-      this.isOption = QuestionUtil.requireOption(key);
+      this.isOption = QuestionUtil.requireOption(typeId);
     }
 
     return this.isOption;

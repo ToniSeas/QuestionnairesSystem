@@ -195,15 +195,21 @@ namespace CuestionariosAD.DataAccess
 
         public async Task<ActionResult<ResponseDTO<QuestionType>>> GetQuestionTypeById(string idType)
         {
-            var questionType = _context.QuestionTypes.FirstOrDefault(e => e.Id == idType);
+
+            var questionType = _context.QuestionTypes.FirstOrDefault(e => e.Id!.Equals(idType));
+
             var message = new ResponseDTO<QuestionType>
             {
                 Id = 1,
-                Message = "Test",
-                Item = questionType
+                Message = "Tipo de pregunta obtenida con éxito"
             };
+            if (questionType == null)
+            {
+                message.Id = 0;
+                message.Message = "No existe la categoria que se desea obtener las subcategorias.";
+            }
 
-            return await Task.FromResult(message); ;
+            return await Task.FromResult(message);
         }
     }
 }

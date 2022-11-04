@@ -5,12 +5,12 @@ import { QuestionType } from "../models/QuestionType";
 // y funciones que son de utilidad con lo relacionado a las preguntas
 export class QuestionUtil {
 
-    public static readonly UNIQUE_SELECTION: string = "Selección Única";
-    public static readonly MULTIPLE_SELECTION: string = "Selección Múltiple";
-    public static readonly SCALE: string = "Escala";
-    public static readonly NUMERIC: string = "Numérica";
-    public static readonly TRUE_FALSE: string = "Verdadero o Falso";
-    public static readonly OPENED: string = "Abierta";
+    public static readonly UNIQUE_SELECTION: string = "su";
+    public static readonly MULTIPLE_SELECTION: string = "sm";
+    public static readonly SCALE: string = "es";
+    public static readonly NUMERIC: string = "nu";
+    public static readonly TRUE_FALSE: string = "vf";
+    public static readonly OPENED: string = "rl";
 
     public static requireOption(key: string): boolean {
         switch (key) {
