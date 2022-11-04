@@ -29,4 +29,7 @@ export class CategoryService {
     return this.httpClient.delete<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/DeleteCategory/${id}`);
   } 
 
+  public updateCategory(category: Category): Observable<MessageDTO> {
+    return this.httpClient.put<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/UpdateCategory`,category);
+  } 
 }
