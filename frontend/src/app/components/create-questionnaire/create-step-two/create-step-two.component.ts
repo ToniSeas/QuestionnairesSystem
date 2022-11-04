@@ -81,6 +81,7 @@ export class CreateStepTwoComponent implements OnInit {
   }
 
   public getQuestionTypeById(idType: string): QuestionType {
+    console.log(this.questionService.getQuestionTypeById(idType).item!)
     return this.questionService.getQuestionTypeById(idType).item!;
   }
 

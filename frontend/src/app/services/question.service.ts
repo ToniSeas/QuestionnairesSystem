@@ -60,6 +60,12 @@ export class QuestionService {
 
     var questionType;
 
+    types.forEach(function (value) {
+      if (value.id == idType) {
+        questionType = value;
+      }
+    });
+
     return new ResponseDTO<QuestionType>({item:questionType});
   }
 

@@ -42,17 +42,21 @@ namespace CuestionariosAD.DataAccess
             var dbCategory = await _context.Categories
                 .FirstOrDefaultAsync(e => e.Id == subCategory.IdCategory);
 
-            var message = new MessageDTO();
-
-            if (dbCategory == null)
+            var message = new MessageDTO
             {
-                message.Id = 1;
-                message.Message = "No existe la categoria que se desea obtener las subcategorias.";
-                return await Task.FromResult(message);
+                Id = 1,
+                Message = "SubCategoria creada con éxito"
+            };
+            try
+            {
+                _context.SubCategories.Add(subCategory);
+                await _context.SaveChangesAsync();
             }
-
-            _context.SubCategories.Add(subCategory);
-            await _context.SaveChangesAsync();
+            catch (Exception e)
+            {
+                message.Id = 0;
+                message.Message = "No existe la categoria que se desea obtener las subcategorias.";
+            }
 
             return await Task.FromResult(message);
         }
