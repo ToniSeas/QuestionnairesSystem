@@ -31,4 +31,8 @@ export class SubcategoryService {
   public deleteSubCategory(id?: number) : Observable<MessageDTO> {
     return this.httpClient.delete<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/DeleteSubCategory/${id}`);
   }
+
+  public updateSubCategory(subcategory:  SubCategory): Observable<MessageDTO> {
+    return this.httpClient.put<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/UpdateSubCategory`,subcategory);
+  } 
 }

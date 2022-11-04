@@ -20,17 +20,21 @@ export class ManageSubcategoryComponent implements OnInit {
   private createSubCategoryForm!: FormGroup;
   subCategoryList: SubCategory[] = [];
   categoryList: Category[] = [];
+  subcategoryControl: FormControl = new FormControl("", [Validators.required]);
+  private subCategoriesTemp: SubCategory[] = []
+  private idCategoryTemp: any;
 
   private displayedColumns: string[] = ['title', 'operations'];
   private dataSource = new MatTableDataSource<SubCategory>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private subcategoryService: SubcategoryService, private categoryService: CategoryService) { }
+  constructor(private subcategoryService: SubcategoryService, private categoryService: CategoryService) {
+  }
   public getFormGroup(): FormGroup { return this.createSubCategoryForm; }
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe (
+    this.categoryService.getCategories().subscribe(
       (responseDTO) => {
         this.categoryList = responseDTO.item!;
       }
@@ -57,7 +61,7 @@ export class ManageSubcategoryComponent implements OnInit {
 
   public getSubCategories(): void {
     var categoryId: number = this.getFormGroup().get('categoryF')?.value;
-    this.subcategoryService.getSubCategories(categoryId).subscribe (
+    this.subcategoryService.getSubCategories(categoryId).subscribe(
       (responseDTO) => {
         this.updateSubCategoryList(responseDTO.item!);
       }
@@ -73,20 +77,21 @@ export class ManageSubcategoryComponent implements OnInit {
   }
 
   public updateSubCategoryList(subCategories: SubCategory[]): void {
-    this.dataSource = new MatTableDataSource<SubCategory>(subCategories)
+    this.subCategoriesTemp = subCategories;
+    this.dataSource = new MatTableDataSource<SubCategory>(this.subCategoriesTemp)
     this.dataSource.paginator = this.paginator;
   }
 
   public createSubCategory(subcategory: SubCategory): void {
-    this.subcategoryService.createSubCategory(subcategory).subscribe (
-      (massageDTO) => {
-        
-      }
-    );
-
-    this.subcategoryService.getSubCategories(subcategory.idCategory!).subscribe (
-      (responseDTO) => {
-        this.updateSubCategoryList(responseDTO.item!);
+    this.subcategoryService.createSubCategory(subcategory).subscribe(
+      (messageDTO) => {
+        if (messageDTO.id == 1) {
+          this.subcategoryService.getSubCategories(subcategory.idCategory!).subscribe(
+            (responseDTO) => {
+              this.updateSubCategoryList(responseDTO.item!);
+            }
+          );
+        }
       }
     );
   }
@@ -96,11 +101,67 @@ export class ManageSubcategoryComponent implements OnInit {
   }
 
   public deleteSubCategory(idS?: number) {
-    console.log(idS)
+    for (let i = 0; i < this.subCategoriesTemp.length; i++) {
+      if (this.subCategoriesTemp[i].id == idS) {
+        this.idCategoryTemp = this.subCategoriesTemp[i].idCategory;
+      }
+    }
     this.subcategoryService.deleteSubCategory(idS).subscribe(
-      (result) => this.getSubCategories()
+      (messageDTO) => {
+        if (messageDTO.id == 1) {
+          this.subcategoryService.getSubCategories(this.idCategoryTemp).subscribe(
+            (responseDTO) => {
+              this.updateSubCategoryList(responseDTO.item!);
+            }
+          );
+        }
+      }
     );
 
+  }
+
+  public updateSubCategory(nameC: string, id: number): void {
+    for (let i = 0; i < this.subCategoriesTemp.length; i++) {
+      if (this.subCategoriesTemp[i].id == id) {
+        this.idCategoryTemp = this.subCategoriesTemp[i].idCategory;
+      }
+    }
+    this.subcategoryService.updateSubCategory(new SubCategory({ id: id, name: nameC })).subscribe(
+      (messageDTO) => {
+        if (messageDTO.id == 1) {
+          this.subcategoryService.getSubCategories(this.idCategoryTemp).subscribe(
+            (responseDTO) => {
+              this.updateSubCategoryList(responseDTO.item!);
+            }
+          );
+        }
+      }
+    );
+    this.subcategoryControl.reset();
+  }
+
+  public updateSC(id: number): void {
+    this.subcategoryControl.reset();
+    for (let i = 0; i < this.subCategoriesTemp.length; i++) {
+      if (this.subCategoriesTemp[i].id == id) {
+        this.subCategoriesTemp[i].editable = true;
+      } else {
+        this.subCategoriesTemp[i].editable = false;
+      }
+    }
+    this.dataSource = new MatTableDataSource<Category>(this.subCategoriesTemp)
+    this.dataSource.paginator = this.paginator;
+  }
+
+  public cancelUpdate(id: number): void {
+    for (let i = 0; i < this.subCategoriesTemp.length; i++) {
+      if (this.subCategoriesTemp[i].id == id) {
+        this.subCategoriesTemp[i].editable = false;
+      }
+    }
+    this.dataSource = new MatTableDataSource<SubCategory>(this.subCategoriesTemp)
+    this.dataSource.paginator = this.paginator;
+    this.subcategoryControl.reset();
   }
 
 
