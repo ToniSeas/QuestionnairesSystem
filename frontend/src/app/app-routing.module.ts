@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BodyComponent } from './components/body/body.component';
 import { LoginComponent } from './components/login/login.component';
 import { QuestionnaireMenuComponent } from './components/questionnaire-menu/questionnaire-menu.component';
-import { MaintenanceMenuComponent } from './components/maintenance-menu/maintenance-menu.component'; 
+import { MaintenanceMenuComponent } from './components/maintenance-menu/maintenance-menu.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SelectOfficeComponent } from './components/login/select-office/select-office.component';
 import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
@@ -11,6 +11,7 @@ import { SearchQuestionnaireComponent } from './components/search-questionnaire/
 import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 import { ManageSubcategoryComponent } from './components/manage-subcategory/manage-subcategory.component';
 import { AuthGuard } from './services/auth.guard';
+import { QuestionnaireViewComponent } from './components/questionnaire-view/questionnaire-view.component';
 
 const routes: Routes = [
   {
@@ -73,7 +74,8 @@ const routes: Routes = [
         roles: ["ADMIN", "SADMIN", "REVIEWER"]
       },
     }
-  ,{ path: '**', component: NotFoundPageComponent }
+  , { path: 'questionnaire-view', component: QuestionnaireViewComponent }
+  , { path: '**', component: NotFoundPageComponent }
 ];
 
 @NgModule({

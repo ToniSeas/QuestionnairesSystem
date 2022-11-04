@@ -1,7 +1,5 @@
-import { Category } from "./Category";
+import { Answer } from "./Answer";
 import { Option } from "./Option";
-import { QuestionType } from "./QuestionType";
-import { SubCategory } from "./SubCategory";
 
 
 export class Question{
@@ -15,6 +13,7 @@ export class Question{
   categoryId?: number;
   options: Option[] = [];
   isOptional?: boolean;
+  answers: Answer[] = []
 
   constructor (
     {id, statement, label, position, subcategoryId, categoryId, typeId, isOptional}: 
@@ -29,5 +28,4 @@ export class Question{
       this.typeId = typeId;
       this.isOptional = isOptional;
     }
-
 }

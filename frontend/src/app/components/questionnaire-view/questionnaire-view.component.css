@@ -1,0 +1,11 @@
+.questionnaire-title {
+    text-align: center;
+    align-content: center;
+    margin: 2em;
+}
+
+.questionnaire-description {
+    margin-left: 5em;
+    margin-right: 5em;
+    font-weight: 600;
+}

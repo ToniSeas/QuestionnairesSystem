@@ -5500,11 +5500,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\sojos\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
+>>>>>>> origin/feature/heiner
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
       "projectName": "CuestionariosRN",
       "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
@@ -5513,6 +5518,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sojos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
+      "projectName": "CuestionariosRN",
+      "projectPath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\CuestionariosRN.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosRN\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/feature/heiner
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5526,11 +5541,19 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {
               "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj"
             },
             "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
               "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
+=======
+            "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {
+              "projectPath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj"
+            },
+            "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
+              "projectPath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
+>>>>>>> origin/feature/heiner
             }
           }
         }

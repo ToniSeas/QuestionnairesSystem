@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "sWq09Ni167qmQw8SlJxDKgZpOt5zAs1c+ZX/LBGom/KQSfKnovKcqOvmdoawzerVj3C20EqEZB2CJqcplnNE3w==",
   "success": true,
   "projectFilePath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+=======
+  "dgSpecHash": "ogDbWAgcTgioblCBYKn3XowuEGg7qgL/ZsZ7E2Q4OlEZ05FxyryjeXJK6DUm9zBhw1L1YBF/yJsq2t37ppbB/g==",
+  "success": true,
+  "projectFilePath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+>>>>>>> origin/feature/heiner
   "expectedPackageFiles": [],
   "logs": []
 }

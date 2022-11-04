@@ -1,0 +1,12 @@
+<div class="question-container">
+    <div class="question-statement">
+        <h4>{{question.statement}}</h4>
+    </div>
+    <div class="question-options" *ngFor="let element of question.options">
+        <mat-checkbox (change)="onChange(element.id!)" color="primary">{{element.optionName}}</mat-checkbox>
+    </div>
+    <p class="error" *ngIf="!validateSelection()">
+        Debe seleccionar una opción.
+      </p>
+    
+</div>

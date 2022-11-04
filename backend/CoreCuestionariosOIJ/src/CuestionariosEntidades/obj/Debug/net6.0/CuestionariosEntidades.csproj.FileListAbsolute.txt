@@ -22,3 +22,15 @@ C:\Users\sojos\Documents\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\Cuest
 C:\Users\sojos\Documents\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\refint\CuestionariosEntidades.dll
 C:\Users\sojos\Documents\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\CuestionariosEntidades.pdb
 C:\Users\sojos\Documents\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\ref\CuestionariosEntidades.dll
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\bin\Debug\net6.0\CuestionariosEntidades.deps.json
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\bin\Debug\net6.0\CuestionariosEntidades.dll
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\bin\Debug\net6.0\CuestionariosEntidades.pdb
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\CuestionariosEntidades.csproj.AssemblyReference.cache
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\CuestionariosEntidades.GeneratedMSBuildEditorConfig.editorconfig
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\CuestionariosEntidades.AssemblyInfoInputs.cache
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\CuestionariosEntidades.AssemblyInfo.cs
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\CuestionariosEntidades.csproj.CoreCompileInputs.cache
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\CuestionariosEntidades.dll
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\refint\CuestionariosEntidades.dll
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\CuestionariosEntidades.pdb
+E:\CuestionariosOIJ\backend\CoreCuestionariosOIJ\src\CuestionariosEntidades\obj\Debug\net6.0\ref\CuestionariosEntidades.dll

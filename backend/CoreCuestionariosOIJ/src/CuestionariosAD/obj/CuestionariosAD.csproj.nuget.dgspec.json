@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sojos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {}
+  },
+  "projects": {
+    "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj",
+        "projectName": "CuestionariosAD",
+        "projectPath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\CuestionariosAD.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosAD\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/feature/heiner
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +45,13 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
                 "projectPath": "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
+=======
+              "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
+                "projectPath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj"
+>>>>>>> origin/feature/heiner
               }
             }
           }
@@ -87,6 +109,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\sojos\\Documents\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -98,6 +121,19 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sojos\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+        "projectName": "CuestionariosEntidades",
+        "projectPath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/feature/heiner
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

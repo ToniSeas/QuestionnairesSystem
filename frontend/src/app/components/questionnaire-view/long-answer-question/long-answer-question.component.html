@@ -1,0 +1,12 @@
+<div class="question-container">
+    <div class="question-statement">
+        <h4>{{question.statement}}</h4>
+    </div>
+    <mat-form-field  appearance="fill">
+        <mat-label>Respuesta</mat-label>
+        <textarea (input)="this.updateAnswer()" [formControl]="areaControl" matInput></textarea>
+    </mat-form-field>
+    <p class="error" *ngIf="!validateSelection()">
+        Debe ingresar una respuesta
+      </p>
+</div>

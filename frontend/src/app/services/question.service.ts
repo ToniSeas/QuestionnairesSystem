@@ -13,9 +13,7 @@ import { QuestionUtil } from '../util/QuestionUtil';
 })
 export class QuestionService {
 
-  // TODO: BORRAR ESTE ARREGLO
-  questionList: Question[] = [];
-
+  questionList: Question[] = []
   private controllerURL: string;
   constructor(private httpClient: HttpClient) {
     this.controllerURL = "Question";
@@ -61,12 +59,6 @@ export class QuestionService {
     ];
 
     var questionType;
-
-    types.forEach(function (value) {
-      if (value.id == idType) {
-        questionType = value;
-      }
-    });
 
     return new ResponseDTO<QuestionType>({item:questionType});
   }
