@@ -21,6 +21,11 @@ namespace CuestionariosRN.BusinessObjects
             return await questionnaireData.GetQuestionnaires();
         }
 
+        public async Task<ActionResult<ResponseDTO<Questionnaire>>> GetQuestionnaireById(int questionnaireId)
+        {
+            return await questionnaireData.GetQuestionnaireById(questionnaireId);
+        }
+
         public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> SearchQuestionnaires(string name)
         {
             return await questionnaireData.SearchQuestionnaires(name);

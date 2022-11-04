@@ -12,6 +12,7 @@ import { ManageCategoryComponent } from './components/manage-category/manage-cat
 import { ManageSubcategoryComponent } from './components/manage-subcategory/manage-subcategory.component';
 import { AuthGuard } from './services/auth.guard';
 import { QuestionnaireViewComponent } from './components/questionnaire-view/questionnaire-view.component';
+import { SharedRouterComponent } from './components/shared-router/shared-router.component';
 
 const routes: Routes = [
   {
@@ -74,8 +75,32 @@ const routes: Routes = [
         roles: ["ADMIN", "SADMIN", "REVIEWER"]
       },
     }
-  , { path: 'questionnaire-view', component: QuestionnaireViewComponent }
-  , { path: '**', component: NotFoundPageComponent }
+  ,{ path: 'questionnaire-view'
+    ,component: QuestionnaireViewComponent 
+    , children: [
+      { path: '**', 
+        component: QuestionnaireViewComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ["ADMIN", "SADMIN", "REVIEWER"]
+        },
+      }
+    ]
+  }
+  ,{ path: 'link'
+      , component: SharedRouterComponent
+      , children: [
+        { path: '**', 
+          component: SharedRouterComponent,
+          canActivate: [AuthGuard],
+          data: {
+            roles: ["ADMIN", "SADMIN", "REVIEWER"]
+          },
+        }
+      ]
+    }
+  ,{ path: 'link/**', component: SharedRouterComponent }
+  ,{ path: '**', component: NotFoundPageComponent }
 ];
 
 @NgModule({

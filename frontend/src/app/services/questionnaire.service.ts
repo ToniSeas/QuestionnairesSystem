@@ -24,6 +24,15 @@ export class QuestionnaireService {
     return this.httpClient.get<ResponseDTO<Questionnaire[]>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionnaires`);
   }
 
+  public getQuestionnaireById(questionnaireId: number) : Observable<ResponseDTO<Questionnaire>> {
+    // Configurar los parametros del get
+    let params = new HttpParams().set('questionnaireId', questionnaireId);
+    // Lo que está dentro de los paréntesis es string interpolation
+    return this.httpClient.get<ResponseDTO<Questionnaire>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionnaireById`, { params: params });
+  }
+
+
+
   public createQuestionnaire(questionnaire: Questionnaire) : Observable<MessageDTO> {
     return this.httpClient.post<Questionnaire>(`${environment.apiUrl}/${this.controllerURL}/CreateQuestionnaire`, questionnaire);
   }
@@ -39,13 +48,13 @@ export class QuestionnaireService {
     return this.httpClient.get<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/SearchQuestionnaires`, { params: params });
   }
 
-  public getQuestionnaireTypes() : Observable<QuestionnaireType[]> {
+  public getQuestionnaireTypes() : Observable<ResponseDTO<QuestionnaireType[]>> {
     var types: QuestionnaireType[] = [];
     types.push(new QuestionnaireType({id:1, name:"Interno"}))
     types.push(new QuestionnaireType({id:2, name:"Externo"}))
     types.push(new QuestionnaireType({id:3, name:"Impersonal"}))
 
-    return of(types);
+    return of(new ResponseDTO<QuestionnaireType[]>({id:1 , item:types}));
   }
 
   public commitAnswers(questionnaire: Questionnaire): Observable<ResponseDTO<MessageDTO>> {

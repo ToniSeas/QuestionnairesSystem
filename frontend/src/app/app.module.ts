@@ -40,6 +40,8 @@ import { ScaleQuestionComponent } from './components/questionnaire-view/scale-qu
 import { SingleChoiceQuestionComponent } from './components/questionnaire-view/single-choice-question/single-choice-question.component';
 import {MatRadioModule} from '@angular/material/radio'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SharedRouterComponent } from './components/shared-router/shared-router.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     TrueFalseQuestionComponent,
     LongAnswerQuestionComponent,
     ScaleQuestionComponent,
-    SingleChoiceQuestionComponent
+    SingleChoiceQuestionComponent,
+    SharedRouterComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ReactiveFormsModule,
     HttpClientModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

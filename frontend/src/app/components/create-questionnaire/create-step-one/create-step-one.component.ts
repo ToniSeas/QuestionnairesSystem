@@ -33,7 +33,7 @@ export class CreateStepOneComponent implements OnInit {
     })
 
     this.questionnaireService.getQuestionnaireTypes().subscribe(
-      (questionnaireTypes) => this.questionnaireTypes = of(questionnaireTypes)
+      (responseDto) => this.questionnaireTypes = of(responseDto.item!)
     );
   }
 

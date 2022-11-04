@@ -30,6 +30,28 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(response);
         }
 
+        public async Task<ActionResult<ResponseDTO<Questionnaire>>> GetQuestionnaireById(int questionnaireId)
+        {
+            var dbQuestionnaire = await _context.Questionnaires
+                .FirstOrDefaultAsync(e => e.Id == questionnaireId);
+
+            var message = new ResponseDTO<Questionnaire>();
+
+            if (dbQuestionnaire == null)
+            {
+                message.Id = 0;
+                message.Message = "No existe el cuestionario que se desea obtener las subcategorias.";
+                return await Task.FromResult(message);
+            }
+            else {
+                message.Id = 1;
+                message.Item = dbQuestionnaire;
+            }
+
+            return await Task.FromResult(message);
+
+        }
+
         public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> SearchQuestionnaires(string name)
         {
             var questionnaires = _context.Questionnaires.Where(x => x.Name!.Contains(name)).ToList();
