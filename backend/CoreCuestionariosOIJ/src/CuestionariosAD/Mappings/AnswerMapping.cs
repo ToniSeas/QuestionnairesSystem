@@ -14,6 +14,7 @@ namespace CuestionariosAD.Mappings
             builder.Property(c => c.Date)
                 .IsRequired()
                 .HasColumnType("datetime")
+                .HasDefaultValueSql("getdate()")
             .HasColumnName("fecha");
 
             builder.Property(c => c.QuestionId)

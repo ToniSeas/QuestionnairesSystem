@@ -108,5 +108,33 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(message);
         }
 
+        public async Task<ActionResult<MessageDTO>> CommitQuestionnaireAnswers(Questionnaire questionnaire)
+        {
+            var message = new MessageDTO
+            {
+                Id = 1,
+                Message = "Respuestas ingresadas con éxito creado con éxito"
+            };
+            try
+            {
+                foreach (Question question in questionnaire.Questions!)
+                {
+                    foreach (Answer answer in question.Answers!)
+                    {
+                        answer.QuestionId = question.Id;
+                        _context.Answers.Add(answer);
+                    }
+                }
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                message.Id = 0;
+                message.Message = e.ToString();
+            }
+
+            return await Task.FromResult(message);
+        }
+
     }
 }

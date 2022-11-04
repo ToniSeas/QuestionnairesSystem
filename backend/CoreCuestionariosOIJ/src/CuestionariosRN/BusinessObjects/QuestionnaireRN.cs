@@ -2,6 +2,7 @@
 using CuestionariosEntidades.DataTranferObjects;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CuestionariosRN.BusinessObjects
 {
@@ -38,6 +39,11 @@ namespace CuestionariosRN.BusinessObjects
         {
             return await questionnaireData.DeleteQuestionnaire(id);
         }
-        
+
+        public async Task<ActionResult<MessageDTO>> CommitQuestionnaireAnswers(Questionnaire questionnaire)
+        {
+            return await questionnaireData.CommitQuestionnaireAnswers(questionnaire);
+        }
+
     }
 }

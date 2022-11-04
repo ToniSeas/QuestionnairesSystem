@@ -53,6 +53,13 @@ namespace CuestionariosAPI.Controllers
         {
             return await questionnaireRN.DeleteQuestionnaire(id);
         }
-        
+
+        [HttpPost]
+        [Route("CommitQuestionnaireAnswers")]
+        public async Task<ActionResult<MessageDTO>> CommitQuestionnaireAnswers(Questionnaire questionnaire)
+        {
+            return await questionnaireRN.CommitQuestionnaireAnswers(questionnaire);
+        }
+
     }
 }
