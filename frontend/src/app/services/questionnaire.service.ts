@@ -48,4 +48,9 @@ export class QuestionnaireService {
     return of(types);
   }
 
+  public commitAnswers(questionnaire: Questionnaire): Observable<ResponseDTO<MessageDTO>> {
+    // Lo que está dentro de los paréntesis es string interpolation
+    return this.httpClient.post<ResponseDTO<MessageDTO>>(`${environment.apiUrl}/${this.controllerURL}/commitQuestionnaireAnswers`, questionnaire);
+  }
+
 }
