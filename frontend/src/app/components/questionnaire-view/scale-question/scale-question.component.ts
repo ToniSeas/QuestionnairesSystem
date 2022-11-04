@@ -18,26 +18,19 @@ export class ScaleQuestionComponent implements OnInit {
   onChange(id: number): void {
     this.question.options.forEach(element => {
       if (element.id == id) {
-        element.selected = true
-      } else {
-        element.selected = false
+          let tempAnswer = this.question.answers[0]
+          let index = tempAnswer.options.indexOf(element)
+          if (index > -1) {
+            tempAnswer.options.splice(index, 1)
+          } else {
+            tempAnswer.options.push(element)
+          }
       }
     });
   }
-
+ 
   validateSelection(): boolean {
-    if (this.question.isOptional) {
-      return true
-    }
-
-    let valid = false
-    this.question.options.forEach(element => {
-      if (element.selected) {
-        valid = true
-      }
-    });
-
-    return !valid
+    return (this.question.answers[0].options.length > 0) || this.question.isOptional!
   }
 
 }

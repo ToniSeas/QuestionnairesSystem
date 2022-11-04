@@ -18,4 +18,12 @@ export class LongAnswerQuestionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  updateAnswer(): void {
+    this.question.answers[0].answerText = this.areaControl.value
+  }
+ 
+  validateSelection(): boolean {
+    return (this.question.answers[0].answerText!.length > 0) || this.question.isOptional!
+  }
+
 }

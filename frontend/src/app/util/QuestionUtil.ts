@@ -1,15 +1,16 @@
+import { Question } from "../models/Question";
 import { QuestionType } from "../models/QuestionType";
 
 // Esta clase es la principal, aqui se encontraran las constantes
 // y funciones que son de utilidad con lo relacionado a las preguntas
 export class QuestionUtil {
 
-    public static readonly UNIQUE_SELECTION:string = "Selección Única";
-    public static readonly MULTIPLE_SELECTION:string = "Selección Múltiple";
-    public static readonly SCALE:string = "Escala";
-    public static readonly NUMERIC:string = "Numérica";
-    public static readonly TRUE_FALSE:string = "Verdadero o Falso";
-    public static readonly OPENED:string = "Abierta";
+    public static readonly UNIQUE_SELECTION: string = "Selección Única";
+    public static readonly MULTIPLE_SELECTION: string = "Selección Múltiple";
+    public static readonly SCALE: string = "Escala";
+    public static readonly NUMERIC: string = "Numérica";
+    public static readonly TRUE_FALSE: string = "Verdadero o Falso";
+    public static readonly OPENED: string = "Abierta";
 
     public static requireOption(key: string): boolean {
         switch (key) {
@@ -34,6 +35,42 @@ export class QuestionUtil {
             default:
                 return false;
         }
+    }
+
+
+    /**
+     * Este método valida si a una pregunta se le dió respuesta. Si la pregunta
+     * es opcional el método retorna verdadero ya que es irrelevante si tiene respuesta o no.
+     * @param question La pregunta por validar
+     * @returns verdadero si la respuesta de la pregunta es válida.
+     */
+    public static validateAnsweredQuestion(question: Question): boolean {
+        if (question.isOptional) {
+            return true
+        }
+        if (question.answers.length > 0) {
+            switch (question.typeId) {
+                case 'su':
+                    return question.answers[0].options.length > 0 || question.isOptional!
+                    break;
+                case 'sm':
+                    return question.answers[0].options.length > 0 || question.isOptional!
+                    break;
+                case 'rl':
+                    return question.answers[0].answerText!.length > 0 || question.isOptional!
+                    break;
+                case 'vf':
+                    return question.answers[0].options.length > 0 || question.isOptional!
+                    break;
+                case 'es':
+                    return question.answers[0].options.length > 0 || question.isOptional!
+                    break;
+                default:
+                    console.log("Default")
+                    break;
+            }
+        }
+        return false
     }
 }
 

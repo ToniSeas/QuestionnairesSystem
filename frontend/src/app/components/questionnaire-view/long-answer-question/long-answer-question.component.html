@@ -4,6 +4,9 @@
     </div>
     <mat-form-field  appearance="fill">
         <mat-label>Respuesta</mat-label>
-        <textarea [formControl]="areaControl" [required]="!question.isOptional" matInput></textarea>
+        <textarea (input)="this.updateAnswer()" [formControl]="areaControl" matInput></textarea>
     </mat-form-field>
+    <p class="error" *ngIf="!validateSelection()">
+        Debe ingresar una respuesta
+      </p>
 </div>

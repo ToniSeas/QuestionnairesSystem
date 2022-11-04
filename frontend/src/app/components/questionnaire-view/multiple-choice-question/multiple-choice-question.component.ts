@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Answer } from 'src/app/models/Answer';
 import { Question } from 'src/app/models/Question';
 
 @Component({
@@ -11,14 +12,7 @@ export class MultipleChoiceQuestionComponent implements OnInit {
 
   question!: Question
 
-  optionsFormGroup!: FormGroup
-
-  constructor(changeDetector: ChangeDetectorRef, private formBuilder: FormBuilder) {
-    this.optionsFormGroup = this.formBuilder.group(
-      {
-        optionsFormControl: this.formBuilder.array ([], [Validators.required])   
-      }
-    )
+  constructor(changeDetector: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -27,27 +21,18 @@ export class MultipleChoiceQuestionComponent implements OnInit {
   onChange(id: number): void {
     this.question.options.forEach(element => {
       if (element.id == id) {
-        element.selected = !element.selected
+          let tempAnswer = this.question.answers[0]
+          let index = tempAnswer.options.indexOf(element)
+          if (index > -1) {
+            tempAnswer.options.splice(index, 1)
+          } else {
+            tempAnswer.options.push(element)
+          }
       }
     });
   }
-
-
+ 
   validateSelection(): boolean {
-    if (this.question.isOptional) {
-      return true
-    }
-
-    let valid = false
-    this.question.options.forEach(element => {
-      if (element.selected) {
-        valid = true
-      }
-    });
-
-    return !valid
+    return (this.question.answers[0].options.length > 0) || this.question.isOptional!
   }
-
-
-
 }
