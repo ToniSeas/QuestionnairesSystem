@@ -20,6 +20,5 @@ export class Questionnaire{
     this.expirationDate=expirationDate;
     this.description=description;
     this.isActive=isActive;
-  }
-    
+  }    
 }

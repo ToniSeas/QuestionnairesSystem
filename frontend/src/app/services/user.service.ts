@@ -8,7 +8,14 @@ import { UserToLogin } from '../models/UserToLogin';
 })
 export class UserService {
 
-  constructor() { }
+  private isLogin:boolean;
+  private roleAs:string;
+  constructor() { 
+    this.isLogin = false;
+    this.roleAs = '';
+    this.login('SADMIN');
+    //this.logout();
+  }
 
   users: User[] = [
     new User(
@@ -44,6 +51,35 @@ export class UserService {
     return of(userList)
   }
 
+  public logout() {
+    this.isLogin = false;
+    this.roleAs = '';
+    localStorage.setItem('STATE', 'false');
+    localStorage.setItem('ROLE', '');
+    return of({ success: this.isLogin, role: '' });
+  }
+
+  public login(value:string) {
+    this.isLogin = true;
+    this.roleAs = value;
+    localStorage.setItem('STATE', 'true');
+    localStorage.setItem('ROLE', this.roleAs);
+    return of({success: this.isLogin,  role: this.roleAs})
+  }
+
+  public isLoggedIn() {
+    const loggedIn = localStorage.getItem('STATE');
+    if (loggedIn == 'true')
+      this.isLogin = true;
+    else
+      this.isLogin = false;
+    return this.isLogin;
+  }
+
+  public getRole() {
+    this.roleAs = localStorage.getItem('ROLE')!;
+    return this.roleAs;
+  }
   // Los que tienen permisos de realizar cualquier acción en el sistema. 
   isSysAdmin() {
     return true;
