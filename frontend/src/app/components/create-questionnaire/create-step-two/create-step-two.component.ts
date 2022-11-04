@@ -140,7 +140,8 @@ export class CreateQuestionDialog implements OnInit {
 
   // Modelos necesarios para la creacion de las preguntas
   question: Question;
-  optionControl: FormControl = new FormControl("", [Validators.required]);
+  optionCreateControl: FormControl = new FormControl("", [Validators.required]);
+  optionUpdateControl: FormControl = new FormControl("", [Validators.required]); 
   // Listas de objetos
   private questionTypes: Observable<QuestionType[]>;
   private categories: Observable<Category[]>;
@@ -154,6 +155,7 @@ export class CreateQuestionDialog implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
   public isOption: boolean;
+  public nombreVariable: string;
   // Inicializacion de los atributos
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionDialog>,
@@ -161,7 +163,7 @@ export class CreateQuestionDialog implements OnInit {
     private categoryService: CategoryService,
     private subCategoryService: SubcategoryService,
   ) {
-
+    this.nombreVariable ='';
     this.isOption = false;
     this.question = new Question({});
     this.questionTypes = new Observable<QuestionType[]>();
@@ -257,7 +259,7 @@ export class CreateQuestionDialog implements OnInit {
   }
 
   public createOption(optionQ: string): void {
-    if (this.optionControl.valid) {
+    if (this.optionCreateControl.valid) {
       this.question.options.push(new Option({ optionName: optionQ }));
       this.updateDataSource(this.question.options);
       this.cleanOptionControl();
@@ -271,7 +273,7 @@ export class CreateQuestionDialog implements OnInit {
     var tempQuestionList: Option[] = []
 
     // Se obtiene el valor del input de busqueda
-    const searchValue: string = this.optionControl.value;
+    const searchValue: string = this.optionCreateControl.value;
 
     // Se recorre la lista de preguntas locales
     this.question.options.forEach(function (option) {
@@ -291,12 +293,52 @@ export class CreateQuestionDialog implements OnInit {
     const indexOfQuestion = this.question.options.findIndex((object) => {
       return object.optionName === option;
     });
+    
     // Si el index es diferente a -1 entonces se elimina de la lista
     if (indexOfQuestion != -1) {
       this.question.options.splice(indexOfQuestion, 1);
     }
     // Se actualiza el datasource de la tabla
     this.updateDataSource(this.question.options);
+  }
+
+  public updateOption(option: string){
+    this.optionUpdateControl.setValue(option);
+    for (let i = 0; i < this.question.options.length; i++) {
+      this.question.options[i].editable=false;
+    }
+    //esto busca cual es el opcion y le cambia la variable editable
+    const indexOfQuestion = this.question.options.findIndex((object) => {
+      return object.optionName === option;
+    });
+    this.question.options[indexOfQuestion].editable=true;
+  }
+
+  public updateOptionConfirm (option: string,optionQ: string){
+    // Se obtiene el index de la opcion a la que el corresponde el id
+    const indexOfQuestion = this.question.options.findIndex((object) => {
+      return object.optionName === option;
+    });
+    
+    // Si el index es diferente a -1 entonces se actualiza de la lista
+    if (indexOfQuestion != -1) {
+      this.question.options.splice(indexOfQuestion, 1, new Option({ optionName: optionQ }));
+    }
+    // Se actualiza el datasource de la tabla
+    this.updateDataSource(this.question.options);
+
+    //esto busca cual es el opcion y le cambia la variable editable
+    this.question.options[indexOfQuestion].editable=false;
+    this.cleanOptionControl();
+  }
+
+  public updateOptionCancel (option: string){
+    //esto busca cual es el opcion y le cambia la variable editable
+    const indexOfQuestion = this.question.options.findIndex((object) => {
+      return object.optionName === option;
+    });
+    this.question.options[indexOfQuestion].editable=false;
+    this.cleanOptionControl();
   }
 
   // Con este metodo se actualizan los valores datasource de la tabla
@@ -306,7 +348,8 @@ export class CreateQuestionDialog implements OnInit {
   }
 
   public cleanOptionControl() {
-    this.optionControl.reset();
+    this.optionCreateControl.reset();
+    this.optionUpdateControl.reset();
   }
 
   // Metodos Get
