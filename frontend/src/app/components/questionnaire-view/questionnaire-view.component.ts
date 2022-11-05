@@ -1,9 +1,11 @@
 import { ChangeDetectorRef, Component, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { single } from 'rxjs';
 import { Answer } from 'src/app/models/Answer';
 import { Option } from 'src/app/models/Option';
 import { Question } from 'src/app/models/Question';
 import { Questionnaire } from 'src/app/models/Questionnaire';
+import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { QuestionUtil } from 'src/app/util/QuestionUtil';
 import { LongAnswerQuestionComponent } from './long-answer-question/long-answer-question.component';
 import { MultipleChoiceQuestionComponent } from './multiple-choice-question/multiple-choice-question.component';
@@ -25,28 +27,28 @@ export class QuestionnaireViewComponent implements OnInit {
   questionnaire?: Questionnaire
   questionComponentRefs: ComponentRef<any>[] = []
 
-  constructor() {
+ 
+  constructor(private questionnaireService: QuestionnaireService, private router: Router) {
 
     this.questionnaire = new Questionnaire({})
-    this.questionnaire.id = 0;
-    this.questionnaire.description = "Este es el cuestionario de pruebas utilizado durante el desarrollo del sistema de cuestionarios."
-    this.questionnaire.name = "Cuestionario de pruebas"
-    let number = 0
-    let question
-
-    this.questionnaire.sortQuestions()
   }
 
 
   ngOnInit(): void {
-  }
+    let url = this.router.url.replace("/questionnaire-view/", "")
 
-  ngAfterViewInit() {
-    this.questionnaire?.questions.forEach(element => {
-      this.loadQuestion(element)
-    });
-  }
+    this.questionnaireService.getQuestionnaireById((Number)(url)).subscribe(
+      (responseDTO) => {
+        this.questionnaire = responseDTO.item!
+        this.questionnaire.sortQuestions()
+        
+        this.questionnaire?.questions.forEach(element => {
+          this.loadQuestion(element)
+        });
 
+      }
+    )
+  }
 
   loadQuestion(question: Question): void {
     question.answers.push(new Answer())
@@ -84,13 +86,6 @@ export class QuestionnaireViewComponent implements OnInit {
         break;
     }
   }
-
-  randomNumber(min: number, max: number): number {
-    let localMin: number = Math.ceil(min);
-    let localMax: number = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
 
   areAllRequiredQuestionsAnswered(): boolean {
     let allQuestionsAnswered = true
