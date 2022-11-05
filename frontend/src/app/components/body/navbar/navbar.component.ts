@@ -24,8 +24,4 @@ export class NavbarComponent implements OnInit {
     return this.userService.isLoggedIn();
   }
 
-  public goToMain() {
-    this.router.navigate(["/"]);
-  }
-
 }

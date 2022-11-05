@@ -44,7 +44,7 @@ const routes: Routes = [
         component: CreateQuestionnaireComponent,
         canActivate: [AuthGuard],
         data: {
-          roles: ["ADMIN", "SADMIN", "REVIEWER"]
+          roles: ["ADMIN", "SADMIN"]
         },
       }
       , {

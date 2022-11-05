@@ -51,7 +51,6 @@ export class ManageCategoryComponent implements OnInit {
       this.createCategory(name);
       this.createCategoryForm.reset();
     }
-
   }
 
   public getDataSource(): MatTableDataSource<Category> {

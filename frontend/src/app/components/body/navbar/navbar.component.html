@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar">
-        <div (click)="goToMain()" class="logo"><img [src]="logoImgPath" width="50px" height="50px"> Sistema de Cuestionarios</div>
+        <div class="logo"><img [src]="logoImgPath" width="50px" height="50px"> Sistema de Cuestionarios</div>
         <button *ngIf="this.isUserLogged()" class="logout-btn" (click)="this.logOut()" mat-icon-button color="primary" aria-label="Cerrar Sesión">
             <mat-icon>logout</mat-icon>
         </button>
