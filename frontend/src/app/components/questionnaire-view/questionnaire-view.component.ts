@@ -39,18 +39,17 @@ export class QuestionnaireViewComponent implements OnInit {
 
     this.questionnaireService.getQuestionnaireById((Number)(url)).subscribe(
       (responseDTO) => {
-        this.questionnaire = responseDTO.item!
+        this.questionnaire = Object.assign(new Questionnaire({}), responseDTO.item!)
         this.questionnaire.sortQuestions()
-        
         this.questionnaire?.questions.forEach(element => {
           this.loadQuestion(element)
         });
-
       }
     )
   }
 
   loadQuestion(question: Question): void {
+    question.answers = []
     question.answers.push(new Answer())
 
     switch (question.typeId) {
