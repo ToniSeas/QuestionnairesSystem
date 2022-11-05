@@ -34,51 +34,6 @@ export class QuestionnaireViewComponent implements OnInit {
     let number = 0
     let question
 
-    //selección única
-    question = new Question({ categoryId: -1, id: number, isOptional: false, position: this.randomNumber(0, 1000000), statement: `Pregunta ${number}`, typeId: 'su' })
-    question.options.push(new Option({ id: 1, optionName: 'opcion A', idQuestion: number, idQuestionType: 'su' }))
-    question.options.push(new Option({ id: 2, optionName: 'opcion B', idQuestion: number, idQuestionType: 'su' }))
-    question.options.push(new Option({ id: 3, optionName: 'opcion C', idQuestion: number, idQuestionType: 'su' }))
-    question.options.push(new Option({ id: 4, optionName: 'opcion D', idQuestion: number, idQuestionType: 'su' }))
-    this.questionnaire.questions.push(question)
-    number++
-
-    //selección múltiple
-    question = new Question({ categoryId: -1, id: number, isOptional: false, position: this.randomNumber(0, 1000000), statement: `Pregunta ${number}`, typeId: 'sm' })
-    question.options.push(new Option({ id: 1, optionName: 'opcion A', idQuestion: number, idQuestionType: 'sm' }))
-    question.options.push(new Option({ id: 2, optionName: 'opcion B', idQuestion: number, idQuestionType: 'sm' }))
-    question.options.push(new Option({ id: 3, optionName: 'opcion C', idQuestion: number, idQuestionType: 'sm' }))
-    question.options.push(new Option({ id: 4, optionName: 'opcion D', idQuestion: number, idQuestionType: 'sm' }))
-    this.questionnaire.questions.push(question)
-    number++
-
-    //Respuesta larga
-    question = new Question({ categoryId: -1, id: number, isOptional: false, position: this.randomNumber(0, 1000000), statement: `Pregunta ${number}`, typeId: 'rl' })
-    this.questionnaire.questions.push(question)
-    number++
-
-    //verdadero o falseo
-    question = new Question({ categoryId: -1, id: number, isOptional: false, position: this.randomNumber(0, 1000000), statement: `Pregunta ${number}`, typeId: 'vf' })
-    question.options.push(new Option({ id: 1, optionName: 'Verdadero', idQuestion: number, idQuestionType: 'vf' }))
-    question.options.push(new Option({ id: 2, optionName: 'Falso', idQuestion: number, idQuestionType: 'vf' }))
-    this.questionnaire.questions.push(question)
-    number++
-
-    //escala
-    question = new Question({ categoryId: -1, id: number, isOptional: false, position: this.randomNumber(0, 1000000), statement: `Pregunta ${number}`, typeId: 'es' })
-    question.options.push(new Option({ id: 1, optionName: 'Muy malo', idQuestion: number, idQuestionType: 'es' }))
-    question.options.push(new Option({ id: 2, optionName: 'Malo', idQuestion: number, idQuestionType: 'es' }))
-    question.options.push(new Option({ id: 3, optionName: 'Regular', idQuestion: number, idQuestionType: 'es' }))
-    question.options.push(new Option({ id: 4, optionName: 'Bueno', idQuestion: number, idQuestionType: 'es' }))
-    question.options.push(new Option({ id: 4, optionName: 'Muy Bueno', idQuestion: number, idQuestionType: 'es' }))
-    this.questionnaire.questions.push(question)
-    number++
-
-    //numérica
-    //question = new Question({ categoryId: -1, id: number, isOptional: false, position: this.randomNumber(0, 1000000), statement: `Pregunta ${number}`, typeId: 'nu' })
-    //this.questionnaire.questions.push(question)
-    //number++
-
     this.questionnaire.sortQuestions()
   }
 
