@@ -8,10 +8,10 @@ namespace CuestionariosEntidades.Models
 {
     public class Option
     {
-        public int Id { get; set; }
-        public string OptionName { get; set; } = string.Empty;
-        public int IdQuestion { get; set; }
-        public string IdQuestionType { get; set; } = string.Empty;
+        public int? Id { get; set; }
+        public string? OptionName { get; set; } = string.Empty;
+        public int? IdQuestion { get; set; }
+        public string? IdQuestionType { get; set; } = string.Empty;
 
         // EF Relation
         public IEnumerable<Answer>? Answers { get; set; }

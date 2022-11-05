@@ -17,9 +17,8 @@ namespace CuestionariosAD.Mappings
             .HasColumnName("opcion");
 
             builder.Property(c => c.IdQuestion)
-                .IsRequired()
                 .HasColumnType("int")
-            .HasColumnName("idPregunta");
+            .HasColumnName("idPregunta"); 
 
             builder.Property(c => c.IdQuestionType)
                 .IsRequired()
@@ -30,6 +29,7 @@ namespace CuestionariosAD.Mappings
             builder.HasMany(c => c.Answers)
                 .WithMany(b => b.Options)
                 .UsingEntity(j => j.ToTable("tb_respuesta_opcion"));
+            
 
             builder.ToTable("tb_opcion");
         }
