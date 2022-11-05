@@ -95,6 +95,8 @@
     </mat-paginator>
 </div>
 
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <button type="button" class="btn me-md-2 btn-back">Volver</button>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
+    <button type="button" (click)="goBack()" class="btn me-md-2 btn-back">Volver</button>
+    <button type="button" (click)="goForward()" class="btn me-md-2 btn-back">Siguiente</button>
 </div>
+  

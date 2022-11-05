@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { MessageDTO } from '../models/DataTranferObjects/MessageDTO';
+import { ResponseDTO } from '../models/DataTranferObjects/ResponseDTO';
 import { User } from '../models/User';
 import { UserToLogin } from '../models/UserToLogin';
 
@@ -8,12 +12,10 @@ import { UserToLogin } from '../models/UserToLogin';
 })
 export class UserService {
 
-  private isLogin:boolean;
-  private roleAs:string;
-  constructor() { 
-    this.isLogin = false;
-    this.roleAs = '';
-    this.login('SADMIN');
+  private controllerURL: string;
+
+  constructor(private httpClient: HttpClient) { 
+    this.controllerURL = "User";
     //this.logout();
   }
 
@@ -52,51 +54,44 @@ export class UserService {
   }
 
   public logout() {
-    this.isLogin = false;
-    this.roleAs = '';
-    localStorage.setItem('STATE', 'false');
-    localStorage.setItem('ROLE', '');
-    return of({ success: this.isLogin, role: '' });
+    this.setLoggedIn(false);
+    this.setRole('');
+    return of({ success: this.isLoggedIn, role: this.getRole() });
   }
 
-  public login(value:string) {
-    this.isLogin = true;
-    this.roleAs = value;
-    localStorage.setItem('STATE', 'true');
-    localStorage.setItem('ROLE', this.roleAs);
-    return of({success: this.isLogin,  role: this.roleAs})
+  public login(user:UserToLogin): Observable<ResponseDTO<User>> {
+    if (user.userName == "tonisv" && user.password == "1234") {
+      return of(new ResponseDTO<User>({id: 1, item: new User({role:"SADMIN"})}));
+    } else if (user.userName == "sojos" && user.password == "1234") {
+        return of(new ResponseDTO<User>({id: 1, item: new User({role:"ADMIN"})}));
+    } else if (user.userName == "heinermo" && user.password == "1234") {
+      return of(new ResponseDTO<User>({id: 1, item: new User({role:"REVIEWER"})}));
+    } else if (user.userName == "simon" && user.password == "1234") {
+      return of(new ResponseDTO<User>({id: 1, item: new User({role:"SADMIN"})}));
   }
-
-  public isLoggedIn() {
-    const loggedIn = localStorage.getItem('STATE');
-    if (loggedIn == 'true')
-      this.isLogin = true;
-    else
-      this.isLogin = false;
-    return this.isLogin;
+    
+    //return this.httpClient.post<ResponseDTO<User>>(`${environment.apiUrl}/${this.controllerURL}/Login`, user);
+    return of(new ResponseDTO<User>({id: 0}));
   }
 
   public getRole() {
-    this.roleAs = localStorage.getItem('ROLE')!;
-    return this.roleAs;
-  }
-  // Los que tienen permisos de realizar cualquier acción en el sistema. 
-  isSysAdmin() {
-    return true;
+    return localStorage.getItem('ROLE')!;
   }
 
-  // Los que tienen permisos de crud de cuestionarios.
-  isAdmin() {
-    return true;
+  public setRole(userRole: string) {
+    localStorage.setItem('ROLE', userRole);
   }
 
-  // Los que van a responder 
-  isRespondent () {
-    return true;
+  public setLoggedIn(isLoggedIn:boolean) {
+    if (isLoggedIn) {
+      localStorage.setItem('STATE', 'true');
+    } else {
+      localStorage.setItem('STATE', 'false');
+    }
   }
 
-  public isMultiOffice(token: string): boolean {
-    return false;
+  public isLoggedIn():boolean {
+    return (localStorage.getItem('STATE') == 'true');
   }
 
 }

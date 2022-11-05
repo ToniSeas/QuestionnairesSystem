@@ -1,0 +1,12 @@
+.btn-back{
+    background-color: #444;
+    color: #DAA520;
+}
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}

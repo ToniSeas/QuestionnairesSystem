@@ -58,13 +58,7 @@ export class CreateStepTwoComponent implements OnInit {
       }
     });
   }
-
-  //BORRAR////////////
-  public sendQuestionnaire() {
-    this.qService.createQuestionnaire(this.questionnaire!).subscribe((messageDTO) => {console.log(messageDTO.message)});
-  }
-  //BORRAR////////////
-
+  
   public pushQuestion(question: Question) {
     this.questionnaire?.questions?.push(question);
   }
@@ -121,6 +115,14 @@ export class CreateStepTwoComponent implements OnInit {
 
   public cleanSearchControl() {
     this.searchControl.reset();
+  }
+
+  goBack(){
+    this.stepperContainer!.previous();
+  }
+
+  goForward(){
+    this.stepperContainer!.next();
   }
 
   // Metodos get

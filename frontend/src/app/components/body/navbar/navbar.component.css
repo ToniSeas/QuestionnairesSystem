@@ -4,3 +4,13 @@
     color: #DAA520;
     font-weight: bolder;
 }
+
+.logout-btn {
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #DAA520;
+}
+
+.logo {
+    margin-left: 15px;
+}

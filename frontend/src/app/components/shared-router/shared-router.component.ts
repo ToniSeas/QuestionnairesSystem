@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuestionnaireType } from 'src/app/models/QuestionnaireType';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-shared-router',
@@ -12,7 +13,7 @@ export class SharedRouterComponent implements OnInit {
 
   public isIncorrectLink: boolean;
 
-  constructor(private router: Router, private questionnaireService: QuestionnaireService) {
+  constructor(private router: Router, private questionnaireService: QuestionnaireService, private userService: UserService) {
     this.isIncorrectLink = true;
   }
 
@@ -39,14 +40,14 @@ export class SharedRouterComponent implements OnInit {
               });
               if (questionnaireType! != undefined) {
                 if (questionnaireType.name == "Interno" || questionnaireType.name == "Impersonal") {
-                  this.router.navigate([`/login/${questionnaire.id}`]);
+                  this.router.navigate([`/login/link/${questionnaire.id}`]);
                 } else if (questionnaireType.name == "Externo") {
                   this.router.navigate([`/questionnaire-view/${questionnaire.id}`]);
                 }
               }
             }
           });
-        }
+          }
       });
 
     } catch (error) {

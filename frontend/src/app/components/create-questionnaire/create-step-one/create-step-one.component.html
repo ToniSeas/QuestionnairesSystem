@@ -6,14 +6,14 @@
             <div class="col">
                 <div class="form-outline">
                     <label class="create-questionnaire-labels" for="">Nombre:</label>
-                    <input mdbInput type="text" ng-model="questionnaire.name" class="form-control" [formControlName]="'questionnaireName'" />
+                    <input mdbInput type="text" ng-model="questionnaire.name" (change)="fillInputs()" class="form-control" [formControlName]="'questionnaireName'" />
                 </div>
             </div>
 
             <div class="col">
                 <div class="form-outline">
                     <label class="create-questionnaire-labels" for="">Estado:</label>
-                    <mat-select class="create-questionnaire-labels" ng-model="questionnaire.status" class="form-control" [formControlName]="'questionnaireState'">
+                    <mat-select class="create-questionnaire-labels" ng-model="questionnaire.status" (selectionChange)="fillInputs()" class="form-control" [formControlName]="'questionnaireState'">
                         <mat-option> </mat-option>
                         <mat-option [value]="true">Habilitado</mat-option>
                         <mat-option [value]="false">Deshabilitado</mat-option>
@@ -26,14 +26,14 @@
             <div class="col">
                 <div class="form-outline">
                     <label class="create-questionnaire-labels" for="">Fecha Vencimiento:</label>
-                    <input type="date" class="form-control" ng-model="questionnaire.expirationDate" [formControlName]="'questionnaireDate'">
+                    <input type="date" class="form-control" (change)="fillInputs()" ng-model="questionnaire.expirationDate" [formControlName]="'questionnaireDate'">
                 </div>
             </div>
 
             <div class="col">
                 <div class="form-outline">
                     <label class="create-questionnaire-labels" for="">Tipo:</label>
-                    <mat-select class="create-questionnaire-labels" ng-model="questionnaire.type" class="form-control" [formControlName]="'questionnaireType'">
+                    <mat-select class="create-questionnaire-labels" (selectionChange)="fillInputs()" ng-model="questionnaire.type" class="form-control" [formControlName]="'questionnaireType'">
                         <mat-option> </mat-option>
                         <mat-option *ngFor="let questionnaireType of questionnaireTypes | async" [value]="questionnaireType.id">
                         {{questionnaireType.name}}
@@ -45,7 +45,7 @@
         </div>
         <div class="row mb-4">
             <label class="create-questionnaire-labels" for="">Descripción:</label>
-            <textarea class="form-control" rows="5" id="comment" name="text" [formControlName]="'questionnaireDescription'"></textarea>
+            <textarea class="form-control" rows="5" id="comment"  name="text" (change)="fillInputs()" [formControlName]="'questionnaireDescription'"></textarea>
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

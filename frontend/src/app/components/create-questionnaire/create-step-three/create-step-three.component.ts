@@ -7,6 +7,7 @@ import { Office } from 'src/app/models/Office';
 import { Questionnaire } from 'src/app/models/Questionnaire';
 import { Reviewer } from 'src/app/models/Reviewer';
 import { User } from 'src/app/models/User';
+import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { ReviewingPermissionService } from 'src/app/services/reviewing-permission.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -34,7 +35,9 @@ export class CreateStepThreeComponent implements OnInit {
   private dataSource = new MatTableDataSource<Reviewer>; //The datasource is what the table displays
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
-  constructor(private reviewingPermissionService: ReviewingPermissionService, private userService: UserService) { }
+  constructor(private reviewingPermissionService: ReviewingPermissionService
+    , private userService: UserService
+    , private questionnaireService: QuestionnaireService) { }
 
   ngOnInit(): void {
     this.reviewingPermissionService.getReviewers().subscribe(
@@ -160,6 +163,14 @@ export class CreateStepThreeComponent implements OnInit {
 
   public checkValid(): boolean {
     return this.officeControl.valid && this.userControl.valid
+  }
+  
+  goBack(){
+    this.stepperContainer!.previous();
+  }
+
+  goForward(){
+    this.stepperContainer!.next();
   }
 
 }

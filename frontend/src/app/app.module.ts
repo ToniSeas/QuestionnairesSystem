@@ -42,6 +42,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SharedRouterComponent } from './components/shared-router/shared-router.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CreateStepFiveComponent } from './components/create-questionnaire/create-step-five/create-step-five.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LongAnswerQuestionComponent,
     ScaleQuestionComponent,
     SingleChoiceQuestionComponent,
-    SharedRouterComponent
+    SharedRouterComponent,
+    CreateStepFiveComponent
   ],
   imports: [
     BrowserModule,

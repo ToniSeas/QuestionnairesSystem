@@ -39,15 +39,19 @@ export class CreateStepOneComponent implements OnInit {
 
   public getFormGroup(): FormGroup { return this.createStepOneComponentForm; }
 
+  public fillInputs() {
+    this.questionnaire!.name = this.createStepOneComponentForm.get('questionnaireName')?.value;
+    this.questionnaire!.idQuestionnaireType = this.createStepOneComponentForm.get('questionnaireType')?.value;
+    this.questionnaire!.expirationDate = this.createStepOneComponentForm.get('questionnaireDate')?.value;
+    this.questionnaire!.description = this.createStepOneComponentForm.get('questionnaireDescription')?.value;
+    this.questionnaire!.isActive = this.createStepOneComponentForm.get('questionnaireState')?.value;
+  }
+
   onSubmit = () => {
     if (this.createStepOneComponentForm.invalid) {
       console.log('Formulario invalido paso 1 crear cuestionario')
     } else {
-      this.questionnaire!.name = this.createStepOneComponentForm.get('questionnaireName')?.value;
-      this.questionnaire!.idQuestionnaireType = this.createStepOneComponentForm.get('questionnaireType')?.value;
-      this.questionnaire!.expirationDate = this.createStepOneComponentForm.get('questionnaireDate')?.value;
-      this.questionnaire!.description = this.createStepOneComponentForm.get('questionnaireDescription')?.value;
-      this.questionnaire!.isActive = this.createStepOneComponentForm.get('questionnaireState')?.value;
+      this.fillInputs();
       this.goForward();
     }
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MainMenuComponent implements OnInit {
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
 
   }
 

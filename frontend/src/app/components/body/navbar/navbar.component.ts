@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  @Input() logoImgPath:string = 'assets\\placa-md.png';
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  public logOut() {
+    this.userService.logout();
+    this.router.navigate(['/login']);
+  }
+
+  public isUserLogged():boolean {
+    return this.userService.isLoggedIn();
+  }
+
+  public goToMain() {
+    this.router.navigate(["/"]);
   }
 
 }

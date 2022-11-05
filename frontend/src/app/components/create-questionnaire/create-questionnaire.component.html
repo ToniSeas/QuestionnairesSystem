@@ -15,12 +15,15 @@
         <app-create-step-three [stepperContainer]="stepper" [questionnaire]="questionnaire"></app-create-step-three>
     </mat-step>
 
+    <!--
     <mat-step>
         <ng-template matStepLabel>Permisos de respuesta</ng-template>
     </mat-step>
+    -->
 
     <mat-step>
         <ng-template matStepLabel>Finalizar</ng-template>
+        <app-create-step-five [stepperContainer]="stepper" [questionnaire]="questionnaire"></app-create-step-five>
     </mat-step>
 
 </mat-horizontal-stepper>

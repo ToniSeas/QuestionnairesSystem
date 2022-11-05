@@ -23,84 +23,99 @@ const routes: Routes = [
       roles: ["ADMIN", "SADMIN", "REVIEWER"]
     },
     children: [
-      { path: 'questionnaire-menu', 
+      {
+        path: 'questionnaire-menu',
         component: QuestionnaireMenuComponent,
         canActivate: [AuthGuard],
         data: {
           roles: ["ADMIN", "SADMIN", "REVIEWER"]
         },
       }
-      , { path: 'maintenance-menu', 
-          component: MaintenanceMenuComponent,
-          canActivate: [AuthGuard],
-          data: {
-            roles: ["ADMIN", "SADMIN", "REVIEWER"]
-          },
-        }
-      , { path: 'create-questionnaire', 
-          component: CreateQuestionnaireComponent,
-          canActivate: [AuthGuard],
-          data: {
-            roles: ["ADMIN", "SADMIN", "REVIEWER"]
-          },
-        }
-      , { path: 'search-questionnaire', 
-          component: SearchQuestionnaireComponent,
-          canActivate: [AuthGuard],
-          data: {
-            roles: ["ADMIN", "SADMIN", "REVIEWER"]
-          },
-        }
-      , { path: 'manage-category', 
-          component: ManageCategoryComponent,
-          canActivate: [AuthGuard],
-          data: {
-            roles: ["ADMIN", "SADMIN", "REVIEWER"]
-          },
-        }
-      , { path: 'manage-subcategory', 
-          component: ManageSubcategoryComponent,
-          canActivate: [AuthGuard],
-          data: {
-            roles: ["ADMIN", "SADMIN", "REVIEWER"]
-          },
-        }
-    ]
-  }
-  ,{ path: 'login', component: LoginComponent }
-  ,{ path: 'office', 
-      component: SelectOfficeComponent,
-      canActivate: [AuthGuard],
-      data: {
-        roles: ["ADMIN", "SADMIN", "REVIEWER"]
-      },
-    }
-  ,{ path: 'questionnaire-view'
-    ,component: QuestionnaireViewComponent 
-    , children: [
-      { path: '**', 
-        component: QuestionnaireViewComponent,
+      , {
+        path: 'maintenance-menu',
+        component: MaintenanceMenuComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ["ADMIN", "SADMIN"]
+        },
+      }
+      , {
+        path: 'create-questionnaire',
+        component: CreateQuestionnaireComponent,
         canActivate: [AuthGuard],
         data: {
           roles: ["ADMIN", "SADMIN", "REVIEWER"]
         },
       }
+      , {
+        path: 'search-questionnaire',
+        component: SearchQuestionnaireComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ["ADMIN", "SADMIN", "REVIEWER"]
+        },
+      }
+      , {
+        path: 'manage-category',
+        component: ManageCategoryComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ["ADMIN", "SADMIN"]
+        },
+      }
+      , {
+        path: 'manage-subcategory',
+        component: ManageSubcategoryComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ["ADMIN", "SADMIN"]
+        },
+      }
     ]
   }
-  ,{ path: 'link'
-      , component: SharedRouterComponent
-      , children: [
-        { path: '**', 
-          component: SharedRouterComponent,
-          canActivate: [AuthGuard],
-          data: {
-            roles: ["ADMIN", "SADMIN", "REVIEWER"]
-          },
-        }
-      ]
-    }
-  ,{ path: 'link/**', component: SharedRouterComponent }
-  ,{ path: '**', component: NotFoundPageComponent }
+  , {
+    path: 'login',
+    component: LoginComponent,
+    children: [
+      {
+        path: 'link',
+        component: QuestionnaireViewComponent,
+        children: [
+          {
+            path: '**',
+            component: QuestionnaireViewComponent
+          }
+        ]
+      }
+    ]
+  }, {
+    path: 'office',
+    component: SelectOfficeComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ["ADMIN", "SADMIN", "REVIEWER"]
+    },
+  }, {
+    path: 'questionnaire-view',
+    component: QuestionnaireViewComponent,
+    children: [
+      {
+        path: '**',
+        component: QuestionnaireViewComponent,
+      }
+    ]
+
+  }, {
+    path: 'link'
+    , component: SharedRouterComponent
+    , children: [
+      {
+        path: '**',
+        component: SharedRouterComponent
+      }
+    ]
+  }
+  , { path: '**', component: NotFoundPageComponent }
 ];
 
 @NgModule({
