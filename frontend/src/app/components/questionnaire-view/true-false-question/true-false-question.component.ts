@@ -1,0 +1,35 @@
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Question } from 'src/app/models/Question';
+
+@Component({
+  selector: 'app-true-false-question',
+  templateUrl: './true-false-question.component.html',
+  styleUrls: ['./true-false-question.component.css']
+})
+export class TrueFalseQuestionComponent implements OnInit {
+
+  question!: Question
+  constructor(changeDetector: ChangeDetectorRef) { }
+
+
+  ngOnInit(): void {
+  }
+
+  onChange(id: number): void {
+    this.question.options.forEach(element => {
+      if (element.id == id) {
+          let tempAnswer = this.question.answers[0]
+          let index = tempAnswer.options.indexOf(element)
+          if (index > -1) {
+            tempAnswer.options.splice(index, 1)
+          } else {
+            tempAnswer.options.push(element)
+          }
+      }
+    });
+  }
+ 
+  validateSelection(): boolean {
+    return (this.question.answers[0].options.length > 0) || this.question.isOptional!
+  }
+}

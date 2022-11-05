@@ -1,0 +1,149 @@
+<div class="row dialog-tittle-container text-center">
+  <span class="dialog-tittle">Información de la pregunta</span>
+</div>
+
+<form [formGroup]="getFormGroup()" style="margin-left: 12px;" autocomplete="off" validate (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <mat-form-field class="w-full">
+      <mat-label> Enunciado </mat-label>
+      <input matInput placeholder="Enunciado" [formControlName]="'statement'">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field class="w-full">
+      <mat-label> Etiqueta </mat-label>
+      <input matInput placeholder="Etiqueta" [formControlName]="'label'">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field class="col-6 select">
+      <mat-label>Categoría</mat-label>
+      <mat-select [formControlName]="'category'" (selectionChange)="updateSubCategories()">
+        <mat-option> </mat-option>
+        <mat-option *ngFor="let category of getCategories() | async" [value]="category.id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-6 select">
+      <mat-label>Tipo</mat-label>
+      <mat-select [formControlName]="'type'" (selectionChange)="requireOption(this.getFormGroup().get('type')?.value)">
+        <mat-option> </mat-option>
+        <mat-option *ngFor="let questionType of getQuestionTypes() | async" [value]="questionType.id">
+          {{questionType.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field class="col-6 select">
+      <mat-label>Subcategoría</mat-label>
+      <mat-select [formControlName]="'subCategory'">
+        <mat-option> </mat-option>
+        <mat-option *ngFor="let subCategory of getSubCategories() | async" [value]="subCategory.id">
+          {{subCategory.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions class="row">
+    <div class="col-md-12 text-center">
+      <button type="submit" mat-raised-button class="mat-warn mb-1" style="width: 100px;"
+        [disabled]="!getFormGroup().valid">Aceptar</button>
+      <button mat-raised-button mat-dialog-close class="mat-primary mb-1" style="width: 100px;">Cancelar</button>
+    </div>
+  </div>
+
+</form>
+
+<div class="row table-container mt-5" *ngIf="this.isOption">
+  <form >
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="w-full opcionesPregunta">
+          <mat-label> Opciones </mat-label>
+          <input  matInput placeholder="Opción" [formControl]="optionCreateControl">
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <button mat-raised-button class="mat-primary mb-1" (click)="searchOption()" style="width: 130px; margin-right: 20px;">Buscar Opcion</button>
+        <button mat-raised-button class="mat-primary mb-1" (click)="createOption(optionCreateControl.value)" [disabled]="!this.optionCreateControl.valid" style="width: 130px;">Agregar Opcion</button>
+      </div>
+    </div>
+  </form>
+  
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="getDataSource()">
+
+    <div>
+      <!-- Id de la pregunta -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+
+        <td mat-cell *matCellDef="let element"> 
+          <div *ngIf="!this.element.editable">
+            {{element.optionName}}
+          </div>
+          
+          <div *ngIf="this.element.editable" >
+            <mat-form-field >
+              <input [formControl]="optionUpdateControl"  type="text" placeholder={{element.optionName}} value={{element.optionName}} matInput>
+            </mat-form-field>
+          </div>
+          
+         
+        </td>
+      </ng-container>
+  
+      <!-- Operaciones -->
+      <ng-container matColumnDef="operations">
+        <th mat-header-cell *matHeaderCellDef> Operaciones </th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="!this.element.editable">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="deleteOption(element.optionName)">
+                <mat-icon>delete</mat-icon>
+                <span>Borrar</span>
+              </button>
+              <button mat-menu-item (click)="updateOption(element.optionName)">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+              </button>
+            </mat-menu>
+          </div>
+
+          <div *ngIf="this.element.editable">
+          
+            <button mat-icon-button color="primary" (click)="updateOptionConfirm(element.optionName,optionUpdateControl.value)">
+                <mat-icon>check</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="updateOptionCancel(element.optionName)">
+                <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+          
+          
+        </td>
+      </ng-container>
+    </div>
+      
+  
+      <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+      <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
+  </div>
+
+</div>

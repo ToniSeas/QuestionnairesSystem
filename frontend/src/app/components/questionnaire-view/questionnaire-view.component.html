@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="questionnaire-title">
+                <h2>{{questionnaire?.name}}</h2>
+            </div>
+            <div class="questionnaire-description">
+                <p>{{questionnaire?.description}}</p>
+            </div>
+            <form>
+                <ng-container #container></ng-container>
+                <div class="text-center mb-5">
+                    <button mat-raised-button type="button" (click)="sendAnswers()" [disabled]="!this.areAllRequiredQuestionsAnswered()" class="mat-primary me-md-2">
+                        <mat-icon>send</mat-icon>
+                        Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

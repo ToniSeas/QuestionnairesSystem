@@ -2,3 +2,13 @@
 body {
     height: 100vh;
 }
+
+
+.question-container {
+    border-radius: 5px;
+    padding: 1em;
+    margin: 1em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(230, 230, 230);
+}

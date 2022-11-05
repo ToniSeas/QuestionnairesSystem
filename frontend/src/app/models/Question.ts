@@ -1,0 +1,31 @@
+import { Answer } from "./Answer";
+import { Option } from "./Option";
+
+
+export class Question{
+  
+  id?: number;
+  statement?: string;
+  label?: string;
+  position?: number;
+  typeId?: string;
+  subcategoryId?: number;
+  categoryId?: number;
+  options: Option[] = [];
+  isOptional?: boolean;
+  answers: Answer[] = []
+
+  constructor (
+    {id, statement, label, position, subcategoryId, categoryId, typeId, isOptional}: 
+    {id?: number, statement?: string, label?: string, position?: number, subcategoryId?: number, categoryId?: number, typeId?: string, isOptional?: boolean}
+    ) {
+      this.id = id;
+      this.statement = statement;
+      this.label = label;
+      this.position = position;
+      this.subcategoryId = subcategoryId;
+      this.categoryId = categoryId;
+      this.typeId = typeId;
+      this.isOptional = isOptional;
+    }
+}

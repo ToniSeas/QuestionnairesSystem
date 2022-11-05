@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatStepper } from '@angular/material/stepper';
+import { Questionnaire } from 'src/app/models/Questionnaire';
 
 @Component({
   selector: 'app-create-questionnaire',
@@ -6,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-questionnaire.component.css']
 })
 export class CreateQuestionnaireComponent implements OnInit {
+  
+  public questionnaire: Questionnaire;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() { 
+    this.questionnaire = new Questionnaire({ });
   }
 
-  
+  ngOnInit(): void { }
 }

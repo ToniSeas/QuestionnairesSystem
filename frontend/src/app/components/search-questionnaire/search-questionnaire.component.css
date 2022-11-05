@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+}
+
+.search-questionnaire-back{
+    background-color: #444;
+    color: #DAA520;
+}
+
+.search-questionnaire-back:hover{
+    background-color: #444;
+    color: #DAA520;
+}

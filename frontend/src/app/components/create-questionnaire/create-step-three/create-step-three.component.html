@@ -1,0 +1,100 @@
+<div class="row mb-4">
+    <div class="col"></div>
+    <div class="col"></div>
+</div>
+<form ngForm class="row mb-4" (ngSubmit)="addReviewer()">
+    <mat-form-field class="col">
+        <mat-label>Oficina</mat-label>
+        <mat-select [formControl]="officeControl" required>
+            <mat-option (click)="officeChange()">None</mat-option>
+            <mat-option (click)="officeChange()" *ngFor="let currentOffice of offices" [value]="currentOffice.id">
+                {{currentOffice.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <mat-label>Usuario</mat-label>
+        <mat-select [formControl]="userControl" required>
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let currentUser of users" [value]="currentUser.id">{{currentUser.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="row category-action-buttons" style="margin-bottom: 0em; padding-bottom: 0em">
+        <div class="col-2 form-outline">
+            <input type="search" id="form1" class="form-control" [formControl]="searchControl" placeholder="Buscar" />
+        </div>
+        <div class="col">
+            <button mat-raised-button type="button" class="mat-primary me-md-2" (click)="searchReviewers()">
+                <mat-icon>search</mat-icon>
+                Buscar
+            </button>
+            <button mat-raised-button type="button" style="background-color: #DAA520; color: black;"
+                class="mat-primary me-md-2" (click)="cleaningServices()">
+                <mat-icon>cleaning_services'</mat-icon>
+                Limpiar
+            </button>
+            <button mat-raised-button type="submit" [disabled]="!checkValid()" value="submit"
+                class="mat-primary me-md-2">
+                <mat-icon>add</mat-icon>
+                Agregar
+            </button>
+        </div>
+    </div>
+</form>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="getDataSource()">
+
+        <!-- id -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- name -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- lastname -->
+        <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef> Apellido </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+        </ng-container>
+
+        <!-- office  -->
+        <ng-container matColumnDef="office">
+            <th mat-header-cell *matHeaderCellDef> Oficina </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Operations -->
+        <ng-container matColumnDef="operations">
+            <th mat-header-cell *matHeaderCellDef> Operaciones </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="removeReviewer(element.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Borrar</span>
+                    </button>
+                </mat-menu>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+        <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button type="button" class="btn me-md-2 btn-back">Volver</button>
+</div>

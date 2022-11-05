@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "L1CO756DIC+7Om+5k7U4iGrWch6W99aUta+QmVtCwigaoyd/7CnPnymoU14mrXnAzBWQQ6fqQPn6i2/tLI7zAQ==",
+  "dgSpecHash": "ECM946jq1EPhp8e/maoWcTxgYkK7aNXhkmwQ4YFMaRE/lNA/xLr0vxAxUg/stA7MOfeDcPxC7iLmEs2sCikzHg==",
   "success": true,
   "projectFilePath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

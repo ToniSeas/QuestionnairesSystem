@@ -1,9 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CuestionariosEntidades.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CuestionariosAD.Context
 {
@@ -11,14 +7,23 @@ namespace CuestionariosAD.Context
     {
 
         public DataContext() { }
-
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+
+        public DbSet<Category> Categories => Set<Category>();
+        public DbSet<SubCategory> SubCategories => Set<SubCategory>();
+        public DbSet<Question> Questions => Set<Question>();
+        public DbSet<Option> Options => Set<Option>();
+        public DbSet<QuestionType> QuestionTypes => Set<QuestionType>();
+        public DbSet<Questionnaire> Questionnaires => Set<Questionnaire>();
+        public DbSet<QuestionnaireType> QuestionnaireTypes => Set<QuestionnaireType>();
+        public DbSet<Answer> Answers => Set<Answer>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { 
             
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost;Database=AnalisisCuestionariosProyecto2022;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Data Source=163.178.107.10;Initial Catalog=cuestionarios;Persist Security Info=True;User ID=laboratorios;Password=TUy&)&nfC7QqQau.%278UQ24/=%;");
+                
             }
 
         }
@@ -33,11 +38,11 @@ namespace CuestionariosAD.Context
              * tabla, se eliminará también.
              * Entonces es buena opción desactivarlo para que el desarrollador realice las validaciones
              * a mano y así no borrar registros equivocados */
-            foreach (var relationship in modelBuilder.Model.GetEntityTypes()
+            /*foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
-            }
+            }*/
 
             base.OnModelCreating(modelBuilder);
 

@@ -55,3 +55,11 @@ table {
     background-color: #444;
     color: #DAA520;
 }
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #DAA520;
+}
+
+::ng-deep .mat-dialog-container {
+    border: 5px solid #DAA520;
+}
