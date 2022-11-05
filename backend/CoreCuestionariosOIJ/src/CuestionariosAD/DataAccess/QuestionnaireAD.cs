@@ -33,7 +33,9 @@ namespace CuestionariosAD.DataAccess
         public async Task<ActionResult<ResponseDTO<Questionnaire>>> GetQuestionnaireById(int questionnaireId)
         {
             var dbQuestionnaire = await _context.Questionnaires
+                .Include(e => e.Questions)
                 .FirstOrDefaultAsync(e => e.Id == questionnaireId);
+
 
             var message = new ResponseDTO<Questionnaire>();
 
@@ -44,6 +46,17 @@ namespace CuestionariosAD.DataAccess
                 return await Task.FromResult(message);
             }
             else {
+
+                foreach (var item in dbQuestionnaire.Questions)
+                {
+                    if (item.TypeId.Equals("es"))
+                    {
+                        item.Options = _context.Options.Where(x => x.IdQuestionType.Equals(item.TypeId)).ToList();
+                    } else
+                    {
+                        item.Options = _context.Options.Where(x => x.IdQuestion == item.Id).ToList();
+                    }
+                }
                 message.Id = 1;
                 message.Item = dbQuestionnaire;
             }

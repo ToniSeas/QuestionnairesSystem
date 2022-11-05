@@ -31,7 +31,7 @@ namespace CuestionariosAD.Mappings
             builder.HasMany(c => c.Options)
                 .WithMany(b => b.Answers)
                 .UsingEntity(j => j.ToTable("tb_respuesta_opcion"));
-
+            
             builder.ToTable("tb_respuesta");
         }
     }
