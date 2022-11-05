@@ -5,6 +5,7 @@
 	Modificiaciones: 
 		08 de agosto 2022: Refactorización de algunas tablas.
 		31 de agosto 2022: Modifica la llave primaria de los tipos de pregunta para facilitar la identificación de los mismos.
+		05 de noviembre 2022: Se agregan los tipos de cuestionario.
 */
 
 USE master
@@ -153,6 +154,14 @@ BEGIN TRY
 			,('Regular', 'es')
 			,('Bueno', 'es')
 			,('Muy bueno', 'es')
+
+		-- Tipos de cuestionario
+		INSERT INTO tb_tipo_Cuestionario
+			(nombre)
+		VALUES
+			('Interno')
+			,('Externo')
+			,('Impersonal')
 	COMMIT
 	PRINT('Base de datos lista!')
 END TRY
