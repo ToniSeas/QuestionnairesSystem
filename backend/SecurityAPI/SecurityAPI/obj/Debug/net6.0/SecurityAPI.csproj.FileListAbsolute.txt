@@ -1,0 +1,54 @@
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\appsettings.json
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\SecurityAPI.exe
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\SecurityAPI.deps.json
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\SecurityAPI.runtimeconfig.json
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\SecurityAPI.dll
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\SecurityAPI.pdb
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.csproj.AssemblyReference.cache
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.AssemblyInfoInputs.cache
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.AssemblyInfo.cs
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.csproj.CoreCompileInputs.cache
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\scopedcss\bundle\SecurityAPI.styles.css
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.csproj.CopyComplete
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.dll
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\refint\SecurityAPI.dll
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.pdb
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.genruntimeconfig.cache
+C:\Users\Heiner\Documents\shared\VI Ciclo\analisis y diseño de sistemas\Proyecto OIJ\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\ref\SecurityAPI.dll
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\appsettings.Development.json
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\appsettings.json
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\SecurityAPI.exe
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\SecurityAPI.deps.json
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\SecurityAPI.runtimeconfig.json
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\SecurityAPI.dll
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\SecurityAPI.pdb
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.csproj.AssemblyReference.cache
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.GeneratedMSBuildEditorConfig.editorconfig
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.AssemblyInfoInputs.cache
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.AssemblyInfo.cs
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.csproj.CoreCompileInputs.cache
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.MvcApplicationPartsAssemblyInfo.cs
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.MvcApplicationPartsAssemblyInfo.cache
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\staticwebassets.build.json
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\staticwebassets.development.json
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\scopedcss\bundle\SecurityAPI.styles.css
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.csproj.CopyComplete
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.dll
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\refint\SecurityAPI.dll
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.pdb
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\SecurityAPI.genruntimeconfig.cache
+E:\CuestionariosOIJ\backend\SecurityAPI\SecurityAPI\obj\Debug\net6.0\ref\SecurityAPI.dll
