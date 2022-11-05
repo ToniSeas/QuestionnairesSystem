@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   userNameControl: FormControl = new FormControl("", [Validators.required]);
   userPasswordControl: FormControl = new FormControl("", [Validators.required]);
   isLoginIncorrect: boolean = false;
+  messageToShow: string = "";
 
   constructor(private router: Router, private userService: UserService) { }
 
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
       this.userService.login(userToLogin).subscribe((responseDto) => {
         if (responseDto.id == 0) {
           this.isLoginIncorrect = true;
+          this.messageToShow = responseDto.message!;
         } else {
           if (this.router.url == "/login") {
             this.userService.setLoggedIn(true);

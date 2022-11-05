@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\CuestionariosOIJ\\backend\\SecurityAPI\\SecurityAPI\\SecurityAPI.csproj": {}
+    "E:\\Repositories\\CuestionariosOIJ\\backend\\SecurityAPI\\SecurityAPI\\SecurityAPI.csproj": {}
   },
   "projects": {
-    "E:\\CuestionariosOIJ\\backend\\SecurityAPI\\SecurityAPI\\SecurityAPI.csproj": {
+    "E:\\Repositories\\CuestionariosOIJ\\backend\\SecurityAPI\\SecurityAPI\\SecurityAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\CuestionariosOIJ\\backend\\SecurityAPI\\SecurityAPI\\SecurityAPI.csproj",
+        "projectUniqueName": "E:\\Repositories\\CuestionariosOIJ\\backend\\SecurityAPI\\SecurityAPI\\SecurityAPI.csproj",
         "projectName": "SecurityAPI",
-        "projectPath": "E:\\CuestionariosOIJ\\backend\\SecurityAPI\\SecurityAPI\\SecurityAPI.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\CuestionariosOIJ\\backend\\SecurityAPI\\SecurityAPI\\obj\\",
+        "projectPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\SecurityAPI\\SecurityAPI\\SecurityAPI.csproj",
+        "packagesPath": "C:\\Users\\tonis\\.nuget\\packages\\",
+        "outputPath": "E:\\Repositories\\CuestionariosOIJ\\backend\\SecurityAPI\\SecurityAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tonis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

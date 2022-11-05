@@ -12,21 +12,21 @@ namespace SecurityAPI.Controllers
         UserDataAccess userDataAccess = new UserDataAccess();
 
         [HttpPost]
-        [Route("login")]
-        public async Task<ActionResult<ResponseDTO<User>>> AutenticateUser(User user)
+        [Route("Login")]
+        public async Task<ActionResult<ResponseDTO<User>>> AutenticateUser(UserToSend userToSend)
         {
             User toReturn = null;
             string errorMessage = "";
             bool found = false;
             foreach (User tempUser in this.userDataAccess.users)
             {
-                if (tempUser.userName == user.userName)
+                if (tempUser.UserName == userToSend.UserName)
                 {
                     found = true;
                     toReturn = tempUser;
                 }
             }
-            if (toReturn != null && !toReturn.password.Equals(user.password))
+            if (toReturn != null && !toReturn.Password.Equals(userToSend.Password))
             {
                 errorMessage = "Contraseña incorrecta";
                 toReturn = null;
@@ -47,9 +47,8 @@ namespace SecurityAPI.Controllers
                 message.Id = 1;
                 message.Item = toReturn;
             }
+
             return await Task.FromResult(message);
         }
     }
-
-
 }

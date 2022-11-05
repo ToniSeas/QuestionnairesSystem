@@ -5,7 +5,7 @@
         <form class="lc-form">
             <input type="text" [formControl]="this.userNameControl" name="userName" class="mb-4 input-text" placeholder="Usuario" required><br>
             <input type="password" [formControl]="this.userPasswordControl" name="password" class="mb-4 input-text" placeholder="Contraseña" required><br>
-            <mat-error *ngIf="this.isLoginIncorrect">Inicio de sesión incorrecto</mat-error>
+            <mat-error *ngIf="this.isLoginIncorrect">{{this.messageToShow}}</mat-error>
             <button type="button" class="mb-4 input-button" (click)="onLogin()" [disabled]="!this.isLoginValid()" >Ingresar</button>
         </form>
 

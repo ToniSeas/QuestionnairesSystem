@@ -5,15 +5,15 @@
 
         public User(String userName, String password, string role)
         {
-            this.userName = userName;
-            this.password = password;
-            this.role = role;
+            this.UserName = userName;
+            this.Password = password;
+            this.Role = role;
         }
-        public String userName { get; set; }
+        public String UserName { get; set; }
 
-        public String password { get; set; }
+        public String Password { get; set; }
 
-        public String role { get; set; }
+        public String Role { get; set; }
     }
 
 }

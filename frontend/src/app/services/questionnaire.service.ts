@@ -31,8 +31,6 @@ export class QuestionnaireService {
     return this.httpClient.get<ResponseDTO<Questionnaire>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionnaireById`, { params: params });
   }
 
-
-
   public createQuestionnaire(questionnaire: Questionnaire) : Observable<MessageDTO> {
     return this.httpClient.post<Questionnaire>(`${environment.apiUrl}/${this.controllerURL}/CreateQuestionnaire`, questionnaire);
   }

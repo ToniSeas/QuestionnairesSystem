@@ -16,7 +16,6 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { 
     this.controllerURL = "User";
-    //this.logout();
   }
 
   users: User[] = [
@@ -59,19 +58,8 @@ export class UserService {
     return of({ success: this.isLoggedIn, role: this.getRole() });
   }
 
-  public login(user:UserToLogin): Observable<ResponseDTO<User>> {
-    if (user.userName == "tonisv" && user.password == "1234") {
-      return of(new ResponseDTO<User>({id: 1, item: new User({role:"SADMIN"})}));
-    } else if (user.userName == "sojos" && user.password == "1234") {
-        return of(new ResponseDTO<User>({id: 1, item: new User({role:"ADMIN"})}));
-    } else if (user.userName == "heinermo" && user.password == "1234") {
-      return of(new ResponseDTO<User>({id: 1, item: new User({role:"REVIEWER"})}));
-    } else if (user.userName == "simon" && user.password == "1234") {
-      return of(new ResponseDTO<User>({id: 1, item: new User({role:"SADMIN"})}));
-  }
-    
-    //return this.httpClient.post<ResponseDTO<User>>(`${environment.apiUrl}/${this.controllerURL}/Login`, user);
-    return of(new ResponseDTO<User>({id: 0}));
+  public login(user:UserToLogin): Observable<ResponseDTO<User>> {   
+    return this.httpClient.post<ResponseDTO<User>>(`${environment.securityModuleUrl}/${this.controllerURL}/Login`, user);
   }
 
   public getRole() {
