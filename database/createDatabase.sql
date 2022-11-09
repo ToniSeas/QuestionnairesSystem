@@ -6,6 +6,7 @@
 		08 de agosto 2022: Refactorización de algunas tablas.
 		31 de agosto 2022: Modifica la llave primaria de los tipos de pregunta para facilitar la identificación de los mismos.
 		05 de noviembre 2022: Se agregan los tipos de cuestionario.
+		09 de noviembre 2022: Se agregan las columnas para eliminado lógico a todas las tablas.
 */
 
 USE master
@@ -32,7 +33,8 @@ BEGIN TRY
 		-- tipoCuestionario
 		CREATE TABLE tb_tipo_Cuestionario
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,nombre VARCHAR(150))
+			,nombre VARCHAR(150)
+			,eliminado BIT NOT NULL DEFAULT 0)
 
 		-- cuestionario
 		CREATE TABLE tb_cuestionario
@@ -43,6 +45,7 @@ BEGIN TRY
 			,descripcion NVARCHAR(500) NOT NULL
 			,idTipoCuestionario INT NOT NULL
 			,fechaCreacion DATE DEFAULT GETDATE()
+			,eliminado BIT NOT NULL DEFAULT 0
 			, FOREIGN KEY (idTipoCuestionario) REFERENCES tb_tipo_Cuestionario (id))
 
 		-- historico cuestionario
@@ -51,6 +54,7 @@ BEGIN TRY
 			,idCuestionario INT NOT NULL
 			,fechaInicio DATE DEFAULT GETDATE()
 			,fechaFinal DATE NOT NULL
+			,eliminado BIT NOT NULL DEFAULT 0
 			, FOREIGN KEY (idCuestionario) REFERENCES tb_cuestionario (id))
 
 		-- revisaCuestionario
@@ -70,18 +74,21 @@ BEGIN TRY
 		-- tipoPregunta
 		CREATE TABLE tb_tipo_pregunta
 			(id VARCHAR(2) PRIMARY KEY
-			,nombre NVARCHAR(150) UNIQUE)
+			,nombre NVARCHAR(150) UNIQUE
+			,eliminado BIT NOT NULL DEFAULT 0)
 
 		-- Categoría pregunta
 		CREATE TABLE tb_categoria_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
-			,nombre NVARCHAR(150))
+			,nombre NVARCHAR(150)
+			,eliminado BIT NOT NULL DEFAULT 0)
 	
 		-- Categoría pregunta
 		CREATE TABLE tb_subcategoria_pregunta
 			(id INT IDENTITY(1, 1) PRIMARY KEY
 			,nombre NVARCHAR(150)
 			,idCategoria INT NOT NULL
+			,eliminado BIT NOT NULL DEFAULT 0
 			,FOREIGN KEY (idCategoria) REFERENCES tb_categoria_pregunta (id))
 
 		-- pregunta
@@ -95,6 +102,7 @@ BEGIN TRY
 			,idCuestionario INT NOT NULL
 			,idTipo VARCHAR(2) NOT NULL
 			,opcional BIT NOT NULL DEFAULT 0
+			,eliminado BIT NOT NULL DEFAULT 0
 			,FOREIGN KEY (idCategoria) REFERENCES tb_categoria_pregunta (id)
 			,FOREIGN KEY (idSubcategoria) REFERENCES tb_subcategoria_pregunta (id)
 			,FOREIGN KEY (idCuestionario) REFERENCES tb_cuestionario (id)
@@ -107,6 +115,7 @@ BEGIN TRY
 			,opcion NVARCHAR(180) NOT NULL
 			,idPregunta INT NULL --Puede que esta opción sea estática por lo que no tiene una ID de pregunta como tal.
 			,idTipoPregunta VARCHAR(2) NOT NULL --Es importante espeficicar el tipo de pregunta al que pertenece esta opción.
+			,eliminado BIT NOT NULL DEFAULT 0
 			,FOREIGN KEY (idPregunta) REFERENCES tb_pregunta (id)
 			,FOREIGN KEY (idTipoPregunta) REFERENCES tb_tipo_pregunta (id))
 
@@ -117,6 +126,7 @@ BEGIN TRY
 			,fecha DATETIME NOT NULL DEFAULT GETDATE()
 			,idPregunta INT NOT NULL
 			,respuesta NVARCHAR(500) NULL
+			,eliminado BIT NOT NULL DEFAULT 0
 			,FOREIGN KEY (idPregunta) REFERENCES tb_pregunta (id))
 	
 		-- Respuesta_opción
@@ -124,6 +134,7 @@ BEGIN TRY
 		CREATE TABLE tb_respuesta_opcion
 			(idRespuesta INT NOT NULL
 			,idOpcion INT NOT NULL
+			,eliminado BIT NOT NULL DEFAULT 0
 			,FOREIGN KEY (idOpcion) REFERENCES tb_Opcion (id)
 			,FOREIGN KEY (idRespuesta) REFERENCES tb_respuesta (id))
 
