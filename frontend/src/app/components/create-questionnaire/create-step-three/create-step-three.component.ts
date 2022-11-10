@@ -20,19 +20,16 @@ export class CreateStepThreeComponent implements OnInit {
   @Input() stepperContainer?: MatStepper;
   @Input() questionnaire?: Questionnaire;
 
-  //These arrays are used to fill the form's options.
   //TODO fill these using userService and officeService
   users: User[] = []
   offices: Office[] = [new Office({ id: 1, name: "Registros" }), new Office({ id: 2, name: "Recursos Humanos" }), new Office({ id: 3, name: "Bodegas" })]
 
-  //These formcontrol objects are a direct connection to the forms. Note: "form" in this case are the mat-select components!
-  //you need to import ReactiveFormsModule in order to bind [formControl] in your html.
   officeControl: FormControl = new FormControl();
   userControl: FormControl = new FormControl();
   searchControl: FormControl = new FormControl();
 
-  private displayedColumns: string[] = ['id', 'name', 'lastname', 'office', 'operations']; //The colunms for the table
-  private dataSource = new MatTableDataSource<Reviewer>; //The datasource is what the table displays
+  private displayedColumns: string[] = ['id', 'name', 'lastname', 'office', 'operations'];
+  private dataSource = new MatTableDataSource<Reviewer>;
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
   constructor(private reviewingPermissionService: ReviewingPermissionService
@@ -55,7 +52,7 @@ export class CreateStepThreeComponent implements OnInit {
   }
 
   public removeReviewer(id: number) {
-    this.reviewingPermissionService.removeReviewer(id).subscribe( //add new reviewer
+    this.reviewingPermissionService.removeReviewer(id).subscribe(
       (result: Reviewer[]) => (this.updateReviewerList(result))
     );
   }
@@ -80,7 +77,6 @@ export class CreateStepThreeComponent implements OnInit {
   }
 
   public addReviewer(): void {
-    //Check if values are valid
     let valid = false
     this.offices.forEach(element => {
       if (element.id == this.officeControl.value) {
@@ -94,8 +90,8 @@ export class CreateStepThreeComponent implements OnInit {
       this.users.forEach(element => {
         if (element.id == this.userControl.value) {
           valid = true
-          reviewer = element //Casting from user to reviewer, the field "questionnaireID" is not set because the questionnaire itself hasn't been created yet
-          this.reviewingPermissionService.addReviewer(reviewer).subscribe( //add new reviewer
+          reviewer = element
+          this.reviewingPermissionService.addReviewer(reviewer).subscribe(
             (result: Reviewer[]) => (this.updateReviewerList(result))
           );
           this.userControl.setValue(null)
@@ -106,18 +102,11 @@ export class CreateStepThreeComponent implements OnInit {
 
   }
 
-  /**
-   * This method sorts an array recursively according to a search value.
-   * @param oldArray The array to be sorted
-   * @param substring The search value
-   */
   public sortBySearch(oldArray: Reviewer[], substring: string): Reviewer[] {
-    //This will sort the reviewers array according to a string parameter using indexof
     let newArray: Reviewer[] = []
     oldArray.forEach(element => {
-      let index = (element.name + "").indexOf(substring) //where, in the main string, is this substring
-      if (index > -1) { //is this substring actually present in the main string?
-        //if so, add it to the array at the corresponding spot
+      let index = (element.name + "").indexOf(substring)
+      if (index > -1) {
         let added = false
         for (let i = 0; i < newArray.length; i++) {
           let tempIndex = (newArray[i].name + "").indexOf(substring)
@@ -135,7 +124,7 @@ export class CreateStepThreeComponent implements OnInit {
         if (!added) {
           newArray.push(element)
         }
-      } else { //else, add it to the end
+      } else {
         newArray.push(element)
       }
     })
