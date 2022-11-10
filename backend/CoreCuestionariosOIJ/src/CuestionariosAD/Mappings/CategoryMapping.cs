@@ -26,6 +26,12 @@ namespace CuestionariosAD.Mappings
                 .WithOne(b => b.Category)
                 .HasForeignKey(b => b.CategoryId);
 
+            builder.Property(c => c.IsDeleted)
+                .IsRequired()
+                .HasColumnType("bit")
+                .HasDefaultValue(false)
+                .HasColumnName("eliminado");
+
             builder.ToTable("tb_categoria_pregunta");
         }
     }

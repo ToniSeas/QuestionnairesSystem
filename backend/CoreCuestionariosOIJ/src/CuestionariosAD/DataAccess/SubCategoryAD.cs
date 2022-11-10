@@ -21,18 +21,21 @@ namespace CuestionariosAD.DataAccess
 
             var dbCategory = await _context.Categories
                 .Include(e => e.SubCategories)
+                .Where(e => e.IsDeleted == false)
                 .FirstOrDefaultAsync(e => e.Id == categoryId);
 
             var message = new ResponseDTO<List<SubCategory>>();
 
             if (dbCategory == null)
             {
-                message.Id = 1;
+                message.Id = 0;
                 message.Message = "No existe la categoria que se desea obtener las subcategorias.";
                 return await Task.FromResult(message);
             }
 
-            message.Item = dbCategory.SubCategories!.ToList();
+            message.Item = dbCategory.SubCategories!
+                .Where(e => e.IsDeleted == false)
+                .ToList();
 
             return await Task.FromResult(message);
         }
@@ -40,6 +43,7 @@ namespace CuestionariosAD.DataAccess
         public async Task<ActionResult<MessageDTO>> CreateSubCategory(SubCategory subCategory)
         {
             var dbCategory = await _context.Categories
+                .Where(e => e.IsDeleted == false)
                 .FirstOrDefaultAsync(e => e.Id == subCategory.IdCategory);
 
             var message = new MessageDTO
@@ -52,7 +56,7 @@ namespace CuestionariosAD.DataAccess
                 _context.SubCategories.Add(subCategory);
                 await _context.SaveChangesAsync();
             }
-            catch (Exception e)
+            catch
             {
                 message.Id = 0;
                 message.Message = "No existe la categoria que se desea obtener las subcategorias.";
@@ -63,13 +67,15 @@ namespace CuestionariosAD.DataAccess
 
         public async Task<ActionResult<MessageDTO>> UpdateSubCategory(SubCategory subCategory)
         {
-            var dbSubCategory = await _context.SubCategories.FindAsync(subCategory.Id);
+            var dbSubCategory = await _context.SubCategories
+                .Where(e => e.IsDeleted == false)
+                .FirstOrDefaultAsync(e => e.Id == subCategory.Id);
 
             var message = new MessageDTO();
 
             if (dbSubCategory == null)
             {
-                message.Id = 1;
+                message.Id = 0;
                 message.Message = "No existe la subcategoria que se desea actualizar.";
                 return await Task.FromResult(message);
             }
@@ -83,18 +89,20 @@ namespace CuestionariosAD.DataAccess
 
         public async Task<ActionResult<MessageDTO>> DeleteSubCategory(int id)
         {
-            var dbSubCategory = await _context.SubCategories.FindAsync(id);
-
+            var dbSubCategory = await _context.SubCategories
+                .Where(e => e.IsDeleted == false)
+                .FirstOrDefaultAsync(e => e.Id == id);
+            
             var message = new MessageDTO();
 
             if (dbSubCategory == null)
             {
-                message.Id = 1;
+                message.Id = 0;
                 message.Message = "No existe la subcategoria que se desea eliminar.";
                 return await Task.FromResult(message);
             }
 
-            _context.SubCategories.Remove(dbSubCategory);
+            dbSubCategory.IsDeleted = true;
             await _context.SaveChangesAsync();
 
             message.Id = 1;

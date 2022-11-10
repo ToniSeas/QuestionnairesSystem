@@ -15,6 +15,8 @@ namespace CuestionariosEntidades.Models
         public int? IdQuestionnaireType { get; set; }
         public DateTime? CreationDate { get; set; }
         public DateTime? ExpirationDate { get; set; }
+        public bool? IsDeleted { get; set; }
+
 
         // EF Relation
         public IEnumerable<Question>? Questions { get; set; }

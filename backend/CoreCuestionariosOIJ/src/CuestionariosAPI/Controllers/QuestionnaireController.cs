@@ -15,7 +15,7 @@ namespace CuestionariosAPI.Controllers
         {
             questionnaireRN = new QuestionnaireRN();
         }
-        
+
         // Peticion tipo GET: api/GetQuestionnaires
         [HttpGet]
         [Route("GetQuestionnaires")]
@@ -24,7 +24,7 @@ namespace CuestionariosAPI.Controllers
             return await questionnaireRN.GetQuestionnaires();
         }
 
-        // Peticion tipo GET: api/GetQuestionnaires
+        // Peticion tipo GET: api/GetQuestionnaireById
         [HttpGet]
         [Route("GetQuestionnaireById")]
         public async Task<ActionResult<ResponseDTO<Questionnaire>>> GetQuestionnaireById(int questionnaireId)
@@ -67,6 +67,13 @@ namespace CuestionariosAPI.Controllers
         public async Task<ActionResult<MessageDTO>> CommitQuestionnaireAnswers(Questionnaire questionnaire)
         {
             return await questionnaireRN.CommitQuestionnaireAnswers(questionnaire);
+        }
+
+        [HttpGet]
+        [Route("GetQuestionnaireTypes")]
+        public async Task<ActionResult<ResponseDTO<List<QuestionnaireType>>>> GetQuestionnaireTypes()
+        {
+            return await questionnaireRN.GetQuestionnaireTypes();
         }
 
     }

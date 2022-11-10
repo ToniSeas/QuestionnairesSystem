@@ -52,6 +52,12 @@ namespace CuestionariosAD.Mappings
                 .HasDefaultValue()
             .HasColumnName("opcional");
 
+            builder.Property(c => c.IsDeleted)
+                .IsRequired()
+                .HasColumnType("bit")
+                .HasDefaultValue(false)
+                .HasColumnName("eliminado");
+
             // 1 : N => Pregunta : Answers
             builder.HasMany(c => c.Answers)
                 .WithOne(b => b.Question)

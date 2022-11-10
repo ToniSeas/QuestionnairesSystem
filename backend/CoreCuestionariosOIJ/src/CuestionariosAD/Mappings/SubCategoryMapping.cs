@@ -21,6 +21,12 @@ namespace CuestionariosAD.Mappings
                 .HasColumnType("int")
             .HasColumnName("idCategoria");
 
+            builder.Property(c => c.IsDeleted)
+                .IsRequired()
+                .HasColumnType("bit")
+                .HasDefaultValue(false)
+                .HasColumnName("eliminado");
+
             // 1 : N => SubCategoria : Preguntas
             builder.HasMany(c => c.Questions)
                 .WithOne(b => b.SubCategory)

@@ -19,10 +19,12 @@ namespace CuestionariosAD.DataAccess
 
         public async Task<ActionResult<ResponseDTO<List<Category>>>> GetCategories()
         {
-            var categories = _context.Categories.ToList();
+            var categories = _context.Categories
+                .Where(e => e.IsDeleted == false)
+                .ToList();
             var message = new ResponseDTO<List<Category>> {
                 Id = 1,
-                Message = "Test",
+                Message = "Solicitud realizada correctamente",
                 Item = categories
             };
 
@@ -37,7 +39,7 @@ namespace CuestionariosAD.DataAccess
             var message = new MessageDTO
             {
                 Id = 1,
-                Message = "Test"
+                Message = "Solicitud realizada correctamente"
             };
 
             return await Task.FromResult(message);
@@ -66,20 +68,22 @@ namespace CuestionariosAD.DataAccess
         {
             var dbCategory = await _context.Categories
                 .Include(e => e.SubCategories)
+                .Where(e => e.IsDeleted == false)
                 .FirstOrDefaultAsync(e => e.Id == id);
 
             var message = new MessageDTO();
 
-            if (dbCategory == null) { 
+            if (dbCategory == null) {
                 message.Id = 1;
                 message.Message = "No existe la categoria que se desea actualizar.";
                 return await Task.FromResult(message);
             }
 
-            _context.Categories.Remove(dbCategory);
+            dbCategory.IsDeleted = true;
             await _context.SaveChangesAsync();
 
             message.Id = 1;
+            message.Message = "Solicitud realizada correctamente.";
             return await Task.FromResult(message);
         }
 

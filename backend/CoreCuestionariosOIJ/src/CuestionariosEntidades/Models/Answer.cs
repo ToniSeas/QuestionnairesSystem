@@ -14,6 +14,7 @@ namespace CuestionariosEntidades.Models
         public DateTime? Date { get; set; }
         public int? QuestionId { get; set; }
         public string? AnswerText { get; set; } = string.Empty;
+        public bool? IsDeleted { get; set; }
 
         // EF Relation
 

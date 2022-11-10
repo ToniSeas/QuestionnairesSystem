@@ -4,6 +4,7 @@ using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace CuestionariosAD.DataAccess
 {
@@ -19,11 +20,14 @@ namespace CuestionariosAD.DataAccess
 
         public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> GetQuestionnaires()
         {
-            var questionnaires = _context.Questionnaires.ToList();
+            var questionnaires = _context.Questionnaires
+                .Where(x => x.IsDeleted == false)
+                .ToList();
+
             var response = new ResponseDTO<List<Questionnaire>>
             {
                 Id = 1,
-                Message = "Test",
+                Message = "Solicitud realizada correctamente",
                 Item = questionnaires
             };
 
@@ -34,24 +38,24 @@ namespace CuestionariosAD.DataAccess
         {
             var dbQuestionnaire = await _context.Questionnaires
                 .Include(e => e.Questions)
+                .Where(e => e.IsDeleted == false)
                 .FirstOrDefaultAsync(e => e.Id == questionnaireId);
-
 
             var message = new ResponseDTO<Questionnaire>();
 
             if (dbQuestionnaire == null)
             {
                 message.Id = 0;
-                message.Message = "No existe el cuestionario que se desea obtener las subcategorias.";
+                message.Message = "No existe el cuestionario que desea obtener";
                 return await Task.FromResult(message);
             }
             else {
 
-                foreach (var item in dbQuestionnaire.Questions)
+                foreach (var item in dbQuestionnaire.Questions!)
                 {
-                    if (item.TypeId.Equals("es"))
+                    if (item.TypeId!.Equals("es"))
                     {
-                        item.Options = _context.Options.Where(x => x.IdQuestionType.Equals(item.TypeId)).ToList();
+                        item.Options = _context.Options.Where(x => x.IdQuestionType!.Equals(item.TypeId)).ToList();
                     } else
                     {
                         item.Options = _context.Options.Where(x => x.IdQuestion == item.Id).ToList();
@@ -67,11 +71,13 @@ namespace CuestionariosAD.DataAccess
 
         public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> SearchQuestionnaires(string name)
         {
-            var questionnaires = _context.Questionnaires.Where(x => x.Name!.Contains(name)).ToList();
+            var questionnaires = _context.Questionnaires.
+                Where(x => x.Name!.Contains(name) && x.IsDeleted == false)
+                .ToList();
             var response = new ResponseDTO<List<Questionnaire>>
             {
                 Id = 1,
-                Message = "Test",
+                Message = "Solicitud realizada correctamente",
                 Item = questionnaires
             };
 
@@ -83,7 +89,7 @@ namespace CuestionariosAD.DataAccess
 
             var message = new MessageDTO {
                 Id = 1,
-                Message = "Cuestionario creado con éxito"
+                Message = "Solicitud realizada correctamente"
             };
             try
             {
@@ -101,13 +107,15 @@ namespace CuestionariosAD.DataAccess
 
         public async Task<ActionResult<MessageDTO>> UpdateQuestionnaire(Questionnaire questionnaire)
         {
-            var dbQuestionnnaire = await _context.Questionnaires.FindAsync(questionnaire.Id);
+            var dbQuestionnnaire = await _context.Questionnaires
+                .Where(x => x.IsDeleted == false)
+                .FirstOrDefaultAsync(e => e.Id == questionnaire.Id);
 
             var message = new MessageDTO();
 
             if (dbQuestionnnaire == null)
             {
-                message.Id = 1;
+                message.Id = 0;
                 message.Message = "No existe el cuestionario que se desea actualizar.";
                 return await Task.FromResult(message);
             }
@@ -121,17 +129,19 @@ namespace CuestionariosAD.DataAccess
 
         public async Task<ActionResult<MessageDTO>> DeleteQuestionnaire(int id)
         {
-            var dbQuestionnaire = await _context.Questionnaires.FirstOrDefaultAsync(e => e.Id == id);
+            var dbQuestionnaire = await _context.Questionnaires
+                .Where(x => x.IsDeleted == false)
+                .FirstOrDefaultAsync(e => e.Id == id);
 
             var message = new MessageDTO
             {
                 Id = 1,
-                Message = "Cuestionario creado con éxito"
+                Message = "Cuestionario eliminado con éxito"
             };
 
             try
             {
-                _context.Questionnaires.Remove(dbQuestionnaire!);
+                dbQuestionnaire!.IsDeleted = true;
                 await _context.SaveChangesAsync();
             }
             catch (Exception e)
@@ -169,6 +179,22 @@ namespace CuestionariosAD.DataAccess
             }
 
             return await Task.FromResult(message);
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<QuestionnaireType>>>> GetQuestionnaireTypes()
+        {
+            var questionnairesTypes = _context.QuestionnaireTypes
+                .Where(x => x.IsDeleted == false)
+                .ToList();
+            var response = new ResponseDTO<List<QuestionnaireType>>
+            {
+                Id = 1,
+                Message = "Solicitud realizada correctamente",
+                Item = questionnairesTypes
+            };
+
+            return await Task.FromResult(response);
+
         }
 
     }

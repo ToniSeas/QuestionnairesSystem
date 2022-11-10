@@ -50,5 +50,10 @@ namespace CuestionariosRN.BusinessObjects
             return await questionnaireData.CommitQuestionnaireAnswers(questionnaire);
         }
 
+        public async Task<ActionResult<ResponseDTO<List<QuestionnaireType>>>> GetQuestionnaireTypes()
+        {
+            return await questionnaireData.GetQuestionnaireTypes();
+        }
+
     }
 }

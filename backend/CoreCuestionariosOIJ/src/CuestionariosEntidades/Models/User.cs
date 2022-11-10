@@ -11,7 +11,7 @@ namespace CuestionariosEntidades.Models
         public int? Id { get; set; }
         public string? Name { get; set; } = string.Empty;
         public string? Lastname { get; set; } = string.Empty;
-        public int isDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
         public Office? Office { get; set; }
 
     }
