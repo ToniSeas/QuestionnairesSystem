@@ -43,6 +43,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SharedRouterComponent } from './components/shared-router/shared-router.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CreateStepFiveComponent } from './components/create-questionnaire/create-step-five/create-step-five.component';
+import { QuestionnaireAnsweredComponent } from './components/questionnaire-answered/questionnaire-answered.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { CreateStepFiveComponent } from './components/create-questionnaire/creat
     ScaleQuestionComponent,
     SingleChoiceQuestionComponent,
     SharedRouterComponent,
-    CreateStepFiveComponent
+    CreateStepFiveComponent,
+    QuestionnaireAnsweredComponent
   ],
   imports: [
     BrowserModule,

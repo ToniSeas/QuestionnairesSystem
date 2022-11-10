@@ -26,6 +26,8 @@ export class QuestionnaireViewComponent implements OnInit {
 
   questionnaire?: Questionnaire
   questionComponentRefs: ComponentRef<any>[] = []
+  isSendSuccessfull: boolean = true
+  public messageToShow: string = "";
 
  
   constructor(private questionnaireService: QuestionnaireService, private router: Router) {
@@ -93,15 +95,17 @@ export class QuestionnaireViewComponent implements OnInit {
         allQuestionsAnswered = false;
       }
     });
-    console.log(allQuestionsAnswered)
     return allQuestionsAnswered
   }
 
   sendAnswers(): void {
-    console.log(this.questionnaire?.questions)
+    this.questionnaireService.createQuestionnaire(this.questionnaire!).subscribe((messageDTO) => {
+      if (messageDTO.id == 0) {
+        this.isSendSuccessfull = false;
+        this.messageToShow = "No se pudo enviar el cuestionario"
+      } else if (messageDTO.id == 1) {
+        this.router.navigate(['/questionnaire-answered/'])
+      }
+    });
   }
-
-  
-
-
 }

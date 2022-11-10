@@ -1,16 +1,11 @@
-.questionnaire-title {
+.title {
     text-align: center;
     align-content: center;
     margin: 2em;
 }
 
-.questionnaire-description {
+.info {
     margin-left: 5em;
     margin-right: 5em;
-    font-weight: 600;
-}
-
-.error-message {
-    color: red;
     font-weight: 600;
 }

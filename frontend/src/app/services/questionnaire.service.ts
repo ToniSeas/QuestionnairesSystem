@@ -35,6 +35,10 @@ export class QuestionnaireService {
     return this.httpClient.post<Questionnaire>(`${environment.apiUrl}/${this.controllerURL}/CreateQuestionnaire`, questionnaire);
   }
 
+  public answerQuestionnaire(questionnaire: Questionnaire) : Observable<MessageDTO> {
+    return this.httpClient.post<Questionnaire>(`${environment.apiUrl}/${this.controllerURL}/AnswerQuestionnaire`, questionnaire);
+  }
+
   public deleteQuestionnaire(id?: number) : Observable<MessageDTO> {
     return this.httpClient.delete<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/DeleteQuestionnaire/${id}`);
   }
