@@ -7,6 +7,7 @@ import { Office } from 'src/app/models/Office';
 import { Questionnaire } from 'src/app/models/Questionnaire';
 import { Reviewer } from 'src/app/models/Reviewer';
 import { User } from 'src/app/models/User';
+import { OfficeService } from 'src/app/services/office.service';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { ReviewingPermissionService } from 'src/app/services/reviewing-permission.service';
 import { UserService } from 'src/app/services/user.service';
@@ -22,7 +23,7 @@ export class CreateStepThreeComponent implements OnInit {
 
   //TODO fill these using userService and officeService
   users: User[] = []
-  offices: Office[] = [new Office({ id: 1, name: "Registros" }), new Office({ id: 2, name: "Recursos Humanos" }), new Office({ id: 3, name: "Bodegas" })]
+  offices: Office[] = []
 
   officeControl: FormControl = new FormControl();
   userControl: FormControl = new FormControl();
@@ -34,6 +35,7 @@ export class CreateStepThreeComponent implements OnInit {
 
   constructor(private reviewingPermissionService: ReviewingPermissionService
     , private userService: UserService
+    , private officeService: OfficeService
     , private questionnaireService: QuestionnaireService) { }
 
   ngOnInit(): void {
@@ -45,6 +47,13 @@ export class CreateStepThreeComponent implements OnInit {
     this.updateReviewerList(reviewers)
 
     this.dataSource.paginator = this.paginator
+    this.updateOffices()
+  }
+
+  public updateOffices() {
+    this.officeService.getOffices().subscribe(
+      (responseDTO) => (this.offices = responseDTO.item!)
+    )
   }
 
   public getDataSource(): MatTableDataSource<Reviewer> {
@@ -68,7 +77,7 @@ export class CreateStepThreeComponent implements OnInit {
 
   public officeChange() {
     this.userService.getUserByOffice(this.officeControl.value).subscribe(
-      (result: User[]) => (this.updateUserList(result))
+      (responseDTO) => (this.updateUserList(responseDTO.item!))
     )
   }
 
@@ -129,7 +138,6 @@ export class CreateStepThreeComponent implements OnInit {
       }
     })
 
-    console.log(newArray)
     return newArray
   }
 

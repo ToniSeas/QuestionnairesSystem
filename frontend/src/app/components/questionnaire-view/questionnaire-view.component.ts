@@ -99,7 +99,7 @@ export class QuestionnaireViewComponent implements OnInit {
   }
 
   sendAnswers(): void {
-    this.questionnaireService.createQuestionnaire(this.questionnaire!).subscribe((messageDTO) => {
+    this.questionnaireService.commitAnswers(this.questionnaire!).subscribe((messageDTO) => {
       if (messageDTO.id == 0) {
         this.isSendSuccessfull = false;
         this.messageToShow = "No se pudo enviar el cuestionario"
