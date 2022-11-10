@@ -4,6 +4,7 @@ using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace CuestionariosAD.DataAccess
 {
@@ -169,6 +170,20 @@ namespace CuestionariosAD.DataAccess
             }
 
             return await Task.FromResult(message);
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<QuestionnaireType>>>> GetQuestionnaireTypes()
+        {
+            var questionnairesTypes = _context.QuestionnaireTypes.ToList();
+            var response = new ResponseDTO<List<QuestionnaireType>>
+            {
+                Id = 1,
+                Message = "Test",
+                Item = questionnairesTypes
+            };
+
+            return await Task.FromResult(response);
+
         }
 
     }
