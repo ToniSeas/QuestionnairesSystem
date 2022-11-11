@@ -16,8 +16,8 @@ import { MatStepper } from "@angular/material/stepper";
 import { Questionnaire } from "src/app/models/Questionnaire";
 import { SubcategoryService } from "src/app/services/subcategory.service";
 import { QuestionnaireService } from "src/app/services/questionnaire.service";
-import { ResponseDTO } from "src/app/models/DataTranferObjects/ResponseDTO";
-import { MessageDTO } from "src/app/models/DataTranferObjects/MessageDTO";
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { NumberInput } from "@angular/cdk/coercion";
 
 @Component({
   selector: 'app-create-step-two',
@@ -27,6 +27,7 @@ import { MessageDTO } from "src/app/models/DataTranferObjects/MessageDTO";
 export class CreateStepTwoComponent implements OnInit {
   @Input() stepperContainer?: MatStepper;
   @Input() questionnaire?: Questionnaire;
+  @Input('cdkDropListAutoScrollStep') autoScrollStep: NumberInput = 500;
 
   // Instancias necesarias
   private displayedColumns: string[];
@@ -35,7 +36,7 @@ export class CreateStepTwoComponent implements OnInit {
 
   // Inicializacion de los atributos
   constructor(private questionService: QuestionService, public dialog: MatDialog, private qService: QuestionnaireService) {
-    this.displayedColumns = ['id', 'statement', 'type', 'operations'];
+    this.displayedColumns = ['position', 'statement', 'type', 'operations'];
     this.dataSource = new MatTableDataSource<Question>;
     this.searchControl = new FormControl('');
   }
@@ -60,6 +61,7 @@ export class CreateStepTwoComponent implements OnInit {
   }
   
   public pushQuestion(question: Question) {
+    question.position = this.questionnaire?.questions?.length
     this.questionnaire?.questions?.push(question);
   }
 
@@ -76,6 +78,21 @@ export class CreateStepTwoComponent implements OnInit {
 
   public getQuestionTypeById(idType: string): QuestionType {
     return this.questionService.getQuestionTypeById(idType).item!;
+  }
+
+  public dropQuestion(event: CdkDragDrop<Question[]>) {
+    var questions = this.questionnaire!.questions;
+    moveItemInArray(questions, event.previousIndex, event.currentIndex);
+    var positionAux:number = 1;
+    questions.forEach(question => {
+      question.position = positionAux;
+      positionAux ++;
+    });
+    this.updateDataSource(this.questionnaire!.questions);
+  }
+
+  public getQuestions(): Question[] {
+    return this.questionnaire!.questions;
   }
 
   // Buscar preguntas segun el enunciado de pregunta
