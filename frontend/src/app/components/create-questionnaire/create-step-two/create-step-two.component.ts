@@ -61,8 +61,8 @@ export class CreateStepTwoComponent implements OnInit {
   }
   
   public pushQuestion(question: Question) {
-    question.position = this.questionnaire?.questions?.length
     this.questionnaire?.questions?.push(question);
+    question.position = this.questionnaire?.questions?.length
   }
 
   // Con este metodo se puede actualizar el datasource de la tabla
