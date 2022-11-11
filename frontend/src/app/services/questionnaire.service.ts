@@ -47,12 +47,7 @@ export class QuestionnaireService {
   }
 
   public getQuestionnaireTypes() : Observable<ResponseDTO<QuestionnaireType[]>> {
-    var types: QuestionnaireType[] = [];
-    types.push(new QuestionnaireType({id:1, name:"Interno"}))
-    types.push(new QuestionnaireType({id:2, name:"Externo"}))
-    types.push(new QuestionnaireType({id:3, name:"Impersonal"}))
-
-    return of(new ResponseDTO<QuestionnaireType[]>({id:1 , item:types}));
+    return this.httpClient.get<ResponseDTO<QuestionnaireType[]>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionnaireTypes`);
   }
 
   public commitAnswers(questionnaire: Questionnaire): Observable<ResponseDTO<MessageDTO>> {
