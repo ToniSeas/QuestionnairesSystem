@@ -59,6 +59,21 @@ export class CreateStepTwoComponent implements OnInit {
       }
     });
   }
+
+  public openModifyDialog(enterAnimationDuration: string, exitAnimationDuration: string, questionToModify: Question): void {
+    // Se inicia el MatDialog y se le indican parametros
+    var dialogRef = this.dialog.open(CreateQuestionDialog, {
+      data: {questionToModify: questionToModify},
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined && result.state == true) {
+        
+      }
+    });
+  }
   
   public pushQuestion(question: Question) {
     this.questionnaire?.questions?.push(question);
@@ -176,7 +191,9 @@ export class CreateQuestionDialog implements OnInit {
   public isOption: boolean;
   public nombreVariable: string;
   // Inicializacion de los atributos
+  
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: {questionToModify: Question},
     public dialogRef: MatDialogRef<CreateQuestionDialog>,
     private questionService: QuestionService,
     private categoryService: CategoryService,
@@ -197,7 +214,8 @@ export class CreateQuestionDialog implements OnInit {
       type: new FormControl("", [Validators.required]),
       category: new FormControl("", [Validators.required]),
       subCategory: new FormControl("", [Validators.required]),
-      label: new FormControl("", [Validators.required])
+      label: new FormControl("", [Validators.required]),
+      optional: new FormControl(false, [Validators.required]),
     })
 
   }
@@ -230,6 +248,19 @@ export class CreateQuestionDialog implements OnInit {
       }
     );
 
+    if (this.data != null) {
+      this.question = this.data.questionToModify;
+      this.getFormGroup().get('statement')?.setValue(this.question.statement);
+      this.getFormGroup().get('label')?.setValue(this.question.label);
+      this.getFormGroup().get('category')?.setValue(this.question.categoryId);
+      this.updateSubCategories()
+      this.getFormGroup().get('subCategory')?.setValue(this.question.subcategoryId);
+      this.getFormGroup().get('type')?.setValue(this.question.typeId);
+      this.getFormGroup().get('optional')?.setValue(this.question.isOptional);
+      this.requireOption(this.question.typeId!);
+      this.updateDataSource(this.question.options)
+    }
+
     this.dataSource.paginator = this.paginator;
   }
 
@@ -241,6 +272,10 @@ export class CreateQuestionDialog implements OnInit {
     return this.isOption;
   }
 
+  onOptionalChange(isOptional: boolean) {
+    this.getFormGroup().get('optional')?.setValue(isOptional);
+  }
+
   // Esto es lo que se ejecuta cuando se realiza la accion de aceptar (enviar formulario)
   public onSubmit = () => {
     // Si el formulario es valido, entonces se le asignan
@@ -249,9 +284,9 @@ export class CreateQuestionDialog implements OnInit {
     this.question.label = this.getFormGroup().get('label')?.value;
     this.question.categoryId = this.getFormGroup().get('category')?.value;
     this.question.subcategoryId = this.getFormGroup().get('subCategory')?.value;
+    this.question.isOptional = this.getFormGroup().get('optional')?.value;
 
     this.question.typeId = this.getFormGroup().get('type')?.value;
-
     const auxQuestionType = this.question.typeId;
     this.question.options.forEach(function (option) {
       option.idQuestionType = auxQuestionType;

@@ -62,7 +62,7 @@
             <mat-icon>delete</mat-icon>
             <span>Borrar</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="this.openModifyDialog('0ms', '0ms', element)">
             <mat-icon>edit</mat-icon>
             <span>Editar</span>
           </button>
