@@ -50,5 +50,19 @@ namespace SecurityAPI.Controllers
 
             return await Task.FromResult(message);
         }
+
+        [HttpGet]
+        [Route("UsersByOffice")]
+        public async Task<ActionResult<ResponseDTO<User[]>>> GetUsersByOffice(int officeId)
+        {
+
+            Console.WriteLine(officeId);
+            var message = new ResponseDTO<User[]>
+            {
+                Item = this.userDataAccess.getUsersByOffice(officeId),
+                Id = 1
+            };
+            return await Task.FromResult(message);
+        }
     }
 }

@@ -15,6 +15,9 @@
                         <mat-icon>send</mat-icon>
                         Enviar
                     </button>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-5">
+                        <span *ngIf="!this.isSendSuccessfull" class="error-message">{{this.messageToShow}}</span>
+                    </div>
                 </div>
             </form>
         </div>

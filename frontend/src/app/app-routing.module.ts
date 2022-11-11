@@ -13,6 +13,7 @@ import { ManageSubcategoryComponent } from './components/manage-subcategory/mana
 import { AuthGuard } from './services/auth.guard';
 import { QuestionnaireViewComponent } from './components/questionnaire-view/questionnaire-view.component';
 import { SharedRouterComponent } from './components/shared-router/shared-router.component';
+import { QuestionnaireAnsweredComponent } from './components/questionnaire-answered/questionnaire-answered.component';
 
 const routes: Routes = [
   {
@@ -114,6 +115,9 @@ const routes: Routes = [
         component: SharedRouterComponent
       }
     ]
+  }, {
+    path: 'questionnaire-answered'
+    , component: QuestionnaireAnsweredComponent
   }
   , { path: '**', component: NotFoundPageComponent }
 ];

@@ -45,6 +45,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CreateStepFiveComponent } from './components/create-questionnaire/create-step-five/create-step-five.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkTableModule } from '@angular/cdk/table';
+import { QuestionnaireAnsweredComponent } from './components/questionnaire-answered/questionnaire-answered.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     ScaleQuestionComponent,
     SingleChoiceQuestionComponent,
     SharedRouterComponent,
-    CreateStepFiveComponent
+    CreateStepFiveComponent,
+    QuestionnaireAnsweredComponent
   ],
   imports: [
     BrowserModule,
