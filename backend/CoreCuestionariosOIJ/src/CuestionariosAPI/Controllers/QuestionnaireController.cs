@@ -24,7 +24,7 @@ namespace CuestionariosAPI.Controllers
             return await questionnaireRN.GetQuestionnaires();
         }
 
-        // Peticion tipo GET: api/GetQuestionnaires
+        // Peticion tipo GET: api/GetQuestionnaireById
         [HttpGet]
         [Route("GetQuestionnaireById")]
         public async Task<ActionResult<ResponseDTO<Questionnaire>>> GetQuestionnaireById(int questionnaireId)

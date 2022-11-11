@@ -19,17 +19,17 @@ export class SearchQuestionnaireComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private questionnaireService: QuestionnaireService) { 
+  constructor(private questionnaireService: QuestionnaireService) {
     this.searchControl = new FormControl('');
   }
 
   ngOnInit(): void {
-    this.questionnaireService.getQuestionnaires().subscribe (
+    this.questionnaireService.getQuestionnaires().subscribe(
       (responseDTO) => {
         this.updateQuestionnaireList(responseDTO.item!)
       }
     )
-    
+
     this.dataSource.paginator = this.paginator;
   }
 
@@ -47,7 +47,7 @@ export class SearchQuestionnaireComponent implements OnInit {
 
   // Buscar cuestionario segun el nombre
   public searchQuestionnaire(): void {
-    var name:string = this.searchControl.value;
+    var name: string = this.searchControl.value;
     if (name == null) { name = ''; }
     if (name.length > 0) {
       this.questionnaireService.searchQuestionnaire(name).subscribe((responseDto) => {
@@ -65,7 +65,7 @@ export class SearchQuestionnaireComponent implements OnInit {
   }
 
   // Este metodo retona la fecha en el siguiente formato: dd/mm/yyyy
-  public getDate(date: Date):string {
+  public getDate(date: Date): string {
     var dateString = `${date}`.split("T")[0];
     return dateString;
   }
@@ -75,19 +75,21 @@ export class SearchQuestionnaireComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  public deleteQuestionnaire(idC?: number){
+  public deleteQuestionnaire(idC?: number) {
     this.questionnaireService.deleteQuestionnaire(idC).subscribe(
       (messageDTO) => {
-        console.log(messageDTO.message)
+        if (messageDTO.id != 1) {
+          console.log(messageDTO.message)
+        } else {
+          this.questionnaireService.getQuestionnaires().subscribe(
+            (responseDTO) => {
+              this.updateQuestionnaireList(responseDTO.item!);
+            }
+          )
+        }
       }
     );
-
-    this.questionnaireService.getQuestionnaires().subscribe(
-      (responseDTO) => {
-        this.updateQuestionnaireList(responseDTO.item!);
-      }
-    )
   }
-  
+
   public getSearchControl(): FormControl { return this.searchControl };
 }

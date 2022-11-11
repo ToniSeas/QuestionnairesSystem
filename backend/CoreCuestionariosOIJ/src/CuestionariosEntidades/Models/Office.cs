@@ -10,6 +10,7 @@ namespace CuestionariosEntidades.Models
     {
         public String? Name { get; set; } = String.Empty;
         public int? Id { get; set; }
+        public bool? IsDeleted { get; set; }
 
         // EF Relation
         public IEnumerable<User>? Users { get; set; }

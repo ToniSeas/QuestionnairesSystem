@@ -10,5 +10,6 @@ namespace CuestionariosEntidades.Models
     {
         public int? QuestionnaireId { get; set; }
         public int? UserId { get; set; }
+
     }
 }

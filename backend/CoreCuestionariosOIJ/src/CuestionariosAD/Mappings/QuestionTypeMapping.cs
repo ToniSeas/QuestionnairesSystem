@@ -16,6 +16,12 @@ namespace CuestionariosAD.Mappings
                 .HasColumnType("nvarchar(150)")
             .HasColumnName("nombre");
 
+            builder.Property(c => c.IsDeleted)
+                .IsRequired()
+                .HasColumnType("bit")
+                .HasDefaultValue(false)
+                .HasColumnName("eliminado");
+
             // 1 : N => TipoPregunta : Preguntas
             builder.HasMany(c => c.Questions)
                 .WithOne(b => b.QuestionType)

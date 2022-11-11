@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ogDbWAgcTgioblCBYKn3XowuEGg7qgL/ZsZ7E2Q4OlEZ05FxyryjeXJK6DUm9zBhw1L1YBF/yJsq2t37ppbB/g==",
+  "dgSpecHash": "uRcNUzwfA61DExz+dDRicI029WReJf1m2Xl6mJrnwzb29QQpp95dCM68SWLboLvKcYtQZuNkTw+sXUj52Ddfyg==",
   "success": true,
-  "projectFilePath": "E:\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
+  "projectFilePath": "E:\\Repositories\\CuestionariosOIJ\\backend\\CoreCuestionariosOIJ\\src\\CuestionariosEntidades\\CuestionariosEntidades.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
