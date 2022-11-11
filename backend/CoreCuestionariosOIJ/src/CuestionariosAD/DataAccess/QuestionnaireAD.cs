@@ -183,11 +183,13 @@ namespace CuestionariosAD.DataAccess
 
         public async Task<ActionResult<ResponseDTO<List<QuestionnaireType>>>> GetQuestionnaireTypes()
         {
-            var questionnairesTypes = _context.QuestionnaireTypes.ToList();
+            var questionnairesTypes = _context.QuestionnaireTypes
+                .Where(x => x.IsDeleted == false)
+                .ToList();
             var response = new ResponseDTO<List<QuestionnaireType>>
             {
                 Id = 1,
-                Message = "Test",
+                Message = "Solicitud realizada correctamente",
                 Item = questionnairesTypes
             };
 

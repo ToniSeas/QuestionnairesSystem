@@ -12,7 +12,6 @@ import { QuestionType } from '../models/QuestionType';
   providedIn: 'root'
 })
 export class QuestionnaireService {
-  dateAux: Date = new Date();
 
   private controllerURL: string;
   constructor(private httpClient: HttpClient) { 
