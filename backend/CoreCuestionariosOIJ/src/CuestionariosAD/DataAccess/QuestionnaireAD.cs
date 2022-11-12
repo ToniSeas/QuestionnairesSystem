@@ -59,6 +59,10 @@ namespace CuestionariosAD.DataAccess
                     {
                         item.Options = _context.Options.Where(x => x.IdQuestionType!.Equals(item.TypeId)).ToList();
                     }
+                    else if (item.TypeId!.Equals("vf"))
+                    {
+                        item.Options = _context.Options.Where(x => x.IdQuestionType!.Equals(item.TypeId)).ToList();
+                    }
                     else
                     {
                         item.Options = _context.Options.Where(x => x.IdQuestion == item.Id).ToList();
