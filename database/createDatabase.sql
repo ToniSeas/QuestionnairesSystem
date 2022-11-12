@@ -7,6 +7,7 @@
 		31 de agosto 2022: Modifica la llave primaria de los tipos de pregunta para facilitar la identificación de los mismos.
 		05 de noviembre 2022: Se agregan los tipos de cuestionario.
 		09 de noviembre 2022: Se agregan las columnas para eliminado lógico a todas las tablas.
+		11 de noviembre 2022: Se agregan las opciones para verdadero y falso
 */
 
 USE master
@@ -165,6 +166,8 @@ BEGIN TRY
 			,('Regular', 'es')
 			,('Bueno', 'es')
 			,('Muy bueno', 'es')
+			,('Verdadero', 'vf')
+			,('Falso', 'vf')
 
 		-- Tipos de cuestionario
 		INSERT INTO tb_tipo_Cuestionario
