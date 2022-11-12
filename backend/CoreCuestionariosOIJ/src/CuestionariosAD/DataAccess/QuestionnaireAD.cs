@@ -3,6 +3,7 @@ using CuestionariosEntidades.DataTranferObjects;
 using CuestionariosEntidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -49,14 +50,16 @@ namespace CuestionariosAD.DataAccess
                 message.Message = "No existe el cuestionario que desea obtener";
                 return await Task.FromResult(message);
             }
-            else {
+            else
+            {
 
                 foreach (var item in dbQuestionnaire.Questions!)
                 {
                     if (item.TypeId!.Equals("es"))
                     {
                         item.Options = _context.Options.Where(x => x.IdQuestionType!.Equals(item.TypeId)).ToList();
-                    } else
+                    }
+                    else
                     {
                         item.Options = _context.Options.Where(x => x.IdQuestion == item.Id).ToList();
                     }
@@ -87,7 +90,8 @@ namespace CuestionariosAD.DataAccess
         public async Task<ActionResult<MessageDTO>> CreateQuestionnaire(Questionnaire questionnaire)
         {
 
-            var message = new MessageDTO {
+            var message = new MessageDTO
+            {
                 Id = 1,
                 Message = "Solicitud realizada correctamente"
             };
@@ -160,6 +164,7 @@ namespace CuestionariosAD.DataAccess
                 Id = 1,
                 Message = "Respuestas ingresadas con éxito creado con éxito"
             };
+
             try
             {
                 foreach (Question question in questionnaire.Questions!)

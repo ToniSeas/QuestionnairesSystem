@@ -51,19 +51,19 @@ export class QuestionUtil {
         if (question.answers.length > 0) {
             switch (question.typeId) {
                 case 'su':
-                    return question.answers[0].options.length > 0 || question.isOptional!
+                    return question.answers[0].answerOptions.length > 0 || question.isOptional!
                     break;
                 case 'sm':
-                    return question.answers[0].options.length > 0 || question.isOptional!
+                    return question.answers[0].answerOptions.length > 0 || question.isOptional!
                     break;
                 case 'rl':
                     return question.answers[0].answerText!.length > 0 || question.isOptional!
                     break;
                 case 'vf':
-                    return question.answers[0].options.length > 0 || question.isOptional!
+                    return question.answers[0].answerOptions.length > 0 || question.isOptional!
                     break;
                 case 'es':
-                    return question.answers[0].options.length > 0 || question.isOptional!
+                    return question.answers[0].answerOptions.length > 0 || question.isOptional!
                     break;
                 default:
                     console.log("Default")

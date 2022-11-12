@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AnswerOption } from 'src/app/models/AnswerOption';
 import { Question } from 'src/app/models/Question';
 
 @Component({
@@ -15,21 +16,18 @@ export class TrueFalseQuestionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChange(id: number): void {
-    this.question.options.forEach(element => {
-      if (element.id == id) {
-          let tempAnswer = this.question.answers[0]
-          let index = tempAnswer.options.indexOf(element)
-          if (index > -1) {
-            tempAnswer.options.splice(index, 1)
-          } else {
-            tempAnswer.options.push(element)
-          }
-      }
-    });
+  onChange(idOption: number): void {
+    let tempAnswer = this.question.answers[0]
+
+    if (tempAnswer.answerOptions.length == 0) {
+      tempAnswer.answerOptions.push(new AnswerOption({idOption: idOption, idAnswer: tempAnswer.id}))
+    } else {
+      tempAnswer.answerOptions[0].idAnswer = tempAnswer.id;
+      tempAnswer.answerOptions[0].idOption = idOption;
+    }
   }
  
   validateSelection(): boolean {
-    return (this.question.answers[0].options.length > 0) || this.question.isOptional!
+    return (this.question.answers[0].answerOptions.length > 0) || this.question.isOptional!
   }
 }

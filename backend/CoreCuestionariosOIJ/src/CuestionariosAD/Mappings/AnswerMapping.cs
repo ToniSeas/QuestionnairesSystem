@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using CuestionariosEntidades.Models;
+using System.Reflection.Emit;
+using System;
 
 namespace CuestionariosAD.Mappings
 {
@@ -33,11 +35,6 @@ namespace CuestionariosAD.Mappings
                 .HasDefaultValue(false)
                 .HasColumnName("eliminado");
 
-            // N : N => Opciones : Respuestas
-            builder.HasMany(c => c.Options)
-                .WithMany(b => b.Answers)
-                .UsingEntity(j => j.ToTable("tb_respuesta_opcion"));
-            
             builder.ToTable("tb_respuesta");
         }
     }

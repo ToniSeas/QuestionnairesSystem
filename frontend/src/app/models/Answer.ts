@@ -1,4 +1,4 @@
-import { Option } from "./Option"
+import { AnswerOption } from "./AnswerOption"
 
 export class Answer{
   
@@ -6,11 +6,11 @@ export class Answer{
     date?: Date
     questionId?: number
     answerText: string
-    options: Option[]
+    answerOptions: AnswerOption[]
     
     constructor() {
-        this.options = []
-        this.answerText = ""
+        this.answerOptions = [];
+        this.answerText = "";
     }
 
 }

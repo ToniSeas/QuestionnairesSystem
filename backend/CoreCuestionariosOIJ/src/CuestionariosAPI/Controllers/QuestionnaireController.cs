@@ -2,6 +2,7 @@
 using CuestionariosEntidades.Models;
 using CuestionariosRN.BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CuestionariosAPI.Controllers
 {

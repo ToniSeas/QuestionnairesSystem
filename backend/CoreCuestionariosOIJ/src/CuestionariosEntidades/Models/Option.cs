@@ -15,7 +15,7 @@ namespace CuestionariosEntidades.Models
         public bool? IsDeleted { get; set; }
 
         // EF Relation
-        public IEnumerable<Answer>? Answers { get; set; }
+        public IEnumerable<AnswerOption>? AnswerOptions { get; set; }
         public Question? Question { get; set; }
         public QuestionType? QuestionType { get; set; }
     }
