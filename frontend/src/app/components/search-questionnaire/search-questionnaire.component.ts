@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Questionnaire } from 'src/app/models/Questionnaire';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 
@@ -19,7 +20,7 @@ export class SearchQuestionnaireComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private questionnaireService: QuestionnaireService) {
+  constructor(private questionnaireService: QuestionnaireService, private router: Router) {
     this.searchControl = new FormControl('');
   }
 
@@ -89,6 +90,11 @@ export class SearchQuestionnaireComponent implements OnInit {
         }
       }
     );
+  }
+
+  public updateQuestionnaire(idC?: number){
+    this.router.navigate(['/modify-questionnaire/'+idC])
+
   }
 
   public getSearchControl(): FormControl { return this.searchControl };

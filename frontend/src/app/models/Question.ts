@@ -9,21 +9,21 @@ export class Question{
   label?: string;
   position?: number;
   typeId?: string;
-  subcategoryId?: number;
+  subCategoryId?: number;
   categoryId?: number;
   options: Option[] = [];
   isOptional?: boolean;
   answers: Answer[] = []
 
   constructor (
-    {id, statement, label, position, subcategoryId, categoryId, typeId, isOptional}: 
-    {id?: number, statement?: string, label?: string, position?: number, subcategoryId?: number, categoryId?: number, typeId?: string, isOptional?: boolean}
+    {id, statement, label, position, subCategoryId, categoryId, typeId, isOptional}: 
+    {id?: number, statement?: string, label?: string, position?: number, subCategoryId?: number, categoryId?: number, typeId?: string, isOptional?: boolean}
     ) {
       this.id = id;
       this.statement = statement;
       this.label = label;
       this.position = position;
-      this.subcategoryId = subcategoryId;
+      this.subCategoryId = subCategoryId;
       this.categoryId = categoryId;
       this.typeId = typeId;
       this.isOptional = isOptional;

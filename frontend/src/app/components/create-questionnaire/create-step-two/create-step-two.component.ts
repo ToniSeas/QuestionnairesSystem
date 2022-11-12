@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject, Input, AfterViewInit } from "@angular/core";
+import { Component, OnInit, ViewChild, Inject, Input, AfterViewInit, OnChanges, SimpleChanges } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Question } from "src/app/models/Question";
@@ -24,7 +24,7 @@ import { NumberInput } from "@angular/cdk/coercion";
   templateUrl: './create-step-two.component.html',
   styleUrls: ['./create-step-two.component.css']
 })
-export class CreateStepTwoComponent implements OnInit {
+export class CreateStepTwoComponent implements OnInit, OnChanges {
   @Input() stepperContainer?: MatStepper;
   @Input() questionnaire?: Questionnaire;
   @Input('cdkDropListAutoScrollStep') autoScrollStep: NumberInput = 500;
@@ -39,6 +39,11 @@ export class CreateStepTwoComponent implements OnInit {
     this.displayedColumns = ['position', 'statement', 'type', 'operations'];
     this.dataSource = new MatTableDataSource<Question>;
     this.searchControl = new FormControl('');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    let questionnaireAux:Questionnaire = changes['questionnaire'].currentValue
+    this.updateDataSource(questionnaireAux.questions)
   }
 
   // Esto se ejecuta cada vez que se ingresa a esta vista
@@ -61,6 +66,7 @@ export class CreateStepTwoComponent implements OnInit {
   }
 
   public openModifyDialog(enterAnimationDuration: string, exitAnimationDuration: string, questionToModify: Question): void {
+    console.log(questionToModify)
     // Se inicia el MatDialog y se le indican parametros
     var dialogRef = this.dialog.open(CreateQuestionDialog, {
       data: {questionToModify: questionToModify},
@@ -249,12 +255,12 @@ export class CreateQuestionDialog implements OnInit {
     );
 
     if (this.data != null) {
-      this.question = this.data.questionToModify;
+      this.question = Object.assign(new Question({}), this.data.questionToModify!);
       this.getFormGroup().get('statement')?.setValue(this.question.statement);
       this.getFormGroup().get('label')?.setValue(this.question.label);
       this.getFormGroup().get('category')?.setValue(this.question.categoryId);
       this.updateSubCategories()
-      this.getFormGroup().get('subCategory')?.setValue(this.question.subcategoryId);
+      this.getFormGroup().get('subCategory')?.setValue(this.question.subCategoryId);
       this.getFormGroup().get('type')?.setValue(this.question.typeId);
       this.getFormGroup().get('optional')?.setValue(this.question.isOptional);
       this.requireOption(this.question.typeId!);
@@ -283,7 +289,7 @@ export class CreateQuestionDialog implements OnInit {
     this.question.statement = this.getFormGroup().get('statement')?.value;
     this.question.label = this.getFormGroup().get('label')?.value;
     this.question.categoryId = this.getFormGroup().get('category')?.value;
-    this.question.subcategoryId = this.getFormGroup().get('subCategory')?.value;
+    this.question.subCategoryId = this.getFormGroup().get('subCategory')?.value;
     this.question.isOptional = this.getFormGroup().get('optional')?.value;
 
     this.question.typeId = this.getFormGroup().get('type')?.value;
