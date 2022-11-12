@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { Questionnaire } from 'src/app/models/Questionnaire';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
@@ -8,7 +8,8 @@ import { QuestionnaireService } from 'src/app/services/questionnaire.service';
   templateUrl: './create-step-five.component.html',
   styleUrls: ['./create-step-five.component.css']
 })
-export class CreateStepFiveComponent implements OnInit {
+export class CreateStepFiveComponent implements OnInit, OnChanges{
+  @Input() isModify?: boolean;
   @Input() stepperContainer?: MatStepper;
   @Input() questionnaire?: Questionnaire;
 
@@ -18,6 +19,10 @@ export class CreateStepFiveComponent implements OnInit {
   constructor(public questionnaireService: QuestionnaireService) { 
     this.messageToShow = "";
     this.isSendSuccessfull = false;
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    let isModifyAux:boolean = changes['isModify'].currentValue;
+    //TODO: comprobar si es verdadera, si es verdadero entonces debe llamar al metodo de modificar cuestionario
   }
 
   ngOnInit(): void {

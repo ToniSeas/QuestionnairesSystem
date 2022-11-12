@@ -72,6 +72,20 @@ const routes: Routes = [
           roles: ["ADMIN", "SADMIN"]
         },
       }
+      ,{
+        path: 'modify-questionnaire',
+        component: CreateQuestionnaireComponent,
+        children: [
+          {
+            path: '**',
+            component: CreateQuestionnaireComponent
+          }
+        ],
+        canActivate: [AuthGuard],
+        data: {
+          roles: ["ADMIN", "SADMIN"]
+        },
+      }
     ]
   }
   , {

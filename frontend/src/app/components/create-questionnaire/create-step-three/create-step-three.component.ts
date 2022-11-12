@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatStepper } from '@angular/material/stepper';
@@ -17,7 +17,8 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './create-step-three.component.html',
   styleUrls: ['./create-step-three.component.css']
 })
-export class CreateStepThreeComponent implements OnInit {
+export class CreateStepThreeComponent implements OnInit, OnChanges {
+  @Input() isModify?: boolean;
   @Input() stepperContainer?: MatStepper;
   @Input() questionnaire?: Questionnaire;
 
@@ -37,6 +38,12 @@ export class CreateStepThreeComponent implements OnInit {
     , private userService: UserService
     , private officeService: OfficeService
     , private questionnaireService: QuestionnaireService) { }
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+    let isModifyAux:boolean = changes['isModify'].currentValue;
+    //TODO: comprobar si es verdadera, si es verdadero entonces debe cargar los permisos de la base de datos segun el cuestionario
+  }
 
   ngOnInit(): void {
     this.reviewingPermissionService.getReviewers().subscribe(

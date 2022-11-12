@@ -2,7 +2,7 @@
 
     <mat-step>
         <ng-template matStepLabel>Información básica</ng-template>
-        <app-create-step-one [stepperContainer]="stepper" [questionnaire]="questionnaire"></app-create-step-one>
+        <app-create-step-one [stepperContainer]="stepper" [questionnaire]="questionnaire" ></app-create-step-one>
     </mat-step>
 
     <mat-step>
@@ -12,38 +12,18 @@
 
     <mat-step>
         <ng-template matStepLabel>Permisos de revisión</ng-template>
-        <app-create-step-three [stepperContainer]="stepper" [questionnaire]="questionnaire"></app-create-step-three>
+        <app-create-step-three [stepperContainer]="stepper" [questionnaire]="questionnaire" [isModify]="this.isModify"></app-create-step-three>
     </mat-step>
 
-    <!--
+    
     <mat-step>
         <ng-template matStepLabel>Permisos de respuesta</ng-template>
     </mat-step>
-    -->
+   
 
     <mat-step>
         <ng-template matStepLabel>Finalizar</ng-template>
-        <app-create-step-five [stepperContainer]="stepper" [questionnaire]="questionnaire"></app-create-step-five>
+        <app-create-step-five [stepperContainer]="stepper" [questionnaire]="questionnaire" [isModify]="this.isModify"></app-create-step-five>
     </mat-step>
 
 </mat-horizontal-stepper>
-
-<!-- <button mat-raised-button type="button" class="mat-warn">
-    <mat-icon>cancel</mat-icon>
-    Cancelar
-</button>
-
-<button mat-raised-button type="button" class="mat-accent">
-    <mat-icon>search</mat-icon>
-    Buscar
-</button>
-
-<button mat-raised-button type="button" class="mat-warn">
-    <mat-icon>delete</mat-icon>
-    Cancelar
-</button>
-
-<button mat-raised-button type="button" class="mat-primary">
-    <mat-icon>cleaning_services'</mat-icon>
-    Limpiar
-</button> -->
