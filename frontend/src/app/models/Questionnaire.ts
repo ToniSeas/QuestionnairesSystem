@@ -1,4 +1,5 @@
 import { Question } from "./Question";
+import { ReviewerQuestionnaire } from "./ReviewerQuestionnaire";
 
 export class Questionnaire {
 
@@ -10,6 +11,7 @@ export class Questionnaire {
   description?: String;
   isActive?: boolean;
   questions: Question[] = [];
+  reviewersQuestionnaire: ReviewerQuestionnaire[] = [];
 
   constructor({ id, idQuestionnaireType, name, expirationDate, description, isActive }:
     { id?: number, idQuestionnaireType?: String, name?: String, expirationDate?: Date, description?: String, isActive?: boolean }) {
