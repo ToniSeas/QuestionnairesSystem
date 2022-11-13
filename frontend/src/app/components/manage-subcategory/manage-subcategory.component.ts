@@ -26,10 +26,14 @@ export class ManageSubcategoryComponent implements OnInit {
 
   private displayedColumns: string[] = ['title', 'operations'];
   private dataSource = new MatTableDataSource<SubCategory>;
+  public messageToShow: string;
+  public isSendSuccessfull: boolean;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private subcategoryService: SubcategoryService, private categoryService: CategoryService) {
+    this.messageToShow = "";
+    this.isSendSuccessfull = false;
   }
   public getFormGroup(): FormGroup { return this.createSubCategoryForm; }
 
@@ -85,12 +89,18 @@ export class ManageSubcategoryComponent implements OnInit {
   public createSubCategory(subcategory: SubCategory): void {
     this.subcategoryService.createSubCategory(subcategory).subscribe(
       (messageDTO) => {
-        if (messageDTO.id == 1) {
+        if (messageDTO.id == 0) {
+          this.isSendSuccessfull = false;
+          this.messageToShow = "No se pudo crear la subcategoría"
+        } else if (messageDTO.id == 1) {
           this.subcategoryService.getSubCategories(subcategory.idCategory!).subscribe(
             (responseDTO) => {
               this.updateSubCategoryList(responseDTO.item!);
             }
           );
+          console.log("TB");
+          this.isSendSuccessfull = true;
+          this.messageToShow = "Subcategoría creada"
         }
       }
     );

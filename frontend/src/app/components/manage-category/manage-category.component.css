@@ -63,3 +63,11 @@ table {
 ::ng-deep .mat-dialog-container {
     border: 5px solid #DAA520;
 }
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}

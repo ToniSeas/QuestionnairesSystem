@@ -15,10 +15,15 @@
     <div class="col">
         <mat-form-field class="w-full">
             <mat-label> Categoría </mat-label>
-            <input matInput placeholder="Categoría" [formControlName]="'categoryF'">
+
+            <input matInput #inputCreateCategory placeholder="Categoría" type="text" [formControlName]="'categoryF'" maxlength="100">
+            <mat-hint align="end">{{inputCreateCategory.value.length}}/100</mat-hint>
         </mat-form-field>
     </div>
-
+    <div class="row mb-4">
+        <span *ngIf="this.isSendSuccessfull" class="success-message">{{this.messageToShow}}</span>
+        <span *ngIf="!this.isSendSuccessfull" class="error-message">{{this.messageToShow}}</span>
+    </div>
     <div class="row mb-4">
         <div class="col">
             <div class="category-action-buttons">
@@ -60,8 +65,9 @@
                 <div *ngIf="category.editable">
                     <form>
                         <mat-form-field>
-                            <input [formControl]="categoryControl" type="text" placeholder="{{category.name}}"
-                            value="{{category.name}}" matInput>
+                            <input [formControl]="categoryControl" #inputUpdateCategory type="text" placeholder="{{category.name}}"
+                                value="{{category.name}}" matInput maxlength="100">
+                                <mat-hint align="end">{{inputUpdateCategory.value.length}}/100</mat-hint>
                         </mat-form-field>
                         <button mat-icon-button color="primary"
                             (click)="updateCategory(categoryControl.value, category.id)"
