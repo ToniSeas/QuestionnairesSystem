@@ -6,11 +6,10 @@ import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { Office } from 'src/app/models/Office';
 import { Questionnaire } from 'src/app/models/Questionnaire';
-import { QuestionnaireReviewer } from 'src/app/models/QuestionnaireReviewer';
+import { ReviewerQuestionnaire } from 'src/app/models/ReviewerQuestionnaire';
 import { User } from 'src/app/models/User';
 import { OfficeService } from 'src/app/services/office.service';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
-import { ReviewingPermissionService } from 'src/app/services/reviewing-permission.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -22,8 +21,6 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   @Input() isModify?: boolean;
   @Input() stepperContainer?: MatStepper;
   @Input() questionnaire?: Questionnaire;
-  @Input() questionnaireReviewers?: QuestionnaireReviewer[]
-
 
   users: User[] = []
   offices: Office[] = []
@@ -32,8 +29,8 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   userControl: FormControl = new FormControl();
   searchControl: FormControl = new FormControl();
 
-  private displayedColumns: string[] = ['id', 'name', 'lastname', 'office', 'operations'];
-  private dataSource = new MatTableDataSource<User>;
+  private displayedColumns: string[] = ['userName', 'name', 'office', 'operations'];
+  private dataSource = new MatTableDataSource<ReviewerQuestionnaire>;
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
   constructor(private userService: UserService
@@ -49,9 +46,6 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
-    let users: User[] = []
-
     this.dataSource.paginator = this.paginator
     this.updateOffices()
   }
@@ -60,14 +54,6 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
     this.officeService.getOffices().subscribe(
       (responseDTO) => (this.offices = responseDTO.item!)
     )
-  }
-
-  public removeReviewer(id: number) {
-    //TODO
-  }
-
-  public updateReviewerList(): void {
-    //TODO
   }
 
   public officeChange() {
@@ -80,7 +66,7 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
     this.users = users;
   }
 
-  public getDataSource(): MatTableDataSource<User> {
+  public getDataSource(): MatTableDataSource<ReviewerQuestionnaire> {
     return this.dataSource;
   }
 
@@ -88,15 +74,43 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
     return this.displayedColumns;
   }
 
-  public addReviewer(): void {
-    //Verificar si la oficina seleccionada es válida.
-    let valid = false
-    this.offices.forEach(element => {
-      if (element.id == this.officeControl.value) {
-        valid = true
-      }
-    });
+  public updateDataSource(reviewersQuestionnaire: ReviewerQuestionnaire[]): void {
+    this.dataSource = new MatTableDataSource<ReviewerQuestionnaire>(reviewersQuestionnaire);
+    this.dataSource.paginator = this.paginator;
+  }
 
+  public addReviewer(): void {
+
+    var exists = false;
+    this.questionnaire?.reviewersQuestionnaire.forEach((reviewerQuestionnaire) => {
+      if (this.userControl.value == reviewerQuestionnaire.user?.id) {
+        exists = true;
+      }
+    })
+
+    if (!exists) {
+      var reviewerQuestionnaire = new ReviewerQuestionnaire({
+        idUser: this.userControl.value
+      })
+
+      this.users.forEach((user) => {
+        if (user.id == reviewerQuestionnaire.idUser) {
+          reviewerQuestionnaire.user = user
+        }
+      })
+
+      var officeId = this.officeControl.value
+      this.offices.forEach((office) => {
+        if (office.id == officeId) {
+          reviewerQuestionnaire.office = office;
+        }
+      });
+
+      this.questionnaire?.reviewersQuestionnaire.push(reviewerQuestionnaire)
+
+      this.updateDataSource(this.questionnaire?.reviewersQuestionnaire!)
+
+    }
     //estas líneas limpian los datos, dejarlas aquí.
     this.userControl.setValue(null)
     this.searchControl.setValue(null)
@@ -104,8 +118,34 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
 
   public searchReviewers() {
     if (this.searchControl.value != null) {
-      //TODO buscar, se debe reordenar la tabla SIN BORRAR NADA
+
+      var tempReviewerQuestionnaire: ReviewerQuestionnaire[] = []
+
+      const searchValue: string = this.searchControl.value;
+
+      this.questionnaire?.reviewersQuestionnaire.forEach(function (reviewerQuestionnaire) {
+        const userFullName: String = reviewerQuestionnaire.user?.name === undefined ? '' : reviewerQuestionnaire.user?.name;
+
+        if (userFullName.includes(searchValue)) { tempReviewerQuestionnaire.push(reviewerQuestionnaire); }
+      });
+      // Se actualiza el datasource de la tabla con las opciones encontradas
+      this.updateDataSource(tempReviewerQuestionnaire);
     }
+  }
+
+  public deleteReviewerQuestionnaire(reviewerQuestionnaire: ReviewerQuestionnaire) {
+    const reviewerQuestionnaireAux = reviewerQuestionnaire;
+    // Se obtiene el index de la opcion a la que el corresponde el id
+    const indexOfReviewer = this.questionnaire!.reviewersQuestionnaire.findIndex((reviewerQuestionnaire) => {
+      return reviewerQuestionnaire == reviewerQuestionnaireAux;
+    });
+
+    // Si el index es diferente a -1 entonces se elimina de la lista
+    if (indexOfReviewer != -1) {
+      this.questionnaire?.reviewersQuestionnaire.splice(indexOfReviewer, 1);
+    }
+    // Se actualiza el datasource de la tabla
+    this.updateDataSource(this.questionnaire!.reviewersQuestionnaire);
   }
 
   public cleaningServices(): void {
