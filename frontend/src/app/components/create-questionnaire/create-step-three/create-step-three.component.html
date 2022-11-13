@@ -37,7 +37,7 @@
                 Limpiar
             </button>
             <button mat-raised-button type="submit" [disabled]="!checkValid()" value="submit"
-                class="mat-primary me-md-2">
+                class="mat-primary me-md-2" (click)="this.addReviewer()">
                 <mat-icon>add</mat-icon>
                 Agregar
             </button>

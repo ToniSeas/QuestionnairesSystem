@@ -1,3 +1,4 @@
+import { DataSource } from '@angular/cdk/collections';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -5,7 +6,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { Office } from 'src/app/models/Office';
 import { Questionnaire } from 'src/app/models/Questionnaire';
-import { Reviewer } from 'src/app/models/Reviewer';
+import { QuestionnaireReviewer } from 'src/app/models/QuestionnaireReviewer';
 import { User } from 'src/app/models/User';
 import { OfficeService } from 'src/app/services/office.service';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
@@ -21,8 +22,9 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   @Input() isModify?: boolean;
   @Input() stepperContainer?: MatStepper;
   @Input() questionnaire?: Questionnaire;
+  @Input() questionnaireReviewers?: QuestionnaireReviewer[]
 
-  //TODO fill these using userService and officeService
+
   users: User[] = []
   offices: Office[] = []
 
@@ -31,27 +33,24 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   searchControl: FormControl = new FormControl();
 
   private displayedColumns: string[] = ['id', 'name', 'lastname', 'office', 'operations'];
-  private dataSource = new MatTableDataSource<Reviewer>;
+  private dataSource = new MatTableDataSource<User>;
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
-  constructor(private reviewingPermissionService: ReviewingPermissionService
-    , private userService: UserService
+  constructor(private userService: UserService
     , private officeService: OfficeService
     , private questionnaireService: QuestionnaireService) { }
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    let isModifyAux:boolean = changes['isModify'].currentValue;
+    let isModifyAux: boolean = changes['isModify'].currentValue;
     //TODO: comprobar si es verdadera, si es verdadero entonces debe cargar los permisos de la base de datos segun el cuestionario
+
+    //NOTA: no entendí el comentario anterior. 
   }
 
   ngOnInit(): void {
-    this.reviewingPermissionService.getReviewers().subscribe(
-      (result: Reviewer[]) => (this.updateReviewerList(result))
-    )
 
-    let reviewers: Reviewer[] = []
-    this.updateReviewerList(reviewers)
+    let users: User[] = []
 
     this.dataSource.paginator = this.paginator
     this.updateOffices()
@@ -63,23 +62,12 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
     )
   }
 
-  public getDataSource(): MatTableDataSource<Reviewer> {
-    return this.dataSource;
-  }
-
   public removeReviewer(id: number) {
-    this.reviewingPermissionService.removeReviewer(id).subscribe(
-      (result: Reviewer[]) => (this.updateReviewerList(result))
-    );
+    //TODO
   }
 
-  public getDisplayedColumns(): string[] {
-    return this.displayedColumns;
-  }
-
-  public updateReviewerList(reviewers: Reviewer[]): void {
-    this.dataSource = new MatTableDataSource<Reviewer>(reviewers)
-    this.dataSource.paginator = this.paginator
+  public updateReviewerList(): void {
+    //TODO
   }
 
   public officeChange() {
@@ -92,7 +80,16 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
     this.users = users;
   }
 
+  public getDataSource(): MatTableDataSource<User> {
+    return this.dataSource;
+  }
+
+  public getDisplayedColumns(): string[] {
+    return this.displayedColumns;
+  }
+
   public addReviewer(): void {
+    //Verificar si la oficina seleccionada es válida.
     let valid = false
     this.offices.forEach(element => {
       if (element.id == this.officeControl.value) {
@@ -100,61 +97,14 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
       }
     });
 
-    let reviewer: Reviewer
-    if (valid) {
-      valid = false
-      this.users.forEach(element => {
-        if (element.id == this.userControl.value) {
-          valid = true
-          reviewer = element
-          this.reviewingPermissionService.addReviewer(reviewer).subscribe(
-            (result: Reviewer[]) => (this.updateReviewerList(result))
-          );
-          this.userControl.setValue(null)
-          this.searchControl.setValue(null)
-        }
-      })
-    }
-
+    //estas líneas limpian los datos, dejarlas aquí.
+    this.userControl.setValue(null)
+    this.searchControl.setValue(null)
   }
-
-  public sortBySearch(oldArray: Reviewer[], substring: string): Reviewer[] {
-    let newArray: Reviewer[] = []
-    oldArray.forEach(element => {
-      let index = (element.name + "").indexOf(substring)
-      if (index > -1) {
-        let added = false
-        for (let i = 0; i < newArray.length; i++) {
-          let tempIndex = (newArray[i].name + "").indexOf(substring)
-          console.log(index, " ", tempIndex)
-          if (tempIndex < 0 || index < tempIndex) {
-            if (i == 0) {
-              newArray.unshift(element)
-            } else {
-              newArray.splice(i, 0, element)
-            }
-            added = true
-            break
-          }
-        }
-        if (!added) {
-          newArray.push(element)
-        }
-      } else {
-        newArray.push(element)
-      }
-    })
-
-    return newArray
-  }
-
 
   public searchReviewers() {
-
     if (this.searchControl.value != null) {
-      let oldArray: Reviewer[] = this.dataSource.data
-      let newArray: Reviewer[] = this.sortBySearch(oldArray, this.searchControl.value)
-      this.updateReviewerList(newArray)
+      //TODO buscar, se debe reordenar la tabla SIN BORRAR NADA
     }
   }
 
@@ -168,12 +118,12 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   public checkValid(): boolean {
     return this.officeControl.valid && this.userControl.valid
   }
-  
-  goBack(){
+
+  goBack() {
     this.stepperContainer!.previous();
   }
 
-  goForward(){
+  goForward() {
     this.stepperContainer!.next();
   }
 

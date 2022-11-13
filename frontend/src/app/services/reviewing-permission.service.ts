@@ -19,11 +19,6 @@ export class ReviewingPermissionService {
 
   }
 
-  /**
-   * 
-   * @param questionnaire this questionnaire is used to filter which users to return. If it's not supplied, then an empty list is returned.
-   * @returns List of questio
-   */
   public getReviewers(questionnaire?: Questionnaire): Observable<Reviewer[]> {
     if (questionnaire != null) {
       /*
