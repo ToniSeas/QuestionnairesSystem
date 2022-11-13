@@ -19,13 +19,17 @@ export class ManageCategoryComponent implements OnInit {
   private createCategoryForm!: FormGroup;
   private displayedColumns: string[] = ['title', 'operations'];
   private dataSource = new MatTableDataSource<Category>;
-  categoryControl: FormControl = new FormControl("", [Validators.required]);
+  categoryControl: FormControl = new FormControl("", [Validators.required,Validators.pattern(/[a-zA-ZÁ-Úá-ú].*/)]);
   private categoriesTemp: Category[] = []
-
+  public messageToShow: string;
+  public isSendSuccessfull: boolean;
+  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private categoryService: CategoryService) {
+    this.messageToShow = "";
+    this.isSendSuccessfull = false;
   }
 
   public getFormGroup(): FormGroup { return this.createCategoryForm; }
@@ -40,7 +44,7 @@ export class ManageCategoryComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
 
     this.createCategoryForm = new FormGroup({
-      categoryF: new FormControl("", [Validators.required])
+      categoryF: new FormControl("", [Validators.required,Validators.pattern(/[a-zA-ZÁ-Úá-ú].*/)])
     })
 
   }
@@ -70,12 +74,17 @@ export class ManageCategoryComponent implements OnInit {
   public createCategory(nameC: string): void {
     this.categoryService.createCategory(new Category({ name: nameC })).subscribe(
       (messageDTO) => {
-        if (messageDTO.id == 1) {
+        if (messageDTO.id == 0) {
+          this.isSendSuccessfull = false;
+          this.messageToShow = "No se pudo crear la categoría"
+        } else if (messageDTO.id == 1) {
           this.categoryService.getCategories().subscribe(
             (responseDTO) => {
               this.updateCategoryList(responseDTO.item!);
             }
           );
+          this.isSendSuccessfull = true;
+          this.messageToShow = "Categoría creada"
         }
       }
     );

@@ -8,11 +8,15 @@ namespace CuestionariosEntidades.Models
 {
     public class Office
     {
-        public String? Name { get; set; } = String.Empty;
-        public int? Id { get; set; }
-        public bool? IsDeleted { get; set; }
 
-        // EF Relation
-        public IEnumerable<User>? Users { get; set; }
+        public Office(int id, String name)
+        {
+            this.id = id;
+            this.name = name;
+        }
+
+        public int id { get; set; }
+
+        public String name { get; set; }
     }
 }

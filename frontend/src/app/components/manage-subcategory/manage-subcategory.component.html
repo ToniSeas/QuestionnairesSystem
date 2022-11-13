@@ -15,11 +15,11 @@
     <div class="col">
         <mat-form-field class="w-full p-l-8">
             <mat-label>Nombre SubCategoría</mat-label>
-            <input matInput placeholder="Nombre SubCategoría" [formControlName]="'subcategoryF'">
-
+            <input matInput #inputCreateSubCategory placeholder="Nombre SubCategoría" [formControlName]="'subcategoryF'"
+                maxlength="100">
+            <mat-hint align="end">{{inputCreateSubCategory.value.length}}/100</mat-hint>
         </mat-form-field>
     </div>
-
     <mat-form-field class="col">
         <mat-label>Categoría</mat-label>
         <mat-select [formControlName]="'categoryF'" (selectionChange)="getSubCategories();">
@@ -29,7 +29,10 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-
+    <div class="row mb-4">
+        <span *ngIf="this.isSendSuccessfull" class="success-message">{{this.messageToShow}}</span>
+        <span *ngIf="!this.isSendSuccessfull" class="error-message">{{this.messageToShow}}</span>
+    </div>
     <div class="row mb-4">
         <div class="col">
             <div class="category-action-buttons">
