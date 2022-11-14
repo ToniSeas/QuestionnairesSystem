@@ -6,11 +6,13 @@ using Newtonsoft.Json;
 
 namespace CuestionariosAPI.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class OfficeController
     {
 
         [HttpGet]
-        [Route("GETOffices")]
+        [Route("GetOffices")]
         public async Task<ActionResult<ResponseDTO<List<Office>>>> GetOffices()
         {
             ResponseDTO<List<Office>> offices;
