@@ -46,6 +46,8 @@ import { CreateStepFiveComponent } from './components/create-questionnaire/creat
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkTableModule } from '@angular/cdk/table';
 import { QuestionnaireAnsweredComponent } from './components/questionnaire-answered/questionnaire-answered.component';
+import {MatCardModule} from '@angular/material/card';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -99,7 +101,9 @@ import { QuestionnaireAnsweredComponent } from './components/questionnaire-answe
     MatCheckboxModule,
     MatProgressSpinnerModule,
     DragDropModule,
-    CdkTableModule
+    CdkTableModule,
+    MatCardModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

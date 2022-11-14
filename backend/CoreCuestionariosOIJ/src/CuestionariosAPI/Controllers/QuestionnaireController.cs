@@ -43,7 +43,7 @@ namespace CuestionariosAPI.Controllers
         // Petición tipo POST: api/CreateQuestionnaire
         [HttpPost]
         [Route("CreateQuestionnaire")]
-        public async Task<ActionResult<MessageDTO>> CreateQuestionnaire(Questionnaire questionnaire)
+        public async Task<ActionResult<ResponseDTO<int>>> CreateQuestionnaire(Questionnaire questionnaire)
         {
             return await questionnaireRN.CreateQuestionnaire(questionnaire);
         }
