@@ -24,10 +24,6 @@ export class UserService {
     return this.httpClient.get<ResponseDTO<User[]>>(`${environment.securityModuleUrl}/${this.controllerURL}/UsersByOffice`, {params: params});
   }
 
-  public getOffices(): Observable<ResponseDTO<Office[]>> {
-    return this.httpClient.get<ResponseDTO<Office[]>>(`${environment.securityModuleUrl}/${this.controllerURL}/Offices`);
-  }
-
   public logout() {
     this.setLoggedIn(false);
     this.setRole('');
