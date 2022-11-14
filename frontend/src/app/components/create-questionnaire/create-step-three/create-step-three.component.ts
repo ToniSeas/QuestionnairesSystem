@@ -1,4 +1,3 @@
-import { DataSource } from '@angular/cdk/collections';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -6,10 +5,11 @@ import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { Office } from 'src/app/models/Office';
 import { Questionnaire } from 'src/app/models/Questionnaire';
-import { ReviewerQuestionnaire } from 'src/app/models/ReviewerQuestionnaire';
+import { Reviewer } from 'src/app/models/Reviewer';
 import { User } from 'src/app/models/User';
 import { OfficeService } from 'src/app/services/office.service';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
+import { ReviewingPermissionService } from 'src/app/services/reviewing-permission.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   @Input() stepperContainer?: MatStepper;
   @Input() questionnaire?: Questionnaire;
 
+  //TODO fill these using userService and officeService
   users: User[] = []
   offices: Office[] = []
 
@@ -29,23 +30,29 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   userControl: FormControl = new FormControl();
   searchControl: FormControl = new FormControl();
 
-  private displayedColumns: string[] = ['userName', 'name', 'office', 'operations'];
-  private dataSource = new MatTableDataSource<ReviewerQuestionnaire>;
+  private displayedColumns: string[] = ['id', 'name', 'lastname', 'office', 'operations'];
+  private dataSource = new MatTableDataSource<Reviewer>;
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
-  constructor(private userService: UserService
+  constructor(private reviewingPermissionService: ReviewingPermissionService
+    , private userService: UserService
     , private officeService: OfficeService
     , private questionnaireService: QuestionnaireService) { }
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    let isModifyAux: boolean = changes['isModify'].currentValue;
+    let isModifyAux:boolean = changes['isModify'].currentValue;
     //TODO: comprobar si es verdadera, si es verdadero entonces debe cargar los permisos de la base de datos segun el cuestionario
-
-    //NOTA: no entendí el comentario anterior. 
   }
 
   ngOnInit(): void {
+    this.reviewingPermissionService.getReviewers().subscribe(
+      (result: Reviewer[]) => (this.updateReviewerList(result))
+    )
+
+    let reviewers: Reviewer[] = []
+    this.updateReviewerList(reviewers)
+
     this.dataSource.paginator = this.paginator
     this.updateOffices()
   }
@@ -54,6 +61,25 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
     this.officeService.getOffices().subscribe(
       (responseDTO) => (this.offices = responseDTO.item!)
     )
+  }
+
+  public getDataSource(): MatTableDataSource<Reviewer> {
+    return this.dataSource;
+  }
+
+  public removeReviewer(id: number) {
+    this.reviewingPermissionService.removeReviewer(id).subscribe(
+      (result: Reviewer[]) => (this.updateReviewerList(result))
+    );
+  }
+
+  public getDisplayedColumns(): string[] {
+    return this.displayedColumns;
+  }
+
+  public updateReviewerList(reviewers: Reviewer[]): void {
+    this.dataSource = new MatTableDataSource<Reviewer>(reviewers)
+    this.dataSource.paginator = this.paginator
   }
 
   public officeChange() {
@@ -66,86 +92,70 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
     this.users = users;
   }
 
-  public getDataSource(): MatTableDataSource<ReviewerQuestionnaire> {
-    return this.dataSource;
-  }
-
-  public getDisplayedColumns(): string[] {
-    return this.displayedColumns;
-  }
-
-  public updateDataSource(reviewersQuestionnaire: ReviewerQuestionnaire[]): void {
-    this.dataSource = new MatTableDataSource<ReviewerQuestionnaire>(reviewersQuestionnaire);
-    this.dataSource.paginator = this.paginator;
-  }
-
   public addReviewer(): void {
+    let valid = false
+    this.offices.forEach(element => {
+      if (element.id == this.officeControl.value) {
+        valid = true
+      }
+    });
 
-    var exists = false;
-    this.questionnaire?.reviewersQuestionnaire.forEach((reviewerQuestionnaire) => {
-      if (this.userControl.value == reviewerQuestionnaire.user?.id) {
-        exists = true;
+    let reviewer: Reviewer
+    if (valid) {
+      valid = false
+      this.users.forEach(element => {
+        if (element.id == this.userControl.value) {
+          valid = true
+          reviewer = element
+          this.reviewingPermissionService.addReviewer(reviewer).subscribe(
+            (result: Reviewer[]) => (this.updateReviewerList(result))
+          );
+          this.userControl.setValue(null)
+          this.searchControl.setValue(null)
+        }
+      })
+    }
+
+  }
+
+  public sortBySearch(oldArray: Reviewer[], substring: string): Reviewer[] {
+    let newArray: Reviewer[] = []
+    oldArray.forEach(element => {
+      let index = (element.name + "").indexOf(substring)
+      if (index > -1) {
+        let added = false
+        for (let i = 0; i < newArray.length; i++) {
+          let tempIndex = (newArray[i].name + "").indexOf(substring)
+          console.log(index, " ", tempIndex)
+          if (tempIndex < 0 || index < tempIndex) {
+            if (i == 0) {
+              newArray.unshift(element)
+            } else {
+              newArray.splice(i, 0, element)
+            }
+            added = true
+            break
+          }
+        }
+        if (!added) {
+          newArray.push(element)
+        }
+      } else {
+        newArray.push(element)
       }
     })
 
-    if (!exists) {
-      var reviewerQuestionnaire = new ReviewerQuestionnaire({
-        idUser: this.userControl.value
-      })
-
-      this.users.forEach((user) => {
-        if (user.id == reviewerQuestionnaire.idUser) {
-          reviewerQuestionnaire.user = user
-        }
-      })
-
-      var officeId = this.officeControl.value
-      this.offices.forEach((office) => {
-        if (office.id == officeId) {
-          reviewerQuestionnaire.office = office;
-        }
-      });
-
-      this.questionnaire?.reviewersQuestionnaire.push(reviewerQuestionnaire)
-
-      this.updateDataSource(this.questionnaire?.reviewersQuestionnaire!)
-
-    }
-    //estas líneas limpian los datos, dejarlas aquí.
-    this.userControl.setValue(null)
-    this.searchControl.setValue(null)
+    return newArray
   }
+
 
   public searchReviewers() {
+
     if (this.searchControl.value != null) {
-
-      var tempReviewerQuestionnaire: ReviewerQuestionnaire[] = []
-
-      const searchValue: string = this.searchControl.value;
-
-      this.questionnaire?.reviewersQuestionnaire.forEach(function (reviewerQuestionnaire) {
-        const userFullName: String = reviewerQuestionnaire.user?.name === undefined ? '' : reviewerQuestionnaire.user?.name;
-
-        if (userFullName.includes(searchValue)) { tempReviewerQuestionnaire.push(reviewerQuestionnaire); }
-      });
-      // Se actualiza el datasource de la tabla con las opciones encontradas
-      this.updateDataSource(tempReviewerQuestionnaire);
+      let oldArray: Reviewer[] = this.dataSource.data
+      let newArray: Reviewer[] = this.sortBySearch(oldArray, this.searchControl.value)
+      this.updateReviewerList(newArray)
     }
-  }
-
-  public deleteReviewerQuestionnaire(reviewerQuestionnaire: ReviewerQuestionnaire) {
-    const reviewerQuestionnaireAux = reviewerQuestionnaire;
-    // Se obtiene el index de la opcion a la que el corresponde el id
-    const indexOfReviewer = this.questionnaire!.reviewersQuestionnaire.findIndex((reviewerQuestionnaire) => {
-      return reviewerQuestionnaire == reviewerQuestionnaireAux;
-    });
-
-    // Si el index es diferente a -1 entonces se elimina de la lista
-    if (indexOfReviewer != -1) {
-      this.questionnaire?.reviewersQuestionnaire.splice(indexOfReviewer, 1);
-    }
-    // Se actualiza el datasource de la tabla
-    this.updateDataSource(this.questionnaire!.reviewersQuestionnaire);
   }
 
   public cleaningServices(): void {
@@ -158,12 +168,12 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   public checkValid(): boolean {
     return this.officeControl.valid && this.userControl.valid
   }
-
-  goBack() {
+  
+  goBack(){
     this.stepperContainer!.previous();
   }
 
-  goForward() {
+  goForward(){
     this.stepperContainer!.next();
   }
 

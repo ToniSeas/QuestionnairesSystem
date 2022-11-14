@@ -1,32 +1,8 @@
-<div class="main-container">
-    <mat-card class="main-card">
-
-        <button mat-raised-button *ngIf="!this.isSendSuccessfull" type="button" (click)="sendQuestionnaire()" class="mat-primary mb-4">
-            <mat-icon>send</mat-icon>
-            Enviar Cuestionario
-        </button>
-        <mat-card-subtitle *ngIf="this.isSendSuccessfull" class="success-message">
-            {{this.messageToShow}}
-        </mat-card-subtitle>
-        <mat-card-subtitle *ngIf="!this.isSendSuccessfull" class="error-message">
-            {{this.messageToShow}}
-        </mat-card-subtitle>
-
-        <div *ngIf="this.isSendSuccessfull">
-            <mat-card-title><strong>Enlace</strong></mat-card-title>
-            <mat-card-content>
-                <p>{{this.sharedUrl}}</p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button style="background-color: #DAA520; color: black;"
-                    [cdkCopyToClipboard]="this.sharedUrl" (click)="this.copyUrl()">
-                    <mat-icon>file_copy</mat-icon>
-                    Copiar enlace
-                </button>
-                <br>
-                <mat-hint *ngIf="this.isUrlCopied" style="color: green;">Enlace copiado.</mat-hint>
-            </mat-card-actions>
-        </div>
-    </mat-card>
-
+<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-5">
+    <button type="button" (click)="sendQuestionnaire()" class="btn me-md-2 btn-back">Enviar Cuestionario</button>
+    
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-5">
+    <span *ngIf="this.isSendSuccessfull" class="success-message">{{this.messageToShow}}</span>
+    <span *ngIf="!this.isSendSuccessfull" class="error-message">{{this.messageToShow}}</span>
 </div>

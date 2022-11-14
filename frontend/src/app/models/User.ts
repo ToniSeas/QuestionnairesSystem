@@ -1,16 +1,17 @@
 export class User {
 
-    userName?: string;
-    role?: string;
-    idOffice?: number;
-    name?: string;
     id?: number;
+    name?: String;
+    lastname?: String;
+    idOffice?: number;
+    role?: string;
 
-    constructor({ userName, role, idOffice, name, id }: { userName?: string, role?: string, idOffice?: number, name?: string, id?: number }) {
+    constructor({ id, name, lastname, idOffice, role }: { id?: number, name?: String, lastname?: String, idOffice?: number, role?: string }) {
         this.id = id;
         this.name = name;
+        this.lastname = lastname;
         this.idOffice = idOffice;
         this.role = role;
-        this.userName = userName;
     }
+    
 }

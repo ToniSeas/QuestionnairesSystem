@@ -21,7 +21,5 @@ namespace CuestionariosEntidades.Models
         // EF Relation
         public IEnumerable<Question>? Questions { get; set; }
         public QuestionnaireType? QuestionnaireType { get; set; }
-
-        public IEnumerable<ReviewerQuestionnaire>? ReviewersQuestionnaire { get; set; }
     }
 }

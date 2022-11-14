@@ -9,8 +9,6 @@ namespace CuestionariosAD.Context
         public DataContext() { }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        public DbSet<AnswerOption> AnswerOptions => Set<AnswerOption>();
-        public DbSet<ReviewerQuestionnaire> ReviewerQuestionnaires => Set<ReviewerQuestionnaire>();
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<SubCategory> SubCategories => Set<SubCategory>();
         public DbSet<Question> Questions => Set<Question>();

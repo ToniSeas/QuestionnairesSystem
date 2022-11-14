@@ -91,10 +91,10 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(response);
         }
 
-        public async Task<ActionResult<ResponseDTO<int>>> CreateQuestionnaire(Questionnaire questionnaire)
+        public async Task<ActionResult<MessageDTO>> CreateQuestionnaire(Questionnaire questionnaire)
         {
 
-            var responseIdQuestionnaire = new ResponseDTO<int>()
+            var message = new MessageDTO
             {
                 Id = 1,
                 Message = "Solicitud realizada correctamente"
@@ -103,15 +103,14 @@ namespace CuestionariosAD.DataAccess
             {
                 _context.Questionnaires.Add(questionnaire);
                 await _context.SaveChangesAsync();
-                responseIdQuestionnaire.Item = questionnaire.Id;
             }
             catch (Exception e)
             {
-                responseIdQuestionnaire.Id = 0;
-                responseIdQuestionnaire.Message = e.ToString();
+                message.Id = 0;
+                message.Message = e.ToString();
             }
 
-            return await Task.FromResult(responseIdQuestionnaire);
+            return await Task.FromResult(message);
         }
 
         public async Task<ActionResult<MessageDTO>> UpdateQuestionnaire(Questionnaire questionnaire)
