@@ -20,6 +20,6 @@ export class OfficeService {
   }
 
   public getOffices(): Observable<ResponseDTO<Office[]>> {
-    return this.httpClient.get<ResponseDTO<Office[]>>(`${environment.securityModuleUrl}/${this.controllerURL}/Offices`);
+    return this.httpClient.get<ResponseDTO<Office[]>>(`${environment.apiUrl}/${this.controllerURL}/GetOffices`);
   }
 }

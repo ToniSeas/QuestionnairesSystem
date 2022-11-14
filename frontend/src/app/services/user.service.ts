@@ -21,11 +21,11 @@ export class UserService {
 
   public getUserByOffice(officeId: number): Observable<ResponseDTO<User[]>> {
     let params = new HttpParams().set('officeId', officeId);
-    return this.httpClient.get<ResponseDTO<User[]>>(`${environment.securityModuleUrl}/${this.controllerURL}/UsersByOffice`, {params: params});
+    return this.httpClient.get<ResponseDTO<User[]>>(`${environment.apiUrl}/${this.controllerURL}/GetUsersByOffice`, {params: params});
   }
 
   public getOffices(): Observable<ResponseDTO<Office[]>> {
-    return this.httpClient.get<ResponseDTO<Office[]>>(`${environment.securityModuleUrl}/${this.controllerURL}/Offices`);
+    return this.httpClient.get<ResponseDTO<Office[]>>(`${environment.apiUrl}/${this.controllerURL}/GetOffices`);
   }
 
   public logout() {
@@ -35,7 +35,7 @@ export class UserService {
   }
 
   public login(user:UserToLogin): Observable<ResponseDTO<User>> {   
-    return this.httpClient.post<ResponseDTO<User>>(`${environment.securityModuleUrl}/${this.controllerURL}/Login`, user);
+    return this.httpClient.post<ResponseDTO<User>>(`${environment.apiUrl}/${this.controllerURL}/Login`, user);
   }
 
   public getRole() {
