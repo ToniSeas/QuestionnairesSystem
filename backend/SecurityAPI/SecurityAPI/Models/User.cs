@@ -1,4 +1,5 @@
-﻿namespace SecurityAPI.Models
+﻿
+namespace SecurityAPI.Models
 {
     public class User
     {

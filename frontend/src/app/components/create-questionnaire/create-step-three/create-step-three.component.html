@@ -37,7 +37,7 @@
                 Limpiar
             </button>
             <button mat-raised-button type="submit" [disabled]="!checkValid()" value="submit"
-                class="mat-primary me-md-2">
+                class="mat-primary me-md-2" (click)="this.addReviewer()">
                 <mat-icon>add</mat-icon>
                 Agregar
             </button>
@@ -47,39 +47,32 @@
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="getDataSource()">
 
-        <!-- id -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef> Nombre de Usuario </th>
+            <td mat-cell *matCellDef="let reviewerQuestionnaire"> {{reviewerQuestionnaire.user.userName}} </td>
         </ng-container>
 
         <!-- name -->
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-
-        <!-- lastname -->
-        <ng-container matColumnDef="lastname">
-            <th mat-header-cell *matHeaderCellDef> Apellido </th>
-            <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+            <th mat-header-cell *matHeaderCellDef> Nombre Completo </th>
+            <td mat-cell *matCellDef="let reviewerQuestionnaire"> {{reviewerQuestionnaire.user.name}} </td>
         </ng-container>
 
         <!-- office  -->
         <ng-container matColumnDef="office">
             <th mat-header-cell *matHeaderCellDef> Oficina </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <td mat-cell *matCellDef="let reviewerQuestionnaire"> {{reviewerQuestionnaire.office.name}} </td>
         </ng-container>
 
         <!-- Operations -->
         <ng-container matColumnDef="operations">
             <th mat-header-cell *matHeaderCellDef> Operaciones </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let reviewerQuestionnaire">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="removeReviewer(element.id)">
+                    <button mat-menu-item (click)="this.deleteReviewerQuestionnaire(reviewerQuestionnaire)">
                         <mat-icon>delete</mat-icon>
                         <span>Borrar</span>
                     </button>

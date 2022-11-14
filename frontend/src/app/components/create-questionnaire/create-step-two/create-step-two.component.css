@@ -54,6 +54,10 @@
 
 
 /*Table styles*/
+.question-row:hover {
+    cursor: move;
+}
+
 .table-container {
     width: 100%;
     max-height: 50vh;
