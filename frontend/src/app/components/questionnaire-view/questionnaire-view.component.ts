@@ -9,6 +9,7 @@ import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { QuestionUtil } from 'src/app/util/QuestionUtil';
 import { LongAnswerQuestionComponent } from './long-answer-question/long-answer-question.component';
 import { MultipleChoiceQuestionComponent } from './multiple-choice-question/multiple-choice-question.component';
+import { NumericQuestionComponent } from './numeric-question/numeric-question.component';
 import { ScaleQuestionComponent } from './scale-question/scale-question.component';
 import { SingleChoiceQuestionComponent } from './single-choice-question/single-choice-question.component';
 import { TrueFalseQuestionComponent } from './true-false-question/true-false-question.component';
@@ -85,6 +86,12 @@ export class QuestionnaireViewComponent implements OnInit {
         scaleQuestionComponent.changeDetectorRef.detectChanges()
         this.questionComponentRefs.push(scaleQuestionComponent)
         break;
+        case 'nu':
+          const numericQuestionComponent = this.container.createComponent(NumericQuestionComponent)
+          numericQuestionComponent.instance.question = question
+          numericQuestionComponent.changeDetectorRef.detectChanges()
+          this.questionComponentRefs.push(numericQuestionComponent)
+          break;
     }
   }
 

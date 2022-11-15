@@ -48,6 +48,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { QuestionnaireAnsweredComponent } from './components/questionnaire-answered/questionnaire-answered.component';
 import {MatCardModule} from '@angular/material/card';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import { NumericQuestionComponent } from './components/questionnaire-view/numeric-question/numeric-question.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     SingleChoiceQuestionComponent,
     SharedRouterComponent,
     CreateStepFiveComponent,
-    QuestionnaireAnsweredComponent
+    QuestionnaireAnsweredComponent,
+    NumericQuestionComponent
   ],
   imports: [
     BrowserModule,

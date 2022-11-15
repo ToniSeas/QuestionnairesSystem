@@ -65,8 +65,8 @@ export class QuestionUtil {
                 case 'es':
                     return question.answers[0].answerOptions.length > 0 || question.isOptional!
                     break;
-                default:
-                    console.log("Default")
+                case 'nu':
+                    return question.answers[0].answerText!.length > 0 || question.isOptional!
                     break;
             }
         }
