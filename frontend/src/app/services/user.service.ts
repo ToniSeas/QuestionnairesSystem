@@ -2,9 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MessageDTO } from '../models/DataTranferObjects/MessageDTO';
 import { ResponseDTO } from '../models/DataTranferObjects/ResponseDTO';
-import { Office } from '../models/Office';
 import { User } from '../models/User';
 import { UserToLogin } from '../models/UserToLogin';
 
@@ -27,6 +25,7 @@ export class UserService {
   public logout() {
     this.setLoggedIn(false);
     this.setRole('');
+    this.setUserId(-1);
     return of({ success: this.isLoggedIn, role: this.getRole() });
   }
 
@@ -40,6 +39,14 @@ export class UserService {
 
   public setRole(userRole: string) {
     localStorage.setItem('ROLE', userRole);
+  }
+
+  public getUserId(): number {
+    return parseInt(localStorage.getItem('userId')!);
+  }
+
+  public setUserId(userId: number) {
+    localStorage.setItem('userId', `${userId}`);
   }
 
   public setLoggedIn(isLoggedIn:boolean) {

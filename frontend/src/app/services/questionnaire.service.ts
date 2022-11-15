@@ -30,6 +30,13 @@ export class QuestionnaireService {
     return this.httpClient.get<ResponseDTO<Questionnaire>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionnaireById`, { params: params });
   }
 
+  public getQuestionnairesToReview(userId: number) : Observable<ResponseDTO<Questionnaire[]>> {
+    // Configurar los parametros del get
+    let params = new HttpParams().set('userId', userId);
+    // Lo que está dentro de los paréntesis es string interpolation
+    return this.httpClient.get<ResponseDTO<Questionnaire[]>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionnairesToReview`, { params: params });
+  }
+
   public createQuestionnaire(questionnaire: Questionnaire) : Observable<ResponseDTO<number>> {
     return this.httpClient.post<Questionnaire>(`${environment.apiUrl}/${this.controllerURL}/CreateQuestionnaire`, questionnaire);
   }

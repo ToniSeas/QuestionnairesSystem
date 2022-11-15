@@ -35,6 +35,32 @@ namespace CuestionariosAD.DataAccess
             return await Task.FromResult(response);
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> GetQuestionnairesToReview(int userId)
+        {
+            var message = new ResponseDTO<List<Questionnaire>>();
+            try
+            {
+                var dbReviewerQuestionnaires = await _context.ReviewerQuestionnaires
+                    .Include(e => e.Questionnaire)
+                    .Where(e => e.IsDeleted == false && e.IdUser == userId)
+                    .ToListAsync();
+
+                var questionnaires = new List<Questionnaire>();
+                foreach (var item in dbReviewerQuestionnaires)
+                {
+                    questionnaires.Add(item.Questionnaire!);
+                }
+                message.Item = questionnaires;
+            }
+            catch
+            {
+                message.Id = 0;
+                message.Message = "Error al obtener los cuestionarios del revisor";
+            }
+
+            return await Task.FromResult(message);
+        }
+
         public async Task<ActionResult<ResponseDTO<Questionnaire>>> GetQuestionnaireById(int questionnaireId)
         {
             var dbQuestionnaire = await _context.Questionnaires

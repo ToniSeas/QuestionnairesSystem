@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { Role } from 'src/app/util/Role';
 
 @Component({
   selector: 'app-questionnaire-menu',
@@ -7,17 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionnaireMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userService: UserService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  public hasCreateAccess(): boolean {
+    return this.userService.getRole() === Role.ADMIN
+      || this.userService.getRole() === Role.SYS_ADMIN
   }
 
-  create() : void {
-    console.log("Create has been clicked!");
-  }
-
-  search() : void {
-    console.log("Search has been clicked!")
+  public hasSearchAccess(): boolean {
+    return this.userService.getRole() === Role.ADMIN
+      || this.userService.getRole() === Role.SYS_ADMIN
+      || this.userService.getRole() === Role.REVIEWER
   }
 
 }
