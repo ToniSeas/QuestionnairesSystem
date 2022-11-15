@@ -59,7 +59,6 @@ export class CreateStepOneComponent implements OnInit, OnChanges {
       console.log('Formulario invalido paso 1 crear cuestionario')
     } else {
       this.fillInputs();
-      this.goForward();
     }
   }
 
