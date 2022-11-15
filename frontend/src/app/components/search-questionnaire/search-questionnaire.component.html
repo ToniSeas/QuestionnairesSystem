@@ -24,6 +24,7 @@
                 </div>
             </div>
         </div>
+        <span *ngIf="this.hasQuestionnairesToReview()" style="color: red;">No posee cuestionarios para revisión</span>
     </form>
 
     <div class="mat-elevation-z8">
@@ -61,13 +62,17 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="deleteQuestionnaire(element.id)">
+                        <button *ngIf="this.hasDeleteAccess()" mat-menu-item (click)="deleteQuestionnaire(element.id)">
                             <mat-icon>delete</mat-icon>
                             <span>Borrar</span>
                         </button>
-                        <button mat-menu-item (click)="updateQuestionnaire(element.id)">
+                        <button *ngIf="this.hasEditAccess()" mat-menu-item (click)="updateQuestionnaire(element.id)">
                             <mat-icon>edit</mat-icon>
                             <span>Editar</span>
+                        </button>
+                        <button *ngIf="this.hasDashboardAccess()" mat-menu-item>
+                            <mat-icon>dashboard</mat-icon>
+                            <span>Reporte</span>
                         </button>
                     </mat-menu>
                 </td>

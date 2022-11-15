@@ -14,6 +14,7 @@ import { AuthGuard } from './services/auth.guard';
 import { QuestionnaireViewComponent } from './components/questionnaire-view/questionnaire-view.component';
 import { SharedRouterComponent } from './components/shared-router/shared-router.component';
 import { QuestionnaireAnsweredComponent } from './components/questionnaire-answered/questionnaire-answered.component';
+import { Role } from './util/Role';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
     component: BodyComponent,
     canActivate: [AuthGuard],
     data: {
-      roles: ["ADMIN", "SADMIN", "REVIEWER"]
+      roles: [Role.ADMIN, Role.SYS_ADMIN, Role.REVIEWER]
     },
     children: [
       {
@@ -29,7 +30,7 @@ const routes: Routes = [
         component: QuestionnaireMenuComponent,
         canActivate: [AuthGuard],
         data: {
-          roles: ["ADMIN", "SADMIN", "REVIEWER"]
+          roles: [Role.ADMIN, Role.SYS_ADMIN, Role.REVIEWER]
         },
       }
       , {
@@ -37,7 +38,7 @@ const routes: Routes = [
         component: MaintenanceMenuComponent,
         canActivate: [AuthGuard],
         data: {
-          roles: ["ADMIN", "SADMIN"]
+          roles: [Role.SYS_ADMIN]
         },
       }
       , {
@@ -45,7 +46,7 @@ const routes: Routes = [
         component: CreateQuestionnaireComponent,
         canActivate: [AuthGuard],
         data: {
-          roles: ["ADMIN", "SADMIN"]
+          roles: [Role.ADMIN, Role.SYS_ADMIN]
         },
       }
       , {
@@ -53,7 +54,7 @@ const routes: Routes = [
         component: SearchQuestionnaireComponent,
         canActivate: [AuthGuard],
         data: {
-          roles: ["ADMIN", "SADMIN", "REVIEWER"]
+          roles: [Role.ADMIN, Role.SYS_ADMIN, Role.REVIEWER]
         },
       }
       , {
@@ -61,7 +62,7 @@ const routes: Routes = [
         component: ManageCategoryComponent,
         canActivate: [AuthGuard],
         data: {
-          roles: ["ADMIN", "SADMIN"]
+          roles: [Role.ADMIN, Role.SYS_ADMIN]
         },
       }
       , {
@@ -69,7 +70,7 @@ const routes: Routes = [
         component: ManageSubcategoryComponent,
         canActivate: [AuthGuard],
         data: {
-          roles: ["ADMIN", "SADMIN"]
+          roles: [Role.ADMIN, Role.SYS_ADMIN]
         },
       }
       ,{
@@ -83,7 +84,7 @@ const routes: Routes = [
         ],
         canActivate: [AuthGuard],
         data: {
-          roles: ["ADMIN", "SADMIN"]
+          roles: [Role.ADMIN, Role.SYS_ADMIN]
         },
       }
     ]
@@ -108,7 +109,7 @@ const routes: Routes = [
     component: SelectOfficeComponent,
     canActivate: [AuthGuard],
     data: {
-      roles: ["ADMIN", "SADMIN", "REVIEWER"]
+      roles: [Role.ADMIN, Role.SYS_ADMIN, Role.REVIEWER]
     },
   }, {
     path: 'questionnaire-view',

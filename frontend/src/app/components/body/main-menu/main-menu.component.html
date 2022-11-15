@@ -6,10 +6,10 @@
         </div>
         
         <ul class='nav nav-pills flex-column mb-auto'>
-            <li class='nav-item'>
+            <li class='nav-item' *ngIf="this.hasQuestionnaireAccess()">
                 <a routerLink="/questionnaire-menu" routerLinkActive="active" ariaCurrentWhenActive="page">Cuestionarios</a>
             </li>
-            <li class='nav-item'>
+            <li class='nav-item' *ngIf="this.hasMaintenanceAccess()">
                 <a routerLink="/maintenance-menu" routerLinkActive="active" ariaCurrentWhenActive="page">Mantenimiento</a>
             </li>
         </ul>

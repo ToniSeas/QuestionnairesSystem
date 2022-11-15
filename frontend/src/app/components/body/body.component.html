@@ -7,6 +7,9 @@
         <app-main-menu></app-main-menu>
 
         <main class="app-body-content">
+            <div class="main-view-placeholder" *ngIf="this.isInMainView()">
+                <span class="welcome-alert">Bienvenid@ al sistema de cuestionarios</span>
+            </div>
             <router-outlet></router-outlet>
         </main>
         

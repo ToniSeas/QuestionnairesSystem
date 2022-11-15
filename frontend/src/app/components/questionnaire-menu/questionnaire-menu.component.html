@@ -3,11 +3,11 @@
         <h1 class="text-center">Cuestionarios</h1>
     </div>
     <div class="row">
-        <div class="col text-center">
-            <button (click)="create()" routerLink="/create-questionnaire" class="nav-btn" title="Crear un cuestionario">Crear</button>
+        <div class="col text-center" *ngIf="this.hasCreateAccess()">
+            <button routerLink="/create-questionnaire" class="nav-btn" title="Crear un cuestionario">Crear</button>
         </div>
-        <div class="col text-center">
-            <button  (click)="search()" routerLink="/search-questionnaire" class="nav-btn " title="Buscar un cuestionario">
+        <div class="col text-center" *ngIf="this.hasSearchAccess()">
+            <button routerLink="/search-questionnaire" class="nav-btn " title="Buscar un cuestionario">
                 Buscar
             </button>
         </div>

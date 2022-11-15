@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/User';
 import { UserToLogin } from 'src/app/models/UserToLogin';
 import { UserService } from 'src/app/services/user.service';
 
@@ -37,8 +38,10 @@ export class LoginComponent implements OnInit {
           this.messageToShow = responseDto.message!;
         } else {
           if (this.router.url == "/login") {
+            var user: User =  responseDto.item!;
             this.userService.setLoggedIn(true);
-            this.userService.setRole(responseDto.item?.role!);
+            this.userService.setRole(user.role!);
+            this.userService.setUserId(user.id!);
             this.router.navigate(['/'])
           } else {
             var url: string = this.router.url;
