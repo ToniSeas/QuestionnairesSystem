@@ -20,6 +20,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  public goToMain() {
+    this.router.navigate(['/']);
+  }
+
   public isUserLogged():boolean {
     return this.userService.isLoggedIn();
   }
