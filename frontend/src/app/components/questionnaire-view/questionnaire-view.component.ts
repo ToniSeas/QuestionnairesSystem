@@ -5,7 +5,9 @@ import { Answer } from 'src/app/models/Answer';
 import { Option } from 'src/app/models/Option';
 import { Question } from 'src/app/models/Question';
 import { Questionnaire } from 'src/app/models/Questionnaire';
+import { QuestionnaireType } from 'src/app/models/QuestionnaireType';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
+import { UserService } from 'src/app/services/user.service';
 import { QuestionUtil } from 'src/app/util/QuestionUtil';
 import { LongAnswerQuestionComponent } from './long-answer-question/long-answer-question.component';
 import { MultipleChoiceQuestionComponent } from './multiple-choice-question/multiple-choice-question.component';
@@ -30,9 +32,10 @@ export class QuestionnaireViewComponent implements OnInit {
   isSendSuccessfull: boolean = true
   public messageToShow: string = "";
 
- 
-  constructor(private questionnaireService: QuestionnaireService, private router: Router) {
 
+  constructor(private questionnaireService: QuestionnaireService
+    , private router: Router
+    , private userService: UserService) {
     this.questionnaire = new Questionnaire({})
   }
 
@@ -42,13 +45,35 @@ export class QuestionnaireViewComponent implements OnInit {
 
     this.questionnaireService.getQuestionnaireById((Number)(url)).subscribe(
       (responseDTO) => {
-        this.questionnaire = Object.assign(new Questionnaire({}), responseDTO.item!)
-        this.questionnaire.sortQuestions()
-        this.questionnaire?.questions.forEach(element => {
-          this.loadQuestion(element)
-        });
+        if (responseDTO.id == 1) {
+          this.validateAccess(responseDTO.item!);
+          this.questionnaire = Object.assign(new Questionnaire({}), responseDTO.item!)
+          this.questionnaire.sortQuestions()
+          this.questionnaire?.questions.forEach(element => {
+            this.loadQuestion(element)
+          });
+        }
       }
     )
+  }
+
+  public validateAccess(questionnaire: Questionnaire) {
+    this.questionnaireService.getQuestionnaireTypes().subscribe((responseDto) => {
+      if (responseDto.id == 1) {
+        var questionnaireType: QuestionnaireType;
+        responseDto.item!.forEach(element => {
+          if (element.id == questionnaire.idQuestionnaireType) {
+            questionnaireType = element;
+          }
+        });
+        if (questionnaireType! != undefined) {
+          if ((questionnaireType.name == "Interno" || questionnaireType.name == "Impersonal")
+            && !this.userService.isLoggedIn()) {
+            this.router.navigate([`/login/link/${questionnaire.id}`]);
+          }
+        }
+      }
+    });
   }
 
   loadQuestion(question: Question): void {
@@ -86,12 +111,12 @@ export class QuestionnaireViewComponent implements OnInit {
         scaleQuestionComponent.changeDetectorRef.detectChanges()
         this.questionComponentRefs.push(scaleQuestionComponent)
         break;
-        case 'nu':
-          const numericQuestionComponent = this.container.createComponent(NumericQuestionComponent)
-          numericQuestionComponent.instance.question = question
-          numericQuestionComponent.changeDetectorRef.detectChanges()
-          this.questionComponentRefs.push(numericQuestionComponent)
-          break;
+      case 'nu':
+        const numericQuestionComponent = this.container.createComponent(NumericQuestionComponent)
+        numericQuestionComponent.instance.question = question
+        numericQuestionComponent.changeDetectorRef.detectChanges()
+        this.questionComponentRefs.push(numericQuestionComponent)
+        break;
     }
   }
 

@@ -37,11 +37,11 @@ export class LoginComponent implements OnInit {
           this.isLoginIncorrect = true;
           this.messageToShow = responseDto.message!;
         } else {
+          var user: User =  responseDto.item!;
+          this.userService.setLoggedIn(true);
+          this.userService.setRole(user.role!);
+          this.userService.setUserId(user.id!);
           if (this.router.url == "/login") {
-            var user: User =  responseDto.item!;
-            this.userService.setLoggedIn(true);
-            this.userService.setRole(user.role!);
-            this.userService.setUserId(user.id!);
             this.router.navigate(['/'])
           } else {
             var url: string = this.router.url;

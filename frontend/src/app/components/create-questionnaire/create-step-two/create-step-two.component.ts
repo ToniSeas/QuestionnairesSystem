@@ -33,12 +33,14 @@ export class CreateStepTwoComponent implements OnInit, OnChanges {
   private displayedColumns: string[];
   private dataSource: MatTableDataSource<Question>;
   private searchControl: FormControl;
+  private questionTypes: QuestionType[];
 
   // Inicializacion de los atributos
   constructor(private questionService: QuestionService, public dialog: MatDialog, private qService: QuestionnaireService) {
     this.displayedColumns = ['position', 'statement', 'type', 'operations'];
     this.dataSource = new MatTableDataSource<Question>;
     this.searchControl = new FormControl('');
+    this.questionTypes = [];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,7 +49,14 @@ export class CreateStepTwoComponent implements OnInit, OnChanges {
   }
 
   // Esto se ejecuta cada vez que se ingresa a esta vista
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.questionService.getQuestionTypes().subscribe((responseDTO) => {
+      if (responseDTO.id == 1) {
+        this.questionTypes = responseDTO.item!;
+      }
+    });
+    
+  }
 
   // Metodo para abrir del modal de crear preguntas
   public openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -66,7 +75,6 @@ export class CreateStepTwoComponent implements OnInit, OnChanges {
   }
 
   public openModifyDialog(enterAnimationDuration: string, exitAnimationDuration: string, questionToModify: Question): void {
-    console.log(questionToModify)
     // Se inicia el MatDialog y se le indican parametros
     var dialogRef = this.dialog.open(CreateQuestionDialog, {
       data: {questionToModify: questionToModify},
@@ -98,7 +106,13 @@ export class CreateStepTwoComponent implements OnInit, OnChanges {
   }
 
   public getQuestionTypeById(idType: string): QuestionType {
-    return this.questionService.getQuestionTypeById(idType).item!;
+    let questionTypeAux: QuestionType;
+    this.questionTypes.forEach((questionType) => {
+      if (questionType.id == idType) {
+        questionTypeAux = questionType;
+      }
+    });
+    return questionTypeAux!;
   }
 
   public dropQuestion(event: CdkDragDrop<Question[]>) {
@@ -255,7 +269,7 @@ export class CreateQuestionDialog implements OnInit {
     );
 
     if (this.data != null) {
-      this.question = Object.assign(new Question({}), this.data.questionToModify!);
+      this.question = this.data.questionToModify!;
       this.getFormGroup().get('statement')?.setValue(this.question.statement);
       this.getFormGroup().get('label')?.setValue(this.question.label);
       this.getFormGroup().get('category')?.setValue(this.question.categoryId);
