@@ -41,8 +41,6 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     let isModifyAux: boolean = changes['isModify'].currentValue;
     //TODO: comprobar si es verdadera, si es verdadero entonces debe cargar los permisos de la base de datos segun el cuestionario
-
-    //NOTA: no entendí el comentario anterior. 
   }
 
   ngOnInit(): void {
@@ -82,14 +80,18 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
   public addReviewer(): void {
 
     var exists = false;
+
+    //Verificar si el usuario no ha sido seleccionado anteriormente
     this.questionnaire?.reviewersQuestionnaire.forEach((reviewerQuestionnaire) => {
       if (this.userControl.value == reviewerQuestionnaire.user?.id) {
         exists = true;
       }
     })
 
-    if (!exists) {
-      var reviewerQuestionnaire = new ReviewerQuestionnaire({
+    
+    if (!exists) { //Si el usuario no ha sido seleccionado
+
+      let reviewerQuestionnaire = new ReviewerQuestionnaire({
         idUser: this.userControl.value
       })
 
@@ -99,7 +101,7 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
         }
       })
 
-      var officeId = this.officeControl.value
+      let officeId = this.officeControl.value
       this.offices.forEach((office) => {
         if (office.id == officeId) {
           reviewerQuestionnaire.office = office;
@@ -146,6 +148,7 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
     }
     // Se actualiza el datasource de la tabla
     this.updateDataSource(this.questionnaire!.reviewersQuestionnaire);
+
   }
 
   public cleaningServices(): void {
