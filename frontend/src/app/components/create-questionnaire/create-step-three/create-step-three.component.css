@@ -55,3 +55,8 @@ table {
     background-color: #444;
     color: #DAA520;
 }
+
+.mat-column-operations {
+    text-align: right;
+    justify-content: flex-end;
+}
