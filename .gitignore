@@ -1,10 +1,23 @@
-/backend/SecurityAPI/.vs
-/backend/SecurityAPI/SecurityAPI/bin
-/backend/CoreCuestionariosOIJ/.vs
-/backend/CoreCuestionariosOIJ/CuestionariosAD/bin
-/backend/CoreCuestionariosOIJ/CuestionariosAPI/bin
-/backend/CoreCuestionariosOIJ/CuestionariosEntidades/bin
-/backend/CoreCuestionariosOIJ/CuestionariosRN/bin
+backend/SecurityAPI/.vs/
+backend/SecurityAPI/SecurityAPI/bin/
+backend/SecurityAPI/SecurityAPI/obj/
+
+
+backend/CoreCuestionariosOIJ/.vs/
+backend/CoreCuestionariosOIJ/src/CuestionariosAD/bin/
+backend/CoreCuestionariosOIJ/src/CuestionariosAD/obj/
+
+
+backend/CoreCuestionariosOIJ/src/CuestionariosAPI/bin/
+backend/CoreCuestionariosOIJ/src/CuestionariosAPI/obj/
+
+
+backend/CoreCuestionariosOIJ/src/CuestionariosEntidades/bin/
+backend/CoreCuestionariosOIJ/src/CuestionariosEntidades/obj/
+
+
+backend/CoreCuestionariosOIJ/src/CuestionariosRN/bin/
+backend/CoreCuestionariosOIJ/src/CuestionariosRN/obj/
 
 
 
