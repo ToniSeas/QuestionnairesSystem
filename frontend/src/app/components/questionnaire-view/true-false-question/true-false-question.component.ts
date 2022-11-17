@@ -28,6 +28,6 @@ export class TrueFalseQuestionComponent implements OnInit {
   }
  
   validateSelection(): boolean {
-    return (this.question.answers[0].answerOptions.length > 0) || this.question.isOptional!
+    return this.question.answers.length > 0 &&((this.question.answers[0].answerOptions.length > 0) || this.question.isOptional!)
   }
 }

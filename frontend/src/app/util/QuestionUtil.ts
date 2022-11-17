@@ -106,30 +106,24 @@ export class QuestionUtil {
         switch (question.typeId) {
             case 'su':
                 question.answers = []
-                question.answers.push(new Answer())
                 break;
             case 'sm':
                 question.answers = []
-                question.answers.push(new Answer())
                 break;
             case 'rl':
                 question.answers = []
-                question.answers.push(new Answer())
                 question.options = []
                 break;
             case 'vf':
                 question.answers = []
-                question.answers.push(new Answer())
                 question.options = []
                 break;
             case 'es':
                 question.answers = []
-                question.answers.push(new Answer())
                 question.options = []
                 break;
             case 'nu':
                 question.answers = []
-                question.answers.push(new Answer())
                 question.options = []
                 break;
         }
