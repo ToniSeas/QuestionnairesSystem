@@ -4,12 +4,12 @@ namespace SecurityAPI.Models
     public class User
     {
 
-        public User(String name, String userName, String password, String role, int[] idOffice, int id)
+        public User(String name, String userName, String password, String role, int[] idOffices, int id)
         {
             this.UserName = userName;
             this.Password = password;
             this.Role = role;
-            this.IdOffices = idOffice;
+            this.IdOffices = idOffices;
             this.Name = name;
             Id = id;
         }

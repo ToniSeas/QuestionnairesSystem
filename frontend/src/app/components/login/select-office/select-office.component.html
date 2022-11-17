@@ -2,13 +2,18 @@
     <main class="login-container">
         <div class="lc-header">Seleccionar Oficina</div>
 
-        <form class="lc-form">
-            <input type="text" class="mb-4 input-text" placeholder="Usuario"><br>
-            <select name="select" class="mb-4 input-text" style="width: 220px;">
-                <option value="value1">Oficina</option>
-            </select><br>
-            <button type="submit" class="mb-4 input-button" routerLink="/">Ingresar</button>
-        </form> 
+        <div class="lc-form">
+            <input type="text" class="mb-4 input-text" placeholder="Usuario" [formControl]="this.nameControl"><br>
+            <mat-select class="mb-4 input-text form-control" style="width: 220px;" [formControl]="this.officeControl">
+                <mat-option> </mat-option>
+                <mat-option *ngFor="let office of this.offices"
+                    [value]="office.id">
+                    {{office.name}}
+                </mat-option>
+            </mat-select>
+            <br>
+            <button [disabled]="!this.isValidInputs()" class="mb-4 input-button" (click)="this.onSubmit()">Ingresar</button>
+        </div> 
 
     </main>
 </div>
