@@ -107,10 +107,6 @@ const routes: Routes = [
   }, {
     path: 'office',
     component: SelectOfficeComponent,
-    canActivate: [AuthGuard],
-    data: {
-      roles: [Role.ADMIN, Role.SYS_ADMIN, Role.REVIEWER]
-    },
   }, {
     path: 'questionnaire-view',
     component: QuestionnaireViewComponent,

@@ -35,7 +35,7 @@ namespace CuestionariosAPI.Controllers
             ResponseDTO<List<User>> users;
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:7267/api/User/UsersByOffice?officeId="+officeId))
+                using (var response = await httpClient.GetAsync("https://localhost:7267/api/User/UsersByOffice?officeId=" + officeId))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     users = JsonConvert.DeserializeObject<ResponseDTO<List<User>>>(apiResponse);
@@ -45,5 +45,21 @@ namespace CuestionariosAPI.Controllers
             return await Task.FromResult(users);
         }
 
+        [HttpGet]
+        [Route("GetOfficesByUser")]
+        public async Task<ActionResult<ResponseDTO<Office[]>>> GetOfficesByUser(int userId)
+        {
+            ResponseDTO<Office[]> offices;
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:7267/api/User/GetOfficeByUser?userId=" + userId))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    offices = JsonConvert.DeserializeObject<ResponseDTO<Office[]>>(apiResponse);
+                }
+            }
+
+            return await Task.FromResult(offices);
+        }
     }
 }

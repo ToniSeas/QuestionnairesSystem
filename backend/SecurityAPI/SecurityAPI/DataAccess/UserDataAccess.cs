@@ -18,8 +18,8 @@ namespace SecurityAPI.DataAccess
             this.users[4] = new User("Gerardo Reviewer", "gerardo", "12345", "REVIEWER", new int[] { 6, 7, 8 }, 4);
             this.users[5] = new User("John Reviewer", "john", "12345", "REVIEWER", new int[] { 6, 7, 8 }, 5);
             this.users[6] = new User("Alexander Reviewer", "alexander", "12345", "REVIEWER", new int[] { 6, 7, 8 }, 6);
-            this.users[7] = new User("Carlos Reviewer", "carlos", "12345", "REVIEWER", new int[] { 6, 7, 8 }, 7);
-            this.users[8] = new User("Sergio Reviewer", "sergio", "12345", "REVIEWER", new int[] { 6, 7, 8 }, 8);
+            this.users[7] = new User("Carlos Reviewer", "carlos", "12345", "REVIEWER", new int[] { 6 }, 7);
+            this.users[8] = new User("Sergio Reviewer", "sergio", "12345", "REVIEWER", new int[] { 6 }, 8);
         }
 
         internal User[] getUsersByOffice(int officeId)

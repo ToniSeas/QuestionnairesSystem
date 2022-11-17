@@ -66,7 +66,7 @@ namespace SecurityAPI.Controllers
             return await Task.FromResult(message);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetOfficeByUser")]
         public async Task<ActionResult<ResponseDTO<Office[]>>> GetOfficeByUser(int userId)
         {

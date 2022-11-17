@@ -38,28 +38,25 @@ export class LoginComponent implements OnInit {
           this.messageToShow = responseDto.message!;
         } else {
           var user: User =  responseDto.item!;
-          this.userService.setLoggedIn(true);
-          this.userService.setRole(user.role!);
-          this.userService.setUserId(user.id!);
+          this.userService.setUserInCookies(user);
           if (this.router.url == "/login") {
-            this.router.navigate(['/'])
+            if (user.idOffices!.length > 1) {
+              this.userService.setLoggedIn(false);
+              this.router.navigate(['/office'])
+            } else {
+              this.userService.setLoggedIn(true);
+              this.router.navigate(['/'])
+            }
           } else {
             var url: string = this.router.url;
             var startAt: number = "login/link/".length;
             var endAt: number = url.length;
             var questionnaireId: string = this.router.url.substring(startAt, endAt);
-            this.router.navigate([`/questionnaire-view/${questionnaireId}`]);
+            //this.router.navigate([`/questionnaire-view/${questionnaireId}`]);
           }
         }
       });
     }
-
-    /*if (this.userService.isMultiOffice(this.userService.getToken())) {
-      this.router.navigateByUrl("/office");
-    } else {
-      this.router.navigateByUrl("/");  
-    }*/
-    
   }
 
 }
