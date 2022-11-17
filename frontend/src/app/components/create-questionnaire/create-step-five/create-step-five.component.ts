@@ -29,7 +29,11 @@ export class CreateStepFiveComponent implements OnInit, OnChanges {
   }
   ngOnChanges(changes: SimpleChanges): void {
     let isModifyAux: boolean = changes['isModify'].currentValue;
-    //TODO: comprobar si es verdadera, si es verdadero entonces debe llamar al metodo de modificar cuestionario
+    if(isModifyAux){
+      this.sharedUrl = "";
+        var hostDomain = `${window.location.protocol}//${window.location.host}`;
+        this.sharedUrl = `${hostDomain}/link/${this.questionnaire?.id}`
+    }
   }
 
   ngOnInit(): void {
@@ -64,6 +68,18 @@ export class CreateStepFiveComponent implements OnInit, OnChanges {
     //limpiar las preguntas para asegurarse que no contengan respuestas u opciones inválidas.
     this.questionnaire?.questions.forEach(question => {
       QuestionUtil.autoLoadPredefinedOptions(question)
+    });
+  }
+
+  public modifyQuestionnaire() {
+    this.questionnaireService.updateQuestionnaire(this.questionnaire!).subscribe((responseDTO) => {
+      if (responseDTO.id == 1) {
+        this.isSendSuccessfull = true;
+        this.messageToShow = "Cuestionario modificado";
+      } else {
+        this.isSendSuccessfull = false;
+        this.messageToShow = "No se pudo modificar el cuestionario";
+      }
     });
   }
 

@@ -40,7 +40,18 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     let isModifyAux: boolean = changes['isModify'].currentValue;
-    //TODO: comprobar si es verdadera, si es verdadero entonces debe cargar los permisos de la base de datos segun el cuestionario
+    /*if (isModifyAux) {
+      this.questionnaireService.getQuestionnaireReviewers(this.questionnaire?.id!).subscribe(
+        (responseDTO) => {
+          if (responseDTO.id == 1) {
+            this.questionnaire!.reviewersQuestionnaire = responseDTO.item!;
+            console.log(this.questionnaire!.reviewersQuestionnaire)
+            this.users.forEach((user) => {console.log(user)});
+            
+            //this.updateDataSource(this.questionnaire!.reviewersQuestionnaire);
+          }
+        });
+    } */
   }
 
   ngOnInit(): void {

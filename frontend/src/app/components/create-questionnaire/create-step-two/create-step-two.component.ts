@@ -106,12 +106,13 @@ export class CreateStepTwoComponent implements OnInit, OnChanges {
   }
 
   public getQuestionTypeById(idType: string): QuestionType {
-    let questionTypeAux: QuestionType;
+    let questionTypeAux: QuestionType = new QuestionType({name: "null"});
     this.questionTypes.forEach((questionType) => {
       if (questionType.id == idType) {
         questionTypeAux = questionType;
       }
     });
+
     return questionTypeAux!;
   }
 

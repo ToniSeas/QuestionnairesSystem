@@ -1,5 +1,5 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { Questionnaire } from 'src/app/models/Questionnaire';
 import { QuestionnaireViewComponent } from '../../questionnaire-view/questionnaire-view.component';
@@ -9,7 +9,7 @@ import { QuestionnaireViewComponent } from '../../questionnaire-view/questionnai
   templateUrl: './create-step-four.component.html',
   styleUrls: ['./create-step-four.component.css']
 })
-export class CreateStepFourComponent implements OnInit {
+export class CreateStepFourComponent implements OnInit, OnChanges {
   @Input() questionnaire?: Questionnaire;
   @Input() stepperContainer?: MatStepper;
 
@@ -21,7 +21,17 @@ export class CreateStepFourComponent implements OnInit {
   
   constructor() {
 
-   }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.stepperContainer?.selectionChange.subscribe((index: number) => {
+      if (this.questionnaireViewRef == undefined) {
+        this.questionnaireViewRef = this.container.createComponent(QuestionnaireViewComponent);
+      }
+      this.questionnaireViewRef.instance.questionnaire = this.questionnaire;
+      this.updateView();
+    });
+  }
 
   ngOnInit(): void {
     this.stepperContainer?.selectionChange.subscribe((index: number) => {
@@ -30,7 +40,9 @@ export class CreateStepFourComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.questionnaireViewRef = this.container.createComponent(QuestionnaireViewComponent);
+    if (this.questionnaireViewRef == undefined) {
+      this.questionnaireViewRef = this.container.createComponent(QuestionnaireViewComponent);
+    }
     this.questionnaireViewRef.instance.questionnaire = this.questionnaire;
     this.questionnaireViewRef.instance.isPreview = true;
     this.questionnaireViewRef.changeDetectorRef.detectChanges();

@@ -7,6 +7,7 @@ import { ResponseDTO } from '../models/DataTranferObjects/ResponseDTO';
 import { Questionnaire } from '../models/Questionnaire';
 import { QuestionnaireType } from '../models/QuestionnaireType';
 import { QuestionType } from '../models/QuestionType';
+import { ReviewerQuestionnaire } from '../models/ReviewerQuestionnaire';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,13 @@ export class QuestionnaireService {
     return this.httpClient.get<ResponseDTO<Questionnaire[]>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionnairesToReview`, { params: params });
   }
 
+  public getQuestionnaireReviewers(questionnaireId: number) : Observable<ResponseDTO<ReviewerQuestionnaire[]>> {
+    // Configurar los parametros del get
+    let params = new HttpParams().set('questionnaireId', questionnaireId);
+    // Lo que está dentro de los paréntesis es string interpolation
+    return this.httpClient.get<ResponseDTO<ReviewerQuestionnaire[]>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionnaireReviewers`, { params: params });
+  }
+
   public createQuestionnaire(questionnaire: Questionnaire) : Observable<ResponseDTO<number>> {
     return this.httpClient.post<Questionnaire>(`${environment.apiUrl}/${this.controllerURL}/CreateQuestionnaire`, questionnaire);
   }
@@ -44,6 +52,10 @@ export class QuestionnaireService {
   public deleteQuestionnaire(id?: number) : Observable<MessageDTO> {
     return this.httpClient.delete<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/DeleteQuestionnaire/${id}`);
   }
+
+  public updateQuestionnaire(questionnaire: Questionnaire): Observable<MessageDTO> {
+    return this.httpClient.put<MessageDTO>(`${environment.apiUrl}/${this.controllerURL}/UpdateQuestionnaire`,questionnaire);
+  } 
 
   public searchQuestionnaire(name: string) : Observable<ResponseDTO<Questionnaire[]>> {
     // Configurar los parametros del get
