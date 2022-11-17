@@ -6,8 +6,9 @@
             <div class="col">
                 <div class="form-outline">
                     <label class="create-questionnaire-labels" for="">Nombre:</label>
-                    <input mdbInput type="text" ng-model="questionnaire.name" (change)="fillInputs()"
-                        class="form-control" [formControlName]="'questionnaireName'" />
+                    <input mdbInput type="text" #inputName ng-model="questionnaire.name" (change)="fillInputs()"
+                        class="form-control" [formControlName]="'questionnaireName'" maxlength="100" />
+                        <mat-hint align="end">{{inputName.value.length}}/100</mat-hint>
                 </div>
             </div>
 
@@ -28,7 +29,7 @@
             <div class="col">
                 <div class="form-outline">
                     <label class="create-questionnaire-labels" for="">Fecha Vencimiento:</label>
-                    <input type="date" class="form-control" (change)="fillInputs()"
+                    <input type="date" min="{{this.date}}" class="form-control" (change)="fillInputs()"
                         ng-model="questionnaire.expirationDate" [formControlName]="'questionnaireDate'">
                 </div>
             </div>
@@ -50,8 +51,9 @@
         </div>
         <div class="row mb-4">
             <label class="create-questionnaire-labels" for="">Descripción:</label>
-            <textarea class="form-control" rows="5" id="comment" name="text" (change)="fillInputs()"
-                [formControlName]="'questionnaireDescription'"></textarea>
+            <textarea class="form-control" #inputDescription rows="5" id="comment" name="text" (change)="fillInputs()"
+                [formControlName]="'questionnaireDescription'" maxlength="200" ></textarea>
+                <mat-hint align="end">{{inputDescription.value.length}}/200</mat-hint>
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

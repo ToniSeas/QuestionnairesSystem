@@ -1,3 +1,4 @@
+import { getLocaleDateFormat } from '@angular/common';
 import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
@@ -18,23 +19,29 @@ export class CreateStepOneComponent implements OnInit, OnChanges {
 
   private createStepOneComponentForm!: FormGroup;
   public questionnaireTypes: Observable<QuestionnaireType[]>;
+  private today: Date = new Date();
+  private hor;
+  public date;
 
-  constructor(public questionnaireService: QuestionnaireService) { 
-    this.questionnaire = new Questionnaire({ });
+  constructor(public questionnaireService: QuestionnaireService) {
+    this.questionnaire = new Questionnaire({});
     this.questionnaireTypes = new Observable<QuestionnaireType[]>();
+    this.hor = this.today.toLocaleDateString().split('/');
+    this.date = this.hor[2]+"-"+this.hor[1]+"-"+this.hor[0];
+    console.log(this.date);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.fillControl(changes['questionnaire'].currentValue)
   }
 
-  public fillControl (questionnaire : Questionnaire){
+  public fillControl(questionnaire: Questionnaire) {
     this.createStepOneComponentForm = new FormGroup({
-      questionnaireName: new FormControl(questionnaire.name, [Validators.required]),
-      questionnaireState: new FormControl(questionnaire.isActive,[Validators.required]),
-      questionnaireDescription: new FormControl(questionnaire.description,[Validators.required]),
-      questionnaireDate: new FormControl(questionnaire.expirationDate?.toString().split('T')[0],[Validators.required]),
-      questionnaireType: new FormControl(questionnaire.idQuestionnaireType,[Validators.required])
+      questionnaireName: new FormControl(questionnaire.name, [Validators.required, Validators.pattern(/[a-zA-ZÁ-Úá-ú].*/)]),
+      questionnaireState: new FormControl(questionnaire.isActive, [Validators.required]),
+      questionnaireDescription: new FormControl(questionnaire.description, [Validators.required, Validators.pattern(/[a-zA-ZÁ-Úá-ú].*/)]),
+      questionnaireDate: new FormControl(questionnaire.expirationDate?.toString().split('T')[0], [Validators.required]),
+      questionnaireType: new FormControl(questionnaire.idQuestionnaireType, [Validators.required])
     })
   }
 
@@ -62,11 +69,11 @@ export class CreateStepOneComponent implements OnInit, OnChanges {
     }
   }
 
-  goBack(){
+  goBack() {
     this.stepperContainer!.previous();
   }
 
-  goForward(){
+  goForward() {
     this.stepperContainer!.next();
   }
 }
