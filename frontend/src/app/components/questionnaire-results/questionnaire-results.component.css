@@ -16,3 +16,8 @@ table {
     text-align: right;
     justify-content: flex-end;
 }
+
+.btn-back {
+    background-color: #444;
+    color: #DAA520;
+}

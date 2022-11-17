@@ -23,6 +23,12 @@ namespace CuestionariosAPI.Controllers
             return await answerRN.GetOptionById(optionId);
         }
 
+        [HttpGet]
+        [Route("GetOptionsByQuestion")]
+        public async Task<ActionResult<ResponseDTO<List<Option>>>> GetOptionsByQuestion(int questionId)
+        {
+            return await answerRN.GetOptionsByQuestion(questionId);
+        }
 
         /*
         // Peticion tipo GET: api/GetAnswer

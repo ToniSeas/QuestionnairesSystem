@@ -17,6 +17,7 @@ import { QuestionnaireAnsweredComponent } from './components/questionnaire-answe
 import { Role } from './util/Role';
 import { QuestionnaireResultsComponent } from './components/questionnaire-results/questionnaire-results.component';
 import { ResultNormalComponent } from './components/questionnaire-results/result-normal/result-normal.component';
+import { ResultGraphicComponent } from './components/questionnaire-results/result-graphic/result-graphic.component';
 
 const routes: Routes = [
   {
@@ -106,6 +107,26 @@ const routes: Routes = [
       ,{
         path: 'result-normal',
         component: ResultNormalComponent,
+        children: [
+          {
+            path: '**',
+            component: ResultNormalComponent
+          }
+        ],
+        canActivate: [AuthGuard],
+        data: {
+          roles: [Role.ADMIN, Role.SYS_ADMIN]
+        },
+      }
+      ,{
+        path: 'result-graphic',
+        component: ResultGraphicComponent,
+        children: [
+          {
+            path: '**',
+            component: ResultGraphicComponent
+          }
+        ],
         canActivate: [AuthGuard],
         data: {
           roles: [Role.ADMIN, Role.SYS_ADMIN]
