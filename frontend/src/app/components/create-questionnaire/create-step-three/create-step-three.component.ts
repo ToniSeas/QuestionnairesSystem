@@ -40,7 +40,6 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     let isModifyAux: boolean = changes['isModify'].currentValue;
-    //TODO: comprobar si es verdadera, si es verdadero entonces debe cargar los permisos de la base de datos segun el cuestionario
   }
 
   ngOnInit(): void {

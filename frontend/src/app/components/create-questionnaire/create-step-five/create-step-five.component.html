@@ -1,9 +1,13 @@
 <div class="main-container">
     <mat-card class="main-card">
 
-        <button mat-raised-button *ngIf="!this.isSendSuccessfull" type="button" (click)="sendQuestionnaire()" class="mat-primary mb-4">
+        <button mat-raised-button *ngIf="!this.isSendSuccessfull && !this.isModify" type="button" (click)="sendQuestionnaire()" class="mat-primary mb-4">
             <mat-icon>send</mat-icon>
             Enviar Cuestionario
+        </button>
+        <button mat-raised-button *ngIf="!this.isSendSuccessfull && this.isModify" type="button" (click)="sendQuestionnaire()" class="mat-primary mb-4">
+            <mat-icon>send</mat-icon>
+            Modificar Cuestionario
         </button>
         <mat-card-subtitle *ngIf="this.isSendSuccessfull" class="success-message">
             {{this.messageToShow}}
@@ -12,7 +16,7 @@
             {{this.messageToShow}}
         </mat-card-subtitle>
 
-        <div *ngIf="this.isSendSuccessfull">
+        <div *ngIf="this.isSendSuccessfull || this.isModify">
             <mat-card-title><strong>Enlace</strong></mat-card-title>
             <mat-card-content>
                 <p>{{this.sharedUrl}}</p>

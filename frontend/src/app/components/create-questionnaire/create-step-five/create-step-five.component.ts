@@ -29,7 +29,11 @@ export class CreateStepFiveComponent implements OnInit, OnChanges {
   }
   ngOnChanges(changes: SimpleChanges): void {
     let isModifyAux: boolean = changes['isModify'].currentValue;
-    //TODO: comprobar si es verdadera, si es verdadero entonces debe llamar al metodo de modificar cuestionario
+    if(isModifyAux){
+      this.sharedUrl = "";
+        var hostDomain = `${window.location.protocol}//${window.location.host}`;
+        this.sharedUrl = `${hostDomain}/link/${this.questionnaire?.id}`
+    }
   }
 
   ngOnInit(): void {
