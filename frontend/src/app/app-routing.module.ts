@@ -18,6 +18,7 @@ import { Role } from './util/Role';
 import { QuestionnaireResultsComponent } from './components/questionnaire-results/questionnaire-results.component';
 import { ResultNormalComponent } from './components/questionnaire-results/result-normal/result-normal.component';
 import { ResultGraphicComponent } from './components/questionnaire-results/result-graphic/result-graphic.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 const routes: Routes = [
   {
@@ -153,6 +154,9 @@ const routes: Routes = [
     path: 'office',
     component: SelectOfficeComponent,
   }, {
+    path: 'graphic',
+    component: PieChartComponent,
+  }, {
     path: 'questionnaire-view',
     component: QuestionnaireViewComponent,
     children: [
@@ -161,7 +165,6 @@ const routes: Routes = [
         component: QuestionnaireViewComponent,
       }
     ]
-
   }, {
     path: 'link'
     , component: SharedRouterComponent

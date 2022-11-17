@@ -52,6 +52,10 @@ import { NumericQuestionComponent } from './components/questionnaire-view/numeri
 import { CreateStepFourComponent } from './components/create-questionnaire/create-step-four/create-step-four.component';
 import { ResultNormalComponent } from './components/questionnaire-results/result-normal/result-normal.component';
 import { ResultGraphicComponent } from './components/questionnaire-results/result-graphic/result-graphic.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+
+import * as CanvasJSAngularChart from 'src/assets/ChartJS/canvasjs.angular.component';
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
   declarations: [
@@ -86,6 +90,8 @@ import { ResultGraphicComponent } from './components/questionnaire-results/resul
     CreateStepFourComponent,
     ResultNormalComponent,
     ResultGraphicComponent,
+    PieChartComponent,
+    CanvasJSChart
   ],
   imports: [
     BrowserModule,
