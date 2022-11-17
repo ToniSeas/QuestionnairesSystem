@@ -20,7 +20,7 @@ export class ManageSubcategoryComponent implements OnInit {
   private createSubCategoryForm!: FormGroup;
   subCategoryList: SubCategory[] = [];
   categoryList: Category[] = [];
-  subcategoryControl: FormControl = new FormControl("", [Validators.required]);
+  subcategoryControl: FormControl = new FormControl("", [Validators.required,Validators.pattern(/[a-zA-ZÁ-Úá-ú].*/)]);
   private subCategoriesTemp: SubCategory[] = []
   private idCategoryTemp: any;
 
@@ -48,7 +48,7 @@ export class ManageSubcategoryComponent implements OnInit {
 
     this.createSubCategoryForm = new FormGroup({
       categoryF: new FormControl("", [Validators.required]),
-      subcategoryF: new FormControl("", [Validators.required])
+      subcategoryF: new FormControl("", [Validators.required,Validators.pattern(/[a-zA-ZÁ-Úá-ú].*/)])
     })
 
   }

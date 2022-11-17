@@ -14,9 +14,9 @@
 <form [formGroup]="getFormGroup()" validate (ngSubmit)="onSubmit()" class="row mb-4">
     <div class="col">
         <mat-form-field class="w-full">
-            <mat-label> Categoría </mat-label>
+            <mat-label> Nombre Categoría </mat-label>
 
-            <input matInput #inputCreateCategory placeholder="Categoría" type="text" [formControlName]="'categoryF'" maxlength="100">
+            <input matInput #inputCreateCategory placeholder="Nombre Categoría" type="text" [formControlName]="'categoryF'" maxlength="100">
             <mat-hint align="end">{{inputCreateCategory.value.length}}/100</mat-hint>
         </mat-form-field>
     </div>
