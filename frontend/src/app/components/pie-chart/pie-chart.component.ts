@@ -1,27 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-pie-chart',
-  templateUrl: './pie-chart.component.html'
+	selector: 'app-pie-chart',
+	templateUrl: './pie-chart.component.html'
 })
-export class PieChartComponent {
+export class PieChartComponent implements OnChanges{
+	@Input() dataPoints!: { y: number, name: string }[];
+	@Input() chartName!: string;
 
-  chartOptions = {
+	ngOnChanges(changes: SimpleChanges): void {
+		this.chartOptions = {
+			animationEnabled: true,
+			title: {
+				text: this.chartName
+			},
+			data: [{
+				type: "pie",
+				startAngle: -90,
+				indexLabel: "{name}: {y}",
+				dataPoints: this.dataPoints
+			}]
+		}
+	}
+
+	chartOptions = {
 		animationEnabled: true,
 		title: {
-		  text: "Test"
+			text: this.chartName
 		},
 		data: [{
-		  type: "pie",
-		  startAngle: -90,
-		  indexLabel: "{name}: {y}",
-		  dataPoints: [
-			{ y: 14.1, name: "Toys" },
-			{ y: 28.2, name: "Electronics" },
-			{ y: 14.4, name: "Groceries" },
-			{ y: 43.3, name: "Furniture" },
-		  ]
+			type: "pie",
+			startAngle: -90,
+			indexLabel: "{name}: {y}",
+			dataPoints: this.dataPoints
 		}]
-	}	
+	}
 
 }

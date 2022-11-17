@@ -1,13 +1,7 @@
 <div class="container">
 
-    <form class="row mb-4">
-        <div class="col">
-            <div class="col" >
-               <h1 style="text-align: center;">{{this.question!.statement}}</h1>
-            </div>
-    </div>
-       
-    </form>
+    <app-pie-chart [dataPoints]="this.dataPoints" [chartName]="this.question!.statement!"></app-pie-chart>
+
 </div>
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
