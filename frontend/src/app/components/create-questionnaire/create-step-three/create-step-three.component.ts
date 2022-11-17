@@ -88,7 +88,7 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
       }
     })
 
-    
+
     if (!exists) { //Si el usuario no ha sido seleccionado
 
       let reviewerQuestionnaire = new ReviewerQuestionnaire({
@@ -118,20 +118,34 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
     this.searchControl.setValue(null)
   }
 
-  public searchReviewers() {
+  public sortBySearch() {
+
     if (this.searchControl.value != null) {
-
       var tempReviewerQuestionnaire: ReviewerQuestionnaire[] = []
-
-      const searchValue: string = this.searchControl.value;
-
-      this.questionnaire?.reviewersQuestionnaire.forEach(function (reviewerQuestionnaire) {
-        const userFullName: String = reviewerQuestionnaire.user?.name === undefined ? '' : reviewerQuestionnaire.user?.name;
-
-        if (userFullName.includes(searchValue)) { tempReviewerQuestionnaire.push(reviewerQuestionnaire); }
+      this.questionnaire?.reviewersQuestionnaire.forEach(revieweQuestionnaire => {
+        let index = (revieweQuestionnaire.user!.name?.toLowerCase() + "").indexOf(this.searchControl.value.toLowerCase())
+        if (index > -1) {
+          let added = false
+          for (let i = 0; i < tempReviewerQuestionnaire.length; i++) {
+            let tempIndex = (tempReviewerQuestionnaire[i].user!.name?.toLowerCase() + "").indexOf(this.searchControl.value.toLowerCase())
+            if (tempIndex < 0 || index < tempIndex) {
+              if (i == 0) {
+                tempReviewerQuestionnaire.unshift(revieweQuestionnaire)
+              } else {
+                tempReviewerQuestionnaire.splice(i, 0, revieweQuestionnaire)
+              }
+              added = true
+              break
+            }
+          }
+          if (!added) {
+            tempReviewerQuestionnaire.push(revieweQuestionnaire)
+          }
+        } else {
+          tempReviewerQuestionnaire.push(revieweQuestionnaire)
+        }
       });
-      // Se actualiza el datasource de la tabla con las opciones encontradas
-      this.updateDataSource(tempReviewerQuestionnaire);
+      this.updateDataSource(tempReviewerQuestionnaire)
     }
   }
 
