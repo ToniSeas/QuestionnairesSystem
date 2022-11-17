@@ -17,6 +17,14 @@ namespace CuestionariosAPI.Controllers
             questionRN = new QuestionRN();
         }
 
+        // Peticion tipo GET: api/GetQuestionWithAnswer
+        [HttpGet]
+        [Route("GetQuestionWithAnswer")]
+        public async Task<ActionResult<ResponseDTO<List<Question>>>> GetQuestionWithAnswer(int questionnaireId)
+        {
+            return await this.questionRN.GetQuestionWithAnswer(questionnaireId);
+        }
+
         // Peticion tipo GET: api/GetQuestionTypes
         [HttpGet]
         [Route("GetQuestionTypes")]
@@ -32,37 +40,6 @@ namespace CuestionariosAPI.Controllers
         {
             return await questionRN.GetQuestionTypeById(idType);
         }
-        /*
-        // Peticion tipo GET: api/GetQuestions
-        [HttpGet]
-        [Route("GetQuestions")]
-        public async Task<ActionResult<List<Question>>> GetQuestions()
-        {
-            return await questionRN.GetQuestions();
-        }
-
-        // Petición tipo POST: api/CreateQuestion
-        [HttpPost]
-        [Route("CreateQuestion")]
-        public async Task<ActionResult<List<Question>>> CreateQuestion(Question question)
-        {
-            return await questionRN.CreateQuestion(question);
-        }
-
-        //Petición tipo PUT: api/UpdateQuestion
-        [Route("UpdateQuestion")]
-        [HttpPut]
-        public async Task<ActionResult<List<Question>>> UpdateQuestion(Question question)
-        {
-            return await questionRN.UpdateQuestion(question);
-        }
-
-        //Petición tipo DELETE: api/DeleteQuestion
-        [HttpDelete("DeleteQuestion/{id}")]
-        public async Task<ActionResult<List<Question>>> DeleteQuestion(int id)
-        {
-            return await questionRN.DeleteQuestion(id);
-        }
-        */
+        
     }
 }

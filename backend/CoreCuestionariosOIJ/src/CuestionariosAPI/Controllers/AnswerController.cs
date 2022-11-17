@@ -16,6 +16,14 @@ namespace CuestionariosAPI.Controllers
             answerRN = new AnswerRN();
         }
 
+        [HttpGet]
+        [Route("GetOptionById")]
+        public async Task<ActionResult<ResponseDTO<Option>>> GetOptionById(int optionId)
+        { 
+            return await answerRN.GetOptionById(optionId);
+        }
+
+
         /*
         // Peticion tipo GET: api/GetAnswer
         [HttpGet]

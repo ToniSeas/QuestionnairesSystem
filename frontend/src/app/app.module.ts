@@ -50,6 +50,8 @@ import {MatCardModule} from '@angular/material/card';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { NumericQuestionComponent } from './components/questionnaire-view/numeric-question/numeric-question.component';
 import { CreateStepFourComponent } from './components/create-questionnaire/create-step-four/create-step-four.component';
+import { ResultNormalComponent } from './components/questionnaire-results/result-normal/result-normal.component';
+import { ResultGraphicComponent } from './components/questionnaire-results/result-graphic/result-graphic.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { CreateStepFourComponent } from './components/create-questionnaire/creat
     CreateStepFiveComponent,
     QuestionnaireAnsweredComponent,
     NumericQuestionComponent,
-    CreateStepFourComponent
+    CreateStepFourComponent,
+    ResultNormalComponent,
+    ResultGraphicComponent
   ],
   imports: [
     BrowserModule,

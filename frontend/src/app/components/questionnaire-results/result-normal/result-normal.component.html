@@ -12,10 +12,15 @@
         <div class="row mb-4">
             <div class="col">
                 <div class="category-action-buttons">
-                    <button mat-raised-button type="button" (click)="searchQuestion()" class="mat-primary me-md-2">
+                    <!-- <button mat-raised-button type="button" (click)="cleanSearchControl()" class="mat-primary me-md-2"
+                        style="background-color: #DAA520; color: black;">
+                        <mat-icon>cleaning_services'</mat-icon>
+                        Limpiar
+                    </button>
+                    <button mat-raised-button type="button" (click)="searchQuestionnaire()" class="mat-primary me-md-2">
                         <mat-icon>search</mat-icon>
                         Buscar
-                    </button>
+                    </button> -->
                 </div>
             </div>
         </div>
@@ -26,26 +31,9 @@
         <table mat-table [dataSource]="getDataSource()">
 
             <!-- Nombre del cuestionario -->
-            <ng-container matColumnDef="title">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.statement}} </td>
-            </ng-container>
-
-            <!-- Operaciones -->
-            <ng-container matColumnDef="operations">
-                <th mat-header-cell *matHeaderCellDef> Operaciones </th>
-                <td mat-cell *matCellDef="let element">
-                    
-                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                        <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                        <button  mat-menu-item [routerLink]="['/result-normal/']" [state]="{ question: element }">
-                            <mat-icon>remove_red_eye</mat-icon>
-                            <span>Ver Respuestas</span>
-                        </button>
-                    </mat-menu>
-                </td>
+            <ng-container matColumnDef="Respuesta">
+                <th mat-header-cell *matHeaderCellDef> Respuesta </th>
+                <td mat-cell *matCellDef="let element"> {{element}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>

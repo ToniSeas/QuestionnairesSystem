@@ -13,6 +13,11 @@ namespace CuestionariosRN.BusinessObjects
         public AnswerRN() {
             answerData = new AnswerAD();
         }
+
+        public async Task<ActionResult<ResponseDTO<Option>>> GetOptionById(int optionId)
+        { 
+            return await answerData.GetOptionById(optionId);
+        }
         /*
         public async Task<ActionResult<MessageDTO<List<Answer>>>> GetAnswers(int idQuestion)
         {

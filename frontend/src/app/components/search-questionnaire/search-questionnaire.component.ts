@@ -132,5 +132,9 @@ export class SearchQuestionnaireComponent implements OnInit {
 
   }
 
+  public resultsQuestionnaire(idC?: number){
+    this.router.navigate(['/questionnaire-results/'+idC])
+  }
+
   public getSearchControl(): FormControl { return this.searchControl };
 }

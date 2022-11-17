@@ -16,7 +16,12 @@ namespace CuestionariosRN.BusinessObjects
             questionData = new QuestionAD();
         }
 
-        public async Task<ActionResult<ResponseDTO<List<QuestionType>>>> GetQuestionTypes()
+        public async Task<ActionResult<ResponseDTO<List<Question>>>> GetQuestionWithAnswer(int questionnaireId)
+        {
+            return await this.questionData.GetQuestionWithAnswer(questionnaireId);
+        }
+
+            public async Task<ActionResult<ResponseDTO<List<QuestionType>>>> GetQuestionTypes()
         {
             return await questionData.GetQuestionTypes();
         }
@@ -26,25 +31,6 @@ namespace CuestionariosRN.BusinessObjects
             return await questionData.GetQuestionTypeById(idType);
         }
 
-        /*
-        public async Task<ActionResult<List<Question>>> GetQuestions()
-        {
-            return await questionData.GetQuestions();
-        }
-
-        public async Task<ActionResult<List<Question>>> CreateQuestion(Question question)
-        {
-            return await questionData.CreateQuestion(question);
-        }
-        public async Task<ActionResult<List<Question>>> UpdateQuestion(Question question)
-        {
-            return await questionData.UpdateQuestion(question);
-        }
-
-        public async Task<ActionResult<List<Question>>> DeleteQuestion(int id)
-        {
-            return await questionData.DeleteQuestion(id);
-        }
-        */
+       
     }
 }
