@@ -1,3 +1,5 @@
+import { Answer } from "../models/Answer";
+import { Option } from "../models/Option";
 import { Question } from "../models/Question";
 import { QuestionType } from "../models/QuestionType";
 
@@ -72,7 +74,69 @@ export class QuestionUtil {
         }
         return false
     }
+
+    /**
+     * Este metodo agrega opciones puramente esteticas a las preguntas que las necesitan
+     * para que se muestren durante el proceso de creación de cuestionario. 
+     */
+    public static autoLoadPredefinedOptions(question: Question) {
+        switch (question.typeId) {
+            case 'vf':
+                question.options = []
+                question.options.push(new Option({id: -1, optionName: "Verdadero"}))
+                question.options.push(new Option({id: -1, optionName: "Falso"}))
+                break;
+            case 'es':
+                question.options = []
+                question.options.push(new Option({id: -1, optionName: "Muy malo"}))
+                question.options.push(new Option({id: -1, optionName: "Malo"}))
+                question.options.push(new Option({id: -1, optionName: "Regular"}))
+                question.options.push(new Option({id: -1, optionName: "Bueno"}))
+                question.options.push(new Option({id: -1, optionName: "Muy bueno"}))
+                break;
+        }
+    }
+
+    /**
+     * Este metodo limpia las opciones y respuestas de una pregunta para asegurarse que no se inserten
+     * valores inválidos en la base de datos.
+     * @param question La pregunta que se desea limpiar
+     */
+    public static cleanQuestion(question: Question) {
+        switch (question.typeId) {
+            case 'su':
+                question.answers = []
+                question.answers.push(new Answer())
+                break;
+            case 'sm':
+                question.answers = []
+                question.answers.push(new Answer())
+                break;
+            case 'rl':
+                question.answers = []
+                question.answers.push(new Answer())
+                question.options = []
+                break;
+            case 'vf':
+                question.answers = []
+                question.answers.push(new Answer())
+                question.options = []
+                break;
+            case 'es':
+                question.answers = []
+                question.answers.push(new Answer())
+                question.options = []
+                break;
+            case 'nu':
+                question.answers = []
+                question.answers.push(new Answer())
+                question.options = []
+                break;
+        }
+    }
 }
+
+
 
 // Esta clase se encarga de generar objetos que esten
 // relacionados a pregunta (tipo de pregunta, pregunta, etc...)
