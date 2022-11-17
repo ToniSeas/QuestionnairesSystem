@@ -49,6 +49,7 @@ import { QuestionnaireAnsweredComponent } from './components/questionnaire-answe
 import {MatCardModule} from '@angular/material/card';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { NumericQuestionComponent } from './components/questionnaire-view/numeric-question/numeric-question.component';
+import { CreateStepFourComponent } from './components/create-questionnaire/create-step-four/create-step-four.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { NumericQuestionComponent } from './components/questionnaire-view/numeri
     SharedRouterComponent,
     CreateStepFiveComponent,
     QuestionnaireAnsweredComponent,
-    NumericQuestionComponent
+    NumericQuestionComponent,
+    CreateStepFourComponent
   ],
   imports: [
     BrowserModule,

@@ -30,50 +30,54 @@ export class QuestionnaireViewComponent implements OnInit {
   questionnaire?: Questionnaire
   questionComponentRefs: ComponentRef<any>[] = []
   isSendSuccessfull: boolean = true
-  public messageToShow: string = "";
-
+  public messageToShow: string = ""
+  isPreview: boolean
 
   constructor(private questionnaireService: QuestionnaireService
     , private router: Router
-    , private userService: UserService) {
+    , private userService: UserService,
+    changeDetector: ChangeDetectorRef) {
     this.questionnaire = new Questionnaire({})
+    this.isPreview = false
   }
 
-
   ngOnInit(): void {
-    let url = this.router.url.replace("/questionnaire-view/", "")
-
-    this.questionnaireService.getQuestionnaireById((Number)(url)).subscribe(
-      (responseDTO) => {
-        if (responseDTO.id == 1) {
-          this.validateAccess(responseDTO.item!);
-          this.questionnaire = Object.assign(new Questionnaire({}), responseDTO.item!)
-          this.questionnaire.sortQuestions()
-          this.questionnaire?.questions.forEach(element => {
-            this.loadQuestion(element)
-          });
+    if (!this.isPreview) {
+      let url = this.router.url.replace("/questionnaire-view/", "")
+      this.questionnaireService.getQuestionnaireById((Number)(url)).subscribe(
+        (responseDTO) => {
+          if (responseDTO.id == 1) {
+            this.validateAccess(responseDTO.item!);
+            this.questionnaire = Object.assign(new Questionnaire({}), responseDTO.item!)
+            this.questionnaire.sortQuestions()
+            this.questionnaire?.questions.forEach(element => {
+              this.loadQuestion(element)
+            });
+          }
         }
-      }
-    )
+      )
+    }
   }
 
   public validateAccess(questionnaire: Questionnaire) {
-    this.questionnaireService.getQuestionnaireTypes().subscribe((responseDto) => {
-      if (responseDto.id == 1) {
-        var questionnaireType: QuestionnaireType;
-        responseDto.item!.forEach(element => {
-          if (element.id == questionnaire.idQuestionnaireType) {
-            questionnaireType = element;
-          }
-        });
-        if (questionnaireType! != undefined) {
-          if ((questionnaireType.name == "Interno" || questionnaireType.name == "Impersonal")
-            && !this.userService.isLoggedIn()) {
-            this.router.navigate([`/login/link/${questionnaire.id}`]);
+    if (!this.isPreview) {
+      this.questionnaireService.getQuestionnaireTypes().subscribe((responseDto) => {
+        if (responseDto.id == 1) {
+          var questionnaireType: QuestionnaireType;
+          responseDto.item!.forEach(element => {
+            if (element.id == questionnaire.idQuestionnaireType) {
+              questionnaireType = element;
+            }
+          });
+          if (questionnaireType! != undefined) {
+            if ((questionnaireType.name == "Interno" || questionnaireType.name == "Impersonal")
+              && !this.userService.isLoggedIn()) {
+              this.router.navigate([`/login/link/${questionnaire.id}`]);
+            }
           }
         }
-      }
-    });
+      });
+    }
   }
 
   loadQuestion(question: Question): void {
@@ -120,6 +124,14 @@ export class QuestionnaireViewComponent implements OnInit {
     }
   }
 
+  autoLoadQuestion() {
+    this.container.clear();
+    this.questionnaire?.questions.forEach(question => {
+      QuestionUtil.autoLoadPredefinedOptions(question)
+      this.loadQuestion(question)
+    });
+  }
+
   areAllRequiredQuestionsAnswered(): boolean {
     let allQuestionsAnswered = true
     this.questionnaire?.questions.forEach(element => {
@@ -131,13 +143,15 @@ export class QuestionnaireViewComponent implements OnInit {
   }
 
   sendAnswers(): void {
-    this.questionnaireService.commitAnswers(this.questionnaire!).subscribe((messageDTO) => {
-      if (messageDTO.id == 0) {
-        this.isSendSuccessfull = false;
-        this.messageToShow = "No se pudo enviar el cuestionario " + messageDTO.message
-      } else if (messageDTO.id == 1) {
-        this.router.navigate(['/questionnaire-answered/'])
-      }
-    });
+    if (!this.isPreview) {
+      this.questionnaireService.commitAnswers(this.questionnaire!).subscribe((messageDTO) => {
+        if (messageDTO.id == 0) {
+          this.isSendSuccessfull = false;
+          this.messageToShow = "No se pudo enviar el cuestionario " + messageDTO.message
+        } else if (messageDTO.id == 1) {
+          this.router.navigate(['/questionnaire-answered/'])
+        }
+      });
+    }
   }
 }

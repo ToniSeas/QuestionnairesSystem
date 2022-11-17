@@ -17,6 +17,11 @@
     </mat-step>   
 
     <mat-step>
+        <ng-template matStepLabel>Previsualizar</ng-template>
+        <app-create-step-four [stepperContainer]="stepper" [questionnaire]="questionnaire"></app-create-step-four>
+    </mat-step> 
+
+    <mat-step>
         <ng-template matStepLabel>Finalizar</ng-template>
         <app-create-step-five [stepperContainer]="stepper" [questionnaire]="questionnaire" [isModify]="this.isModify">
         </app-create-step-five>
