@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CuestionariosEntidades.Models
+﻿namespace CuestionariosEntidades.Models
 {
     public class User
     {
 
-        public User(String name, String userName, String password, String role, int idOffice, int id)
+        public User(String name, String userName, String password, String role, int[] idOffices, int id)
         {
             this.UserName = userName;
             this.Password = password;
             this.Role = role;
-            this.IdOffice = idOffice;
+            this.IdOffices = idOffices;
             this.Name = name;
             Id = id;
         }
@@ -24,10 +18,11 @@ namespace CuestionariosEntidades.Models
 
         public String Role { get; set; }
 
-        public int IdOffice { get; set; }
+        public int[] IdOffices { get; set; }
 
         public String Name { get; set; }
 
         public int Id { get; set; }
     }
+
 }
