@@ -48,11 +48,12 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/'])
             }
           } else {
+            this.userService.setLoggedIn(true);
             var url: string = this.router.url;
             var startAt: number = "login/link/".length;
             var endAt: number = url.length;
             var questionnaireId: string = this.router.url.substring(startAt, endAt);
-            //this.router.navigate([`/questionnaire-view/${questionnaireId}`]);
+            this.router.navigate([`/questionnaire-view/${questionnaireId}`]);
           }
         }
       });
