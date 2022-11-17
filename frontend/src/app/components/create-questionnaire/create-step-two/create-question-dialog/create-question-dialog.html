@@ -7,14 +7,16 @@
   <div class="row">
     <mat-form-field class="w-full">
       <mat-label> Enunciado </mat-label>
-      <input matInput placeholder="Enunciado" [formControlName]="'statement'">
+      <input matInput #inputStatement placeholder="Enunciado" [formControlName]="'statement'" maxlength="200">
+      <mat-hint align="end">{{inputStatement.value.length}}/200</mat-hint>
     </mat-form-field>
   </div>
 
   <div class="row">
     <mat-form-field class="w-full">
       <mat-label> Etiqueta </mat-label>
-      <input matInput placeholder="Etiqueta" [formControlName]="'label'">
+      <input matInput #inputLabel placeholder="Etiqueta" [formControlName]="'label'" maxlength="100">
+      <mat-hint align="end">{{inputLabel.value.length}}/100</mat-hint>
     </mat-form-field>
   </div>
 
@@ -80,7 +82,8 @@
       <div class="col">
         <mat-form-field class="w-full opcionesPregunta">
           <mat-label> Opciones </mat-label>
-          <input matInput placeholder="Opción" [formControl]="optionCreateControl">
+          <input matInput #inputOption placeholder="Opción" [formControl]="optionCreateControl" maxlength="100">
+          <mat-hint align="end">{{inputOption.value.length}}/100</mat-hint>
         </mat-form-field>
       </div>
       <div class="col">

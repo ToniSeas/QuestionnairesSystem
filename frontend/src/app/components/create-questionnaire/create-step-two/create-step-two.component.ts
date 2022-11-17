@@ -195,7 +195,7 @@ export class CreateQuestionDialog implements OnInit {
 
   // Modelos necesarios para la creacion de las preguntas
   question: Question;
-  optionCreateControl: FormControl = new FormControl("", [Validators.required]);
+  optionCreateControl: FormControl = new FormControl("", [Validators.required, Validators.pattern(/[a-zA-ZÁ-Úá-ú].*/)]);
   optionUpdateControl: FormControl = new FormControl("", [Validators.required]); 
   // Listas de objetos
   private questionTypes: Observable<QuestionType[]>;
@@ -235,7 +235,7 @@ export class CreateQuestionDialog implements OnInit {
       type: new FormControl("", [Validators.required]),
       category: new FormControl("", [Validators.required]),
       subCategory: new FormControl("", [Validators.required]),
-      label: new FormControl("", [Validators.required]),
+      label: new FormControl("", [Validators.required,Validators.pattern(/[a-zA-ZÁ-Úá-ú].*/)]),
       optional: new FormControl(false, [Validators.required]),
     })
 
