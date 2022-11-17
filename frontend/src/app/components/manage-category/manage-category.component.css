@@ -2,20 +2,19 @@ table {
     width: 100%;
 }
 
-.btn-category:hover {
-    background-color: #DAA520;
-    color: #444;
-}
-
 .btn-subcategory:hover {
     background-color: #DAA520;
     color: #444;
 }
 
-.btn-category {
-    background-color: #FFFFFF;
+.btn-category:hover {
+    background-color: #DAA520;
     color: #444;
-    border: 3px solid #DAA520;
+}
+
+.btn-category {
+    background-color: #DAA520;
+    color: #444;
 }
 
 .btn-subcategory {
