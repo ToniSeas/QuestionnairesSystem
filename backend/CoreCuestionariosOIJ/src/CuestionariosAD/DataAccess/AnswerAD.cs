@@ -40,5 +40,32 @@ namespace CuestionariosAD.DataAccess
 
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Option>>>> GetOptionsByQuestion(int questionId)
+        {
+
+            var responseDTO = new ResponseDTO<List<Option>>();
+            var dbOptions =  _context.Options
+                    .Where(e => e.IsDeleted == false && e.IdQuestion == questionId)
+                    .ToList();
+
+            if (dbOptions == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "No existe la categoria que se desea actualizar.";
+                return await Task.FromResult(responseDTO);
+            }
+
+            responseDTO.Id = 1;
+            responseDTO.Item = dbOptions;
+       
+            
+
+            return await Task.FromResult(responseDTO);
+        }
+
     }
+
+    
+
+
 }

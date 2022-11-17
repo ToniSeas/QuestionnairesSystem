@@ -74,7 +74,7 @@ namespace CuestionariosAD.DataAccess
             var message = new MessageDTO();
 
             if (dbCategory == null) {
-                message.Id = 1;
+                message.Id = 0;
                 message.Message = "No existe la categoria que se desea actualizar.";
                 return await Task.FromResult(message);
             }

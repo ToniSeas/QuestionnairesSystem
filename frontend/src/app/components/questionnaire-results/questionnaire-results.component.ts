@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { throwIfEmpty } from 'rxjs';
 import { Question } from "src/app/models/Question";
 import { Questionnaire } from "src/app/models/Questionnaire";
 import { QuestionService } from 'src/app/services/question.service';
@@ -20,7 +21,8 @@ export class QuestionnaireResultsComponent implements OnInit {
   private displayedColumns: string[] = ['title', 'operations'];
   private dataSource = new MatTableDataSource<Question>;
   private searchControl: FormControl;
-
+  public questionnaireId: Number;
+  public nameQuestionnaire: String;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private questionService: QuestionService, 
@@ -28,12 +30,15 @@ export class QuestionnaireResultsComponent implements OnInit {
     this.searchControl = new FormControl('');
     this.questionnaire = new Questionnaire({ });
     this.question = new Question({ });
-
+    this.questionnaireId=0
+    this.nameQuestionnaire=""
   }
 
 
   ngOnInit(): void {
+    this.nameQuestionnaire=history.state['nameQuestionnaire'];
     let idQuestionnaire = Number(this.router.url.replace("/questionnaire-results/", ""))
+    this.questionnaireId = idQuestionnaire
     if (!isNaN(idQuestionnaire)) {
      
       this.questionService.getQuestionWithAnswer(idQuestionnaire).subscribe((responseDto) => {
@@ -67,6 +72,10 @@ export class QuestionnaireResultsComponent implements OnInit {
   //   this.question = question
   //   // console.log(this.question.answers)
   // }
+
+  public searchQuestionnaire(){
+    this.router.navigate(['/search-questionnaire/'])
+  }
 
   public getSearchControl(): FormControl { return this.searchControl };
 

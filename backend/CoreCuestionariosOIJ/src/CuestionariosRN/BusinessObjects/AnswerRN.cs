@@ -18,6 +18,11 @@ namespace CuestionariosRN.BusinessObjects
         { 
             return await answerData.GetOptionById(optionId);
         }
+
+        public async Task<ActionResult<ResponseDTO<List<Option>>>> GetOptionsByQuestion(int questionId)
+        {
+            return await answerData.GetOptionsByQuestion(questionId);
+        }
         /*
         public async Task<ActionResult<MessageDTO<List<Answer>>>> GetAnswers(int idQuestion)
         {

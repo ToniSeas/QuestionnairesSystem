@@ -85,7 +85,7 @@ import { ResultGraphicComponent } from './components/questionnaire-results/resul
     NumericQuestionComponent,
     CreateStepFourComponent,
     ResultNormalComponent,
-    ResultGraphicComponent
+    ResultGraphicComponent,
   ],
   imports: [
     BrowserModule,

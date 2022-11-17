@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultGraphicComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+
+    
+  }
 
   ngOnInit(): void {
+    
   }
 
 }
