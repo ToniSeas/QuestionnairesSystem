@@ -40,6 +40,18 @@ export class CreateStepThreeComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     let isModifyAux: boolean = changes['isModify'].currentValue;
+    /*if (isModifyAux) {
+      this.questionnaireService.getQuestionnaireReviewers(this.questionnaire?.id!).subscribe(
+        (responseDTO) => {
+          if (responseDTO.id == 1) {
+            this.questionnaire!.reviewersQuestionnaire = responseDTO.item!;
+            console.log(this.questionnaire!.reviewersQuestionnaire)
+            this.users.forEach((user) => {console.log(user)});
+            
+            //this.updateDataSource(this.questionnaire!.reviewersQuestionnaire);
+          }
+        });
+    } */
   }
 
   ngOnInit(): void {

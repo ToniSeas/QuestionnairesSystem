@@ -25,6 +25,13 @@ namespace CuestionariosAPI.Controllers
             return await questionnaireRN.GetQuestionnaires();
         }
 
+        [HttpGet]
+        [Route("GetQuestionnaireReviewers")]
+        public async Task<ActionResult<ResponseDTO<List<ReviewerQuestionnaire>>>> GetQuestionnaireReviewers(int questionnaireId)
+        {
+            return await questionnaireRN.GetQuestionnaireReviewers(questionnaireId);
+        }
+
         // Peticion tipo GET: api/GetQuestionnairesToReview
         [HttpGet]
         [Route("GetQuestionnairesToReview")]

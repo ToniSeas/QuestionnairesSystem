@@ -102,7 +102,23 @@ namespace CuestionariosAD.DataAccess
 
         }
 
-        public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> SearchQuestionnaires(string name)
+        public async Task<ActionResult<ResponseDTO<List<ReviewerQuestionnaire>>>> GetQuestionnaireReviewers(int questionnaireId)
+        {
+            var questionnaireReviewers = _context.ReviewerQuestionnaires
+                .Where(x => x.IsDeleted == false && x.IdQuestionnaire == questionnaireId)
+                .ToList();
+
+            var response = new ResponseDTO<List<ReviewerQuestionnaire>>
+            {
+                Id = 1,
+                Message = "Solicitud realizada correctamente",
+                Item = questionnaireReviewers
+            };
+
+            return await Task.FromResult(response);
+        }
+
+            public async Task<ActionResult<ResponseDTO<List<Questionnaire>>>> SearchQuestionnaires(string name)
         {
             var questionnaires = _context.Questionnaires.
                 Where(x => x.Name!.Contains(name) && x.IsDeleted == false)
@@ -148,17 +164,21 @@ namespace CuestionariosAD.DataAccess
 
             var message = new MessageDTO();
 
-            if (dbQuestionnnaire == null)
-            {
+            try {
+                dbQuestionnnaire!.Name = questionnaire.Name;
+                dbQuestionnnaire.IsActive = questionnaire.IsActive;
+                dbQuestionnnaire.ExpirationDate = questionnaire.ExpirationDate;
+                dbQuestionnnaire.IdQuestionnaireType = questionnaire.IdQuestionnaireType;
+                dbQuestionnnaire.Description = questionnaire.Description;
+                await _context.SaveChangesAsync();
+
+                message.Id = 1;
+                message.Message = "Realizado correctamente.";
+            } catch {
                 message.Id = 0;
-                message.Message = "No existe el cuestionario que se desea actualizar.";
-                return await Task.FromResult(message);
+                message.Message = "No se pudo actualizar el cuestionario.";
             }
-
-            dbQuestionnnaire.Name = questionnaire.Name;
-            await _context.SaveChangesAsync();
-
-            message.Id = 1;
+            
             return await Task.FromResult(message);
         }
 

@@ -71,4 +71,16 @@ export class CreateStepFiveComponent implements OnInit, OnChanges {
     });
   }
 
+  public modifyQuestionnaire() {
+    this.questionnaireService.updateQuestionnaire(this.questionnaire!).subscribe((responseDTO) => {
+      if (responseDTO.id == 1) {
+        this.isSendSuccessfull = true;
+        this.messageToShow = "Cuestionario modificado";
+      } else {
+        this.isSendSuccessfull = false;
+        this.messageToShow = "No se pudo modificar el cuestionario";
+      }
+    });
+  }
+
 }
