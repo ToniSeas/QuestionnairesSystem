@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { throwIfEmpty } from 'rxjs';
 import { Question } from "src/app/models/Question";
 import { Questionnaire } from "src/app/models/Questionnaire";
 import { QuestionService } from 'src/app/services/question.service';
@@ -22,11 +21,11 @@ export class QuestionnaireResultsComponent implements OnInit {
   private dataSource = new MatTableDataSource<Question>;
   private searchControl: FormControl;
   public questionnaireId: Number;
-  public nameQuestionnaire: String;
+  public nameQuestionnaire?: String;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private questionService: QuestionService, 
-    private router: Router) {
+    private router: Router, private questionnaireService: QuestionnaireService) {
     this.searchControl = new FormControl('');
     this.questionnaire = new Questionnaire({ });
     this.question = new Question({ });
@@ -36,7 +35,6 @@ export class QuestionnaireResultsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.nameQuestionnaire=history.state['nameQuestionnaire'];
     let idQuestionnaire = Number(this.router.url.replace("/questionnaire-results/", ""))
     this.questionnaireId = idQuestionnaire
     if (!isNaN(idQuestionnaire)) {
@@ -46,8 +44,18 @@ export class QuestionnaireResultsComponent implements OnInit {
       });
   
     }
+
+    this.questionnaireService.getQuestionnaireById(idQuestionnaire).subscribe((responseDto) => {
+      this.questionnaire= Object.assign(new Questionnaire({}), responseDto.item)
+      this.setNameQuestionnaire(this.questionnaire?.name)
+    });
+
     this.dataSource.paginator = this.paginator;
 
+  }
+
+  public setNameQuestionnaire(name?:String){
+    this.nameQuestionnaire = name
   }
 
   public updateQuestionList(question: Question[]): void {

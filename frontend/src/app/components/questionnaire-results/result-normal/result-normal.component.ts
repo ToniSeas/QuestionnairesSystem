@@ -94,7 +94,11 @@ export class ResultNormalComponent implements OnInit {
   }
 
   public resultsQuestionnaire(){
-    this.router.navigate(['/questionnaire-results/'+this.questionnaireId])
+    if(this.questionnaireId == undefined){
+      this.router.navigate(['/search-questionnaire/'])
+    }else{
+      this.router.navigate(['/questionnaire-results/'+this.questionnaireId])
+    }
   }
 
   public getDataSource(): MatTableDataSource<Result> {

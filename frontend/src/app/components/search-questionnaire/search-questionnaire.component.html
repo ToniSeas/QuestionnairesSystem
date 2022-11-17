@@ -1,14 +1,21 @@
 <div class="container">
 
     <form class="row mb-4">
-
         <div class="col">
-            <mat-form-field>
-                <div class="col">
-                    <input matInput [formControl]="getSearchControl()" placeholder="Buscar">
-                </div>
-            </mat-form-field>
+            <div class="row" >
+               <h1 style="text-align: center;">Cuestionarios</h1>
+            </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field>
+                    <div class="col">
+                        <input matInput [formControl]="getSearchControl()" placeholder="Buscar">
+                    </div>
+                </mat-form-field>
+            </div>
+        </div>
+        
         <div class="row mb-4">
             <div class="col">
                 <div class="category-action-buttons">
@@ -70,7 +77,7 @@
                             <mat-icon>edit</mat-icon>
                             <span>Editar</span>
                         </button>
-                        <button *ngIf="this.hasDashboardAccess()" mat-menu-item (click)="resultsQuestionnaire(element.id, element.name)">
+                        <button *ngIf="this.hasDashboardAccess()" mat-menu-item (click)="resultsQuestionnaire(element.id)">
                             <mat-icon>dashboard</mat-icon>
                             <span>Reporte</span>
                         </button>
