@@ -21,9 +21,9 @@ export class SearchQuestionnaireComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private questionnaireService: QuestionnaireService, 
-      private router: Router, 
-      public userService: UserService) {
+  constructor(private questionnaireService: QuestionnaireService,
+    private router: Router,
+    public userService: UserService) {
     this.searchControl = new FormControl('');
   }
 
@@ -79,17 +79,21 @@ export class SearchQuestionnaireComponent implements OnInit {
 
   // Buscar cuestionario segun el nombre
   public searchQuestionnaire(): void {
-    var name: string = this.searchControl.value;
-    if (name == null) { name = ''; }
-    if (name.length > 0) {
-      this.questionnaireService.searchQuestionnaire(name).subscribe((responseDto) => {
-        this.updateQuestionnaireList(responseDto.item!);
-      });
-    } else {
-      this.questionnaireService.getQuestionnaires().subscribe((responseDto) => {
-        this.updateQuestionnaireList(responseDto.item!);
-      });
+    if (this.userService.getRole() != Role.REVIEWER) {
+      var name: string = this.searchControl.value;
+      if (name == null) { name = ''; }
+      if (name.length > 0) {
+        this.questionnaireService.searchQuestionnaire(name).subscribe((responseDto) => {
+          this.updateQuestionnaireList(responseDto.item!);
+        });
+      } else {
+        this.questionnaireService.getQuestionnaires().subscribe((responseDto) => {
+          this.updateQuestionnaireList(responseDto.item!);
+        });
+      }
     }
+
+
   }
 
   public cleanSearchControl() {
@@ -123,8 +127,8 @@ export class SearchQuestionnaireComponent implements OnInit {
     );
   }
 
-  public updateQuestionnaire(idC?: number){
-    this.router.navigate(['/modify-questionnaire/'+idC])
+  public updateQuestionnaire(idC?: number) {
+    this.router.navigate(['/modify-questionnaire/' + idC])
 
   }
 
