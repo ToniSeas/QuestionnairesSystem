@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  userNameControl: FormControl = new FormControl("", [Validators.required]);
+  userNameControl: FormControl = new FormControl("", [Validators.required, Validators.pattern(/[a-zA-ZÁ-Úá-ú].*/)]);
   userPasswordControl: FormControl = new FormControl("", [Validators.required]);
   isLoginIncorrect: boolean = false;
   messageToShow: string = "";
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.userService.isLoggedIn() && this.router.url == "/login") {
-      this.router.navigate(['/'])
+      this.router.navigate(['/']);
     }
   }
 
