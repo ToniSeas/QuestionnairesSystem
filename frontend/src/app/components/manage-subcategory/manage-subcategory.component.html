@@ -67,7 +67,7 @@
 
         <!-- Title -->
         <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef> Nombre Categoría </th>
+            <th mat-header-cell *matHeaderCellDef> Nombre Subcategoría </th>
 
             <td mat-cell *matCellDef="let subcategory">
                 <div *ngIf="!subcategory.editable">
@@ -76,8 +76,9 @@
                 <div *ngIf="subcategory.editable">
                     <form>
                         <mat-form-field>
-                            <input [formControl]="subcategoryControl" type="text" placeholder="{{subcategory.name}}"
-                                value="{{subcategory.name}}" matInput>
+                            <input [formControl]="subcategoryControl" #inputUpdateSubcategory type="text" placeholder="{{subcategory.name}}"
+                                value="{{subcategory.name}}" maxlength="100" matInput>
+                                <mat-hint align="end">{{inputUpdateSubcategory.value.length}}/100</mat-hint>
                         </mat-form-field>
                         <button mat-icon-button color="primary"
                             (click)="updateSubCategory(subcategoryControl.value, subcategory.id)"
