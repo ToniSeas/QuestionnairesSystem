@@ -1,4 +1,6 @@
 import { AnswerOption } from "./AnswerOption"
+import { Option } from "./Option"
+
 
 export class Answer{
   
@@ -7,6 +9,7 @@ export class Answer{
     questionId?: number
     answerText: string
     answerOptions: AnswerOption[]
+    options: Option[] = []
     
     constructor() {
         this.answerOptions = [];

@@ -16,12 +16,47 @@ namespace CuestionariosAD.DataAccess
             _context = new DataContext();
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Question>>>> GetQuestionWithAnswer(int questionnaireId)
+        {
+            var responseDTO = new ResponseDTO<List<Question>>();
+            try
+            {
+                var dbQuestions = await _context.Questions
+                    .Include(e => e.Answers)
+                    .Where(e => e.IsDeleted == false && e.QuestionnaireId == questionnaireId)
+                    .ToListAsync();
+                foreach (var dbQuestion in dbQuestions)
+                {
+                    if (dbQuestion.Answers != null)
+                    {
+                        foreach (var dbAnswer in dbQuestion.Answers)
+                        {
+                            dbAnswer.AnswerOptions = _context.AnswerOptions
+                                .Where(e => e.IsDeleted == false && e.IdAnswer == dbAnswer.Id)
+                                .ToListAsync().Result;
+                         
+                        }
+                    }
+                }
+
+                responseDTO.Item = dbQuestions!;
+
+            }
+            catch
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "No se pudo obtener las preguntas para este cuestionario.";
+            }
+
+            return await Task.FromResult(responseDTO);
+        }
+
         public async Task<ActionResult<ResponseDTO<List<QuestionType>>>> GetQuestionTypes()
         {
             var questionTypes = _context.QuestionTypes
                 .Where(e => e.IsDeleted == false)
                 .ToList();
-            
+
             var response = new ResponseDTO<List<QuestionType>>
             {
                 Id = 1,

@@ -15,6 +15,8 @@ import { QuestionnaireViewComponent } from './components/questionnaire-view/ques
 import { SharedRouterComponent } from './components/shared-router/shared-router.component';
 import { QuestionnaireAnsweredComponent } from './components/questionnaire-answered/questionnaire-answered.component';
 import { Role } from './util/Role';
+import { QuestionnaireResultsComponent } from './components/questionnaire-results/questionnaire-results.component';
+import { ResultNormalComponent } from './components/questionnaire-results/result-normal/result-normal.component';
 
 const routes: Routes = [
   {
@@ -82,6 +84,28 @@ const routes: Routes = [
             component: CreateQuestionnaireComponent
           }
         ],
+        canActivate: [AuthGuard],
+        data: {
+          roles: [Role.ADMIN, Role.SYS_ADMIN]
+        },
+      }
+      ,{
+        path: 'questionnaire-results',
+        component: QuestionnaireResultsComponent,
+        children: [
+          {
+            path: '**',
+            component: QuestionnaireResultsComponent
+          }
+        ],
+        canActivate: [AuthGuard],
+        data: {
+          roles: [Role.ADMIN, Role.SYS_ADMIN]
+        },
+      }
+      ,{
+        path: 'result-normal',
+        component: ResultNormalComponent,
         canActivate: [AuthGuard],
         data: {
           roles: [Role.ADMIN, Role.SYS_ADMIN]

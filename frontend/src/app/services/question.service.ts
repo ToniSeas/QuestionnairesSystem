@@ -19,6 +19,13 @@ export class QuestionService {
     this.controllerURL = "Question";
   }
 
+  //Obtener preguntas con respuesta
+  public getQuestionWithAnswer(questionnaireId: number):Observable<ResponseDTO<Question[]>> {
+    let params = new HttpParams().set('questionnaireId', questionnaireId);
+
+    return this.httpClient.get<ResponseDTO<Question[]>>(`${environment.apiUrl}/${this.controllerURL}/GetQuestionWithAnswer`, { params: params });
+  }
+
   // Obtener las preguntas
   public getQuestions(): Observable<Question[]> {
     var questions: Observable<Question[]> = of(this.questionList);

@@ -70,7 +70,7 @@
                             <mat-icon>edit</mat-icon>
                             <span>Editar</span>
                         </button>
-                        <button *ngIf="this.hasDashboardAccess()" mat-menu-item>
+                        <button *ngIf="this.hasDashboardAccess()" mat-menu-item (click)="resultsQuestionnaire(element.id)">
                             <mat-icon>dashboard</mat-icon>
                             <span>Reporte</span>
                         </button>

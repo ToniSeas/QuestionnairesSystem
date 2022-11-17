@@ -22,13 +22,13 @@ namespace CuestionariosAD.DataAccess
             var categories = _context.Categories
                 .Where(e => e.IsDeleted == false)
                 .ToList();
-            var message = new ResponseDTO<List<Category>> {
+            var responseDTO = new ResponseDTO<List<Category>> {
                 Id = 1,
                 Message = "Solicitud realizada correctamente",
                 Item = categories
             };
 
-            return await Task.FromResult(message);
+            return await Task.FromResult(responseDTO);
         }
 
         public async Task<ActionResult<MessageDTO>> CreateCategory(Category category)
