@@ -32,23 +32,24 @@
     </mat-form-field>
 
     <mat-form-field class="col-6 select">
-      <mat-label>Tipo</mat-label>
-      <mat-select [formControlName]="'type'" (selectionChange)="requireOption(this.getFormGroup().get('type')?.value)">
-        <mat-option> </mat-option>
-        <mat-option *ngFor="let questionType of getQuestionTypes() | async" [value]="questionType.id">
-          {{questionType.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div class="row">
-    <mat-form-field class="col-6 select">
       <mat-label>Subcategoría</mat-label>
       <mat-select [formControlName]="'subCategory'">
         <mat-option> </mat-option>
         <mat-option *ngFor="let subCategory of getSubCategories() | async" [value]="subCategory.id">
           {{subCategory.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+  <div class="row">
+    <mat-form-field class="col-6 select">
+      <mat-label>Tipo</mat-label>
+      <mat-select [formControlName]="'type'" (selectionChange)="requireOption(this.getFormGroup().get('type')?.value)">
+        <mat-option> </mat-option>
+        <mat-option *ngFor="let questionType of getQuestionTypes() | async" [value]="questionType.id">
+          {{questionType.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -110,8 +111,9 @@
 
             <div *ngIf="this.element.editable">
               <mat-form-field>
-                <input [formControl]="optionUpdateControl" type="text" placeholder={{element.optionName}}
+                <input [formControl]="optionUpdateControl" #inputOptionUpdate  type="text" placeholder={{element.optionName}}
                   value={{element.optionName}} matInput>
+                  <mat-hint align="end">{{inputOptionUpdate.value.length}}/100</mat-hint>
               </mat-form-field>
             </div>
 
