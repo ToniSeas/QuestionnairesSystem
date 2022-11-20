@@ -133,7 +133,6 @@ export class SearchQuestionnaireComponent implements OnInit {
   }
 
   public resultsQuestionnaire(idC?: number){
-    console.log(name)
     this.router.navigate(['/questionnaire-results/'+idC])
   }
 

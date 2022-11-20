@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,25 +14,30 @@ import { AnswerService } from 'src/app/services/answer.service';
   styleUrls: ['./result-graphic.component.css']
 })
 export class ResultGraphicComponent implements OnInit {
-
   @Input() question?: Question;
   @Input() questionnaireId?: Number;
 
   private searchControl: FormControl;
   public result: Result[];
   public dataPoints: { y: number, name: string }[];
+  public showGraphic: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute, public answerService: AnswerService) {
     this.searchControl = new FormControl('');
     this.result = []
 
     this.dataPoints = []
+    this.showGraphic = false;
   }
 
   ngOnInit(): void {
-    this.question = history.state['question'];
-    this.questionnaireId = history.state['questionnaireId']
-    this.getAnswersOption()
+    if (history.state['question'] == undefined || history.state['questionnaireId'] == undefined) {
+      this.router.navigate(["/search-questionnaire"])
+    } else {
+      this.question = history.state['question'];
+      this.questionnaireId = history.state['questionnaireId']
+      this.getAnswersOption();
+    }
   }
 
   public getAnswersOption() {
@@ -47,7 +52,7 @@ export class ResultGraphicComponent implements OnInit {
         });
       });
     });
-
+    this.showGraphic = true;
   }
 
   public updateAnswerList(answers?: Answer): void {

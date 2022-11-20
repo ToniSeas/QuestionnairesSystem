@@ -46,7 +46,6 @@ export class ResultNormalComponent implements OnInit {
   
   public getAnswersOption(){
     let anserAux: Answer = new Answer()
-    console.log(this.question)
     this.question?.answers.forEach(answer => {
       answer.answerOptions.forEach(answerOption => {
        

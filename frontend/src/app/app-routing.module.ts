@@ -102,7 +102,7 @@ const routes: Routes = [
         ],
         canActivate: [AuthGuard],
         data: {
-          roles: [Role.ADMIN, Role.SYS_ADMIN]
+          roles: [Role.ADMIN, Role.SYS_ADMIN, Role.REVIEWER]
         },
       }
       ,{
@@ -116,7 +116,7 @@ const routes: Routes = [
         ],
         canActivate: [AuthGuard],
         data: {
-          roles: [Role.ADMIN, Role.SYS_ADMIN]
+          roles: [Role.ADMIN, Role.SYS_ADMIN, Role.REVIEWER]
         },
       }
       ,{
@@ -130,7 +130,7 @@ const routes: Routes = [
         ],
         canActivate: [AuthGuard],
         data: {
-          roles: [Role.ADMIN, Role.SYS_ADMIN]
+          roles: [Role.ADMIN, Role.SYS_ADMIN, Role.REVIEWER]
         },
       }
     ]
