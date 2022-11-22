@@ -12,3 +12,17 @@ body {
     border-width: 1px;
     border-color: rgba(230, 230, 230);
 }
+
+.btn-next{
+    background-color: #444;
+    color: #DAA520;
+    width: 100px;
+    height: 40px;
+}
+
+.btn-back{
+    background-color: #444;
+    color: #DAA520;
+    width: 100px;
+    height: 40px;
+}
