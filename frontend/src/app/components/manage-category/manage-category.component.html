@@ -1,11 +1,11 @@
 <div class="row mb-4">
     <div class="col">
         <button type="button" routerLink="/manage-category" class="btn me-md-2 btn-category">Categoría de
-            Pregunta</button>
+            pregunta</button>
     </div>
     <div class="col">
         <button type="button" routerLink="/manage-subcategory" class="btn me-md-2 btn-subcategory">Subcategoría de
-            Pregunta</button>
+            pregunta</button>
     </div>
     <div class="col"></div>
     <div class="col"></div>
@@ -14,9 +14,9 @@
 <form [formGroup]="getFormGroup()" validate (ngSubmit)="onSubmit()" class="row mb-4">
     <div class="col">
         <mat-form-field class="w-full">
-            <mat-label> Nombre Categoría </mat-label>
+            <mat-label> Nombre categoría </mat-label>
 
-            <input matInput #inputCreateCategory placeholder="Nombre Categoría" type="text" [formControlName]="'categoryF'" maxlength="100">
+            <input matInput #inputCreateCategory placeholder="Nombre categoría" type="text" [formControlName]="'categoryF'" maxlength="100">
             <mat-hint align="end">{{inputCreateCategory.value.length}}/100</mat-hint>
         </mat-form-field>
     </div>
@@ -56,7 +56,7 @@
 
         <!-- Title -->
         <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef> Nombre Categoría </th>
+            <th mat-header-cell *matHeaderCellDef> Nombre categoría </th>
 
             <td mat-cell *matCellDef="let category">
                 <div *ngIf="!category.editable">

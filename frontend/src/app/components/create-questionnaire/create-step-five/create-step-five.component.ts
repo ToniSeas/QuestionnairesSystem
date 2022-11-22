@@ -53,7 +53,7 @@ export class CreateStepFiveComponent implements OnInit, OnChanges {
     this.questionnaireService.createQuestionnaire(this.questionnaire!).subscribe((responseDTO) => {
       if (responseDTO.id == 1) {
         this.isSendSuccessfull = true;
-        this.messageToShow = "Cuestionario Enviado";
+        this.messageToShow = "Cuestionario enviado";
         this.sharedUrl = "";
         var hostDomain = `${window.location.protocol}//${window.location.host}`;
         this.sharedUrl = `${hostDomain}/link/${responseDTO.item}`

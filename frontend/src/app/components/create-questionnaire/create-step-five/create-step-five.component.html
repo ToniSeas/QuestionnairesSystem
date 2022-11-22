@@ -3,11 +3,11 @@
 
         <button mat-raised-button *ngIf="!this.isSendSuccessfull && !this.isModify" type="button" (click)="sendQuestionnaire()" class="mat-primary mb-4">
             <mat-icon>send</mat-icon>
-            Enviar Cuestionario
+            Enviar cuestionario
         </button>
         <button mat-raised-button *ngIf="!this.isSendSuccessfull && this.isModify" type="button" (click)="modifyQuestionnaire()" class="mat-primary mb-4">
             <mat-icon>send</mat-icon>
-            Modificar Cuestionario
+            Modificar cuestionario
         </button>
         <mat-card-subtitle *ngIf="this.isSendSuccessfull" class="success-message">
             {{this.messageToShow}}

@@ -1,11 +1,11 @@
 <div class="row mb-4">
     <div class="col">
         <button type="button" routerLink="/manage-category" class="btn me-md-2 btn-category">Categoría de
-            Pregunta</button>
+            pregunta</button>
     </div>
     <div class="col">
         <button type="button" routerLink="/manage-subcategory" class="btn me-md-2 btn-subcategory">Subcategoría de
-            Pregunta</button>
+            pregunta</button>
     </div>
     <div class="col"></div>
     <div class="col"></div>
@@ -14,8 +14,8 @@
 <form form [formGroup]="getFormGroup()" validate (ngSubmit)="onSubmit()" class="row mb-4">
     <div class="col">
         <mat-form-field class="w-full p-l-8">
-            <mat-label>Nombre SubCategoría</mat-label>
-            <input matInput #inputCreateSubCategory placeholder="Nombre SubCategoría" [formControlName]="'subcategoryF'"
+            <mat-label>Nombre subcategoría</mat-label>
+            <input matInput #inputCreateSubCategory placeholder="Nombre subcategoría" [formControlName]="'subcategoryF'"
                 maxlength="100">
             <mat-hint align="end">{{inputCreateSubCategory.value.length}}/100</mat-hint>
         </mat-form-field>
@@ -67,7 +67,7 @@
 
         <!-- Title -->
         <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef> Nombre Subcategoría </th>
+            <th mat-header-cell *matHeaderCellDef> Nombre subcategoría </th>
 
             <td mat-cell *matCellDef="let subcategory">
                 <div *ngIf="!subcategory.editable">

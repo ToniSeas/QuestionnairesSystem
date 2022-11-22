@@ -46,11 +46,11 @@
                     <mat-menu #menu="matMenu">
                         <button  mat-menu-item [routerLink]="['/result-normal/']" [state]="{ question: element, questionnaireId: this.questionnaireId }">
                             <mat-icon>remove_red_eye</mat-icon>
-                            <span>Ver Respuestas</span>
+                            <span>Ver respuestas</span>
                         </button>
                         <button  mat-menu-item *ngIf="element.typeId != 'nu' && element.typeId != 'rl'"  [routerLink]="['/result-graphic/']" [state]="{ question: element, questionnaireId: this.questionnaireId }">
                             <mat-icon>remove_red_eye</mat-icon>
-                            <span>Ver Graficos</span>
+                            <span>Ver gráficos</span>
                         </button>
                     </mat-menu>
                 </td>
