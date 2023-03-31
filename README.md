@@ -3,7 +3,7 @@
 
 ## Documentation
 
-* [Wiki](home)
+* [Wiki](wiki)
 
 ## Authors
 
