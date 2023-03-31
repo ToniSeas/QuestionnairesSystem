@@ -3,7 +3,7 @@
 
 ## Documentation
 
-* [Wiki](/wiki)
+* [Wiki](https://github.com/HeinerMo/CuestionariosOIJ/wiki)
 
 ## Authors
 
