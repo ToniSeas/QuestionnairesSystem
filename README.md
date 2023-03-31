@@ -1,14 +1,21 @@
-# CuestionariosOIJ
-Proyecto final para el curso de Análisis y Diseño de Sistemas.
-El código e información aquí disponible es de caracter confidencial y pertenece al Organismo de Investigación Judicial.
 
-Dentro de cada directorio importante habrá un Readme con sus respectivas indicaciones
-Instalaciones necesarias:
+# Cuestionarios OIJ
 
-	- Instalar NodeJS y NPM (https://phoenixnap.com/kb/install-node-js-npm-on-windows)
+## Documentation
 
-	- Instalar Angular (https://ccbill.com/kb/install-angular-on-windows)
+* [Wiki](https://linktodocumentation)
 
-	- Instalar Visual Studio (2022 sirve)
+## Authors
 
-	- Instalar SQL Server (Developer o Express) y SSMS
+- [@ToniSeas](https://github.com/ToniSeas)
+- [@HeinerMo](https://github.com/HeinerMo)
+- [@sojos204](https://github.com/sojos204)
+- [@M0nsai](https://github.com/M0nsai)
+
+
+## Tech Stack
+
+**Frontend:** Angular 14, bootstrap 5, Angular Material
+
+**Backend:** .Net 6, Entity Framework 6
+
